@@ -13,9 +13,11 @@
 
   &__main {
     flex-shrink: 0;
-    width: 1024px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
     background-color: transparent;
-    margin: auto;
     flex: 1;
   }
 }
