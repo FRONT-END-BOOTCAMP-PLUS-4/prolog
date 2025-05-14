@@ -2,9 +2,9 @@
 import { type JSX } from 'react';
 import Image from 'next/image';
 // slice
-import styles from './PostsSearchPres.module.scss';
+import styles from '../styles/SearchInputPres.module.scss';
 
-export default function PostsSearch(): JSX.Element {
+export default function SearchInputPres(): JSX.Element {
   return (
     <form className={styles.searchForm}>
         <span className={styles.searchIcon}>
