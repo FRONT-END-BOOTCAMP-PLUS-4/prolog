@@ -1,0 +1,13 @@
+@use '@styles/variables.scss' as *;
+
+.logo {
+    padding: 12px 16px;
+    border-radius: 12px;
+    background-color: $color-secondary;
+    cursor: pointer;
+  
+    &__text {
+      font-size: 18px;
+      color: $color-white;
+    }
+  }
