@@ -22,3 +22,31 @@ $color-gray-600: var(--color-gray-600);
 $color-gray-400: var(--color-gray-400);
 $color-gray-200: var(--color-gray-200);
 $color-gray: var(--color-gray);
+
+$font-title-size: clamp(28px, 2vw, 32px);
+$font-title-line-height: 1.2;
+$font-title-weight: bold;
+
+$font-title-sub-size: clamp(20px, 2vw, 24px);
+$font-title-sub-line-height: 1.2;
+$font-title-sub-weight: bold;
+
+$font-xl-size: clamp(18px, 2vw, 20px);
+$font-xl-line-height: 1.2;
+$font-xl-weight: normal;
+
+$font-lg-size: clamp(16px, 2vw, 18px);
+$font-lg-line-height: 1.2;
+$font-lg-weight: normal;
+
+$font-base-size: clamp(14px, 2vw, 16px);
+$font-base-line-height: 1.2;
+$font-base-weight: normal;
+
+$font-sm-size: clamp(12px, 2vw, 14px);
+$font-sm-line-height: 1.2;
+$font-sm-weight: normal;
+
+$font-xs-size: clamp(10px, 2vw, 12px);
+$font-xs-line-height: 1.2;
+$font-xs-weight: normal;
