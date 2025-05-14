@@ -1,0 +1,31 @@
+@use '@styles/variables.scss' as *;
+
+.searchForm {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    width: 100%;
+    height: 100%;
+    background: $color-shade-1;
+    border: 1px solid $color-gray-400;
+    border-radius: 8px;
+  }
+  
+  .searchIcon {
+    width: 20px;
+    height: 20px;
+    color: $color-gray;
+  }
+  
+  .searchInput {
+    font-size: $font-base-size;
+    color: $color-text-1;
+    border: none;
+    outline: none;
+    background: transparent;
+
+    &::placeholder {
+        color: $color-gray;
+    }
+  }
