@@ -2,7 +2,7 @@
 import { type JSX } from 'react';
 import Image from 'next/image';
 // slice
-import styles from './Posts.module.scss';
+import styles from './PostsSearchPres.module.scss';
 
 export default function PostsSearch(): JSX.Element {
   return (
