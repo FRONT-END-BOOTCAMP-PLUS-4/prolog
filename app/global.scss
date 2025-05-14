@@ -1,5 +1,5 @@
-@use './styles/reset.scss';
-@use './styles/themes';
-@use './styles/variables';
-@use './styles/mixins';
-@use './styles/base';
+@use './styles/_reset.scss';
+@use './styles/_base.scss';
+@use './styles/_themes.scss';
+@use './styles/_variables.scss';
+@use './styles/_mixins.scss';

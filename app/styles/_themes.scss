@@ -23,16 +23,7 @@
   --color-gray-400: #5B636F;
   --color-gray-200: #6E767D;
   --color-gray: #808A97;
-
-
-  --text-xl: ['clamp(20px, 2vw, 24px)', { lineHeight: '1.2', fontWeight: 'bold' }]
-  title: ['clamp(28px, 2vw, 32px)', { lineHeight: '1.2', fontWeight: 'bold' }],
-  title_sub: ['clamp(20px, 2vw, 24px)', { lineHeight: '1.2', fontWeight: 'bold' }],
-  xl: ['clamp(18px, 2vw, 20px)', { lineHeight: '1.2', fontWeight: 'normal' }],
-  lg: ['clamp(16px, 2vw, 18px)', { lineHeight: '1.2', fontWeight: 'normal' }],
-  base: ['clamp(14px, 2vw, 16px)', { lineHeight: '1.2', fontWeight: 'normal' }],
-  sm: ['clamp(12px, 2vw, 14px)', { lineHeight: '1.2', fontWeight: 'normal' }],
-  xs: ['clamp(10px, 2vw, 12px)', { lineHeight: '1.2', fontWeight: 'normal' }],
+  
 }
 
 [data-theme='dark'] {
