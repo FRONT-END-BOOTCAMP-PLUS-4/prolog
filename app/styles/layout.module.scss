@@ -1,0 +1,21 @@
+@use './variables.scss' as *;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__header {
+    flex-shrink: 0;
+    height: 60px;
+    background-color: transparent;
+  }
+
+  &__main {
+    flex-shrink: 0;
+    width: 1024px;
+    background-color: transparent;
+    margin: auto;
+    flex: 1;
+  }
+}
