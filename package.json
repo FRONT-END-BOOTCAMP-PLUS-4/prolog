@@ -1,0 +1,39 @@
+{
+  "name": "prolog",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format-lint": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@prisma/client": "^6.7.0",
+    "dayjs": "^1.11.13",
+    "next": "15.3.2",
+    "prisma": "^6.7.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-toastify": "^11.0.5",
+    "zustand": "^5.0.4"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.2",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.4.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "prettier": "^3.5.3",
+    "sass": "^1.88.0",
+    "typescript": "^5"
+  }
+}
