@@ -1,0 +1,107 @@
+@use '@styles/variables.scss' as *;
+
+.container {
+  background: $color-white;
+  border-radius: 8px;
+  box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.profileInfo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.profileIcon {
+  width: 32px;
+  height: 32px;
+}
+
+.profileName {
+  font-size: 12px;
+  color: $color-text-1;
+  font-weight: 400;
+}
+
+.profileDate {
+  font-size: 10px;
+  color: $color-text-3;
+  font-weight: 400;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.textWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 700;
+  color: $color-text-1;
+  line-height: 1.75em;
+}
+
+.desc {
+  font-size: 14px;
+  color: $color-text-3;
+  line-height: 1.43em;
+}
+
+.mainIcon {
+  width: 100px;
+  height: 80px;
+  border-radius: 8px;
+  background: $color-mist-lavender;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.iconTextGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.iconCount {
+  font-size: 12px;
+  color: $color-gray-800;
+  font-weight: 400;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+}
+
+.tag {
+  background: $color-mist-lavender;
+  color: $color-primary;
+  border-radius: 16px;
+  font-size: 12px;
+  padding: 4px 16px;
+  font-weight: 400;
+}
