@@ -1,0 +1,20 @@
+@use '@styles/variables.scss' as *;
+
+.baseStyle{
+  display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 8px 16px;
+    border-radius: 16px;    
+    background: $color-mist-lavender;
+    font-size: $font-sm-size;
+    color: $color-primary;
+}
+
+.linkable {
+    cursor: pointer;
+  }
+
+  
+
+  

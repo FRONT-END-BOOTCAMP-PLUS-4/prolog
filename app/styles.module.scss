@@ -1,0 +1,72 @@
+@use '@styles/variables.scss' as *;
+
+
+.filterBar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.filterItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: $color-white;
+  border: 1px solid $color-gray-800;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: $font-base-size;
+  color: $color-gray-800;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+
+.filterItemActive {
+  color: $color-gray;
+  border: 1px solid $color-gray;
+}
+
+.filterIcon {
+  width: 12px;
+  height: 10px;
+  margin-left: 4px;
+}
+
+.viewTypeBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.viewTypeIcon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  fill: $color-gray-800;
+  transition: fill 0.2s;
+}
+
+.viewTypeIconActive {
+  fill: $color-primary;
+}
+
+.cardList {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.cardLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .cardList {
+    flex-direction: column;
+    gap: 24px;
+  }
+}

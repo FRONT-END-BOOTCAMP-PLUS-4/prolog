@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
-import "./global.scss";
 import { Roboto, Open_Sans } from 'next/font/google';
+
+import "./global.scss";
+import styles from "./styles/layout.module.scss";
+
+import Header from "@/widgets/header";
+
 
 const roboto = Roboto({
   weight: ['400', '700'],
@@ -28,7 +33,14 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${roboto.className} ${openSans.className}`}>
-        {children}
+        <div className={styles.layout}>
+        <header className={styles.layout__header}>
+          <Header/>
+        </header>
+        <main className={styles.layout__main}>
+          {children}
+        </main>
+        </div>
       </body>
     </html>
   );
