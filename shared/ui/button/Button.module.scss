@@ -1,0 +1,60 @@
+@use '@styles/variables.scss' as *;
+
+
+.button {
+    color: $color-white;
+    cursor: pointer;
+    opacity: 0.9;
+    border-radius: 8px;
+    white-space: nowrap;
+    padding: 0.5rem 0.8rem;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    &__basic {
+        color: $color-gray;
+        border: 1px solid $color-gray;
+
+        &:hover {
+            color: $color-secondary;
+            border-color: $color-secondary;
+        }
+    }
+
+    &__active {
+        background-color: $color-secondary;
+    }
+
+    &__theme {
+        background-color: $color-text-1;
+        color: $color-shade-3;
+    }
+
+    &__disabled {
+        cursor: not-allowed;
+        background-color: $color-gray;
+    }
+
+    &__red {
+        background-color: $color-red;
+    }
+
+    &__purple {
+        color: $color-primary;
+        background-color: $color-mist-lavender;
+    }
+
+    &__small {
+        font-size: $font-sm-size;
+    }
+
+    &__medium {
+        font-size: $font-base-size;
+    }
+    
+    &__large {
+        font-size: $font-lg-size;
+    }
+}
