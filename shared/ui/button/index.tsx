@@ -3,7 +3,7 @@
 import { CSSProperties, ButtonHTMLAttributes } from "react";
 import { Slot } from "@radix-ui/react-slot";
 // slice
-import styles from "./styles.module.scss";
+import styles from "./Button.module.scss";
 
 type ButtonProps = {
   variants?: "basic" | "active" | "theme" | "disabled" | "red" | "purple";
