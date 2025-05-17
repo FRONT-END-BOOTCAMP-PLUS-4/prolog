@@ -1,21 +1,14 @@
 import type { Metadata } from "next";
-import { Roboto, Open_Sans } from 'next/font/google';
+import localFont from 'next/font/local'
 
 import "./global.scss";
 import styles from "./styles/layout.module.scss";
 
 import Header from "@/widgets/header";
 
-
-const roboto = Roboto({
-  weight: ['400', '700'],
-  subsets: ['latin'],
-});
-
-const openSans = Open_Sans({
-  weight: ['400', '600'],
-  subsets: ['latin'],
-});
+const pretendard = localFont({
+  src: '../public/fonts/pretendard-medium.woff2',
+})
 
 export const metadata: Metadata = {
   title: "prolog",
@@ -31,8 +24,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
-      <body className={`${roboto.className} ${openSans.className}`}>
+    <html lang="ko" className={`${pretendard.className}`}>
+      <body>
         <div className={styles.layout}>
         <header className={styles.layout__header}>
           <Header/>
