@@ -1,6 +1,3 @@
-// package
-import React from 'react';
-
 // slice
 import styles from '../styles/TagList.module.scss';
 
