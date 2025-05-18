@@ -1,5 +1,5 @@
 // layer
-import CardListCont from '@/widgets/card/container/CardListCont';
+import CardListCont from '@/views/card-list/container/CardListCont';
 
 export default function Page() {
   return <CardListCont />;
