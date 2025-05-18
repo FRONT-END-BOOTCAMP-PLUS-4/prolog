@@ -78,32 +78,42 @@ export default function CardListPres({
         </div>
         {/* 뷰 타입 토글 */}
         <div className={styles.viewTypeBar}>
-          <Image
-            src="/svgs/card.svg"
-            alt="card"
-            width={20}
-            height={20}
+          <button
+            type="button"
             className={
               viewType === 'card'
-                ? styles.viewTypeIconActive
-                : styles.viewTypeIcon
+                ? styles.viewTypeButtonActive
+                : styles.viewTypeButton
             }
-            style={{ cursor: 'pointer' }}
             onClick={() => setViewType('card')}
-          />
-          <Image
-            src="/svgs/list.svg"
-            alt="list"
-            width={20}
-            height={20}
+            aria-label="카드형 보기"
+          >
+            <Image
+              src="/svgs/card.svg"
+              alt="카드형 보기"
+              width={20}
+              height={20}
+              aria-hidden="true"
+            />
+          </button>
+          <button
+            type="button"
             className={
               viewType === 'list'
-                ? styles.viewTypeIconActive
-                : styles.viewTypeIcon
+                ? styles.viewTypeButtonActive
+                : styles.viewTypeButton
             }
-            style={{ cursor: 'pointer' }}
             onClick={() => setViewType('list')}
-          />
+            aria-label="리스트형 보기"
+          >
+            <Image
+              src="/svgs/list.svg"
+              alt="리스트형 보기"
+              width={20}
+              height={20}
+              aria-hidden="true"
+            />
+          </button>
         </div>
       </div>
       <div
