@@ -1,0 +1,39 @@
+@use '@styles/variables.scss' as *;
+
+.tagListContainer { 
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  height: 32px;
+
+    &:hover .tagList.rolling {
+    animation-play-state: paused;
+  }
+}
+
+.tagList { 
+  display: flex;
+  gap: 8px;
+  width: max-content;
+}
+
+.rolling {
+  animation: slide 15s linear infinite; 
+}
+
+.tagItem {
+  background: $color-mist-lavender;
+  color: $color-primary;
+  border-radius: 16px;
+  font-size: 12px;
+  padding: 4px 16px;
+  font-weight: 400;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }to {
+    transform: translateX(-50%);
+  }
+}
