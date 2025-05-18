@@ -1,0 +1,14 @@
+{
+  "prettier.enable": false,
+  // 여러 포매터 설치 되어 있을 때 biome 우선 적용.
+  "editor.defaultFormatter": "biomejs.biome",
+
+  // 파일 저장 시, 자동 실행 코드 지정.
+  "editor.codeActionsOnSave": {
+    // 자동으로 고칠 수 있는 린트 오류 수정을 저장 할 때 마다 자동 적용.
+    "quickfix.biome": "explicit",
+
+    // import 정렬 기능. 구문 알파벳 순으로 자동 정렬.
+    // "source.organizeImports.biome": "explicit"
+  }
+}

@@ -1,3 +1,4 @@
+@use './variables.scss' as *;
 *,
 *::before,
 *::after {
@@ -8,7 +9,8 @@
 
 html, body {
   height: 100%;
-  font-family: sans-serif;
+  background-color: $color-shade-1;
+  color: $color-text-1;
 }
 
 ul, ol {
