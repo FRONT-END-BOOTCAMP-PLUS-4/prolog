@@ -3,11 +3,28 @@
 .container {
   background: $color-white;
   border-radius: 8px;
-  box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   width: 320px;
   padding: 0;
+  overflow: hidden;
+  transition: transform 600ms;
+  animation: zoomIn 400ms;
+}
+
+.container:hover {
+transform: translateY(-8px); 
+box-shadow: 4px 4px 11px 2px  rgba(0, 0, 0, 0.1); 
+}
+
+@keyframes zoomIn {
+  0% {
+    scale: 0.7;
+  }
+  100% {
+    scale: 1;
+  }
 }
 
 .iconWrap {
@@ -19,8 +36,16 @@
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   height: 160px;
+  overflow: hidden;
 }
 
+.iconWrap img {
+  transition: transform 400ms;
+}
+
+.iconWrap img:hover {
+  transform: scale(1.2);
+}
 .content {
   display: flex;
   flex-direction: column;
@@ -39,20 +64,6 @@
   font-size: 16px;
   color: $color-text-2;
   margin-bottom: 8px;
-}
-
-.tags {
-  display: flex;
-  gap: 8px;
-}
-
-.tag {
-  background: $color-mist-lavender;
-  color: $color-primary;
-  border-radius: 16px;
-  font-size: 12px;
-  padding: 4px 16px;
-  font-weight: 400;
 }
 
 .profileBar {
