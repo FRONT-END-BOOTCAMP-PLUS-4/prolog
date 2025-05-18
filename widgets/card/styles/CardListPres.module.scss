@@ -1,0 +1,107 @@
+@use '@styles/variables.scss' as *;
+
+.filterBar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+.filterIcon {
+  width: 12px;
+  height: 10px;
+  margin-left: 4px;
+}
+
+.viewTypeBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.viewTypeIcon {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  fill: $color-gray-800;
+  transition: fill 0.2s;
+}
+
+.viewTypeIconActive {
+  fill: $color-primary;
+}
+
+.cardList {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.cardLayout {
+  gap: 16px;
+}
+
+.cardLayout.square {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  gap: 50px;
+}
+
+.cardLayout.long {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.viewTypeIcon {
+  color: $color-soft-lavender;
+  filter: brightness(0.8);
+  transition: filter 0.2s;
+}
+
+.viewTypeIconActive {
+  filter: none;
+}
+.selectWrap {
+  position: relative;
+  display: inline-block;
+}
+
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 6px 30px 6px 12px;
+  font-size: 14px;
+  color: #333;
+  cursor: pointer;
+  min-width: 100px;
+  height: 36px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.filterIcon {
+  pointer-events: none;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.filterIconOpen {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+@media (max-width: 900px) {
+  .cardList {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
