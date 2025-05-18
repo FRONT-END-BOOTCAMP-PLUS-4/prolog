@@ -1,12 +1,28 @@
-import styles from '../styles/SquareCardPres.module.scss';
+// package
 import Image from 'next/image';
+
+// slice
+import styles from '../styles/SquareCardPres.module.scss';
+
+// layer
+import TagListCont from '@/views/tag/container/TagListCont';
 
 export default function SquareCardPres() {
   // 더미 데이터 오브젝트
   const dummy = {
     title: 'SSG에 대해서 알아보겠습..',
     desc: 'CSR은 클라이언트 사이드 렌더링이라고 합니다. 이는 SEO에 좋지 못하지만, 좀더 인터렉티브한 디자인에는 좋은경험을 ........',
-    tags: ['Tag', 'Tag'],
+    tags: [
+      'Start',
+      'React',
+      'TypeScript',
+      'Next',
+      'HTML',
+      'CSS',
+      'Java',
+      'MySql',
+      'End',
+    ],
     userNickName: 'userNickName',
     date: '2025-01-01',
     commentCount: 16,
@@ -21,11 +37,7 @@ export default function SquareCardPres() {
       <div className={styles.content}>
         <div className={styles.title}>{dummy.title}</div>
         <div className={styles.desc}>{dummy.desc}</div>
-        <div className={styles.tags}>
-          {dummy.tags.map((tag, idx) => (
-            <span className={styles.tag} key={idx}>{tag}</span>
-          ))}
-        </div>
+        <TagListCont tags={dummy.tags} />
       </div>
       <div className={styles.profileBar}>
         <div className={styles.profileInfo}>
@@ -37,7 +49,12 @@ export default function SquareCardPres() {
         </div>
         <div style={{ display: 'flex', gap: 16 }}>
           <div className={styles.iconTextGroup}>
-            <Image src="/svgs/comment.svg" alt="comment" width={15} height={15} />
+            <Image
+              src="/svgs/comment.svg"
+              alt="comment"
+              width={15}
+              height={15}
+            />
             <span className={styles.iconCount}>{dummy.commentCount}</span>
           </div>
           <div className={styles.iconTextGroup}>
