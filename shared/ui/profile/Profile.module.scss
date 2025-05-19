@@ -1,0 +1,17 @@
+@use "@styles/variables.scss" as *;
+
+.profileInfo {
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.profileName {
+  font-size: $font-sm-size;
+  color: $color-text-1;
+}
+
+.profileDate {
+  font-size: $font-xs-size;
+  color: $color-text-2;
+}
