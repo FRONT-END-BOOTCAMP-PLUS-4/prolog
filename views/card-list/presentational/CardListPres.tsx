@@ -8,6 +8,8 @@ import styles from '../styles/CardListPres.module.scss';
 
 // layer
 import useOnClickOutside from '@/shared/hooks/useOnClickOutside';
+import CardIcon from '@/public/svgs/card.svg';
+import ListIcon from '@/public/svgs/list.svg';
 
 type Item = {
   id: number;
@@ -88,14 +90,16 @@ export default function CardListPres({
             onClick={() => setViewType('card')}
             aria-label="카드형 보기"
           >
-            <Image
-              src="/svgs/card.svg"
-              alt="카드형 보기"
-              width={20}
-              height={20}
-              aria-hidden="true"
+            <CardIcon
+              className={
+                viewType === 'card'
+                  ? styles.viewTypeIconActive
+                  : styles.viewTypeIcon
+              }
             />
           </button>
+
+          {/* 리스트형 보기 버튼 */}
           <button
             type="button"
             className={
@@ -106,12 +110,12 @@ export default function CardListPres({
             onClick={() => setViewType('list')}
             aria-label="리스트형 보기"
           >
-            <Image
-              src="/svgs/list.svg"
-              alt="리스트형 보기"
-              width={20}
-              height={20}
-              aria-hidden="true"
+            <ListIcon
+              className={
+                viewType === 'list'
+                  ? styles.viewTypeIconActive
+                  : styles.viewTypeIcon
+              }
             />
           </button>
         </div>
