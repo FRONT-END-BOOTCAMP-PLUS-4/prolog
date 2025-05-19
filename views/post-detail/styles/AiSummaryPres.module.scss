@@ -1,0 +1,22 @@
+@use "@styles/variables.scss" as *;
+
+.summaryBox {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: $color-mist-lavender;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.summaryTitle {
+  font-size: $font-title-sub-size;
+  font-weight: 600;
+  color: $color-soft-lavender;
+}
+
+.summaryItem {
+  font-size: $font-sm-size;
+  color: $color-gray;
+}
