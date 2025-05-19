@@ -1,0 +1,36 @@
+@use "@styles/variables.scss" as *;
+
+.commentBox {
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: end;
+}
+
+.commentInput {
+  width: 100%;
+  height: 10rem;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid $color-gray-400;
+  font-size: $font-lg-size;
+  margin-bottom: 8px;
+  border: solid 1px $color-gray;
+  resize: none;
+
+  &:focus {
+    outline: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  &::placeholder {
+    color: $color-gray;
+    font-size: $font-base-size;
+  }
+}
