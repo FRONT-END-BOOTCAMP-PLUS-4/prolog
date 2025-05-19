@@ -1,0 +1,48 @@
+@use "@styles/variables.scss" as *;
+
+.commentList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.commentItem {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px;
+}
+
+.commentUserBox {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.commentProfile {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+}
+
+.commentContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.commentUser {
+  font-size: $font-base-size;
+  color: $color-gray;
+}
+
+.commentDate {
+  font-size: $font-sm-size;
+  color: $color-gray;
+}
+
+.commentText {
+  font-size: $font-base-size;
+  color: $color-black;
+}
