@@ -45,7 +45,10 @@
         color: $color-primary;
         background-color: $color-mist-lavender;
     }
-
+    &__secondary{
+        color: $color-secondary;
+        border:1px solid $color-secondary;
+    }
     &__small {
         font-size: $font-sm-size;
     }
