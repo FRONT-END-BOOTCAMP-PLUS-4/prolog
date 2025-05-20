@@ -1,33 +1,18 @@
 'use client';
 
 import { useState, useRef } from 'react';
-import MDEditor, { commands, ICommand } from '@uiw/react-md-editor';
+import MDEditor, { ICommand } from '@uiw/react-md-editor';
 
-import Button from '@/shared/ui/button';
 import styles from '../styles/PostFormPres.module.scss';
+import Button from '@/shared/ui/button';
 
-export default function PostFormPres() {
+type Props = {
+  customCommands: ICommand[];
+};
+
+export default function PostFormPres({ customCommands }: Props) {
   const [value, setValue] = useState<string | undefined>('');
   const titleRef = useRef<HTMLInputElement>(null);
-
-  const customCommands: ICommand[] = [
-    commands.title1,
-    commands.title2,
-    commands.title3,
-    commands.title4,
-    commands.divider,
-    commands.bold,
-    commands.italic,
-    commands.strikethrough,
-    commands.divider,
-    commands.link,
-    commands.divider,
-    commands.code,
-    commands.quote,
-    commands.hr,
-    commands.unorderedListCommand,
-    commands.orderedListCommand,
-  ];
 
   return (
     <div className={styles.container}>

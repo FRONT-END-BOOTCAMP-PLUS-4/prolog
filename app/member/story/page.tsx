@@ -1,16 +1,5 @@
-'use client';
-
-import dynamic from 'next/dynamic';
-
-const PostFormPres = dynamic(
-  () => import('../../../views/post-form/presentational/PostFormPres'),
-  { ssr: false },
-);
+import PostFormConts from '@/views/post-form/container/PostFormCont';
 
 export default function Page() {
-  return (
-    <div>
-      <PostFormPres />
-    </div>
-  );
+  return <PostFormConts />;
 }
