@@ -6,7 +6,7 @@
   box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  width: 320px;
+  width: 20rem;
   padding: 0;
   overflow: hidden;
   transition: transform 600ms;
@@ -14,8 +14,8 @@
 }
 
 .container:hover {
-transform: translateY(-8px); 
-box-shadow: 4px 4px 11px 2px  rgba(0, 0, 0, 0.1); 
+  transform: translateY(-8px); 
+  box-shadow: 4px 4px 11px 2px  rgba(0, 0, 0, 0.1); 
 }
 
 @keyframes zoomIn {
@@ -35,8 +35,9 @@ box-shadow: 4px 4px 11px 2px  rgba(0, 0, 0, 0.1);
   align-items: center;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  height: 160px;
+  height: 10rem;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .iconWrap img {
@@ -46,54 +47,58 @@ box-shadow: 4px 4px 11px 2px  rgba(0, 0, 0, 0.1);
 .iconWrap img:hover {
   transform: scale(1.2);
 }
+
 .content {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  padding: 16px;
+  padding: 1rem;
+  cursor: pointer;
 }
 
 .title {
-  font-size: 24px;
-  font-weight: 600;
+  font-size: $font-title-sub-size;
+  font-weight: $font-title-sub-weight;
   color: $color-text-1;
-  margin-bottom: 4px;
+  margin-bottom: 0.25rem;
 }
 
 .desc {
-  font-size: 16px;
+  font-size: $font-base-size;
   color: $color-text-2;
-  margin-bottom: 8px;
+  margin-bottom: 0.5rem;
 }
 
 .profileBar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 16px;
+  padding: 0.5rem 1rem;
   border-top: 1px solid $color-gray-400;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   background: $color-white;
   gap: 41px;
+  
 }
 
 .profileInfo {
   display: flex;
   align-items: center;
   gap: 4px;
+  cursor: pointer;
 }
 
 .profileName {
-  font-size: 12px;
+  font-size: $font-xs-size;
   color: $color-text-1;
-  font-weight: 400;
+  font-weight: $font-xs-weight;
 }
 
 .profileDate {
-  font-size: 10px;
+  font-size: $font-xs-size; // 10px
   color: $color-text-3;
-  font-weight: 400;
+  font-weight: $font-xs-weight;
 }
 
 .iconTextGroup {
@@ -103,7 +108,17 @@ box-shadow: 4px 4px 11px 2px  rgba(0, 0, 0, 0.1);
 }
 
 .iconCount {
-  font-size: 12px;
+  font-size: $font-xs-size;
   color: $color-gray-800;
-  font-weight: 400;
+  font-weight: $font-xs-weight;
+}
+
+@media (max-width: 768px) {
+  .container:hover {
+    transform: none;
+    box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.08);
+  }
+  .iconWrap img:hover {
+    transform: none;
+  }
 }

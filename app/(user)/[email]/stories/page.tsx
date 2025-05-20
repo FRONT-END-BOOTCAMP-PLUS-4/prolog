@@ -2,6 +2,7 @@ import ProfileCardCont from '@/views/profile-card/container/ProfileCardCont';
 import styles from './styles.module.scss';
 import Image from 'next/image';
 
+
 export default function Page() {
   // 더미 데이터
   const user = {
@@ -26,5 +27,7 @@ export default function Page() {
   ];
   const followerList = Array(6).fill({ userNickName: 'userNickName' });
 
-  return <ProfileCardCont />;
+
+  return <></>;
+
 }
