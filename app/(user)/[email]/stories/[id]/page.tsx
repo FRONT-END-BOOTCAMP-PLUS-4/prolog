@@ -10,8 +10,8 @@ import {
   BodyText,
   CommentInput,
   CommentList,
+  CommentLoginPrompt,
 } from '@/views/post-detail';
-import CommentLoginPromptPres from '@/views/post-detail/presentational/CommentLoginPromptPres';
 
 export default function Page() {
   const dummy = {
@@ -55,7 +55,7 @@ export default function Page() {
 
       {/* 댓글 등록 박스 */}
       <CommentInput />
-      <CommentLoginPromptPres />
+      <CommentLoginPrompt />
 
       {/* 댓글 리스트 */}
       <CommentList />
