@@ -1,7 +1,7 @@
 'use client';
 //package
 import { useState } from 'react';
-//layer
+//slice
 import SubscriptionPres from '../presentational/SubscriptionPres';
 
 export default function SubscriptionCont() {

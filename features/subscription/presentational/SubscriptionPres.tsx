@@ -1,6 +1,6 @@
 import Button from '@/shared/ui/button';
 
-type followingProps = {
+type FollowingProps = {
   isFollowing: boolean;
   followerHandler: () => void;
 };
@@ -8,17 +8,12 @@ type followingProps = {
 export default function SubscriptionPres({
   isFollowing,
   followerHandler,
-}: followingProps) {
-  const followButtonStyle = isFollowing ? { color: '#6A5AE0' } : undefined;
+}: FollowingProps) {
   return (
     <>
       {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
       <div onClick={followerHandler}>
-        <Button
-          variants={isFollowing ? 'basic' : 'active'}
-          size="small"
-          style={followButtonStyle}
-        >
+        <Button variants={isFollowing ? 'secondary' : 'active'} size="small">
           {isFollowing ? '팔로잉' : '팔로우'}
         </Button>
       </div>
