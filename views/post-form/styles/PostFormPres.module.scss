@@ -1,0 +1,93 @@
+@use '@styles/variables.scss' as *;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 60px); // 헤더 높이 만큼 제외 * 추후 상수로 변경 해야함
+    padding: 30px;
+    // margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
+
+}
+
+.titleInput {
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    font-size : $font-title-size;
+    font-weight: $font-title-weight;
+    outline: none;
+    background-color: transparent;
+    padding: 10px;
+}
+
+
+.editorLayout {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+
+    :global(.w-md-editor) {
+        /* 에디터 레이아웃 커스텀 */
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        border: none;
+        box-shadow: none;
+        overflow: hidden;
+    }
+
+    :global(.w-md-editor-toolbar) {
+        /* 툴바 커스텀 */
+        position: sticky;
+        top: 0;
+        background-color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 8px 12px;
+        gap: 12px;
+        border: none;
+        height: 45px;
+        margin-bottom: 5px;
+    
+    }
+
+    :global(.w-md-editor-content) {
+        /* 에디터 커스텀 */
+        flex: 1;
+        overflow-y: auto;  
+    }
+
+    :global(.w-md-editor-preview) {
+        /* 미리보기 커스텀 */
+       // box-shadow: none;    
+     
+    }
+}
+
+
+.footer {
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 12px 24px;
+    background-color: white;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.leftControls {
+    display: flex;
+    gap: 10px;
+}
+
+.rightControls {
+    display: flex;
+    gap: 10px;
+}
