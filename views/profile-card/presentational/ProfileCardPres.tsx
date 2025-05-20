@@ -1,14 +1,7 @@
 import Image from 'next/image';
 import styles from '../styles/ProfileCardPres.module.scss';
-import SubscriptionCont from '@/features/subscription/container/SubscriptionCont';
+import { User } from '../types';
 
-type User = {
-  id: string;
-  bg: string | null;
-  profileImg: string | null;
-  name: string;
-  info: string | null;
-};
 type UserProps = {
   userData: User;
 };
@@ -33,7 +26,7 @@ export default function ProfileCardPres({ userData }: UserProps) {
           {userData?.profileImg ? (
             <div>
               <Image
-                src={userData?.profileImg as string}
+                src={userData.profileImg as string}
                 alt="프로필 이미지"
                 width={100}
                 height={100}
@@ -56,9 +49,9 @@ export default function ProfileCardPres({ userData }: UserProps) {
           {/* 유저 정보 (닉네임 + 버튼) */}
           <div className={styles.userInfo}>
             <h2>{userData?.name}</h2>
-            <div>
+            {/* <div>
               <SubscriptionCont />
-            </div>
+            </div> */}
           </div>
 
           {/* 소개글 */}

@@ -1,16 +1,11 @@
 'use client';
 //package
 import { useState } from 'react';
-//layer
+//slice
 import ProfileCardPres from '../presentational/ProfileCardPres';
 
-type User = {
-  id: string;
-  bg: string | null;
-  profileImg: string | null;
-  name: string;
-  info: string | null;
-};
+//type
+import { User } from '../types';
 
 export default function ProfileCardCont() {
   const [userData, setUserData] = useState<User>({
