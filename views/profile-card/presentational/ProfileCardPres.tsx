@@ -1,6 +1,11 @@
+//package
 import Image from 'next/image';
-import styles from '../styles/ProfileCardPres.module.scss';
+//slice
+import SubscriptionCont from '@/features/subscription/container/SubscriptionCont';
+//type
 import { User } from '../types';
+//style
+import styles from '../styles/ProfileCardPres.module.scss';
 
 type UserProps = {
   userData: User;
@@ -49,9 +54,9 @@ export default function ProfileCardPres({ userData }: UserProps) {
           {/* 유저 정보 (닉네임 + 버튼) */}
           <div className={styles.userInfo}>
             <h2>{userData?.name}</h2>
-            {/* <div>
+            <div>
               <SubscriptionCont />
-            </div> */}
+            </div>
           </div>
 
           {/* 소개글 */}
