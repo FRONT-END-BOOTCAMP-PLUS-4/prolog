@@ -7,6 +7,10 @@ export default function CommentInputCont() {
   const [text, setText] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setText(e.target.value);
+  };
+
   const handleSubmit = async () => {
     if (!text.trim()) return;
 
@@ -23,7 +27,7 @@ export default function CommentInputCont() {
   return (
     <CommentInputPres
       value={text}
-      onChange={(e) => setText(e.target.value)}
+      onChange={onChange}
       onSubmit={handleSubmit}
       isSubmitting={isSubmitting}
     />
