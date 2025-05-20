@@ -9,7 +9,6 @@ type Props = {
 };
 
 export default function AiSummaryPres({ summaryList }: Props) {
-  console.log('summaryList', summaryList);
   return (
     <div className={styles.summaryBox}>
       <div className={styles.summaryTitle}>AI 목차 요약</div>
