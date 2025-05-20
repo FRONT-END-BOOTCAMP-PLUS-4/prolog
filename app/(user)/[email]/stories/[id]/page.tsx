@@ -14,6 +14,11 @@ import {
 import CommentLoginPromptPres from '@/views/post-detail/presentational/CommentLoginPromptPres';
 
 export default function Page() {
+  const dummy = {
+    userNickName: 'userNickName',
+    date: '2025-01-01',
+  };
+
   return (
     <div className={styles.container}>
       {/* 제목 */}
@@ -22,7 +27,11 @@ export default function Page() {
       <div className={styles.profileLayout}>
         {/* 프로필/팔로우 바 */}
         <div className={styles.profileBar}>
-          <Profile onClick={() => {}} />
+          <Profile
+            userNickName={dummy.userNickName}
+            date={dummy.date}
+            onClick={() => {}}
+          />
           <Button variants="active" size="small">
             팔로우
           </Button>

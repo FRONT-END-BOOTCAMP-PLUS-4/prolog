@@ -4,16 +4,29 @@ import Image from 'next/image';
 import styles from './Profile.module.scss';
 
 type Props = {
+  userProfileImage?: string;
+  userNickName: string;
+  date: string;
   onClick: () => void;
 };
 
-export default function Profile({ onClick }: Props) {
+export default function Profile({
+  userProfileImage,
+  userNickName,
+  date,
+  onClick,
+}: Props) {
   return (
     <div className={styles.profileInfo} onClick={onClick}>
-      <Image src="/svgs/profile.svg" alt="user" width={32} height={32} />
+      <Image
+        src={userProfileImage ?? '/svgs/profile.svg'}
+        alt="user profile image"
+        width={32}
+        height={32}
+      />
       <div>
-        <div className={styles.profileName}>userNickName</div>
-        <div className={styles.profileDate}>2025-01-01</div>
+        <div className={styles.profileName}>{userNickName}</div>
+        <div className={styles.profileDate}>{date}</div>
       </div>
     </div>
   );
