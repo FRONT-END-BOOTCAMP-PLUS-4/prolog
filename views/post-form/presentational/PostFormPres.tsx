@@ -1,12 +1,11 @@
-'use client';
-
 import { useState, useRef } from 'react';
 import MDEditor, { ICommand } from '@uiw/react-md-editor';
 
 import styles from '../styles/PostFormPres.module.scss';
-import Button from '@/shared/ui/button';
 import PostTagSectionPres from './PostTagSectionPres';
 import { useImageDrop } from '@/shared/hooks/useImageDrop';
+
+import Button from '@/shared/ui/button';
 
 type Props = {
   customCommands: ICommand[];
@@ -17,13 +16,18 @@ export default function PostFormPres({
   customCommands,
   uploadImgFiles,
 }: Props) {
+  /* 에디터 기본 옵션 */
   const [value, setValue] = useState<string | undefined>('');
+
+  /* 태그리스트 */
   const [tags, setTags] = useState<string[]>([]);
 
   const [isAiUsed, setIsAiUsed] = useState<number>(0); // 0: 사용 안함, 1: 사용함
   const [isPublic, setIsPublic] = useState<number>(1); // 0: 비공개, 1: 공개
 
+  /* 제목 */
   const titleRef = useRef<HTMLInputElement>(null);
+  /* 이미지 드래그 앤 드랍을 위한 ref */
   const editorRef = useRef<HTMLDivElement>(null);
 
   const toggleAiUsage = () => {
@@ -63,7 +67,7 @@ export default function PostFormPres({
           commands={customCommands}
           extraCommands={[]} // 오른쪽 툴바 빈배열
           enableScroll={true} // 스크롤
-          visibleDragbar={false}
+          visibleDragbar={false} // 에디터 크기 조절
           textareaProps={{
             placeholder: '당신의 생각을 적어주세요..',
           }}

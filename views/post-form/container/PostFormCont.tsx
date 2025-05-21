@@ -5,12 +5,13 @@ import { ICommand, commands } from '@uiw/react-md-editor';
 
 import Image from '@/public/svgs/image.svg';
 
+/* 브라우저 전용 기능이 포함된 컴포넌트이므로 SSR 비활성화 */
 const PostFormPres = dynamic(
-  () => import('../../../views/post-form/presentational/PostFormPres'),
+  () => import('@/views/post-form/presentational/PostFormPres'),
   { ssr: false },
 );
 
-export default function PostFormConts() {
+export default function PostFormCont() {
   const uploadImageFiles = async (files: File[]) => {
     const formData = new FormData();
 
@@ -18,7 +19,7 @@ export default function PostFormConts() {
       formData.append('img', file); // 'img'는 서버에서 기대하는 필드 이름
     });
 
-    /** 추후 S3에 업로드 하는 로직으로 대체 */
+    /* 추후 S3에 업로드 하는 로직으로 대체 */
     const res = await fetch('/api/s3-upload', {
       method: 'POST',
       body: formData,
@@ -63,6 +64,7 @@ export default function PostFormConts() {
     },
   });
 
+  /* 커스텀 툴바 설정 */
   const customCommands: ICommand[] = [
     commands.title1,
     commands.title2,

@@ -3,6 +3,7 @@
 import { useState, KeyboardEvent } from 'react';
 
 import styles from '../styles/PostTagSeactionPres.module.scss';
+
 import Button from '@/shared/ui/button';
 
 const MAX_TAGS = 20;

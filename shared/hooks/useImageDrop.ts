@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 type UseImageDropProps = {
   ref: React.RefObject<HTMLElement | null>;
@@ -57,5 +57,5 @@ export function useImageDrop({
       el.removeEventListener('dragleave', handleDragLeave);
       el.removeEventListener('drop', handleDrop);
     };
-  }, [ref, onDropImages, onDragChange]);
+  }, []);
 }
