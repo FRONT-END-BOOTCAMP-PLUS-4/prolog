@@ -5,6 +5,7 @@ import MDEditor, { ICommand } from '@uiw/react-md-editor';
 
 import styles from '../styles/PostFormPres.module.scss';
 import Button from '@/shared/ui/button';
+import PostTagSectionPres from './PostTagSectionPres';
 
 type Props = {
   customCommands: ICommand[];
@@ -12,6 +13,7 @@ type Props = {
 
 export default function PostFormPres({ customCommands }: Props) {
   const [value, setValue] = useState<string | undefined>('');
+  const [tags, setTags] = useState<string[]>([]);
   const titleRef = useRef<HTMLInputElement>(null);
 
   return (
@@ -22,6 +24,7 @@ export default function PostFormPres({ customCommands }: Props) {
         className={styles.titleInput}
         ref={titleRef}
       />
+      <PostTagSectionPres tags={tags} setTags={setTags} />
       <div data-color-mode="light" className={styles.editorLayout}>
         <MDEditor
           value={value}
@@ -38,7 +41,7 @@ export default function PostFormPres({ customCommands }: Props) {
 
       <div className={styles.footer}>
         <div className={styles.leftControls}>
-          <Button>AI 사용</Button>
+          <Button>AI 사용 안함</Button>
           <Button>공개</Button>
         </div>
 
