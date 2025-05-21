@@ -27,9 +27,9 @@ export default function RootLayout({
     <html lang="ko" className={`${pretendard.className}`}>
       <body>
         <div className={styles.layout}>
-          <header className={styles.layout__header}>
+          <div className={styles.layout__header}>
             <Header />
-          </header>
+          </div>
           <main className={styles.layout__main}>{children}</main>
         </div>
       </body>
