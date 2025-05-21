@@ -1,209 +1,36 @@
-@use '@styles/variables.scss' as *;
+@use "@styles/variables.scss" as *;
 
 .container {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 0 16px;
+  padding: 32px 16px;
 }
 
 .title {
-  font-size: 36px;
-  font-weight: 700;
-  color: $color-text-1;
-  text-align: center;
-  margin-bottom: 8px;
+  font-size: $font-title-size;
+  color: $color-black;
+  text-align: left;
 }
 
 .profileLayout {
   width: 100%;
   display: flex;
+  justify-content: space-between;
 }
 
 .profileBar {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   gap: 16px;
-}
-
-.profileInfo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.profileIcon {
-  width: 32px;
-  height: 32px;
-}
-
-.profileName {
-  font-size: 12px;
-  color: $color-text-1;
-  font-weight: 400;
-}
-
-.profileDate {
-  font-size: 10px;
-  color: $color-text-3;
-  font-weight: 400;
-}
-
-.followBtn {
-  background: rgba(106, 90, 224, 0.8);
-  color: $color-white;
-  border-radius: 8px;
-  padding: 4px 12px;
-  font-size: 14px;
-  border: none;
-  cursor: pointer;
-  white-space: nowrap;
 }
 
 .iconBar {
   display: flex;
   align-items: center;
   gap: 16px;
-  width: 100%;
-}
-
-.iconGroup {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.icon {
-  width: 20px;
-  height: 20px;
-}
-
-.iconCount {
-  font-size: 12px;
-  color: $color-gray-800;
-  font-weight: 400;
-}
-
-.summaryBox {
-  width: 100%;
-  background: $color-mist-lavender;
-  border-radius: 8px;
-  padding: 16px;
-  margin: 16px 0;
-}
-
-.summaryTitle {
-  font-size: 24px;
-  font-weight: 600;
-  color: #B5A8FF;
-  text-align: center;
-  margin-bottom: 8px;
-}
-
-.summaryItem {
-  font-size: 12px;
-  color: $color-gray-800;
-  margin-bottom: 4px;
-}
-
-.mainImage {
-  width: 100%;
-  max-width: 600px;
-  border-radius: 8px;
-  margin: 24px 0 8px 0;
-}
-
-.sectionTitle {
-  font-size: 30px;
-  font-weight: 600;
-  color: $color-text-2;
-  margin: 24px 0 8px 0;
-}
-
-.contentText {
-  font-size: 20px;
-  color: $color-text-2;
-  line-height: 1.4;
-  margin-bottom: 24px;
 }
 
 .commentTitle {
-  font-size: 24px;
-  color: $color-text-1;
-  margin: 32px 0 16px 0;
-  text-align: center;
-}
-
-.commentBox {
-  background: #F6F7F8;
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-
-.commentInput {
-  width: 100%;
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid $color-gray-400;
-  font-size: 16px;
-  margin-bottom: 8px;
-}
-
-.commentBtn {
-  background: rgba(106, 90, 224, 0.8);
-  color: $color-white;
-  border-radius: 8px;
-  padding: 4px 12px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
-.commentList {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  margin-top: 16px;
-}
-
-.commentItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  background: $color-white;
-  border-radius: 8px;
-  padding: 12px;
-}
-
-.commentProfile {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-}
-
-.commentContent {
-  display: flex;
-  flex-direction: column;
-}
-
-.commentUser {
-  font-size: 14px;
-  color: $color-text-1;
-  font-weight: 400;
-}
-
-.commentDate {
-  font-size: 12px;
-  color: $color-text-3;
-}
-
-.commentText {
-  font-size: 14px;
-  color: $color-text-2;
+  font-size: $font-title-sub-size;
+  color: $color-gray;
 }

@@ -1,0 +1,16 @@
+@use "@styles/variables.scss" as *;
+
+.likeWrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.likeBtn {
+  cursor: pointer;
+}
+
+.count {
+  font-size: $font-sm-size;
+  color: $color-gray;
+}

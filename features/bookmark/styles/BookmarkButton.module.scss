@@ -1,0 +1,7 @@
+@use "@styles/variables.scss" as *;
+
+.bookmarkWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
