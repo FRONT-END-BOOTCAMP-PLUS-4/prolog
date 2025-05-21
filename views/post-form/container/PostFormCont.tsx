@@ -83,5 +83,10 @@ export default function PostFormConts() {
     commands.orderedListCommand,
   ];
 
-  return <PostFormPres customCommands={customCommands} />;
+  return (
+    <PostFormPres
+      customCommands={customCommands}
+      uploadImgFiles={uploadImageFiles}
+    />
+  );
 }
