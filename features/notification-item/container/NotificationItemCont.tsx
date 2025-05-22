@@ -5,7 +5,7 @@ interface Props {
   item: NotificationItemType;
   deleteMode: boolean;
   selected: boolean;
-  onToggleSelect: (id: string) => void;
+  onToggleSelect: (id: number) => void;
 }
 
 export default function NotificationItemCont(props: Props) {

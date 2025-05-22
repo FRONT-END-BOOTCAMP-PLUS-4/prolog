@@ -9,8 +9,8 @@ import { NotificationItemCont } from '@/features/notification-item';
 type Props = {
   notifications: NotificationItemType[];
   deleteMode: boolean;
-  selectedIds: string[];
-  onToggleSelect: (id: string) => void;
+  selectedIds: number[];
+  onToggleSelect: (id: number) => void;
   onDelete: () => void;
   onCancel: () => void;
   onToggleDeleteMode: () => void;
@@ -22,7 +22,6 @@ type Props = {
 export default function NotificationModalPres({
   notifications,
   deleteMode,
-
   selectedIds,
   onToggleSelect,
   onDelete,
@@ -52,7 +51,7 @@ export default function NotificationModalPres({
                 onToggleSelect={onToggleSelect}
               />
             ))}
-          </div>{' '}
+          </div>
           <div className={styles.footer}>
             {deleteMode ? (
               <div className={styles.deleteMode}>

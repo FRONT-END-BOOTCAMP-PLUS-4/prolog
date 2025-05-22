@@ -10,7 +10,7 @@ type Props = {
   item: NotificationItemType;
   deleteMode: boolean;
   selected: boolean;
-  onToggleSelect: (id: string) => void;
+  onToggleSelect: (id: number) => void;
 };
 
 export default function NotificationItemPres({
@@ -22,7 +22,7 @@ export default function NotificationItemPres({
   const router = useRouter();
   const handleClick = () => {
     if (deleteMode) {
-      onToggleSelect(item.id);
+      onToggleSelect(Number(item.id));
     } else {
       router.push(`/${item.userNickname}/stories/${item.postId}`);
     }
