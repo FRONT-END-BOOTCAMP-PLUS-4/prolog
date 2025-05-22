@@ -3,6 +3,7 @@ import NotificationModalPres from '../presentational/NotificationModalPres';
 
 export default function NotificationModalCont() {
   const [deleteMode, setDeleteMode] = useState<boolean>(false);
+  const [allNotificationIds, setAllNotificationIds] = useState<number[]>([]);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
   const toggleSelect = (notificationItemId: number) => {
@@ -13,11 +14,11 @@ export default function NotificationModalCont() {
     );
   };
 
-  const toggleSelectAll = () => {
-    if (selectedIds.length === notifications.length) {
-      setSelectedIds([]); // 전체 해제
+  const onSelectAll = () => {
+    if (selectedIds.length === allNotificationIds.length) {
+      setSelectedIds([]);
     } else {
-      setSelectedIds(notifications.map((n) => n.id)); // 전체 선택
+      setSelectedIds(allNotificationIds);
     }
   };
 
@@ -38,7 +39,8 @@ export default function NotificationModalCont() {
       onToggleSelect={toggleSelect}
       onCancel={cancelDeleteMode}
       onToggleDeleteMode={startDeleteMode}
-      onSelectAll={toggleSelectAll}
+      setAllNotificationIds={setAllNotificationIds}
+      onSelectAll={onSelectAll}
       onClose={() => console.log('닫기')}
     />
   );

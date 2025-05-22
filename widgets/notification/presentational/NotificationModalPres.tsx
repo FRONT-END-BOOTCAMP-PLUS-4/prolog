@@ -12,7 +12,7 @@ type Props = {
   selectedIds: number[];
   onToggleSelect: (id: number) => void;
   setAllNotificationIds: (ids: number[]) => void;
-  toggleSelectAll: () => void;
+  onSelectAll: () => void;
   onCancel: () => void;
   onToggleDeleteMode: () => void;
   onClose: () => void;
@@ -23,7 +23,7 @@ export default function NotificationModalPres({
   selectedIds,
   onToggleSelect,
   setAllNotificationIds,
-  toggleSelectAll,
+  onSelectAll,
   onCancel,
   onToggleDeleteMode,
   onClose,
@@ -48,7 +48,7 @@ export default function NotificationModalPres({
             <div className={styles.deleteMode}>
               <div className={styles.deleteModeInner}>
                 <DeleteNotificationCont selectedIds={selectedIds} />
-                <Button size="small" onClick={toggleSelectAll}>
+                <Button size="small" onClick={onSelectAll}>
                   전체선택
                 </Button>
               </div>

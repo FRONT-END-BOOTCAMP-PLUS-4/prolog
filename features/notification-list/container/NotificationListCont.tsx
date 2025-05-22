@@ -7,6 +7,7 @@ import NotificationListPres from '../presentational/NotificationListPres';
 type Props = {
   deleteMode: boolean;
   selectedIds: number[];
+  setAllNotificationIds: (ids: number[]) => void;
   onToggleSelect: (id: number) => void;
 };
 
@@ -77,6 +78,7 @@ const dummyNotifications: NotificationItemType[] = [
 export default function NotificationListCont({
   deleteMode,
   selectedIds,
+  setAllNotificationIds,
   onToggleSelect,
 }: Props) {
   const [list, setList] = useState<NotificationItemType[]>([]);
@@ -85,6 +87,10 @@ export default function NotificationListCont({
     console.log('GET 알림 리스트');
     setList(dummyNotifications);
   }, []);
+
+  useEffect(() => {
+    setAllNotificationIds(list.map((item) => item.id));
+  }, [list, setAllNotificationIds]);
 
   return (
     <NotificationListPres
