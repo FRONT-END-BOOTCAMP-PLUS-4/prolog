@@ -19,8 +19,11 @@ import styles from '../styles/HeaderPres.module.scss';
 import useOnClickOutside from '@/shared/hooks/useOnClickOutside';
 import PostsSearchCont from '@/features/search-input';
 import Button from '@/shared/ui/button';
+import { useModalStore } from '@/shared/stores/useModalStore';
+import { LoginForm } from '@/widgets/login';
 
 export default function HeaderPres(): JSX.Element {
+  const { open } = useModalStore( state => state.action);
   // 로그인 여부
   const [isLoggedIn, setIsLoggedIn] = useState(true); // 테스트용
   // 검색창 표시 여부
@@ -53,6 +56,8 @@ export default function HeaderPres(): JSX.Element {
 
   // 로그인 버튼 클릭
   const handleLogin = () => {
+    // 임시
+    open(<LoginForm/>, 'center');
     setIsLoggedIn(true);
   };
 
