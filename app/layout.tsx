@@ -5,6 +5,7 @@ import './global.scss';
 import styles from './styles/layout.module.scss';
 
 import Header from '@/app/header';
+import Modal from '@/shared/ui/modal';
 
 const pretendard = localFont({
   src: '../public/fonts/pretendard-medium.woff2',
@@ -32,6 +33,7 @@ export default function RootLayout({
           </div>
           <main className={styles.layout__main}>{children}</main>
         </div>
+        <Modal/>
       </body>
     </html>
   );
