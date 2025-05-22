@@ -1,11 +1,14 @@
 import { useState, useRef } from 'react';
 import MDEditor, { ICommand } from '@uiw/react-md-editor';
+import rehypeSanitize from 'rehype-sanitize';
 
 import styles from '../styles/PostFormPres.module.scss';
 import PostTagSectionPres from './PostTagSectionPres';
-import { useImageDrop } from '@/shared/hooks/useImageDrop';
+import PostDraftCont from '@/views/post-draft/container/PostDraftListCont';
 
 import Button from '@/shared/ui/button';
+import { useImageDrop } from '@/shared/hooks/useImageDrop';
+import { useModalStore } from '@/shared/stores/useModalStore';
 
 type Props = {
   customCommands: ICommand[];
@@ -29,6 +32,8 @@ export default function PostFormPres({
   const titleRef = useRef<HTMLInputElement>(null);
   /* 이미지 드래그 앤 드랍을 위한 ref */
   const editorRef = useRef<HTMLDivElement>(null);
+
+  const { action } = useModalStore();
 
   const toggleAiUsage = () => {
     setIsAiUsed((prev) => (prev === 0 ? 1 : 0));
@@ -68,6 +73,9 @@ export default function PostFormPres({
           extraCommands={[]} // 오른쪽 툴바 빈배열
           enableScroll={true} // 스크롤
           visibleDragbar={false} // 에디터 크기 조절
+          previewOptions={{
+            rehypePlugins: [[rehypeSanitize]],
+          }} // XSS 공격 방지
           textareaProps={{
             placeholder: '당신의 생각을 적어주세요..',
           }}
@@ -93,7 +101,12 @@ export default function PostFormPres({
         <div className={styles.rightControls}>
           <div className={styles.toggleButtonWrapper}>
             <button className={styles.toggleButton}>임시저장</button>
-            <button className={styles.toggleButton}>0</button>
+            <button
+              className={styles.toggleButton}
+              onClick={() => action.open(<PostDraftCont />)}
+            >
+              10
+            </button>
           </div>
 
           <Button variants="active">발행하기</Button>
