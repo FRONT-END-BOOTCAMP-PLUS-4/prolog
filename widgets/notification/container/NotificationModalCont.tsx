@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import NotificationModalPres from '../presentational/NotificationModalPres';
 
-import type { NotificationItemType } from '@/features/notification-list/types';
-
 export default function NotificationModalCont() {
-  const [notifications, setNotifications] = useState();
   const [deleteMode, setDeleteMode] = useState<boolean>(false);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
 
@@ -14,16 +11,6 @@ export default function NotificationModalCont() {
         ? prev.filter((i) => i !== notificationItemId)
         : [...prev, notificationItemId],
     );
-  };
-
-  const deleteSelected = () => {
-    setNotifications((prev) => prev.filter((n) => !selectedIds.includes(n.id)));
-    setDeleteMode(false);
-    setSelectedIds([]);
-  };
-
-  const markAllAsRead = () => {
-    setNotifications((prev) => prev.map((n) => ({ ...n, isRead: true })));
   };
 
   const toggleSelectAll = () => {
@@ -46,15 +33,12 @@ export default function NotificationModalCont() {
 
   return (
     <NotificationModalPres
-      notifications={notifications}
       deleteMode={deleteMode}
       selectedIds={selectedIds}
       onToggleSelect={toggleSelect}
-      onDelete={deleteSelected}
       onCancel={cancelDeleteMode}
       onToggleDeleteMode={startDeleteMode}
       onSelectAll={toggleSelectAll}
-      onMarkAllAsRead={markAllAsRead}
       onClose={() => console.log('닫기')}
     />
   );
