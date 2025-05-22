@@ -36,6 +36,17 @@
   flex: 1;
   overflow-y: auto;
   height: 328px;
+
+  /* 크롬, 사파리 */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 파이어폭스 */
+  scrollbar-width: none;
+
+  /* IE/Edge (구버전) */
+  -ms-overflow-style: none;
 }
 
 .footer {
