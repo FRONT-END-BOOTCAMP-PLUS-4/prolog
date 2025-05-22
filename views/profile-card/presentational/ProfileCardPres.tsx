@@ -1,6 +1,10 @@
+//package
 import Image from 'next/image';
-import styles from '../styles/ProfileCardPres.module.scss';
+//slice
+import SubscriptionCont from '@/features/subscription/container/SubscriptionCont';
 import { User } from '../types';
+//style
+import styles from '../styles/ProfileCardPres.module.scss';
 
 type UserProps = {
   userData: User;
@@ -26,19 +30,21 @@ export default function ProfileCardPres({ userData }: UserProps) {
           {userData?.profileImg ? (
             <div>
               <Image
+                className={styles.mobileProfile}
                 src={userData.profileImg as string}
                 alt="프로필 이미지"
-                width={100}
-                height={100}
+                width={80}
+                height={80}
               />
             </div>
           ) : (
             <div>
               <Image
+                className={styles.mobileProfile}
                 src="/svgs/profile.svg"
                 alt="기본 프로필"
-                width={100}
-                height={100}
+                width={80}
+                height={80}
               />
             </div>
           )}
@@ -47,11 +53,21 @@ export default function ProfileCardPres({ userData }: UserProps) {
         {/* 본문 영역 */}
         <div>
           {/* 유저 정보 (닉네임 + 버튼) */}
-          <div className={styles.userInfo}>
-            <h2>{userData?.name}</h2>
-            {/* <div>
-              <SubscriptionCont />
-            </div> */}
+          <div className={styles.userFlexBox}>
+            <div className={styles.userInfo}>
+              <h2 className={styles.nameText}>{userData?.name}</h2>
+              <div>
+                <SubscriptionCont />
+              </div>
+            </div>
+            <div className={styles.followContainer}>
+              <button className={styles.followText}>
+                팔로워<span className={styles.followNumberText}>17</span>
+              </button>
+              <button className={styles.followText}>
+                팔로잉<span className={styles.followNumberText}>15</span>
+              </button>
+            </div>
           </div>
 
           {/* 소개글 */}

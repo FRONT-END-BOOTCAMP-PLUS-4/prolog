@@ -1,0 +1,16 @@
+@use '@styles/variables.scss' as *;
+.container{
+  display: flex;
+  flex-direction: column;
+}
+.categoryListColumn{
+  
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.title{
+@include font-sm;
+color:#8f8e8e;
+}

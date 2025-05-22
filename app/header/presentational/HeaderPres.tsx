@@ -19,8 +19,11 @@ import styles from '../styles/HeaderPres.module.scss';
 import useOnClickOutside from '@/shared/hooks/useOnClickOutside';
 import PostsSearchCont from '@/features/search-input';
 import Button from '@/shared/ui/button';
+import { useModalStore } from '@/shared/stores/useModalStore';
+import { LoginForm } from '@/widgets/login';
 
 export default function HeaderPres(): JSX.Element {
+  const { open } = useModalStore( state => state.action);
   // 로그인 여부
   const [isLoggedIn, setIsLoggedIn] = useState(true); // 테스트용
   // 검색창 표시 여부
@@ -32,6 +35,18 @@ export default function HeaderPres(): JSX.Element {
   // 드롭다운, 검색창 영역 ref
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchWrapperRef = useRef<HTMLDivElement>(null);
+
+  // 임시테마 버튼
+  const changeTheme = () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    
+    if(currentTheme){
+      document.documentElement.removeAttribute("data-theme");
+    }else{
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+
+  }
 
   // 검색창 영역 밖 클릭 시 검색창 닫기
   useOnClickOutside(
@@ -53,6 +68,8 @@ export default function HeaderPres(): JSX.Element {
 
   // 로그인 버튼 클릭
   const handleLogin = () => {
+    // 임시
+    open(<LoginForm/>, 'center');
     setIsLoggedIn(true);
   };
 
@@ -102,6 +119,8 @@ export default function HeaderPres(): JSX.Element {
           </button>
         )}
       </div>
+
+      <button onClick={changeTheme}>테마전환</button>
 
       {/* 네비게이션 */}
       <nav

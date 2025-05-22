@@ -9,7 +9,6 @@ import CleanIcon from '@/public/svgs/clean.svg';
 
 export default function LoginFormPres() {
   return (
-    <div className={styles.bg}>
       <div className={styles.card}>
         <CleanIcon className={styles.cleanIcon} />
         <div className={styles.inner}>
@@ -52,6 +51,5 @@ export default function LoginFormPres() {
           인정합니다.
         </div>
       </div>
-    </div>
   );
 }

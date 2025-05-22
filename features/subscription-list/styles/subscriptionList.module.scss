@@ -1,0 +1,83 @@
+@use '@styles/variables.scss' as *;
+@use '@styles/mixins.scss' as *;
+.container{
+  width: 400px;
+  margin-top: 2rem;
+  box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 20px;
+  position: absolute;
+  left: 35%;
+  background-color: #FFFFFF;
+}
+.toggle {
+  width: 35px;
+  height: 17px;
+  border: 2px solid $color-primary;
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 1px;
+
+  .toggleCurrent {
+    position: absolute;
+    left: 0px;
+    top: -0.3px;
+    background-color: $color-primary;
+    border-radius: 100%;
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+  }
+
+  &.movieToggle {
+    .toggleCurrent {
+      transform: translateX(18px); 
+    }
+  }
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .flexColumn{
+    display: flex;
+    flex-direction: column;
+  }
+  .followGap{
+    display: flex;
+    gap: 10px;
+  }
+  .subscriptionBox{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  .toggleTextActive{
+    @include font-xl;
+    color:#5B53E8;
+    font-weight: 200
+  }
+  .toggleTextBasic{
+    @include font-xl;
+    color: gray;
+    font-weight: 200
+  }
+  .text{
+    font-size:20px ;
+  }
+  .userList{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  

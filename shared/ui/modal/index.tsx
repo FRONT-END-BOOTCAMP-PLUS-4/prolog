@@ -27,11 +27,13 @@ export default function Modal() {
   if (!isChildren) return null;
 
   return (
-    <div
-      className={`${styles.modalContainer} ${isAnimating ? styles.open : ''} ${positionClass}`}
-      onClick={() => close()}
-    >
-      <div>{isChildren}</div>
+    <div className={styles.container}>
+      <div
+        className={`${styles.modalContainer} ${isAnimating ? styles.open : ''} ${positionClass}`}
+        onClick={() => close()}
+      >
+        <div>{isChildren}</div>
+      </div>
     </div>
   );
 }
