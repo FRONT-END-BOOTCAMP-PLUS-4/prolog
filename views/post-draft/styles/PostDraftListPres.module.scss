@@ -1,8 +1,23 @@
+.bottomSheet {
+width: 100%;
+  padding: 16px;
+  background-color: white;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
 .layout {
-    width: 1200px;
-    margin: 0 auto;
-    padding: 16px;
-    box-sizing: border-box;
+  padding: 24px 16px; 
+  max-width: 1000px;   
+  margin: 0 auto;  
+  min-height: calc(36px * 7); 
 }
 
 .header {

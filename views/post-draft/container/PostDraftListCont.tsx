@@ -9,16 +9,26 @@ export type DraftType = {
 const fakeData = [
   {
     createdAt: '2025-05-22',
-    title: '제목',
-    id: 5,
+    title: '제목1',
+    id: 7,
   },
   {
     createdAt: '2025-05-21',
+    title: '타입스크립트 공부하기',
+    id: 6,
+  },
+  {
+    createdAt: '2025-05-20',
+    title: '디자인패턴 공부',
+    id: 5,
+  },
+  {
+    createdAt: '2025-05-19',
     title: '무한스크롤 구현하기',
     id: 4,
   },
   {
-    createdAt: '2025-05-20',
+    createdAt: '2025-05-19',
     title:
       '제목이 엄청 길 경우 어떻게 될까 명령어를 필터링하거나 수정할 수 있는 함수입니다. 명령어를 필터링하거나 수정할 수 있는 함수입니다. 명령어를 필터링하거나 수정할 수 있는 함수입니다.',
     id: 3,
@@ -36,5 +46,13 @@ const fakeData = [
 ] as DraftType[];
 
 export default function PostDraftCont() {
-  return <PostDraftPres drafts={fakeData} />;
+  const handleDeletePostDraft = (id: number) => {
+    const confirmed = window.confirm('삭제하시겠습니까?');
+    if (confirmed) {
+      console.log(`${id}번 임시글 삭제`);
+      // 실제 삭제 로직 작성 예정
+    }
+  };
+
+  return <PostDraftPres drafts={fakeData} onDelete={handleDeletePostDraft} />;
 }
