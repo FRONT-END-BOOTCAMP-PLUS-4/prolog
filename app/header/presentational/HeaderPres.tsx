@@ -36,6 +36,18 @@ export default function HeaderPres(): JSX.Element {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchWrapperRef = useRef<HTMLDivElement>(null);
 
+  // 임시테마 버튼
+  const changeTheme = () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    
+    if(currentTheme){
+      document.documentElement.removeAttribute("data-theme");
+    }else{
+      document.documentElement.setAttribute("data-theme", "dark");
+    }
+
+  }
+
   // 검색창 영역 밖 클릭 시 검색창 닫기
   useOnClickOutside(
     searchWrapperRef,
@@ -107,6 +119,8 @@ export default function HeaderPres(): JSX.Element {
           </button>
         )}
       </div>
+
+      <button onClick={changeTheme}>테마전환</button>
 
       {/* 네비게이션 */}
       <nav
