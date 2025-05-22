@@ -3,11 +3,14 @@ import { Cross1Icon } from '@radix-ui/react-icons';
 // slice
 import styles from '../styles/NotificationModalPres.module.scss';
 import Button from '@/shared/ui/button';
+import { NotificationItemType } from '@/features/notification-item/types';
+import { NotificationItemCont } from '@/features/notification-item';
 
 type Props = {
-  items: React.ReactElement[];
+  notifications: NotificationItemType[];
   deleteMode: boolean;
-  selectedCount: number;
+  selectedIds: string[];
+  onToggleSelect: (id: string) => void;
   onDelete: () => void;
   onCancel: () => void;
   onToggleDeleteMode: () => void;
@@ -17,9 +20,11 @@ type Props = {
 };
 
 export default function NotificationModalPres({
-  items,
+  notifications,
   deleteMode,
-  selectedCount,
+
+  selectedIds,
+  onToggleSelect,
   onDelete,
   onCancel,
   onToggleDeleteMode,
@@ -33,17 +38,27 @@ export default function NotificationModalPres({
         <Cross1Icon />
       </button>
 
-      {items.length === 0 ? (
+      {notifications.length === 0 ? (
         <p className={styles.empty}>알람 내역이 없어요</p>
       ) : (
         <>
-          <div className={styles.list}>{items}</div>
+          <div className={styles.list}>
+            {notifications.map((n) => (
+              <NotificationItemCont
+                key={n.id}
+                item={n}
+                deleteMode={deleteMode}
+                selected={selectedIds.includes(n.id)}
+                onToggleSelect={onToggleSelect}
+              />
+            ))}
+          </div>{' '}
           <div className={styles.footer}>
             {deleteMode ? (
               <div className={styles.deleteMode}>
                 <div className={styles.deleteModeInner}>
                   <Button size="small" onClick={onDelete}>
-                    삭제하기 {selectedCount}
+                    삭제하기 {selectedIds.length}
                   </Button>
                   <Button size="small" onClick={onSelectAll}>
                     전체선택

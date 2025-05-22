@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import NotificationModalPres from '../presentational/NotificationModalPres';
-import { NotificationItemCont } from '@/features/notification-item';
 
 import type { NotificationItemType } from '@/features/notification-item/types';
 
@@ -107,21 +106,12 @@ export default function NotificationModalCont() {
     setSelectedIds([]);
   };
 
-  const items = notifications.map((n) => (
-    <NotificationItemCont
-      key={n.id}
-      item={n}
-      deleteMode={deleteMode}
-      selected={selectedIds.includes(n.id)}
-      onToggleSelect={toggleSelect}
-    />
-  ));
-
   return (
     <NotificationModalPres
-      items={items}
+      notifications={notifications}
       deleteMode={deleteMode}
-      selectedCount={selectedIds.length}
+      selectedIds={selectedIds}
+      onToggleSelect={toggleSelect}
       onDelete={deleteSelected}
       onCancel={cancelDeleteMode}
       onToggleDeleteMode={startDeleteMode}
