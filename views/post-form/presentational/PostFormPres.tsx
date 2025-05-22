@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import MDEditor, { ICommand } from '@uiw/react-md-editor';
+import rehypeSanitize from 'rehype-sanitize';
 
 import styles from '../styles/PostFormPres.module.scss';
 import PostTagSectionPres from './PostTagSectionPres';
@@ -72,6 +73,9 @@ export default function PostFormPres({
           extraCommands={[]} // 오른쪽 툴바 빈배열
           enableScroll={true} // 스크롤
           visibleDragbar={false} // 에디터 크기 조절
+          previewOptions={{
+            rehypePlugins: [[rehypeSanitize]],
+          }} // XSS 공격 방지
           textareaProps={{
             placeholder: '당신의 생각을 적어주세요..',
           }}
@@ -101,7 +105,7 @@ export default function PostFormPres({
               className={styles.toggleButton}
               onClick={() => action.open(<PostDraftCont />)}
             >
-              0
+              10
             </button>
           </div>
 

@@ -9,6 +9,21 @@ export type DraftType = {
 const fakeData = [
   {
     createdAt: '2025-05-22',
+    title: '제목',
+    id: 10,
+  },
+  {
+    createdAt: '2025-05-21',
+    title: '무제',
+    id: 9,
+  },
+  {
+    createdAt: '2025-05-20',
+    title: '아무거나 작성',
+    id: 8,
+  },
+  {
+    createdAt: '2025-05-22',
     title: '제목1',
     id: 7,
   },
