@@ -54,9 +54,6 @@ export default function NotificationModalPres({
               </div>
               <div className={styles.deleteModeInner}>
                 <Button size="small" onClick={onCancel}>
-                  취소
-                </Button>
-                <Button size="small" onClick={onCancel}>
                   완료
                 </Button>
               </div>
