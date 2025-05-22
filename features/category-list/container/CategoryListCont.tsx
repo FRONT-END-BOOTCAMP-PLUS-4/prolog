@@ -12,7 +12,6 @@ export default function CategoryListCont() {
   const [category, setCategory] = useState<number>(1);
   const categoryCurrentHandler = (id: number) => {
     setCategory(id);
-    console.log(id);
   };
   return (
     <CategoryListPres
