@@ -3,8 +3,8 @@ import { Cross1Icon } from '@radix-ui/react-icons';
 // slice
 import styles from '../styles/NotificationModalPres.module.scss';
 import Button from '@/shared/ui/button';
-import { NotificationItemType } from '@/features/notification-item/types';
-import { NotificationItemCont } from '@/features/notification-item';
+import { NotificationItemType } from '@/features/notification-list/types';
+import { NotificationItemCont } from '@/features/notification-list';
 
 type Props = {
   notifications: NotificationItemType[];
