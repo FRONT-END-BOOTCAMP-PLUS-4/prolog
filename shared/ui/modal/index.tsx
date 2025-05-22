@@ -1,11 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
 import styles from './Modal.module.scss';
-import { useModal } from '@/shared/stores/useModal';
+import { useModalStore } from '@/shared/stores/useModalStore';
 
 export default function Modal() {
-  const { isChildren, position } = useModal((state) => state);
-  const { close } = useModal((state) => state.action);
+  const { isChildren, position } = useModalStore((state) => state);
+  const { close } = useModalStore((state) => state.action);
   const [isAnimating, setIsAnimating] = useState(false);
   const positionClass =
     styles[`modalContainer__${position}`] || styles.modalContainer__bottom;

@@ -15,7 +15,7 @@ type ModalAction = {
   };
 };
 
-export const useModal = create<ModalState & ModalAction>((set) => ({
+export const useModalStore = create<ModalState & ModalAction>((set) => ({
   isChildren: null,
   position: "bottom",
 
