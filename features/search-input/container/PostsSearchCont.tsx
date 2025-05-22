@@ -5,6 +5,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import useOnClickOutside from '@/shared/hooks/useOnClickOutside';
 import SmartSearchInputPres from '../presentational/SearchInputPres';
+import { ToastContainer, toast } from 'react-toastify';
 
 // slice
 import type { Chip, DropdownItem, PostsSearchContProps } from '../types';
@@ -60,15 +61,6 @@ export default function PostsSearchCont({
   // 현재 입력값에 따른 검색 모드 결정
   const mode = getMode(inputValue, searchTypes);
 
-  // 알림
-  const [toast, setToast] = useState<string | null>(null);
-
-  // 토스트 메시지
-  function showToast(message: string) {
-    setToast(message);
-    setTimeout(() => setToast(null), 1000);
-  }
-
   // 칩 중복 방지, 포커스 복원
   const handleAddChip = (chip: Chip) => {
     const normalizedValue = chip.value.trim().toLowerCase();
@@ -78,7 +70,7 @@ export default function PostsSearchCont({
         c.value.trim().toLowerCase() === normalizedValue,
     );
     if (isDuplicate) {
-      showToast('이미 추가된 태그입니다.');
+      toast.warn('이미 추가된 태그입니다.');
       setTimeout(() => {
         inputRef.current?.focus();
       }, 0);
@@ -91,7 +83,6 @@ export default function PostsSearchCont({
       inputRef.current?.focus();
     }, 0);
   };
-
   // 칩 마지막 타입에 따라 입력 제어
   const handleInputChange = (value: string) => {
     if (chips.length > 0) {
@@ -224,14 +215,16 @@ export default function PostsSearchCont({
         const userValues = chips
           .filter((chip) => chip.type === 'user')
           .map((chip) => chip.value);
-        alert(`유저 검색: ${userValues.join(', ')}`);
+        toast.info(`유저 검색: ${userValues.join(', ')}`);
       } else if (lastType === 'tag') {
         const tagValues = chips
           .filter((chip) => chip.type === 'tag')
           .map((chip) => chip.value);
-        alert(`태그 검색: ${tagValues.join(', ')}`);
+        toast.info(`태그 검색: ${tagValues.join(', ')}`);
       } else {
-        alert(`전체 칩 검색: ${chips.map((chip) => chip.value).join(', ')}`);
+        toast.info(
+          `전체 칩 검색: ${chips.map((chip) => chip.value).join(', ')}`,
+        );
       }
 
       setChips([]);
@@ -270,7 +263,7 @@ export default function PostsSearchCont({
           return;
         }
         if (mode === 'title') {
-          alert(`타이틀 검색: ${inputValue}`);
+          toast.info(`타이틀 검색: ${inputValue}`);
           setInputValue('');
           setChips([]);
           setShowDropdown(false);
@@ -334,28 +327,14 @@ export default function PostsSearchCont({
 
   return (
     <div ref={containerRef} style={{ position: 'relative' }}>
-      {/* 토스트 알림 UI */}
-      {toast && (
-        <div
-          style={{
-            position: 'absolute',
-            top: 3,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            background: '#333',
-            color: '#fff',
-            padding: '8px 20px',
-            borderRadius: 8,
-            fontSize: 15,
-            zIndex: 100,
-            pointerEvents: 'none',
-            opacity: 0.95,
-            boxShadow: '0 2px 8px #0002',
-          }}
-        >
-          {toast}
-        </div>
-      )}
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar={true}
+        closeOnClick
+        pauseOnHover={false}
+        draggable={false}
+      />
 
       <SmartSearchInputPres
         chips={chips}
