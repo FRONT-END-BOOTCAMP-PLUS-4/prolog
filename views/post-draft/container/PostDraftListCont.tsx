@@ -1,10 +1,5 @@
 import PostDraftPres from '../presentational/PostDraftListPres';
-
-export type DraftType = {
-  id: number;
-  title: string;
-  createdAt: string;
-};
+import { PostDraftType } from '../types';
 
 const fakeData = [
   {
@@ -58,7 +53,7 @@ const fakeData = [
     title: 'Next.js 란?',
     id: 1,
   },
-] as DraftType[];
+] as PostDraftType[];
 
 export default function PostDraftCont() {
   const handleDeletePostDraft = (id: number) => {
