@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   justify-content: start;
-  margin-left: 42%;
+  margin-left: 45%;
 }
 .cardFollowFlex{
   display: flex;
@@ -19,7 +19,7 @@
 
   @media (max-width: 962px) {
     flex-direction: column;
-    gap: 20px; // 줄이기
+    gap: 20px; 
   }
 }
 
