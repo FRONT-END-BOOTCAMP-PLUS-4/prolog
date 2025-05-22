@@ -1,0 +1,73 @@
+.layout {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.header {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.date {
+    width: 100px;
+    font-size: 14px;
+    color: #888;
+    flex-shrink: 0;
+}
+
+.titleWrapper {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 8px;
+    min-width: 0; // ✨ 중요! overflow 제어 위해 필요
+}
+
+.title {
+    flex: 1;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: border-bottom 0.2s;
+
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+.icon {
+    flex-shrink: 0;
+    cursor: pointer;
+    color: #888;
+    transition: color 0.2s;
+
+    &:hover {
+        color: #000;
+    }
+}
+
+.btnBox {
+    text-align: center;
+}
