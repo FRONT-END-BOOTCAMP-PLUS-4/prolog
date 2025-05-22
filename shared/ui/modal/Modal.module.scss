@@ -1,0 +1,43 @@
+.modalContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: transform 0.4s ease;
+
+    &__left {
+      transform: translateX(-100%);
+    }
+    
+    &__top {
+      transform: translateY(-100%);
+    }
+    
+    &__right {
+      transform: translateX(100%);
+    }
+    
+    &__bottom {
+      transform: translateY(100%);
+    }
+    
+    &__center {
+      transform: scale(0);
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      
+      &.open {
+        opacity: 1;
+      }
+    }
+
+    &.open {
+      transform: translate(0, 0);
+      
+      &.modalContainer__center {
+        transform: scale(1);
+      }
+    }
+  }
