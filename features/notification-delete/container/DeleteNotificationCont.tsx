@@ -1,6 +1,5 @@
 'use client';
 import Button from '@/shared/ui/button';
-import { useEffect } from 'react';
 
 type Props = {
   selectedIds: number[];
