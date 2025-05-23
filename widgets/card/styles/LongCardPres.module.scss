@@ -35,13 +35,13 @@
 
 .profileName {
   font-size: $font-xs-size;
-  color: $color-text-1;
+  color: $theme-text-1;
   font-weight: 400;
 }
 
 .profileDate {
   font-size: $font-xs-size; // 10px
-  color: $color-text-3;
+  color: $theme-text-2;
   font-weight: 400;
 }
 
@@ -63,13 +63,13 @@
 .title {
   font-size: $font-base-size;
   font-weight: $font-title-weight;
-  color: $color-text-1;
+  color: $theme-text-1;
   line-height: 1.75em;
 }
 
 .desc {
   font-size: $font-sm-size;
-  color: $color-text-3;
+  color: $theme-text-2;
   line-height: 1.43em;
 }
 
@@ -98,6 +98,6 @@
 
 .iconCount {
   font-size: $font-xs-size;
-  color: $color-gray-800;
+  color: $theme-gray-5;
   font-weight: $font-xs-weight;
 }

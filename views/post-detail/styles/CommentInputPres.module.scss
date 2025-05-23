@@ -14,10 +14,10 @@
   height: 10rem;
   padding: 8px;
   border-radius: 8px;
-  border: 1px solid $color-gray-400;
+  border: 1px solid $theme-gray-4;
   font-size: $font-lg-size;
   margin-bottom: 8px;
-  border: solid 1px $color-gray;
+  border: solid 1px $theme-gray-1;
   resize: none;
 
   &:focus {
@@ -30,7 +30,7 @@
   }
 
   &::placeholder {
-    color: $color-gray;
+    color: $theme-gray-5;
     font-size: $font-base-size;
   }
 }
