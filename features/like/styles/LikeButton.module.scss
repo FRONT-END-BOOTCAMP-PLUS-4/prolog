@@ -10,6 +10,12 @@
   cursor: pointer;
 }
 
+.likedIcon {
+  width: 20px;
+  height: 20px;
+  color: $color-gray;
+}
+
 .count {
   font-size: $font-sm-size;
   color: $color-gray;

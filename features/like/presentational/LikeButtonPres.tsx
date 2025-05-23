@@ -1,5 +1,5 @@
 // package
-import Image from 'next/image';
+import { HeartIcon, HeartFilledIcon } from '@radix-ui/react-icons';
 // slice
 import styles from '../styles/LikeButton.module.scss';
 
@@ -13,12 +13,11 @@ export default function LikeButton({ liked, count, onClick }: Props) {
   return (
     <div className={styles.likeWrapper}>
       <button className={styles.likeBtn} onClick={onClick}>
-        <Image
-          src={liked ? '/svgs/love.svg' : '/svgs/love.svg'}
-          alt="like"
-          width={20}
-          height={20}
-        />
+        {liked ? (
+          <HeartFilledIcon className={styles.likedIcon} />
+        ) : (
+          <HeartIcon className={styles.likedIcon} />
+        )}
       </button>
       <span className={styles.count}>{count}</span>
     </div>
