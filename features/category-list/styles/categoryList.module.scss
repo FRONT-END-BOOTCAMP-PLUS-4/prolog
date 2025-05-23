@@ -12,5 +12,5 @@
 }
 .title{
 @include font-sm;
-color:#8f8e8e;
+color: &theme-gray-1;
 }

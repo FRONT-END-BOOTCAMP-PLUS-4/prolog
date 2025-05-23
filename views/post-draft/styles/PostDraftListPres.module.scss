@@ -37,7 +37,7 @@
 }
 
 .headerIcon {
-  color :$color-gray-200;
+  color :$theme-gray-2;
   cursor: pointer;
   transition: color 0.2s;
 
@@ -61,7 +61,7 @@
 .date {
     width: 100px;
     font-size: 13px;
-    color: $color-gray-200;
+    color: $theme-gray-2;
     flex-shrink: 0;
 }
 
@@ -89,7 +89,7 @@
 .icon {
     flex-shrink: 0;
     cursor: pointer;
-    color: $color-gray-200;
+    color: $theme-gray-2;
     transition: color 0.2s;
 
     &:hover {

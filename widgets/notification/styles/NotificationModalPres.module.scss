@@ -6,7 +6,7 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
-  background: $color-shade-2;
+  background: $theme-shade-2;
   border-radius: 10px;
   box-shadow: 4px 4px 8px 0px #00000040;
   padding: 8px;
@@ -18,7 +18,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: $color-gray;
+  color: $theme-gray-5;
 }
 
 .close {
@@ -36,6 +36,17 @@
   flex: 1;
   overflow-y: auto;
   height: 328px;
+
+  /* 크롬, 사파리 */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* 파이어폭스 */
+  scrollbar-width: none;
+
+  /* IE/Edge (구버전) */
+  -ms-overflow-style: none;
 }
 
 .footer {

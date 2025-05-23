@@ -8,7 +8,7 @@
   padding: 20px;
   position: absolute;
   left: 35%;
-  background-color: #FFFFFF;
+  background-color: $color-white;
 }
 .toggle {
   width: 35px;
@@ -67,7 +67,7 @@
   }
   .toggleTextBasic{
     @include font-xl;
-    color: gray;
+    color: $theme-gray-4;
     font-weight: 200
   }
   .text{

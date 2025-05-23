@@ -4,7 +4,7 @@
 
 .card {
   position: relative;
-  background-color: $color-shade-2;
+  background-color: $theme-shade-2;
   border-radius: 8px;
   padding: 8px;
   gap: 20px;
@@ -23,7 +23,7 @@
 }
 
 .inner {
-  background-color: $color-shade-1;
+  background-color: $theme-shade-1;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -34,12 +34,12 @@
 
 .welcome {
   font-size: $font-title-size;
-  color: $color-text-1;
+  color: $theme-text-1;
 }
 
 .guide {
   font-size: $font-base-size;
-  color: $color-gray-400;
+  color: $theme-gray-4;
   text-align: center;
 }
 
@@ -59,5 +59,5 @@
 
 .terms {
   font-size: $font-xs-size;
-  color: $color-gray;
+  color: $theme-gray-5;
 }

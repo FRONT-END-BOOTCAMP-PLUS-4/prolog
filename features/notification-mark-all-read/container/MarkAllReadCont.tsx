@@ -2,8 +2,9 @@
 import Button from '@/shared/ui/button';
 
 export default function MarkAllReadCont() {
+  const userId = 1;
   const handleClick = () => {
-    console.log('전체 읽음 처리');
+    console.log(`${userId}전체 읽음 처리`);
   };
 
   return (
