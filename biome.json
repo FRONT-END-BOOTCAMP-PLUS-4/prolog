@@ -26,7 +26,8 @@
     "enabled": true,
     "rules": {
       "complexity": {
-        "noForEach": "off"
+        "noForEach": "off",
+        "useOptionalChain": "off"
       },
       "recommended": true,
       "correctness": {
@@ -44,7 +45,8 @@
       },
       "a11y": {
         "useButtonType": "off",
-        "useKeyWithClickEvents": "off"
+        "useKeyWithClickEvents": "off",
+        "useSemanticElements": "off"
       }
     }
   },
