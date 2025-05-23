@@ -18,17 +18,17 @@
 
 .nickname {
   @include font-sm;
-  color: $color-accent;
+  color: $theme-accent;
 }
 
 .comment {
   @include font-sm;
-  color: $color-text-1;
+  color: $theme-text-1;
 }
 
 .content {
   @include font-sm;
-  color: $color-text-1;
+  color: $theme-text-1;
 }
 
 .postTitle {
@@ -68,5 +68,5 @@
 .iconSelected {
   width: 16px;
   height: 16px;
-  color: $color-accent;
+  color: $theme-accent;
 }

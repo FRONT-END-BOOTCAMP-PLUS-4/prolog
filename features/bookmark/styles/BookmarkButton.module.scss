@@ -6,7 +6,7 @@
   cursor: pointer;
 
   :hover {
-    color: $color-green;
+    color: $theme-green;
   }
 }
 
@@ -14,9 +14,9 @@
 .unBookmarkedIcon {
   width: 20px;
   height: 20px;
-  color: $color-gray;
+  color: $theme-gray-5;
 }
 
 .bookmarkedIcon {
-  color: $color-green;
+  color: $theme-green;
 }

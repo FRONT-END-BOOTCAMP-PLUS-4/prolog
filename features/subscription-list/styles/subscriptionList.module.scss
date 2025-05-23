@@ -8,12 +8,12 @@
   padding: 20px;
   position: absolute;
   left: 35%;
-  background-color: $color-white;
+  background-color: $theme-white;
 }
 .toggle {
   width: 35px;
   height: 17px;
-  border: 2px solid $color-primary;
+  border: 2px solid $theme-primary;
   border-radius: 30px;
   cursor: pointer;
   display: flex;
@@ -25,7 +25,7 @@
     position: absolute;
     left: 0px;
     top: -0.3px;
-    background-color: $color-primary;
+    background-color: $theme-primary;
     border-radius: 100%;
     width: 14px;
     height: 14px;
