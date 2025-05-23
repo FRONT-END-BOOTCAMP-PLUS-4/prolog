@@ -1,24 +1,16 @@
 @use './variables.scss' as *;
 
 .layout {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  transform: translateZ(0);
-
   &__header {
-    flex-shrink: 0;
     height: $header-height;
     background-color: transparent;
   }
 
   &__main {
-    flex-shrink: 0;
+    padding: 16px;
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 16px;
     background-color: transparent;
-    flex: 1;
   }
 }
