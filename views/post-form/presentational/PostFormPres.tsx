@@ -43,6 +43,31 @@ export default function PostFormPres({
     setIsPublic((prev) => (prev === 0 ? 1 : 0));
   };
 
+  /** 블로그 글 POST 요청 테스트 */
+  const createPostHandler = async () => {
+    if (!value || !titleRef.current) return;
+
+    const newPost = {
+      userId: 'uuid-2',
+      title: titleRef.current.value,
+      content: value,
+      isPublic: isPublic,
+      tags: tags,
+      useAi: isAiUsed,
+    };
+
+    const res = await fetch('/api/member/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newPost),
+    });
+
+    const result = await res.json();
+    console.log('result : ', result);
+  };
+
   useImageDrop({
     ref: editorRef,
     onDropImages: async (files) => {
@@ -109,7 +134,9 @@ export default function PostFormPres({
             </button>
           </div>
 
-          <Button variants="active">발행하기</Button>
+          <Button variants="active" onClick={createPostHandler}>
+            발행하기
+          </Button>
         </div>
       </div>
     </div>
