@@ -16,7 +16,7 @@ export default function LikeButton({ liked, count, onClick }: Props) {
         {liked ? (
           <HeartFilledIcon className={styles.likedIcon} />
         ) : (
-          <HeartIcon className={styles.likedIcon} />
+          <HeartIcon className={styles.unLikedIcon} />
         )}
       </button>
       <span className={styles.count}>{count}</span>

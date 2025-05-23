@@ -8,12 +8,24 @@
 
 .likeBtn {
   cursor: pointer;
+  display: flex;
+  align-items: center;
+
+  :hover {
+    color: $color-red;
+  }
+
 }
 
-.likedIcon {
+.likedIcon,
+.unLikedIcon {
   width: 20px;
   height: 20px;
   color: $color-gray;
+}
+
+.likedIcon {
+  color: $color-red;
 }
 
 .count {
