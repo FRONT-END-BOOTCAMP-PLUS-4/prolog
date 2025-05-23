@@ -2,7 +2,7 @@
 
 
 .button {
-    color: $color-white;
+    color: $theme-white;
     cursor: pointer;
     opacity: 0.9;
     border-radius: 8px;
@@ -18,13 +18,13 @@
         border: 1px solid $theme-gray-3;
 
         &:hover {
-            color: $color-secondary;
-            border-color: $color-secondary;
+            color: $theme-secondary;
+            border-color: $theme-secondary;
         }
     }
 
     &__active {
-        background-color: $color-secondary;
+        background-color: $theme-secondary;
     }
 
     &__theme {
@@ -38,16 +38,16 @@
     }
 
     &__red {
-        background-color: $color-red;
+        background-color: $theme-red;
     }
 
     &__purple {
-        color: $color-primary;
-        background-color: $color-mist-lavender;
+        color: $theme-primary;
+        background-color: $theme-mist-lavender;
     }
     &__secondary{
-        color: $color-secondary;
-        border:1px solid $color-secondary;
+        color: $theme-secondary;
+        border:1px solid $theme-secondary;
     }
     &__small {
         font-size: $font-sm-size;
