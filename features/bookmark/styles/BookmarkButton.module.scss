@@ -4,10 +4,19 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+
+  :hover {
+    color: $color-green;
+  }
 }
 
-.bookmarkedIcon {
+.bookmarkedIcon,
+.unBookmarkedIcon {
   width: 20px;
   height: 20px;
   color: $color-gray;
+}
+
+.bookmarkedIcon {
+  color: $color-green;
 }

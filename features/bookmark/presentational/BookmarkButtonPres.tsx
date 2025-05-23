@@ -14,7 +14,7 @@ export default function BookmarkButton({ bookmarked, onClick }: Props) {
       {bookmarked ? (
         <BookmarkFilledIcon className={styles.bookmarkedIcon} />
       ) : (
-        <BookmarkIcon className={styles.bookmarkedIcon} />
+        <BookmarkIcon className={styles.unBookmarkedIcon} />
       )}
     </button>
   );
