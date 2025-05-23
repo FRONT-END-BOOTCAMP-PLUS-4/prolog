@@ -1,3 +1,4 @@
+import { GetPostDraftListtUsecase } from '@/architecture/posts/application/usecases/GetPostDraftListUsecase';
 import { PrPostDraftRepository } from '@/architecture/posts/infra/PrPostsDraftRepository';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -7,7 +8,8 @@ export async function GET(req: NextRequest) {
     const userId = 'uuid-1';
 
     const repository = new PrPostDraftRepository();
-    const draftList = await repository.findAll(userId);
+    const getPostDraftList = new GetPostDraftListtUsecase(repository);
+    const draftList = await getPostDraftList.execute(userId);
 
     return NextResponse.json({ data: draftList });
   } catch (error) {

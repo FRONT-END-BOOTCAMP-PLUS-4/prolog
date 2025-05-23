@@ -1,4 +1,5 @@
 import { CreatePostDto } from '@/architecture/posts/application/dto/CreatePostDto';
+import { CreatePostUsecase } from '@/architecture/posts/application/usecases/CreatePostUsecase';
 import { PrPostRepository } from '@/architecture/posts/infra/PrPostsRepository';
 import { NextRequest, NextResponse } from 'next/server';
 
@@ -15,9 +16,10 @@ export async function POST(req: NextRequest) {
     }
 
     const repository = new PrPostRepository();
-    const post = await repository.createPost(body);
+    const createPostUsecase = new CreatePostUsecase(repository);
+    const newPost = await createPostUsecase.execute(body);
 
-    return NextResponse.json(post, { status: 201 });
+    return NextResponse.json(newPost, { status: 201 });
   } catch (error) {
     console.error('게시글 생성 실패:', error);
     return NextResponse.json(
