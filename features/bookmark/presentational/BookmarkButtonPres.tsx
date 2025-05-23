@@ -1,5 +1,5 @@
 // package
-import Image from 'next/image';
+import { BookmarkIcon, BookmarkFilledIcon } from '@radix-ui/react-icons';
 // slice
 import styles from '../styles/BookmarkButton.module.scss';
 
@@ -11,12 +11,11 @@ type Props = {
 export default function BookmarkButton({ bookmarked, onClick }: Props) {
   return (
     <button className={styles.bookmarkWrapper} onClick={onClick}>
-      <Image
-        src={bookmarked ? '/svgs/book.svg' : '/svgs/book.svg'}
-        alt="bookmark"
-        width={20}
-        height={20}
-      />
+      {bookmarked ? (
+        <BookmarkFilledIcon className={styles.bookmarkedIcon} />
+      ) : (
+        <BookmarkIcon className={styles.bookmarkedIcon} />
+      )}
     </button>
   );
 }
