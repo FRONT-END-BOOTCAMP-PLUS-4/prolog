@@ -1,9 +1,11 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { useState } from 'react';
 import { ICommand, commands } from '@uiw/react-md-editor';
 
 import Image from '@/public/svgs/image.svg';
+import { getFirstImageUrlFromMarkdown } from '@/shared/utils/image';
 
 /* 브라우저 전용 기능이 포함된 컴포넌트이므로 SSR 비활성화 */
 const PostFormPres = dynamic(
@@ -12,15 +14,28 @@ const PostFormPres = dynamic(
 );
 
 export default function PostFormCont() {
+  /* 에디터 기본 옵션 */
+  const [content, setContent] = useState<string | undefined>('');
+
+  /* 제목 */
+  const [title, setTitle] = useState<string>('');
+
+  /* 태그리스트 */
+  const [tags, setTags] = useState<string[]>([]);
+
+  /* AI 사용여부, 글 공개여부 */
+  const [isAiUsed, setIsAiUsed] = useState<number>(0); // 0: 사용 안함, 1: 사용함
+  const [isPublic, setIsPublic] = useState<number>(1); // 0: 비공개, 1: 공개
+
+  /* S3에 이미지 업로드 */
   const uploadImageFiles = async (files: File[]) => {
     const formData = new FormData();
 
     files.forEach((file) => {
-      formData.append('img', file); // 'img'는 서버에서 기대하는 필드 이름
+      formData.append('img', file); // 'img'는 서버에서 받는 필드 이름
     });
 
-    /* 추후 S3에 업로드 하는 로직으로 대체 */
-    const res = await fetch('/api/s3-upload', {
+    const res = await fetch('/api/member/posts/s3-upload', {
       method: 'POST',
       body: formData,
     });
@@ -64,6 +79,38 @@ export default function PostFormCont() {
     },
   });
 
+  /* 블로그 게시글 생성 */
+  const createPostHandler = async () => {
+    if (!title || !content) return;
+
+    const firstImg = getFirstImageUrlFromMarkdown(content);
+
+    const newPost = {
+      title: title,
+      content: content,
+      tags: tags,
+      isAiUsed: isAiUsed,
+      isPublic: isPublic,
+      userId: 'uuid-2',
+      thumbnailUrl: firstImg,
+    };
+
+    const res = await fetch('/api/member/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newPost),
+    });
+
+    if (!res.ok) {
+      throw new Error('Failed to fetch create blog post');
+    }
+
+    const result = await res.json();
+    console.log('result : ', result);
+  };
+
   /* 커스텀 툴바 설정 */
   const customCommands: ICommand[] = [
     commands.title1,
@@ -89,6 +136,17 @@ export default function PostFormCont() {
     <PostFormPres
       customCommands={customCommands}
       uploadImgFiles={uploadImageFiles}
+      title={title}
+      content={content}
+      tags={tags}
+      isAiUsed={isAiUsed}
+      isPublic={isPublic}
+      setIsAiUsed={setIsAiUsed}
+      setIsPublic={setIsPublic}
+      setContent={setContent}
+      setTags={setTags}
+      setTitle={setTitle}
+      onCreatePost={createPostHandler}
     />
   );
 }

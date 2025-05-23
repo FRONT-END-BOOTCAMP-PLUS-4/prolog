@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useRef, Dispatch, SetStateAction } from 'react';
 import MDEditor, { ICommand } from '@uiw/react-md-editor';
 import rehypeSanitize from 'rehype-sanitize';
 
@@ -13,23 +13,36 @@ import { useModalStore } from '@/shared/stores/useModalStore';
 type Props = {
   customCommands: ICommand[];
   uploadImgFiles: (files: File[]) => Promise<string[]>;
+  title: string;
+  content: string | undefined;
+  tags: string[];
+  isAiUsed: number;
+  isPublic: number;
+  setIsAiUsed: Dispatch<SetStateAction<number>>;
+  setIsPublic: Dispatch<SetStateAction<number>>;
+  setContent: Dispatch<SetStateAction<string | undefined>>;
+  setTags: Dispatch<SetStateAction<string[]>>;
+  setTitle: Dispatch<SetStateAction<string>>;
+  onCreatePost: () => Promise<void>;
 };
 
-export default function PostFormPres({
-  customCommands,
-  uploadImgFiles,
-}: Props) {
-  /* 에디터 기본 옵션 */
-  const [value, setValue] = useState<string | undefined>('');
+export default function PostFormPres(props: Props) {
+  const {
+    customCommands,
+    uploadImgFiles,
+    title,
+    content,
+    tags,
+    isAiUsed,
+    isPublic,
+    setIsAiUsed,
+    setIsPublic,
+    setContent,
+    setTags,
+    setTitle,
+    onCreatePost,
+  } = props;
 
-  /* 태그리스트 */
-  const [tags, setTags] = useState<string[]>([]);
-
-  const [isAiUsed, setIsAiUsed] = useState<number>(0); // 0: 사용 안함, 1: 사용함
-  const [isPublic, setIsPublic] = useState<number>(1); // 0: 비공개, 1: 공개
-
-  /* 제목 */
-  const titleRef = useRef<HTMLInputElement>(null);
   /* 이미지 드래그 앤 드랍을 위한 ref */
   const editorRef = useRef<HTMLDivElement>(null);
 
@@ -43,37 +56,12 @@ export default function PostFormPres({
     setIsPublic((prev) => (prev === 0 ? 1 : 0));
   };
 
-  /** 블로그 글 POST 요청 테스트 */
-  const createPostHandler = async () => {
-    if (!value || !titleRef.current) return;
-
-    const newPost = {
-      userId: 'uuid-2',
-      title: titleRef.current.value,
-      content: value,
-      isPublic: isPublic,
-      tags: tags,
-      useAi: isAiUsed,
-    };
-
-    const res = await fetch('/api/member/posts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newPost),
-    });
-
-    const result = await res.json();
-    console.log('result : ', result);
-  };
-
   useImageDrop({
     ref: editorRef,
     onDropImages: async (files) => {
       const urls = await uploadImgFiles(files);
       const markdown = urls.map((url) => `![image](${url})`).join('\n');
-      setValue((prev) => `${prev}\n${markdown}`);
+      setContent((prev) => `${prev}\n${markdown}`);
     },
   });
 
@@ -83,7 +71,8 @@ export default function PostFormPres({
         type="text"
         placeholder="제목을 작성해주세요"
         className={styles.titleInput}
-        ref={titleRef}
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
       />
       <PostTagSectionPres tags={tags} setTags={setTags} />
       <div
@@ -92,8 +81,8 @@ export default function PostFormPres({
         ref={editorRef}
       >
         <MDEditor
-          value={value}
-          onChange={setValue}
+          value={content}
+          onChange={setContent}
           commands={customCommands}
           extraCommands={[]} // 오른쪽 툴바 빈배열
           enableScroll={true} // 스크롤
@@ -134,7 +123,7 @@ export default function PostFormPres({
             </button>
           </div>
 
-          <Button variants="active" onClick={createPostHandler}>
+          <Button variants="active" onClick={onCreatePost}>
             발행하기
           </Button>
         </div>
