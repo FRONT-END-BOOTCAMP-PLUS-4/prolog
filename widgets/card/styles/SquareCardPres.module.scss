@@ -59,13 +59,13 @@
 .title {
   font-size: $font-title-sub-size;
   font-weight: $font-title-sub-weight;
-  color: $color-text-1;
+  color: $theme-text-1;
   margin-bottom: 0.25rem;
 }
 
 .desc {
   font-size: $font-base-size;
-  color: $color-text-2;
+  color: $theme-text-2;
   margin-bottom: 0.5rem;
 }
 
@@ -74,7 +74,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.5rem 1rem;
-  border-top: 1px solid $color-gray-400;
+  border-top: 1px solid $theme-gray-4;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   background: $color-white;
@@ -91,13 +91,13 @@
 
 .profileName {
   font-size: $font-xs-size;
-  color: $color-text-1;
+  color: $theme-text-1;
   font-weight: $font-xs-weight;
 }
 
 .profileDate {
   font-size: $font-xs-size; // 10px
-  color: $color-text-3;
+  color: $theme-text-2;
   font-weight: $font-xs-weight;
 }
 
@@ -109,7 +109,7 @@
 
 .iconCount {
   font-size: $font-xs-size;
-  color: $color-gray-800;
+  color: $theme-gray-5;
   font-weight: $font-xs-weight;
 }
 

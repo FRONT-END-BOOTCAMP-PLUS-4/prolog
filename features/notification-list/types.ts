@@ -1,5 +1,5 @@
 export type NotificationItemType = {
-  id: string;
+  id: number;
   userProfileImage?: string;
   userNickname: string;
   type: 'comment' | 'post';

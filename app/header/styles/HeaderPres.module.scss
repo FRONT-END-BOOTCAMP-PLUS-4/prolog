@@ -10,7 +10,7 @@
   align-items: center;
   padding: .5rem 1rem;
   gap: 16px;
-  background: $color-shade-1;
+  background: $theme-shade-1;
   z-index: 1;
   height: $header-height;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -33,14 +33,14 @@
   justify-content: center;
   width: 18px;
   height: 18px;
-  color: $color-gray;
+  color: $theme-gray-1;
 }
 
 .nav {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: $color-shade-1;
+  background: $theme-shade-1;
   flex-shrink: 1;
   min-width: 0;
 }
@@ -87,7 +87,7 @@
 .arrowIcon {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform: rotate(0deg);
-  color: $color-gray;
+  color: $theme-gray-1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,7 +118,8 @@
   position: absolute;
   top: 110%;
   right: 0;
-  background: $color-shade-1;
+  background: $color-white;
+  border: 1px solid $theme-gray-1;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   min-width: 8.75rem;
@@ -131,7 +132,7 @@
 .dropdownItem {
   display: flex;
   padding: .625rem 1rem;
-  color: $color-gray-200;
+  color: $theme-gray-2;
   text-decoration: none;
   font-size: $font-sm-size;
   cursor: pointer;
@@ -143,7 +144,7 @@
 }
 
 .dropdownItem:hover {
-  background-color:$color-shade-2;
+  background-color:$theme-shade-2;
 }
 
 @keyframes slideDown {
@@ -166,13 +167,13 @@
 }
 
 .logoutItem:hover {
-  background-color: rgba(231, 76, 60, 0.1);
+  background-color: $theme-shade-8;
 }
 
 .dropdownDivider {
   height: 1px;
   width: 100%;
-  background: $color-shade-3;
+  background: $theme-shade-3;
   margin: 2px 0;
 }
 

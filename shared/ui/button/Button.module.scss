@@ -14,8 +14,8 @@
     }
 
     &__basic {
-        color: $color-gray;
-        border: 1px solid $color-gray;
+        color: $theme-gray-3;
+        border: 1px solid $theme-gray-3;
 
         &:hover {
             color: $color-secondary;
@@ -28,13 +28,13 @@
     }
 
     &__theme {
-        background-color: $color-text-1;
-        color: $color-shade-3;
+        background-color: $theme-text-1;
+        color: $theme-shade-3;
     }
 
     &__disabled {
         cursor: not-allowed;
-        background-color: $color-gray;
+        background-color: $theme-gray-1;
     }
 
     &__red {

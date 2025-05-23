@@ -7,10 +7,9 @@
   box-sizing: border-box;
 }
 
-html, body {
-  height: 100%;
-  background-color: $color-shade-1;
-  color: $color-text-1;
+html,body {
+  background-color: $theme-shade-1;
+  color: $theme-text-1;
 }
 
 ul, ol {
