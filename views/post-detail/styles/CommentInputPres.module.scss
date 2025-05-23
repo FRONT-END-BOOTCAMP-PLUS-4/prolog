@@ -2,7 +2,6 @@
 
 .commentBox {
   border-radius: 8px;
-  padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -15,9 +14,7 @@
   padding: 8px;
   color: $color-text-1;
   border-radius: 8px;
-  border: 1px solid $color-gray-400;
   font-size: $font-lg-size;
-  margin-bottom: 8px;
   border: solid 1px $color-gray;
   background: $color-shade-1;
   resize: none;
