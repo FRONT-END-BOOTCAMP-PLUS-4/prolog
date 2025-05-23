@@ -118,8 +118,7 @@
   position: absolute;
   top: 110%;
   right: 0;
-  background: white;
-  border: 1px solid #ccc;
+  background: $color-shade-1;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   min-width: 8.75rem;
@@ -140,6 +139,7 @@
   border: none;
   text-align: left;
   transition: background 0.15s;
+  background: $color-shade-1;
 }
 
 .dropdownItem:hover {
