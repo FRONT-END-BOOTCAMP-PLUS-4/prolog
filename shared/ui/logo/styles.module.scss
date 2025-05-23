@@ -3,12 +3,12 @@
 .logo {
     padding: 12px 16px;
     border-radius: 12px;
-    background-color: $color-secondary;
+    background-color: $theme-secondary;
     cursor: pointer;
 
   
     &__text {
       font-size: $font-base-size;
-      color: $color-white;
+      color: $theme-white;
     }
   }

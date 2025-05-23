@@ -12,7 +12,7 @@
   align-items: center;
 
   :hover {
-    color: $color-red;
+    color: $theme-red;
   }
 
 }
@@ -21,11 +21,11 @@
 .unLikedIcon {
   width: 20px;
   height: 20px;
-  color: $color-gray;
+  color: $theme-gray-5;
 }
 
 .likedIcon {
-  color: $color-red;
+  color: $theme-red;
 }
 
 .count {
