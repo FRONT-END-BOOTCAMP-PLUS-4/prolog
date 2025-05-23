@@ -1,21 +1,22 @@
-import type { Metadata } from "next";
-import localFont from 'next/font/local'
+import type { Metadata } from 'next';
+import localFont from 'next/font/local';
 
-import "./global.scss";
-import styles from "./styles/layout.module.scss";
+import './global.scss';
+import styles from './styles/layout.module.scss';
 
-import Header from "@/widgets/header";
+import Header from '@/app/header';
+import Modal from '@/shared/ui/modal';
 
 const pretendard = localFont({
   src: '../public/fonts/pretendard-medium.woff2',
-})
+});
 
 export const metadata: Metadata = {
-  title: "prolog",
-  description: "/",
+  title: 'prolog',
+  description: '/',
   icons: {
-    icon: '/'
-  }
+    icon: '/',
+  },
 };
 
 export default function RootLayout({
@@ -27,13 +28,12 @@ export default function RootLayout({
     <html lang="ko" className={`${pretendard.className}`}>
       <body>
         <div className={styles.layout}>
-        <header className={styles.layout__header}>
-          <Header/>
-        </header>
-        <main className={styles.layout__main}>
-          {children}
-        </main>
+          <div className={styles.layout__header}>
+            <Header />
+          </div>
+          <main className={styles.layout__main}>{children}</main>
         </div>
+        <Modal/>
       </body>
     </html>
   );

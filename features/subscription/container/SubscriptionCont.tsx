@@ -6,7 +6,6 @@ import SubscriptionPres from '../presentational/SubscriptionPres';
 
 export default function SubscriptionCont() {
   const [isFollowing, setIsFollowing] = useState(false);
-  console.log(isFollowing);
   const followerHandler = () => {
     setIsFollowing((prev) => !prev);
   };

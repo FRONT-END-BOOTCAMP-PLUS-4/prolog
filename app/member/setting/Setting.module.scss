@@ -1,0 +1,119 @@
+@use '@styles/variables.scss' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profileSection {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.profileImageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-right: 12px;
+  border-right: 1px solid $color-gray;
+}
+
+.profilePlaceholder {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50px;
+}
+
+.profileButtonGroup{
+    display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.userInfoContainer {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.email {
+    @include font-sm;
+  color: $color-gray;
+}
+
+.nickname {
+    @include font-xl;
+  color: $color-text-1;
+  outline: none;
+  border: none;
+}
+
+.bioTextarea {
+    padding: 8px;
+    border-radius: 8px;
+    background-color: $color-shade-2;
+    color: $color-text-1;
+  border: none;
+  resize: none;
+  flex-grow: 1;
+  outline: none;
+
+  &::placeholder{
+    color: $color-gray;
+  }
+}
+
+.settingsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.settingItemContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    gap: 20px;
+    border-radius: 1px;
+  border-bottom: 1px solid $color-gray;
+}
+
+.settingItem {
+  display: flex;
+  align-items: center;
+  padding: 8px 0px;
+}
+
+.settingLabel {
+    @include font-xl;
+  color: $color-text-1;
+  min-width: 100px;
+}
+
+.settingControls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.settingButtonGroup {
+    display: flex;
+    gap: 12px;
+}
+
+.settingDescription {
+  color: $color-gray;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
