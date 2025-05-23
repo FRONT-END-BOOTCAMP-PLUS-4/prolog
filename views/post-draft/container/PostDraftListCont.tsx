@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import PostDraftPres from '../presentational/PostDraftListPres';
 import { PostDraftType } from '../types';
 
@@ -56,6 +57,21 @@ const fakeData = [
 ] as PostDraftType[];
 
 export default function PostDraftCont() {
+  useEffect(() => {
+    const getPostsDraftList = async () => {
+      const response = await fetch('/api/member/posts/draft');
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch post draftList');
+      }
+
+      const result = await response.json();
+      console.log('result : ', result);
+    };
+
+    getPostsDraftList();
+  }, []);
+
   const handleDeletePostDraft = (id: number) => {
     const confirmed = window.confirm('삭제하시겠습니까?');
     if (confirmed) {
