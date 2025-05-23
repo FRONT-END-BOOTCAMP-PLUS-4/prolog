@@ -1,0 +1,48 @@
+import { DeletePostDraftUsecase } from '@/architecture/posts/application/usecases/DeletePostDraftUsecase';
+import { GetPostDraftListtUsecase } from '@/architecture/posts/application/usecases/GetPostDraftListUsecase';
+import { PrPostDraftRepository } from '@/architecture/posts/infra/PrPostsDraftRepository';
+import { NextRequest, NextResponse } from 'next/server';
+
+export async function GET(req: NextRequest) {
+  try {
+    /** user_id 를 토큰으로 변경 할 예정 */
+    const userId = 'uuid-1';
+
+    const repository = new PrPostDraftRepository();
+    const getPostDraftList = new GetPostDraftListtUsecase(repository);
+    const draftList = await getPostDraftList.execute(userId);
+
+    return NextResponse.json({ data: draftList });
+  } catch (error) {
+    console.error('임시 글 불러오기 오류:', error);
+    return NextResponse.json(
+      { message: '서버 오류가 발생했습니다.' },
+      { status: 500 },
+    );
+  }
+}
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const { searchParams } = new URL(req.url);
+    const draftId = searchParams.get('draftId');
+
+    if (!draftId) {
+      return NextResponse.json(
+        { message: 'draftId는 필수입니다.' },
+        { status: 400 },
+      );
+    }
+
+    const repository = new PrPostDraftRepository();
+    const deletePostDraft = new DeletePostDraftUsecase(repository);
+
+    await deletePostDraft.execute(Number(draftId));
+  } catch (error) {
+    console.error('임시 저장글 삭제 실패:', error);
+    return NextResponse.json(
+      { message: '서버 오류가 발생했습니다.' },
+      { status: 500 },
+    );
+  }
+}

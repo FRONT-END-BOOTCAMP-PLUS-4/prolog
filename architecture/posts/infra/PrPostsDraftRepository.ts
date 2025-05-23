@@ -13,4 +13,12 @@ export class PrPostDraftRepository implements PostsDraftRepository {
 
     return postsDraftList;
   }
+
+  async deleteById(draftId: number): Promise<void> {
+    await prisma.postTemp.delete({
+      where: {
+        id: draftId,
+      },
+    });
+  }
 }
