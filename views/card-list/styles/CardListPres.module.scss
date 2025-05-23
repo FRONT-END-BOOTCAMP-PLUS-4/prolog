@@ -31,11 +31,11 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   background: transparent;
-  border: 1px solid $color-shade-3;
+  border: 1px solid $theme-shade-3;
   border-radius: 4px;
   padding: 0.375rem 1.875rem 0.375rem 0.75rem;
   font-size: $font-sm-size;
-  color: $color-gray-200;
+  color: $theme-gray-3;
   cursor: pointer;
   min-width: 3.125rem;
   height: 2.25rem;
@@ -55,7 +55,7 @@
 
 .viewTypeIcon {
   cursor: pointer;
-  fill: $color-gray;
+  fill: $theme-gray-5;
   filter: brightness(0.8);
   transition:  filter 0.2s;
 }
