@@ -23,6 +23,7 @@ type Props = {
   setTags: Dispatch<SetStateAction<string[]>>;
   setTitle: Dispatch<SetStateAction<string>>;
   onCreatePost: () => Promise<void>;
+  saveDraft: () => Promise<void>;
 };
 
 export default function PostFormPres(props: Props) {
@@ -40,6 +41,7 @@ export default function PostFormPres(props: Props) {
     setTags,
     setTitle,
     onCreatePost,
+    saveDraft,
   } = props;
 
   /* 이미지 드래그 앤 드랍을 위한 ref */
@@ -110,7 +112,7 @@ export default function PostFormPres(props: Props) {
         </div>
 
         <div className={styles.rightControls}>
-          <PostDraftButtonPres />
+          <PostDraftButtonPres saveDraft={saveDraft} />
           <Button variants="active" onClick={onCreatePost}>
             발행하기
           </Button>

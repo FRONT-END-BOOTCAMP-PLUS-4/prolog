@@ -1,6 +1,7 @@
 import { PostsDraftRepository } from '../domain/PostsDraftRepository';
 import { PostTemp, PrismaClient } from '../../../app/generated/prisma';
 import { CreatePostDraftDto } from '../application/dto/CreatePostDraftDto';
+import { UpdatePostDraftDto } from '../application/dto/UpdatePostDraftDto';
 
 const prisma = new PrismaClient();
 
@@ -30,6 +31,19 @@ export class PrPostDraftRepository implements PostsDraftRepository {
         content: newDraft.content,
         tags: newDraft.tags,
         userId: newDraft.userId,
+      },
+    });
+
+    return draft.id;
+  }
+
+  async updateDraft(newDraft: UpdatePostDraftDto): Promise<number> {
+    const draft = await prisma.postTemp.update({
+      where: { id: newDraft.draftId },
+      data: {
+        title: newDraft.title,
+        content: newDraft.content,
+        tags: newDraft.tags,
       },
     });
 

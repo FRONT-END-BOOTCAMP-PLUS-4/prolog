@@ -1,5 +1,6 @@
-export class CreatePostDraftDto {
+export class UpdatePostDraftDto {
   constructor(
+    public draftId: number,
     public title: string,
     public content: string,
     public tags: string[],
