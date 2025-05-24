@@ -1,6 +1,7 @@
 // package
 import Image from 'next/image';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 
 // slice
 import styles from '../styles/SquareCardPres.module.scss';
@@ -50,7 +51,9 @@ export default function SquareCardPres({ data }: Props) {
           <Profile
             userNickName={data.userNickName}
             date={data.date}
-            onClick={() => {}}
+            onClick={() => {
+              toast.info('프로필 클릭!');
+            }}
           />
         </div>
         <div className={styles.mainIcon}>

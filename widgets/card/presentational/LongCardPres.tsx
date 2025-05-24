@@ -12,9 +12,9 @@ import TagListCont from '@/views/tag/container/TagListCont';
 import { LikeButton } from '@/features/like';
 import Profile from '@/shared/ui/profile';
 
-interface Props {
+type Props = {
   data: CardData;
-}
+};
 
 export default function LongCardPres({ data }: Props) {
   return (
