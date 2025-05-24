@@ -14,8 +14,8 @@ import Profile from '@/shared/ui/profile';
 export default function SquareCardPres() {
   // 더미 데이터 오브젝트
   const dummy = {
-    title: 'SSG에 대해서 알아보겠습..',
-    desc: 'CSR은 클라이언트 사이드 렌더링이라고 합니다. 이는 SEO에 좋지 못하지만, 좀더 인터렉티브한 디자인에는 좋은경험을 ........',
+    title: 'CSR이란',
+    desc: 'CSR은 클라이언트 사이드 렌더링이라고 합니다. 이는 SEO에 좋지 못하지만, 좀더 인터렉티브한 디자인에는 좋은경험을 CSR은 클라이언트 사이드 렌더링이라고 합니다. 이는 SEO에 좋지 못하지만, 좀더 인터렉티브한 디자인에는 좋은경험을 ........CSR은 클라이언트 사이드 렌더링이라고 합니다. 이는 SEO에 좋지 못하지만, 좀더 인터렉티브한 디자인에는 좋은경험을 ........CSR은 클라이언트 사이드 렌더링이라고 합니다. 이는 SEO에 좋지 못하지만, 좀더 인터렉티브한 디자인에는 좋은경험을 ........CSR은 클라이언트 사이드 렌더링이라고 합니다. 이는 SEO에 좋지 못하지만, 좀더 인터렉티브한 디자인에는 좋은경험을 ........CSR은 클라이언트 사이드 렌더링이라고 합니다. 이는 SEO에 좋지 못하지만, 좀더 인터렉티브한 디자인에는 좋은경험을 ........',
     tags: [
       'Start',
       'React',
@@ -31,22 +31,28 @@ export default function SquareCardPres() {
     date: '2025-01-01',
     commentCount: 16,
     loveCount: 16,
+    imageUrl: '/svgs/image.svg',
   };
-
   return (
     <div className={styles.container}>
-      <Link href="/email/stories/1">
-        <div>
+      <Link href="/email/stories/1" className={styles.flexGrowArea}>
+        {dummy.imageUrl && (
           <div className={styles.iconWrap}>
-            <Image src="/svgs/image.svg" alt="이미지" width={80} height={80} />
+            <Image src={dummy.imageUrl} alt="이미지" width={80} height={80} />
           </div>
-          <div className={styles.content}>
-            <div className={styles.title}>{dummy.title}</div>
-            <div className={styles.desc}>{dummy.desc}</div>
-            <TagListCont tags={dummy.tags} />
+        )}
+        <div className={styles.content}>
+          <div className={styles.title}>{dummy.title}</div>
+          <div
+            className={dummy.imageUrl ? styles.descWithImg : styles.descNoImg}
+          >
+            {dummy.desc}
           </div>
         </div>
       </Link>
+      <div className={styles.tagWrap}>
+        <TagListCont tags={dummy.tags} />
+      </div>
       <div className={styles.profileBar}>
         <div className={styles.profileInfo}>
           <Profile
@@ -57,7 +63,7 @@ export default function SquareCardPres() {
             }}
           />
         </div>
-        <div style={{ display: 'flex', gap: 16 }}>
+        <div className={styles.mainIcon}>
           <div className={styles.iconTextGroup}>
             <Image
               src="/svgs/comment.svg"

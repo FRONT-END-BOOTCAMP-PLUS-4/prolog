@@ -57,16 +57,28 @@
 }
 
 .title {
-  font-size: $font-base-size;
+  font-size: $font-lg-size;
   font-weight: $font-title-weight;
   color: $theme-text-1;
   line-height: 2.5em;
+  display: -webkit-box;     
+  -webkit-line-clamp: 1;
+  line-clamp: 1;     
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .desc {
-  font-size: $font-sm-size;
+  font-size: $font-base-size;
   color: $theme-text-2;
-  line-height: 2em;
+  line-height: 1em;
+  display: -webkit-box;     
+  -webkit-line-clamp: 1;    
+  line-clamp: 1;  
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .tagWrap {
@@ -74,7 +86,8 @@
   justify-content: center;
   align-items: center;
   justify-items: center;
-  height: 50px;
+  height: 40px;
+  margin-top: 15px;
 }
 
 .mainIcon {
