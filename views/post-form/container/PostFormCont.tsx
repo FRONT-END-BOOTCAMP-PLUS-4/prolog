@@ -6,6 +6,7 @@ import { ICommand, commands } from '@uiw/react-md-editor';
 
 import Image from '@/public/svgs/image.svg';
 import { getFirstImageUrlFromMarkdown } from '@/shared/utils/image';
+import { useDebounce } from '@/shared/hooks/useDebounce';
 
 /* 브라우저 전용 기능이 포함된 컴포넌트이므로 SSR 비활성화 */
 const PostFormPres = dynamic(
@@ -26,6 +27,14 @@ export default function PostFormCont() {
   /* AI 사용여부, 글 공개여부 */
   const [isAiUsed, setIsAiUsed] = useState<number>(0); // 0: 사용 안함, 1: 사용함
   const [isPublic, setIsPublic] = useState<number>(1); // 0: 비공개, 1: 공개
+
+  /*  */
+  useDebounce({
+    callback: () => console.log('hello'),
+    delay: 30000,
+    deps: [content],
+    condition: !!title && !!content,
+  });
 
   /* S3에 이미지 업로드 */
   const uploadImageFiles = async (files: File[]) => {

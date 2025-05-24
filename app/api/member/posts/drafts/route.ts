@@ -1,3 +1,5 @@
+import { CreatePostDraftDto } from '@/architecture/posts/application/dto/CreatePostDraftDto';
+import { CreatePostDraftUsecase } from '@/architecture/posts/application/usecases/CreatePostDraftUsecase';
 import { DeletePostDraftUsecase } from '@/architecture/posts/application/usecases/DeletePostDraftUsecase';
 import { GetPostDraftListtUsecase } from '@/architecture/posts/application/usecases/GetPostDraftListUsecase';
 import { PrPostDraftRepository } from '@/architecture/posts/infra/PrPostsDraftRepository';
@@ -38,6 +40,39 @@ export async function DELETE(req: NextRequest) {
     const deletePostDraft = new DeletePostDraftUsecase(repository);
 
     await deletePostDraft.execute(Number(draftId));
+  } catch (error) {
+    console.error('임시 저장글 삭제 실패:', error);
+    return NextResponse.json(
+      { message: '서버 오류가 발생했습니다.' },
+      { status: 500 },
+    );
+  }
+}
+
+export async function POST(req: NextRequest) {
+  try {
+    const body: CreatePostDraftDto = await req.json();
+
+    const { title, content } = body;
+
+    if (!title || !content) {
+      return NextResponse.json({
+        message: '게시글 생성 중 오류가 발생했습니다.',
+      });
+    }
+    /** user_id 를 토큰으로 변경 할 예정 */
+    const userId = 'uuid-1';
+
+    const draftWithUserId = {
+      ...body,
+      userId,
+    };
+
+    const repository = new PrPostDraftRepository();
+    const getPostDraftList = new CreatePostDraftUsecase(repository);
+    const draftList = await getPostDraftList.execute(draftWithUserId);
+
+    return NextResponse.json(draftList, { status: 201 });
   } catch (error) {
     console.error('임시 저장글 삭제 실패:', error);
     return NextResponse.json(
