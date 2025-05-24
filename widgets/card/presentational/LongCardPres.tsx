@@ -1,5 +1,6 @@
 // package
 import Image from 'next/image';
+import { toast } from 'react-toastify';
 
 // slice
 import styles from '../styles/LongCardPres.module.scss';
@@ -7,6 +8,7 @@ import styles from '../styles/LongCardPres.module.scss';
 // layer
 import TagListCont from '@/views/tag/container/TagListCont';
 import { LikeButton } from '@/features/like';
+import Profile from '@/shared/ui/profile';
 
 export default function LongCardPres() {
   // 더미 데이터 오브젝트
@@ -33,17 +35,13 @@ export default function LongCardPres() {
   return (
     <div className={styles.container}>
       <div className={styles.profileInfo}>
-        <Image
-          src="/svgs/profile.svg"
-          alt="user"
-          width={32}
-          height={32}
-          className={styles.profileIcon}
+        <Profile
+          userNickName={dummy.userNickName}
+          date={dummy.date}
+          onClick={() => {
+            toast.info('프로필 클릭!');
+          }}
         />
-        <div>
-          <div className={styles.profileName}>{dummy.userNickName}</div>
-          <div className={styles.profileDate}>{dummy.date}</div>
-        </div>
       </div>
       <div className={styles.main}>
         <div className={styles.textWrap}>

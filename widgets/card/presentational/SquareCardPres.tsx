@@ -1,5 +1,6 @@
 // package
 import Image from 'next/image';
+import { toast } from 'react-toastify';
 
 // slice
 import styles from '../styles/SquareCardPres.module.scss';
@@ -7,6 +8,7 @@ import styles from '../styles/SquareCardPres.module.scss';
 // layer
 import TagListCont from '@/views/tag/container/TagListCont';
 import { LikeButton } from '@/features/like';
+import Profile from '@/shared/ui/profile';
 
 export default function SquareCardPres() {
   // 더미 데이터 오브젝트
@@ -42,11 +44,13 @@ export default function SquareCardPres() {
       </div>
       <div className={styles.profileBar}>
         <div className={styles.profileInfo}>
-          <Image src="/svgs/profile.svg" alt="user" width={32} height={32} />
-          <div>
-            <div className={styles.profileName}>{dummy.userNickName}</div>
-            <div className={styles.profileDate}>{dummy.date}</div>
-          </div>
+          <Profile
+            userNickName={dummy.userNickName}
+            date={dummy.date}
+            onClick={() => {
+              toast.info('프로필 클릭!');
+            }}
+          />
         </div>
         <div style={{ display: 'flex', gap: 16 }}>
           <div className={styles.iconTextGroup}>
