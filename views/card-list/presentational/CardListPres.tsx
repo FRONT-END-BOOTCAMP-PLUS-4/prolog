@@ -6,8 +6,6 @@ import styles from '../styles/CardListPres.module.scss';
 import { CardListPresProps } from '../types';
 
 // layer
-import CardIcon from '@/public/svgs/card.svg';
-import ListIcon from '@/public/svgs/list.svg';
 import { LongCardPres, SquareCardPres } from '@/widgets/card';
 import { SelectCont } from '@/features/select';
 import { ViewGridIcon, ViewHorizontalIcon } from '@radix-ui/react-icons';
