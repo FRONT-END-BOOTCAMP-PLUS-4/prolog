@@ -22,20 +22,7 @@ export default function SquareCardPres({ data }: Props) {
       <Link href="/email/stories/1" className={styles.flexGrowArea}>
         {data.imageUrl && (
           <div className={styles.iconWrap}>
-            <Image
-              src={data.imageUrl}
-              alt="이미지"
-              width={80}
-              height={80}
-              style={{
-                width: '100%',
-                height: 'auto',
-                maxWidth: '100%',
-                maxHeight: '100%',
-                objectFit: 'contain',
-                display: 'block',
-              }}
-            />
+            <Image src={data.imageUrl} alt="이미지" width={80} height={80} />
           </div>
         )}
         <div className={styles.content}>
