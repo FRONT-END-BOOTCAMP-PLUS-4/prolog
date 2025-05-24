@@ -1,7 +1,7 @@
 @use '@styles/variables.scss' as *;
 
 .container {
-  background: $theme-white;
+  background: $theme-shade-2;
   border-radius: 8px;
   box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.08);
   display: flex;
@@ -28,7 +28,7 @@
 }
 
 .iconWrap {
-  background: $theme-mist-lavender;
+  background: $theme-shade-3;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -77,7 +77,7 @@
   border-top: 1px solid $theme-gray-4;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  background: $theme-white;
+  background: $theme-shade-2;
   gap: 41px;
   
 }
@@ -87,18 +87,6 @@
   align-items: center;
   gap: 4px;
   cursor: pointer;
-}
-
-.profileName {
-  font-size: $font-xs-size;
-  color: $theme-text-1;
-  font-weight: $font-xs-weight;
-}
-
-.profileDate {
-  font-size: $font-xs-size; // 10px
-  color: $theme-text-2;
-  font-weight: $font-xs-weight;
 }
 
 .iconTextGroup {
