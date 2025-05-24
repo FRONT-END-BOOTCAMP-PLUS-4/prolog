@@ -35,34 +35,45 @@ export default function LongCardPres() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.profileInfo}>
-        <Profile
-          userNickName={dummy.userNickName}
-          date={dummy.date}
-          onClick={() => {
-            toast.info('프로필 클릭!');
-          }}
-        />
-      </div>
-      <Link href="/email/stories/1">
-        <div className={styles.main}>
-          <div className={styles.textWrap}>
-            <div className={styles.title}>{dummy.title}</div>
-            <div className={styles.desc}>{dummy.desc}</div>
+      <div className={styles.cardRow}>
+        <div className={styles.cardLeft}>
+          <div className={styles.profileInfo}>
+            <Profile
+              userNickName={dummy.userNickName}
+              date={dummy.date}
+              onClick={() => {
+                toast.info('프로필 클릭!');
+              }}
+            />
           </div>
-          <div className={styles.mainIcon}>
-            <Image src="/svgs/image.svg" alt="main" width={80} height={64} />
+          <Link href="/email/stories/1">
+            <div className={styles.main}>
+              <div className={styles.textWrap}>
+                <div className={styles.title}>{dummy.title}</div>
+                <div className={styles.desc}>{dummy.desc}</div>
+              </div>
+            </div>
+            <div className={styles.tagWrap}>
+              <TagListCont tags={dummy.tags} />
+            </div>
+          </Link>
+          <div className={styles.bottom}>
+            <div className={styles.iconTextGroup}>
+              <Image
+                src="/svgs/comment.svg"
+                alt="comment"
+                width={15}
+                height={15}
+              />
+              <span className={styles.iconCount}>{dummy.commentCount}</span>
+            </div>
+            <div className={styles.iconTextGroup}>
+              <LikeButton />
+            </div>
           </div>
         </div>
-      </Link>
-      <TagListCont tags={dummy.tags} />
-      <div className={styles.bottom}>
-        <div className={styles.iconTextGroup}>
-          <Image src="/svgs/comment.svg" alt="comment" width={15} height={15} />
-          <span className={styles.iconCount}>{dummy.commentCount}</span>
-        </div>
-        <div className={styles.iconTextGroup}>
-          <LikeButton />
+        <div className={styles.mainIcon}>
+          <Image src="/svgs/image.svg" alt="main" width={80} height={64} />
         </div>
       </div>
     </div>
