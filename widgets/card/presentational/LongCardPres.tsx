@@ -1,6 +1,7 @@
 // package
 import Image from 'next/image';
 import { toast } from 'react-toastify';
+import Link from 'next/link';
 
 // slice
 import styles from '../styles/LongCardPres.module.scss';
@@ -43,15 +44,17 @@ export default function LongCardPres() {
           }}
         />
       </div>
-      <div className={styles.main}>
-        <div className={styles.textWrap}>
-          <div className={styles.title}>{dummy.title}</div>
-          <div className={styles.desc}>{dummy.desc}</div>
+      <Link href="/email/stories/1">
+        <div className={styles.main}>
+          <div className={styles.textWrap}>
+            <div className={styles.title}>{dummy.title}</div>
+            <div className={styles.desc}>{dummy.desc}</div>
+          </div>
+          <div className={styles.mainIcon}>
+            <Image src="/svgs/image.svg" alt="main" width={80} height={64} />
+          </div>
         </div>
-        <div className={styles.mainIcon}>
-          <Image src="/svgs/image.svg" alt="main" width={80} height={64} />
-        </div>
-      </div>
+      </Link>
       <TagListCont tags={dummy.tags} />
       <div className={styles.bottom}>
         <div className={styles.iconTextGroup}>

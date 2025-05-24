@@ -1,6 +1,7 @@
 // package
 import Image from 'next/image';
 import { toast } from 'react-toastify';
+import Link from 'next/link';
 
 // slice
 import styles from '../styles/SquareCardPres.module.scss';
@@ -34,14 +35,18 @@ export default function SquareCardPres() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.iconWrap}>
-        <Image src="/svgs/image.svg" alt="이미지" width={80} height={80} />
-      </div>
-      <div className={styles.content}>
-        <div className={styles.title}>{dummy.title}</div>
-        <div className={styles.desc}>{dummy.desc}</div>
-        <TagListCont tags={dummy.tags} />
-      </div>
+      <Link href="/email/stories/1">
+        <div>
+          <div className={styles.iconWrap}>
+            <Image src="/svgs/image.svg" alt="이미지" width={80} height={80} />
+          </div>
+          <div className={styles.content}>
+            <div className={styles.title}>{dummy.title}</div>
+            <div className={styles.desc}>{dummy.desc}</div>
+            <TagListCont tags={dummy.tags} />
+          </div>
+        </div>
+      </Link>
       <div className={styles.profileBar}>
         <div className={styles.profileInfo}>
           <Profile
