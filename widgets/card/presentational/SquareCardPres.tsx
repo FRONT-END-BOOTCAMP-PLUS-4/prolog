@@ -65,7 +65,6 @@ export default function SquareCardPres({ data }: Props) {
           </div>
           <div className={styles.iconTextGroup}>
             <LikeButton />
-            <span className={styles.iconCount}>{data.loveCount}</span>
           </div>
         </div>
       </div>
