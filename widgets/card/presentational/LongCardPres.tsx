@@ -1,47 +1,30 @@
 // package
 import Image from 'next/image';
-import { toast } from 'react-toastify';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 
 // slice
 import styles from '../styles/LongCardPres.module.scss';
+import { CardData } from '../types';
 
 // layer
 import TagListCont from '@/views/tag/container/TagListCont';
 import { LikeButton } from '@/features/like';
 import Profile from '@/shared/ui/profile';
 
-export default function LongCardPres() {
-  // 더미 데이터 오브젝트
-  const dummy = {
-    title: 'CSR이란',
-    desc: 'CSR은 클라이언트 사이드 렌더링이라고 합니다. 이는 SEO에 좋지 못하지만, 좀더 인터렉티브한 디자인에는 좋은경험을 CSR은 클라이언트 사이드 렌더링이라고 합니다. 이는 SEO에 좋지 못하지만, 좀더 인터렉티브한 디자인에는 좋은경험을 ........CSR은 클라이언트 사이드 렌더링이라고 합니다. 이는 SEO에 좋지 못하지만, 좀더 인터렉티브한 디자인에는 좋은경험을 ........CSR은 클라이언트 사이드 렌더링이라고 합니다. 이는 SEO에 좋지 못하지만, 좀더 인터렉티브한 디자인에는 좋은경험을 ........CSR은 클라이언트 사이드 렌더링이라고 합니다. 이는 SEO에 좋지 못하지만, 좀더 인터렉티브한 디자인에는 좋은경험을 ........CSR은 클라이언트 사이드 렌더링이라고 합니다. 이는 SEO에 좋지 못하지만, 좀더 인터렉티브한 디자인에는 좋은경험을 ........',
-    tags: [
-      'Start',
-      'React',
-      'TypeScript',
-      'Next',
-      'HTML',
-      'CSS',
-      'Java',
-      'MySql',
-      'End',
-    ],
-    userNickName: 'userNickName',
-    date: '2025-01-01',
-    commentCount: 16,
-    loveCount: 16,
-    imageUrl: '/svgs/image.svg',
-  };
+interface Props {
+  data: CardData;
+}
 
+export default function LongCardPres({ data }: Props) {
   return (
     <div className={styles.container}>
       <div className={styles.cardRow}>
         <div className={styles.cardLeft}>
           <div className={styles.profileInfo}>
             <Profile
-              userNickName={dummy.userNickName}
-              date={dummy.date}
+              userNickName={data.userNickName}
+              date={data.date}
               onClick={() => {
                 toast.info('프로필 클릭!');
               }}
@@ -50,12 +33,12 @@ export default function LongCardPres() {
           <Link href="/email/stories/1">
             <div className={styles.main}>
               <div className={styles.textWrap}>
-                <div className={styles.title}>{dummy.title}</div>
-                <div className={styles.desc}>{dummy.desc}</div>
+                <div className={styles.title}>{data.title}</div>
+                <div className={styles.desc}>{data.desc}</div>
               </div>
             </div>
             <div className={styles.tagWrap}>
-              <TagListCont tags={dummy.tags} />
+              <TagListCont tags={data.tags} />
             </div>
           </Link>
           <div className={styles.bottom}>
@@ -66,16 +49,17 @@ export default function LongCardPres() {
                 width={15}
                 height={15}
               />
-              <span className={styles.iconCount}>{dummy.commentCount}</span>
+              <span className={styles.iconCount}>{data.commentCount}</span>
             </div>
             <div className={styles.iconTextGroup}>
               <LikeButton />
+              <span className={styles.iconCount}>{data.loveCount}</span>
             </div>
           </div>
         </div>
-        {dummy.imageUrl && (
+        {data.imageUrl && (
           <div className={styles.mainIcon}>
-            <Image src="/svgs/image.svg" alt="main" width={80} height={64} />
+            <Image src={data.imageUrl} alt="main" width={80} height={64} />
           </div>
         )}
       </div>
