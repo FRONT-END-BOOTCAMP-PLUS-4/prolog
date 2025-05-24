@@ -6,6 +6,7 @@ import styles from '../styles/SquareCardPres.module.scss';
 
 // layer
 import TagListCont from '@/views/tag/container/TagListCont';
+import { LikeButton } from '@/features/like';
 
 export default function SquareCardPres() {
   // 더미 데이터 오브젝트
@@ -58,8 +59,7 @@ export default function SquareCardPres() {
             <span className={styles.iconCount}>{dummy.commentCount}</span>
           </div>
           <div className={styles.iconTextGroup}>
-            <Image src="/svgs/love.svg" alt="love" width={15} height={15} />
-            <span className={styles.iconCount}>{dummy.loveCount}</span>
+            <LikeButton />
           </div>
         </div>
       </div>

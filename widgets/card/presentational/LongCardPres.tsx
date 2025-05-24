@@ -6,6 +6,7 @@ import styles from '../styles/LongCardPres.module.scss';
 
 // layer
 import TagListCont from '@/views/tag/container/TagListCont';
+import { LikeButton } from '@/features/like';
 
 export default function LongCardPres() {
   // 더미 데이터 오브젝트
@@ -60,8 +61,7 @@ export default function LongCardPres() {
           <span className={styles.iconCount}>{dummy.commentCount}</span>
         </div>
         <div className={styles.iconTextGroup}>
-          <Image src="/svgs/love.svg" alt="love" width={15} height={15} />
-          <span className={styles.iconCount}>{dummy.loveCount}</span>
+          <LikeButton />
         </div>
       </div>
     </div>
