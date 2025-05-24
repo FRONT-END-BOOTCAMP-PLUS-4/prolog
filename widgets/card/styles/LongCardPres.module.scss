@@ -1,11 +1,11 @@
 @use '@styles/variables.scss' as *;
 
 .container {
-  width: 80%;
+  width: clamp(22rem, 80%, 100%);
   background: $theme-shade-2;
   border-radius: 8px;
   box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.08);
-  padding: 1rem;
+  padding: clamp(0.5rem, 2vw, 1rem);
   animation: zoomIn 400ms;
   overflow: hidden;
 }
@@ -24,7 +24,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: 1.5rem;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
 }
 
 .cardLeft {
@@ -91,13 +91,20 @@
 }
 
 .mainIcon {
-  width: 9rem;
-  height: 9rem;
+  width: clamp(4rem, 15vw, 9rem);
+  height: clamp(4rem, 15vw, 9rem);
   border-radius: 8px;
   background: $theme-shade-3;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+  
+  img {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+  }
 }
 
 .bottom {
