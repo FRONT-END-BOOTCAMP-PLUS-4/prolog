@@ -1,5 +1,5 @@
 // package
-import { useState } from 'react';
+import { ViewGridIcon, ViewHorizontalIcon } from '@radix-ui/react-icons';
 
 // slice
 import styles from '../styles/CardListPres.module.scss';
@@ -8,33 +8,21 @@ import { CardListPresProps } from '../types';
 // layer
 import { LongCardPres, SquareCardPres } from '@/widgets/card';
 import { SelectCont } from '@/features/select';
-import { ViewGridIcon, ViewHorizontalIcon } from '@radix-ui/react-icons';
-
-const SORT_OPTIONS = [
-  { label: '최신순', value: 'latest' },
-  { label: '인기순', value: 'popular' },
-];
 
 export default function CardListPres({
   viewType,
   setViewType,
+  sort,
+  setSort,
   items,
+  sortOptions,
 }: CardListPresProps) {
-  const [sort, setSort] = useState<'latest' | 'popular'>('latest');
-
-  const sortedItems = [...items].sort((a, b) => {
-    if (sort === 'popular') {
-      return Number(b.loveCount) - Number(a.loveCount);
-    }
-    return Number(b.id) - Number(a.id);
-  });
-
   return (
     <div>
       <div className={styles.filterBar}>
         <div className={styles.filterItem}>
           <SelectCont
-            options={SORT_OPTIONS}
+            options={sortOptions}
             value={sort}
             onChange={(val) => setSort(val as 'latest' | 'popular')}
             placeholder="정렬 방식 선택"
@@ -87,7 +75,7 @@ export default function CardListPres({
           (viewType === 'card' ? styles.square : styles.long)
         }
       >
-        {sortedItems.map((item) =>
+        {items.map((item) =>
           viewType === 'card' ? (
             <SquareCardPres key={item.id} data={item} />
           ) : (
