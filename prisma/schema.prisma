@@ -1,31 +1,3 @@
-// prisma --help = 모든 명령어 목록 보기
-// prisma init = 새로운 Prisma 프로젝트 초기화
-// prisma generate = Prisma Client 생성/업데이트
-// prisma db pull = DB 스키마를 Prisma 스키마로 가져오기
-// prisma db push = Prisma 스키마를 DB에 반영
-// prisma migrate dev (--name init)= 개발 환경에서 마이그레이션 생성 및 적용
-// prisma migrate reset = DB 초기화 및 마이그레이션 재실행
-// prisma migrate deploy = 프로덕션 환경에 마이그레이션 적용
-// prisma migrate status = 마이그레이션 상태 확인
-// prisma studio = DB 데이터 시각적 관리 도구 실행
-// prisma format = 스키마 파일 포맷팅(코드정리)
-// prisma validate = 스키마 유효성 검사
-// prisma version = Prisma CLI 버전 확인
-// prisma introspect = 기존 DB 구조를 분석하여 스키마 생성
-// prisma db seed = 시드 데이터 추가
-
-// // // 첨부파일
-// // model BlogPostImage{
-// //   id Int @id @default(autoincrement())
-// //   postsId Int @map("posts_id")
-// //   image String?
-
-// //   //FK
-// //   blogs Posts @relation(fields: [postsId],references: [id])
-
-// //   @@map("blogpost_image")
-// // }
-
 generator client {
   provider = "prisma-client-js"
   output   = "../app/generated/prisma"
@@ -36,54 +8,52 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// 유저
 model User {
-  id            String    @id @default(uuid())
-  nickname      String
-  email         String    @unique
-  profileImg    String?   @map("profile_img")
-  introduction  String?
-  backgroundImg String?   @map("background_img")
-  createdAt     DateTime  @default(now()) @map("created_at")
-  deletedAt     DateTime? @map("deleted_at")
-
-  blogPost BlogPost[]
-  sentNotifications     Notification[] @relation("SentNotifications")
+  id                    String         @id @default(uuid())
+  nickname              String
+  email                 String         @unique
+  profileImg            String?        @map("profile_img")
+  introduction          String?
+  backgroundImg         String?        @map("background_img")
+  createdAt             DateTime       @default(now()) @map("created_at")
+  deletedAt             DateTime?      @map("deleted_at")
+  blogPost              BlogPost[]
+  bookMark              BookMark[]
+  comments              Comment[]
   receivedNotifications Notification[] @relation("ReceivedNotifications")
-  requestSubscribe  Subscribe[]    @relation("RequestSubscribe")
-  responseSubscribe Subscribe[]    @relation("ResponseSubscribe")
-  bookMark          BookMark[]
-  likes             PostLike[]
-  comments          Comment[]
-  userProvider      UserProvider[]
+  sentNotifications     Notification[] @relation("SentNotifications")
+  likes                 PostLike[]
+  requestSubscribe      Subscribe[]    @relation("RequestSubscribe")
+  responseSubscribe     Subscribe[]    @relation("ResponseSubscribe")
+  userProvider          UserProvider[]
 
   @@map("user")
 }
 
-// 블로그글
 model BlogPost {
-  id         Int       @id @default(autoincrement())
-  userId     String    @map("user_id")
-  categoryId Int?      @unique @map("category_id")
-  title      String
-  content    String
-  tags       String[]
-  createdAt  DateTime  @default(now()) @map("created_at")
-  updatedAt  DateTime? @updatedAt @map("updated_at")
-  aiSummary  String?   @map("ai_summary")
-  isPublic   Int       @default(0) @map("is_public")
-
+  id           Int            @id @default(autoincrement())
+  userId       String         @map("user_id")
+  categoryId   Int?           @unique @map("category_id")
+  title        String
+  content      String
+  tags         String[]
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime?      @updatedAt @map("updated_at")
+  aiSummary    String?        @map("ai_summary")
+  isPublic     Int            @default(1) @map("is_public")
+  thumbnailUrl String?        @map("thumbnail_url")
+  useAi        Int            @default(0) @map("use_ai")
+  aiUsageCount Int            @default(0) @map("ai_usage_count")
+  category     Category?      @relation(fields: [categoryId], references: [id])
   user         User           @relation(fields: [userId], references: [id])
-  category     Category?       @relation(fields: [categoryId], references: [id])
-  notification Notification[]
   bookMark     BookMark[]
-  likes        PostLike[]
   comments     Comment[]
+  notification Notification[]
+  likes        PostLike[]
 
   @@map("blog_post")
 }
 
-// 알람
 model Notification {
   id          Int      @id @default(autoincrement())
   postsId     Int      @map("posts_id")
@@ -92,41 +62,35 @@ model Notification {
   type        Int
   createdAt   DateTime @default(now()) @map("created_at")
   checkStatus Int      @default(0) @map("check_status")
-
-  blogPost BlogPost @relation(fields: [postsId], references: [id])
-  sender   User     @relation("SentNotifications", fields: [senderId], references: [id])
-  receiver User     @relation("ReceivedNotifications", fields: [receiverId], references: [id])
+  blogPost    BlogPost @relation(fields: [postsId], references: [id])
+  receiver    User     @relation("ReceivedNotifications", fields: [receiverId], references: [id])
+  sender      User     @relation("SentNotifications", fields: [senderId], references: [id])
 
   @@map("notification")
 }
 
-//북마크
 model BookMark {
   id        Int      @id @default(autoincrement())
   postsId   Int      @map("posts_id")
   userId    String   @map("user_id")
   createdAt DateTime @default(now()) @map("created_at")
-
-  blogPost BlogPost @relation(fields: [postsId], references: [id])
-  user     User     @relation(fields: [userId], references: [id])
+  blogPost  BlogPost @relation(fields: [postsId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 
   @@map("bookmark")
 }
 
-// 좋아요
 model PostLike {
   id        Int      @id @default(autoincrement())
   postsId   Int      @map("posts_id")
   userId    String   @map("user_id")
   createdAt DateTime @default(now()) @map("created_at")
-
-  blogPost BlogPost @relation(fields: [postsId], references: [id])
-  user     User     @relation(fields: [userId], references: [id])
+  blogPost  BlogPost @relation(fields: [postsId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 
   @@map("post_like")
 }
 
-// 댓글
 model Comment {
   id        Int       @id @default(autoincrement())
   postsId   Int       @map("posts_id")
@@ -134,42 +98,37 @@ model Comment {
   content   String
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @map("updated_at")
-
-  blogPost BlogPost @relation(fields: [postsId], references: [id])
-  user     User     @relation(fields: [userId], references: [id])
+  blogPost  BlogPost  @relation(fields: [postsId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
 
   @@map("comment")
 }
 
-//구독
 model Subscribe {
-  id         Int      @id @default(autoincrement())
-  requestId  String   @map("request_id")
-  responseId String   @map("response_id")
-  createdAt  DateTime @default(now()) @map("created_at")
-
-  requestSubscribe  User @relation("RequestSubscribe", fields: [requestId], references: [id])
-  responseSubscribe User @relation("ResponseSubscribe", fields: [responseId], references: [id])
+  id                Int      @id @default(autoincrement())
+  requestId         String   @map("request_id")
+  responseId        String   @map("response_id")
+  createdAt         DateTime @default(now()) @map("created_at")
+  requestSubscribe  User     @relation("RequestSubscribe", fields: [requestId], references: [id])
+  responseSubscribe User     @relation("ResponseSubscribe", fields: [responseId], references: [id])
 
   @@map("subscribe")
 }
 
 model Provider {
-  id   Int    @id @default(autoincrement())
-  name String @unique
-
+  id           Int            @id @default(autoincrement())
+  name         String         @unique
   userProvider UserProvider[]
 
   @@map("provider")
 }
 
 model UserProvider {
-  id         Int    @id @default(autoincrement())
-  providerId Int    @map("provider_id")
-  userId     String @map("user_id")
-
-  provider Provider @relation(fields: [providerId], references: [id])
-  user     User     @relation(fields: [userId], references: [id])
+  id         Int      @id @default(autoincrement())
+  providerId Int      @map("provider_id")
+  userId     String   @map("user_id")
+  provider   Provider @relation(fields: [providerId], references: [id])
+  user       User     @relation(fields: [userId], references: [id])
 
   @@map("user_provider")
 }
@@ -179,8 +138,7 @@ model Category {
   name      String    @map("name")
   createdAt DateTime  @default(now()) @map("created_at")
   updatedAt DateTime? @default(now()) @map("updated_at")
-
-  blogPost BlogPost?
+  blogPost  BlogPost?
 
   @@map("category")
 }
