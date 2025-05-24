@@ -5,6 +5,8 @@
   width: 100%;
   position: relative;
   height: 32px;
+  display: flex;
+  align-items: center;
 
     &:hover .tagList.rolling {
     animation-play-state: paused;
