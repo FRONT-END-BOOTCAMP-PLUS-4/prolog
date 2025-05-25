@@ -103,9 +103,11 @@ export default function PostFormPres({
 
         <div className={styles.rightControls}>
           <div className={styles.toggleButtonWrapper}>
-            <button className={styles.toggleButton}>임시저장</button>
+            <button className={`${styles.toggleButton} ${styles.saveButton}`}>
+              임시저장
+            </button>
             <button
-              className={styles.toggleButton}
+              className={`${styles.toggleButton} ${styles.countButton}`}
               onClick={() => action.open(<PostDraftCont />)}
             >
               10
