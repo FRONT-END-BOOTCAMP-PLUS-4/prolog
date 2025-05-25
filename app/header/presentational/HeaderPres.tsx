@@ -21,6 +21,7 @@ import PostsSearchCont from '@/features/search-input';
 import Button from '@/shared/ui/button';
 import { useModalStore } from '@/shared/stores/useModalStore';
 import { LoginForm } from '@/widgets/login';
+import { useThemeStore } from '@/shared/stores/useThemeStore';
 
 export default function HeaderPres(): JSX.Element {
   const { open } = useModalStore((state) => state.action);
@@ -31,42 +32,12 @@ export default function HeaderPres(): JSX.Element {
   // 프로필 드롭다운 표시 여부
   const [isProfileDropdownVisible, setIsProfileDropdownVisible] =
     useState(false);
-  // 현재 테마
-  const [currentTheme, setCurrentTheme] = useState('');
+
+  const { theme, toggleTheme } = useThemeStore();
 
   // 드롭다운, 검색창 영역 ref
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchWrapperRef = useRef<HTMLDivElement>(null);
-
-  // 초기 테마를 읽고 변경 사항을 수신하는 Effect
-  useEffect(() => {
-    const observer = new MutationObserver(() => {
-      setCurrentTheme(
-        document.documentElement.getAttribute('data-theme') || '',
-      );
-    });
-
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme'],
-    });
-
-    // 초기 테마 설정
-    setCurrentTheme(document.documentElement.getAttribute('data-theme') || '');
-
-    return () => observer.disconnect();
-  }, []);
-
-  // 임시 테마 버튼
-  const changeTheme = () => {
-    const newTheme = currentTheme === 'dark' ? '' : 'dark';
-    if (newTheme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-    }
-    setCurrentTheme(newTheme); // 상태를 업데이트합니다.
-  };
 
   // 검색창 영역 밖 클릭 시 검색창 닫기
   useOnClickOutside(
@@ -112,9 +83,7 @@ export default function HeaderPres(): JSX.Element {
       {/* 로고 */}
       <Link href="/" className={styles.logo}>
         <Image
-          src={
-            currentTheme === 'dark' ? '/svgs/logo_dark.svg' : '/svgs/logo.svg'
-          }
+          src={theme === 'dark' ? '/svgs/logo_dark.svg' : '/svgs/logo.svg'}
           alt="로고"
           fill
           style={{ objectFit: 'contain' }}
@@ -142,7 +111,7 @@ export default function HeaderPres(): JSX.Element {
         )}
       </div>
 
-      <button onClick={changeTheme}>테마전환</button>
+      <button onClick={toggleTheme}>테마전환</button>
 
       {/* 네비게이션 */}
       <nav
