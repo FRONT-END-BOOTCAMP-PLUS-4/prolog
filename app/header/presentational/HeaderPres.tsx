@@ -10,6 +10,8 @@ import {
   Pencil1Icon,
   ChevronDownIcon,
   MagnifyingGlassIcon,
+  SunIcon,
+  MoonIcon,
 } from '@radix-ui/react-icons';
 
 // slice
@@ -116,8 +118,6 @@ export default function HeaderPres(): JSX.Element {
         )}
       </div>
 
-      <button onClick={toggleTheme}>테마전환</button>
-
       {/* 네비게이션 */}
       <nav
         className={`${styles.nav} ${
@@ -131,6 +131,14 @@ export default function HeaderPres(): JSX.Element {
           aria-label="검색 열기"
         >
           <MagnifyingGlassIcon className={styles.btnLogo} />
+        </button>
+
+        <button onClick={toggleTheme}>
+          {theme === 'dark' ? (
+            <MoonIcon className={styles.btnLogo} />
+          ) : (
+            <SunIcon className={styles.btnLogo} />
+          )}
         </button>
 
         {/* 글 작성 버튼 */}
