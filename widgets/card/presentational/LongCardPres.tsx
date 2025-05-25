@@ -8,7 +8,7 @@ import styles from '../styles/LongCardPres.module.scss';
 import { CardData } from '../types';
 
 // layer
-import TagListCont from '@/views/tag/container/TagListCont';
+import { TagListCont } from '@/features/tag-list';
 import { LikeButton } from '@/features/like';
 import Profile from '@/shared/ui/profile';
 

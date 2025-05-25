@@ -1,13 +1,11 @@
 'use client';
+
 // package
 import { useEffect, useRef, useState } from 'react';
 
 // slice
 import TagListPres from '../presentational/TagListPres';
-
-type TagListContProps = {
-  tags: string[];
-};
+import { TagListContProps } from '../types';
 
 export default function TagListCont({ tags }: TagListContProps) {
   const tagSlideRef = useRef<HTMLDivElement>(null);
