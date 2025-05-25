@@ -25,7 +25,6 @@ export default function CardListPres({
             options={sortOptions}
             value={sort}
             onChange={(val) => setSort(val as 'latest' | 'popular')}
-            placeholder="정렬 방식 선택"
             className={styles.selectWrap}
           />
         </div>

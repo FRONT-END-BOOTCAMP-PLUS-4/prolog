@@ -12,7 +12,6 @@ export default function SelectPres({
   open,
   setOpen,
   onChange,
-  placeholder = '선택하세요',
   className = '',
 }: SelectPresProps) {
   const selected = options.find((opt) => opt.value === value);
@@ -26,13 +25,7 @@ export default function SelectPres({
         aria-haspopup="listbox"
         aria-expanded={open}
       >
-        <span>
-          {selected ? (
-            selected.label
-          ) : (
-            <span className={styles.placeholder}>{placeholder}</span>
-          )}
-        </span>
+        <span>{selected && selected.label}</span>
         <ChevronDownIcon
           className={`${styles.filterIcon} ${open ? styles.filterIconOpen : ''}`}
         />

@@ -12,7 +12,6 @@ export default function SelectCont({
   options,
   value: controlledValue,
   onChange,
-  placeholder,
   className,
 }: SelectContProps) {
   const [open, setOpen] = useState(false);
@@ -38,7 +37,6 @@ export default function SelectCont({
         open={open}
         setOpen={setOpen}
         onChange={handleChange}
-        placeholder={placeholder}
         className={className}
       />
     </div>
