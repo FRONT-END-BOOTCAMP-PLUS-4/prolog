@@ -33,7 +33,7 @@
   justify-content: center;
   width: 18px;
   height: 18px;
-  color: $theme-gray-1;
+  color: $theme-gray-3;
 }
 
 .nav {
@@ -55,6 +55,20 @@
   max-width: 31.25rem;
 }
 
+
+.writeBtn {
+  display: flex;
+  
+  &:hover,
+  &:focus-visible {
+    background-color: $theme-shade-3;
+    border-radius: 50%;
+    .btnLogo {
+      color: $theme-soft-lavender;
+  }
+}
+}
+
 .alarmBtn {
   position: relative;
   display: flex;
@@ -65,6 +79,15 @@
   background: transparent;
   border: none;
   cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $theme-shade-3;
+    border-radius: 50%;
+    .btnLogo {
+    color: $theme-soft-lavender;
+    }
+  }
 }
 
 .searchIconBtn {
@@ -87,7 +110,7 @@
 .arrowIcon {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform: rotate(0deg);
-  color: $theme-gray-1;
+  color: $theme-gray-3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,7 +142,6 @@
   top: 110%;
   right: 0;
   background: $theme-shade-1;
-  border: 1px solid $theme-gray-1;
   border-radius: 6px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   min-width: 8.75rem;
@@ -132,7 +154,7 @@
 .dropdownItem {
   display: flex;
   padding: .625rem 1rem;
-  color: $theme-gray-2;
+  color: $theme-gray-4;
   text-decoration: none;
   font-size: $font-sm-size;
   cursor: pointer;
@@ -156,10 +178,6 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.writeBtn {
-  display: flex;
 }
 
 .logoutItem {
