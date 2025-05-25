@@ -1,11 +1,7 @@
 // slice
 import styles from '../styles/TagList.module.scss';
+import { TagListPresProps } from '../types';
 
-type TagListPresProps = {
-  tags: string[];
-  shouldRoll: boolean;
-  tagsRef: React.RefObject<HTMLDivElement | null>;
-};
 export default function TagListPres({
   tags,
   shouldRoll,
