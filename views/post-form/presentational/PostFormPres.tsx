@@ -9,6 +9,7 @@ import PostDraftCont from '@/views/post-draft/container/PostDraftListCont';
 import Button from '@/shared/ui/button';
 import { useImageDrop } from '@/shared/hooks/useImageDrop';
 import { useModalStore } from '@/shared/stores/useModalStore';
+import { useThemeStore } from '@/shared/stores/useThemeStore';
 
 type Props = {
   customCommands: ICommand[];
@@ -34,6 +35,8 @@ export default function PostFormPres({
   const editorRef = useRef<HTMLDivElement>(null);
 
   const { action } = useModalStore();
+
+  const { theme } = useThemeStore();
 
   const toggleAiUsage = () => {
     setIsAiUsed((prev) => (prev === 0 ? 1 : 0));
@@ -62,7 +65,7 @@ export default function PostFormPres({
       />
       <PostTagSectionPres tags={tags} setTags={setTags} />
       <div
-        data-color-mode="light"
+        data-color-mode={theme === 'dark' ? 'dark' : 'light'}
         className={styles.editorLayout}
         ref={editorRef}
       >
