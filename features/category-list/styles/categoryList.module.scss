@@ -4,7 +4,6 @@
   flex-direction: column;
 }
 .categoryListColumn{
-  
   margin-top: 15px;
   display: flex;
   flex-direction: column;
@@ -12,5 +11,41 @@
 }
 .title{
 @include font-sm;
-color: &theme-gray-1;
+color: $theme-text-2;
+}
+.currentText{
+  color: $theme-text-2;
+}
+@media (max-width: 754px) {
+  .container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .title{
+    display: none;
+  }
+  .categoryListColumn{
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  padding-bottom: 8px;
+  
+  &::-webkit-scrollbar {
+    height: 8px; 
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $theme-shade-4;
+    border-radius: 4px;
+    margin-top: px;
+  }
+}
 }
