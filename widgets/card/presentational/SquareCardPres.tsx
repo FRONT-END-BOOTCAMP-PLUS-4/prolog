@@ -1,7 +1,6 @@
 // package
 import Image from 'next/image';
 import Link from 'next/link';
-import { toast } from 'react-toastify';
 
 // slice
 import styles from '../styles/SquareCardPres.module.scss';
@@ -34,15 +33,15 @@ export default function SquareCardPres({ data }: Props) {
         <TagListCont tags={data.tags} />
       </div>
       <div className={styles.profileBar}>
-        <div className={styles.profileInfo}>
-          <Profile
-            userNickName={data.userNickName}
-            date={data.date}
-            onClick={() => {
-              toast.info('프로필 클릭!');
-            }}
-          />
-        </div>
+        <Link href="/email/stories">
+          <div className={styles.profileInfo}>
+            <Profile
+              userNickName={data.userNickName}
+              date={data.date}
+              onClick={() => {}}
+            />
+          </div>
+        </Link>
         <div className={styles.mainIcon}>
           <div className={styles.iconTextGroup}>
             <Image

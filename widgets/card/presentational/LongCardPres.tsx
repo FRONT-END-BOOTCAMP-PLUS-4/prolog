@@ -1,7 +1,6 @@
 // package
 import Image from 'next/image';
 import Link from 'next/link';
-import { toast } from 'react-toastify';
 
 // slice
 import styles from '../styles/LongCardPres.module.scss';
@@ -21,15 +20,15 @@ export default function LongCardPres({ data }: Props) {
     <div className={styles.container}>
       <div className={styles.cardRow}>
         <div className={styles.cardLeft}>
-          <div className={styles.profileInfo}>
-            <Profile
-              userNickName={data.userNickName}
-              date={data.date}
-              onClick={() => {
-                toast.info('프로필 클릭!');
-              }}
-            />
-          </div>
+          <Link href="/email/stories">
+            <div className={styles.profileInfo}>
+              <Profile
+                userNickName={data.userNickName}
+                date={data.date}
+                onClick={() => {}}
+              />
+            </div>
+          </Link>
           <Link href="/email/stories/1">
             <div className={styles.main}>
               <div className={styles.textWrap}>
