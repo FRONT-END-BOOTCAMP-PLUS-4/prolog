@@ -22,6 +22,7 @@ import Button from '@/shared/ui/button';
 import { useModalStore } from '@/shared/stores/useModalStore';
 import { LoginForm } from '@/widgets/login';
 import { useThemeStore } from '@/shared/stores/useThemeStore';
+import { NotificationModalCont } from '@/widgets/notification';
 
 export default function HeaderPres(): JSX.Element {
   const { open } = useModalStore((state) => state.action);
@@ -76,6 +77,10 @@ export default function HeaderPres(): JSX.Element {
   // 프로필 버튼 클릭 시 드롭다운 토글
   const handleProfileBtnClick = () => {
     setIsProfileDropdownVisible((prev) => !prev);
+  };
+
+  const handleNotificationClick = () => {
+    open(<NotificationModalCont />, 'center');
   };
 
   return (
@@ -144,10 +149,11 @@ export default function HeaderPres(): JSX.Element {
         ) : (
           <>
             {/* 알림 버튼 */}
-            <button className={styles.alarmBtn}>
-              <Link href="/email/stories/1">
-                <BellIcon className={styles.btnLogo} />
-              </Link>
+            <button
+              className={styles.alarmBtn}
+              onClick={handleNotificationClick}
+            >
+              <BellIcon className={styles.btnLogo} />
             </button>
             {/* 프로필 드롭다운 */}
             <div className={styles.profileDropdownWrapper} ref={dropdownRef}>
