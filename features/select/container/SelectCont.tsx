@@ -16,7 +16,7 @@ export default function SelectCont({
   className,
 }: SelectContProps) {
   const [open, setOpen] = useState(false);
-  const [uncontrolledValue, setUncontrolledValue] = useState('');
+  const [uncontrolledValue, setUncontrolledValue] = useState<string>('');
 
   const ref = useRef<HTMLDivElement>(null);
   useOnClickOutside(ref, () => setOpen(false), open);
