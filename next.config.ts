@@ -2,6 +2,26 @@ import type { NextConfig } from 'next';
 import path from 'node:path';
 
 const nextConfig: NextConfig = {
+  // env: {
+  //   AUTH_GOOGLE_ID: '',
+  //   AUTH_GOOGLE_SECRET: '',
+  //   AUTH_GITHUB_ID: '',
+  //   AUTH_GITHUB_SECRET: '',
+  // },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+        pathname: '/**',
+      },
+    ],
+  },
   turbopack: {
     rules: {
       '*.svg': {
@@ -9,36 +29,31 @@ const nextConfig: NextConfig = {
         as: '*.js',
       },
     },
-  }, 
+  },
   webpack(config) {
-    // Grab the existing rule that handles SVG imports
     const fileLoaderRule = config.module.rules.find((rule: any) =>
       rule.test?.test?.('.svg'),
-    )
+    );
 
     config.module.rules.push(
-      // Reapply the existing rule, but only for svg imports ending in ?url
       {
         ...fileLoaderRule,
         test: /\.svg$/i,
-        resourceQuery: /url/, // *.svg?url
+        resourceQuery: /url/,
       },
-      // Convert all other *.svg imports to React components
       {
         test: /\.svg$/i,
         issuer: fileLoaderRule.issuer,
-        resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
+        resourceQuery: { not: [...fileLoaderRule.resourceQuery.not, /url/] },
         use: ['@svgr/webpack'],
       },
-    )
+    );
 
-    // Modify the file loader rule to ignore *.svg, since we have it handled now.
-    fileLoaderRule.exclude = /\.svg$/i
+    fileLoaderRule.exclude = /\.svg$/i;
 
-    return config
+    return config;
   },
   sassOptions: {
-    // SCSS/SASS import 시 사용할 경로를 지정
     includePaths: [path.join(__dirname, 'app/styles')],
   },
 };
