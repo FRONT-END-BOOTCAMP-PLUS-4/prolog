@@ -12,25 +12,27 @@ export default function CategoryListPres({
 }: CategoryListProps) {
   return (
     <>
-      <div className={styles.container}>
-        <div>
-          <h2 className={styles.title}>목록보기</h2>
-        </div>
-        <div className={styles.categoryListColumn}>
-          {categoryList.map((item) => (
-            <div
-              className={styles.currentText}
-              onClick={() => categoryCurrentHandler(item.id)}
-              key={item.id}
-            >
-              <Button
-                variants={category === item.id ? 'active' : 'basic'}
-                size="medium"
+      <div className={styles.vh}>
+        <div className={styles.container}>
+          <div>
+            <h2 className={styles.title}>목록보기</h2>
+          </div>
+          <div className={styles.categoryListColumn}>
+            {categoryList.map((item) => (
+              <div
+                className={styles.currentText}
+                onClick={() => categoryCurrentHandler(item.id)}
+                key={item.id}
               >
-                {item.categoryName}
-              </Button>
-            </div>
-          ))}
+                <Button
+                  variants={category === item.id ? 'active' : 'basic'}
+                  size="small"
+                >
+                  {item.categoryName}
+                </Button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>
