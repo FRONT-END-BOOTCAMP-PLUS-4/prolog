@@ -1,8 +1,24 @@
 import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
 import Github from 'next-auth/providers/github';
+import { PrismaAdapter } from '@auth/prisma-adapter';
+import { PrismaClient } from '@prisma/client';
+
+// const prisma = new PrismaClient();
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  // adapter: {
+  //   ...PrismaAdapter(prisma),
+  //   createUser: async (data) => {
+  //     return await prisma.user.create({
+  //       data: {
+  //         nickname: data.name,
+  //         email: data.email,
+  //         profileImg: data.image
+  //       }
+  //     })
+  //   }
+  // },
   session: {
     strategy: 'jwt',
     maxAge: 60 * 60,
