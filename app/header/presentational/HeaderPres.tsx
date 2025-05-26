@@ -10,6 +10,8 @@ import {
   Pencil1Icon,
   ChevronDownIcon,
   MagnifyingGlassIcon,
+  SunIcon,
+  MoonIcon,
 } from '@radix-ui/react-icons';
 
 // slice
@@ -22,6 +24,7 @@ import Button from '@/shared/ui/button';
 import { useModalStore } from '@/shared/stores/useModalStore';
 import { LoginForm } from '@/widgets/login';
 import { useThemeStore } from '@/shared/stores/useThemeStore';
+import { NotificationModalCont } from '@/widgets/notification';
 
 export default function HeaderPres(): JSX.Element {
   const { open } = useModalStore((state) => state.action);
@@ -78,6 +81,10 @@ export default function HeaderPres(): JSX.Element {
     setIsProfileDropdownVisible((prev) => !prev);
   };
 
+  const handleNotificationClick = () => {
+    open(<NotificationModalCont />, 'center');
+  };
+
   return (
     <header className={styles.header}>
       {/* 로고 */}
@@ -111,8 +118,6 @@ export default function HeaderPres(): JSX.Element {
         )}
       </div>
 
-      <button onClick={toggleTheme}>테마전환</button>
-
       {/* 네비게이션 */}
       <nav
         className={`${styles.nav} ${
@@ -126,6 +131,14 @@ export default function HeaderPres(): JSX.Element {
           aria-label="검색 열기"
         >
           <MagnifyingGlassIcon className={styles.btnLogo} />
+        </button>
+
+        <button onClick={toggleTheme}>
+          {theme === 'dark' ? (
+            <MoonIcon className={styles.btnLogo} />
+          ) : (
+            <SunIcon className={styles.btnLogo} />
+          )}
         </button>
 
         {/* 글 작성 버튼 */}
@@ -144,10 +157,11 @@ export default function HeaderPres(): JSX.Element {
         ) : (
           <>
             {/* 알림 버튼 */}
-            <button className={styles.alarmBtn}>
-              <Link href="/email/stories/1">
-                <BellIcon className={styles.btnLogo} />
-              </Link>
+            <button
+              className={styles.alarmBtn}
+              onClick={handleNotificationClick}
+            >
+              <BellIcon className={styles.btnLogo} />
             </button>
             {/* 프로필 드롭다운 */}
             <div className={styles.profileDropdownWrapper} ref={dropdownRef}>
