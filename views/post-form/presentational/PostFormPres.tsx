@@ -4,11 +4,13 @@ import rehypeSanitize from 'rehype-sanitize';
 
 import styles from '../styles/PostFormPres.module.scss';
 import PostTagSectionPres from './PostTagSectionPres';
-import PostDraftButtonPres from '@/views/post-draft/presentational/PostDraftButtonPres';
+import PostDraftListCont from '@/views/post-draft/container/PostDraftListCont';
+import { PostDraftType } from '@/views/post-draft/types';
 
 import Button from '@/shared/ui/button';
 import { useImageDrop } from '@/shared/hooks/useImageDrop';
 import { useThemeStore } from '@/shared/stores/useThemeStore';
+import { useModalStore } from '@/shared/stores/useModalStore';
 
 type Props = {
   customCommands: ICommand[];
@@ -25,6 +27,7 @@ type Props = {
   setTitle: Dispatch<SetStateAction<string>>;
   onCreatePost: () => Promise<void>;
   saveDraft: () => Promise<void>;
+  drafts: PostDraftType[];
 };
 
 export default function PostFormPres(props: Props) {
@@ -43,12 +46,14 @@ export default function PostFormPres(props: Props) {
     setTitle,
     onCreatePost,
     saveDraft,
+    drafts,
   } = props;
 
   /* 이미지 드래그 앤 드랍을 위한 ref */
   const editorRef = useRef<HTMLDivElement>(null);
 
   const { theme } = useThemeStore();
+  const { action } = useModalStore();
 
   const toggleAiUsage = () => {
     setIsAiUsed((prev) => (prev === 0 ? 1 : 0));
@@ -58,6 +63,7 @@ export default function PostFormPres(props: Props) {
     setIsPublic((prev) => (prev === 0 ? 1 : 0));
   };
 
+  /* 이미지 드래그 앤 드랍 관련 커스텀 훅 */
   useImageDrop({
     ref: editorRef,
     onDropImages: async (files) => {
@@ -98,7 +104,7 @@ export default function PostFormPres(props: Props) {
         />
       </div>
 
-      <div className={styles.footer}>
+      <footer className={styles.footer}>
         <div className={styles.leftControls}>
           <Button
             onClick={toggleAiUsage}
@@ -115,12 +121,27 @@ export default function PostFormPres(props: Props) {
         </div>
 
         <div className={styles.rightControls}>
-          <PostDraftButtonPres saveDraft={saveDraft} />
+          <div className={styles.buttonWrapper}>
+            <button
+              className={`${styles.toggleButton} ${styles.saveButton}`}
+              onClick={saveDraft}
+            >
+              임시저장
+            </button>
+            <button
+              className={`${styles.toggleButton} ${styles.countButton}`}
+              onClick={() =>
+                action.open(<PostDraftListCont draftList={drafts} />)
+              }
+            >
+              {drafts?.length}
+            </button>
+          </div>
           <Button variants="active" onClick={onCreatePost}>
             발행하기
           </Button>
         </div>
-      </div>
+      </footer>
     </div>
   );
 }

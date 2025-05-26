@@ -1,27 +1,11 @@
-import { useEffect, useState } from 'react';
-
-import PostDraftPres from '../presentational/PostDraftListPres';
 import { PostDraftType } from '../types';
+import PostDraftListPres from '../presentational/PostDraftListPres';
 
-export default function PostDraftCont() {
-  const [draftList, setDraftList] = useState<PostDraftType[]>([]);
+type Props = {
+  draftList: PostDraftType[];
+};
 
-  useEffect(() => {
-    /** 임시 저장 리스트 가져오는 로직 */
-    const getPostsDraftList = async () => {
-      const response = await fetch('/api/member/posts/drafts');
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch post draftList');
-      }
-
-      const result = await response.json();
-      setDraftList(result.data);
-    };
-
-    getPostsDraftList();
-  }, []);
-
+export default function PostDraftListCont({ draftList }: Props) {
   /** 임시 저장 글 삭제 로직 */
   const handleDeletePostDraft = async (draftId: number) => {
     const confirmed = window.confirm('삭제하시겠습니까?');
@@ -32,5 +16,7 @@ export default function PostDraftCont() {
     }
   };
 
-  return <PostDraftPres drafts={draftList} onDelete={handleDeletePostDraft} />;
+  return (
+    <PostDraftListPres onDelete={handleDeletePostDraft} drafts={draftList} />
+  );
 }

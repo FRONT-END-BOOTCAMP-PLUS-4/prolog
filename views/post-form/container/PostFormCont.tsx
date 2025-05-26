@@ -1,9 +1,11 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ICommand, commands } from '@uiw/react-md-editor';
 import { ToastContainer, toast } from 'react-toastify';
+
+import { PostDraftType } from '@/views/post-draft/types';
 
 import Image from '@/public/svgs/image.svg';
 import { getFirstImageUrlFromMarkdown } from '@/shared/utils/image';
@@ -31,8 +33,27 @@ export default function PostFormCont() {
   /* 공개 여부 (0: 비공개, 1: 공개) */
   const [isPublic, setIsPublic] = useState<number>(1);
 
+  /* 임시저장 글 리스트 */
+  const [draftList, setDraftList] = useState<PostDraftType[]>([]);
+
   /* 임시저장된 글 ID (있으면 수정, 없으면 새로 생성) */
   const [draftId, setDraftId] = useState<number>();
+
+  useEffect(() => {
+    /** 임시 저장 리스트 가져오는 로직 */
+    const getPostsDraftList = async () => {
+      const response = await fetch('/api/member/posts/drafts');
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch post draftList');
+      }
+
+      const result = await response.json();
+      setDraftList(result.data);
+    };
+
+    getPostsDraftList();
+  }, []);
 
   /* 임시 저장 (draftId 유무에 따라 생성 또는 수정) */
   const saveDraft = async () => {
@@ -194,6 +215,7 @@ export default function PostFormCont() {
         setTitle={setTitle}
         onCreatePost={createPostHandler}
         saveDraft={saveDraft}
+        drafts={draftList}
       />
     </>
   );
