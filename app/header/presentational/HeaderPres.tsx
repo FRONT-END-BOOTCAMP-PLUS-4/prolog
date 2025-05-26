@@ -208,7 +208,7 @@ export default function HeaderPres(): JSX.Element {
                   height={24}
                 />
               </button>
-              <button>
+              <button onClick={handleProfileBtnClick}>
                 <ChevronDownIcon
                   className={`${styles.arrowIcon} ${
                     isProfileDropdownVisible ? styles.arrowIconOpen : ''
