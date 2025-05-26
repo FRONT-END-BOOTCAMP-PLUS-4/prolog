@@ -1,7 +1,10 @@
 // package
 import { Cross1Icon } from '@radix-ui/react-icons';
+
 // slice
 import styles from '../styles/NotificationModalPres.module.scss';
+
+// layer
 import Button from '@/shared/ui/button';
 import { NotificationListCont } from '@/features/notification-list';
 import { MarkAllReadCont } from '@/features/notification-mark-all-read';
@@ -47,13 +50,21 @@ export default function NotificationModalPres({
           {deleteMode ? (
             <div className={styles.deleteMode}>
               <div className={styles.deleteModeInner}>
-                <DeleteNotificationCont selectedIds={selectedIds} />
-                <Button size="small" onClick={onSelectAll}>
+                <Button
+                  style={{ border: 'none' }}
+                  size="small"
+                  onClick={onSelectAll}
+                >
                   전체선택
                 </Button>
+                <DeleteNotificationCont selectedIds={selectedIds} />
               </div>
               <div className={styles.deleteModeInner}>
-                <Button size="small" onClick={onCancel}>
+                <Button
+                  style={{ border: 'none' }}
+                  size="small"
+                  onClick={onCancel}
+                >
                   완료
                 </Button>
               </div>
@@ -61,8 +72,12 @@ export default function NotificationModalPres({
           ) : (
             <div className={styles.normalMode}>
               <MarkAllReadCont />
-              <Button size="small" onClick={onToggleDeleteMode}>
-                삭제하기
+              <Button
+                style={{ border: 'none' }}
+                size="small"
+                onClick={onToggleDeleteMode}
+              >
+                삭제
               </Button>
             </div>
           )}
