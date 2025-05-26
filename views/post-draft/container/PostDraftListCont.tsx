@@ -1,4 +1,4 @@
-import PostDraftPres from '../presentational/PostDraftListPres';
+import PostDraftListPres from '../presentational/PostDraftListPres';
 import { PostDraftType } from '../types';
 
 const fakeData = [
@@ -64,5 +64,7 @@ export default function PostDraftCont() {
     }
   };
 
-  return <PostDraftPres drafts={fakeData} onDelete={handleDeletePostDraft} />;
+  return (
+    <PostDraftListPres drafts={fakeData} onDelete={handleDeletePostDraft} />
+  );
 }

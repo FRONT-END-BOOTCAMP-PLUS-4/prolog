@@ -3,7 +3,7 @@
 .bottomSheet {
   width: 100%;
   padding: 16px;
-  background-color: $theme-white;
+  background-color: $theme-shade-2;
 
   position: absolute;
   bottom: 0;
@@ -23,7 +23,7 @@
 }
 
 .header {
-  font-size: 18px;
+  font-size: $font-lg-size;
   font-weight: bold;
   margin-bottom: 12px;
   padding-bottom: 8px;
@@ -37,10 +37,9 @@
 }
 
 .headerIcon {
-  color :$theme-gray-2;
+  color :$theme-gray-3;
   cursor: pointer;
-  transition: color 0.2s;
-
+  
   &:hover {
     color: #000;
   }
@@ -61,7 +60,7 @@
 .date {
     width: 100px;
     font-size: 13px;
-    color: $theme-gray-2;
+    color: $theme-gray-3;
     flex-shrink: 0;
 }
 
