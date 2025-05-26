@@ -2,11 +2,13 @@ import Button from '@/shared/ui/button';
 import styles from '../styles/categoryList.module.scss';
 type CategoryListProps = {
   categoryList: Category[];
+  isMobile: boolean;
   category: number;
   categoryCurrentHandler: (id: number) => void;
 };
 export default function CategoryListPres({
   categoryList,
+  isMobile,
   category,
   categoryCurrentHandler,
 }: CategoryListProps) {
@@ -24,12 +26,24 @@ export default function CategoryListPres({
                 onClick={() => categoryCurrentHandler(item.id)}
                 key={item.id}
               >
-                <Button
-                  variants={category === item.id ? 'active' : 'basic'}
-                  size="small"
-                >
-                  {item.categoryName}
-                </Button>
+                {isMobile ? (
+                  <Button
+                    variants={category === item.id ? 'active' : 'basic'}
+                    size="small"
+                  >
+                    {item.categoryName}
+                  </Button>
+                ) : (
+                  <Button
+                    className={
+                      category === item.id
+                        ? `${styles.currentColor}`
+                        : `${styles.btnBorderNone}`
+                    }
+                  >
+                    {item.categoryName}
+                  </Button>
+                )}
               </div>
             ))}
           </div>
