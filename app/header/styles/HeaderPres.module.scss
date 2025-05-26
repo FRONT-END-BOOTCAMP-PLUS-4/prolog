@@ -21,8 +21,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: clamp(80px, 8vw, 100px);
-  height: clamp(80px, 8vw, 100px);
+  width: clamp(70px, 8vw, 100px); 
+  height: clamp(70px, 8vw, 100px); 
 }
 
 .btnLogo {
@@ -49,9 +49,8 @@
   justify-content: center;
   flex: 1 1 0;
   min-width: 0;
+  width: clamp(200px, 40vw, 500px);
   z-index: 1;
-  max-width: 31.25rem;
-  width: 100%;
 }
 
 
