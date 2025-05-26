@@ -133,13 +133,21 @@ padding: 0 10px 12px 10px;
 .iconTextGroup {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 7px;
+}
+
+.chatIcon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $theme-gray-5;
 }
 
 .iconCount {
-  font-size: $font-xs-size;
-  color: $theme-gray-5;
-  font-weight: $font-xs-weight;
+  color: $theme-text-2;
+  font-size: clamp(12px, 2vw, 14px);
 }
 
 @media (max-width: 768px) {
