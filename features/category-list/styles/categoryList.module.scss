@@ -2,12 +2,32 @@
 .container{
   display: flex;
   flex-direction: column;
+  position: sticky;
+  left: 0;
+  top: 60px;
+  
 }
 .categoryListColumn{
   margin-top: 15px;
   display: flex;
   flex-direction: column;
   gap: 15px;
+  height: 550px;
+  overflow-y: auto;
+  padding-right: 10px;
+  &::-webkit-scrollbar {
+    height: 2px;
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $theme-shade-4;
+    border-radius: 4px;
+  }
 }
 .title{
 @include font-sm;
@@ -33,6 +53,7 @@ color: $theme-text-2;
   overflow-x: auto;
   flex-wrap: nowrap;
   padding-bottom: 8px;
+  height: 50px;
   
   &::-webkit-scrollbar {
     height: 8px; 
@@ -45,7 +66,6 @@ color: $theme-text-2;
   &::-webkit-scrollbar-thumb {
     background-color: $theme-shade-4;
     border-radius: 4px;
-    margin-top: px;
   }
 }
 }
