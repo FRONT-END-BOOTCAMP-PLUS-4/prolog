@@ -19,6 +19,7 @@
   margin-bottom: 8px;
   border: solid 1px $theme-gray-1;
   resize: none;
+  background-color: $theme-shade-1;
 
   &:focus {
     outline: none;
@@ -30,7 +31,7 @@
   }
 
   &::placeholder {
-    color: $theme-gray-5;
+    color: $theme-text-2;
     font-size: $font-base-size;
   }
 }
