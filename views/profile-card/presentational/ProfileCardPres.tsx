@@ -2,9 +2,11 @@
 import Image from 'next/image';
 //slice
 import SubscriptionCont from '@/features/subscription/container/SubscriptionCont';
+import { useModalStore } from '@/shared/stores/useModalStore';
 import { User } from '../types';
 //style
 import styles from '../styles/ProfileCardPres.module.scss';
+import SubscriptionListCont from '@/features/subscription-list/container/SubscriptionListCont';
 
 type UserProps = {
   userData: User;
@@ -12,6 +14,7 @@ type UserProps = {
 
 export default function ProfileCardPres({ userData }: UserProps) {
   const defaultImg = '/svgs/my-card-background.jpg';
+  const openModal = useModalStore((state) => state.action.open);
 
   return (
     <>
@@ -60,7 +63,12 @@ export default function ProfileCardPres({ userData }: UserProps) {
                 <SubscriptionCont />
               </div>
             </div>
-            <div className={styles.followContainer}>
+            <div
+              onClick={() => {
+                openModal(<SubscriptionListCont />, 'center');
+              }}
+              className={styles.followContainer}
+            >
               <button className={styles.followText}>
                 팔로워<span className={styles.followNumberText}>17</span>
               </button>
