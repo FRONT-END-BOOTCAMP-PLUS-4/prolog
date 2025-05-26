@@ -2,9 +2,9 @@
 
 import { useState, KeyboardEvent } from 'react';
 
-import styles from '../styles/PostTagSeactionPres.module.scss';
+import styles from '../styles/PostTagSectionPres.module.scss';
 
-import Button from '@/shared/ui/button';
+import Tag from '@/shared/ui/tag';
 
 const MAX_TAGS = 20;
 
@@ -49,9 +49,9 @@ export default function PostTagSectionPres({ tags, setTags }: Props) {
       />
       <div className={styles.tagList}>
         {tags.map((tag) => (
-          <Button key={tag} asChild onClick={() => handleTagDelete(tag)}>
-            <span className={styles.tag}>#{tag} ✕</span>
-          </Button>
+          <Tag key={tag} onClick={() => handleTagDelete(tag)} size="md">
+            #{tag} ✕
+          </Tag>
         ))}
       </div>
     </div>

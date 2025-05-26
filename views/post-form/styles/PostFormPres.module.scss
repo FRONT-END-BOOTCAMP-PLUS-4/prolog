@@ -1,14 +1,15 @@
 @use '@styles/variables.scss' as *;
 
+$footer-height: 60px;
+
+
 .container {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 60px); // 헤더 높이 만큼 제외 * 추후 상수로 변경 해야함
+    height: calc(100vh - #{$header-height} - #{$footer-height}); // (헤더 + 푸터) 높이만큼 빼줘야 함
     padding: 30px;
-    // margin: 0 auto;
     box-sizing: border-box;
     overflow: hidden;
-
 }
 
 .titleInput {
@@ -20,6 +21,7 @@
     outline: none;
     background-color: transparent;
     padding: 10px;
+    color : $theme-text-1;
 }
 
 
@@ -43,8 +45,7 @@
         /* 툴바 커스텀 */
         position: sticky;
         top: 0;
-        background-color: white;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        background-color: $theme-shade-2;
         padding: 8px 12px;
         gap: 12px;
         border: none;
@@ -74,14 +75,15 @@
     left: 0;
     width: 100%;
     padding: 12px 24px;
-    background-color: white;
-    border-top: 1px solid #eee;
+    background-color: $theme-shade-2;
     display: flex;
     justify-content: space-between;
     z-index: 10;
     box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
-    height: 60px; 
+    height: $footer-height
 }
+
+
 
 .leftControls {
     display: flex;
@@ -93,3 +95,35 @@
     gap: 10px;
 }
 
+
+.toggleButtonWrapper {
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  width: fit-content;
+
+}
+
+.toggleButton {
+  padding: 0.5rem 0.8rem;
+  border: none;
+  background: $theme-secondary;
+  cursor: pointer;
+  font-weight: 500;
+  color: $theme-white;
+  opacity: 0.9;
+  font-size: $font-base-size;
+
+  &:not(:last-child) {
+    border-right: 1px solid $theme-shade-2;
+  }
+}
+
+.saveButton:hover {
+   opacity: 1
+}
+
+.countButton:hover {
+   opacity: 1
+
+}
