@@ -1,11 +1,13 @@
 @use '@styles/variables.scss' as *;
-.container{
+
+.profileCardContainer{
   width: 100%;
   max-width: 1200px;
   position: relative;
   margin-top: 2rem;
   box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
+  background-color: $theme-shade-3;
 }
 .cardBackGroundBox{
   position: relative;
@@ -13,12 +15,16 @@
   height: 250px;
 }
 .profileImg{
+  position: relative;
+}
+.profile{
   position: absolute;
-  bottom: 140px;
+  bottom: -40px;
   left:25px;
   background-color: #FFFFFF;
   border-radius: 99px;
   padding: 4px;
+  background-color: $theme-shade-3;
 }
 .userInfo{
   margin-top: 20px;
@@ -41,6 +47,7 @@
   display: flex;
   align-items: center;
   gap: 1px;
+  color: $theme-text-2;
 }
 .followNumberText{
   @include font-lg;
@@ -54,6 +61,7 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 30px;
+  // background-color: $color-shade-1;
 }
 .infoContent{
   padding: 20px;
@@ -61,88 +69,17 @@
   font-size: $font-xs-size;
   font-weight: $font-xs-weight;
   line-height:$font-xs-line-height ;
+  // background-color: $color-shade-1;
 }
 .nameText{
   @include font-xl;
-}
-@media (max-width: 1004px) {
-  .profileImg{
-  position: absolute;
-  bottom: 180px;
-  left:25px;
-  background-color: #FFFFFF;
-  border-radius: 99px;
-  padding: 4px;
-  width: 67px;
-  height: 67px;
-}
-.mobileProfile{
-  width: 60px;
-  height: 60px;
-}
+  color: $theme-text-2;
 }
 
-@media (max-width: 845px) {
-  .profileImg{
-  position: absolute;
-  bottom: 200px;
-  left:25px;
-  background-color: #FFFFFF;
-  border-radius: 99px;
-  padding: 4px;
-  width: 67px;
-  height: 67px;
-}
-.mobileProfile{
-  width: 60px;
-  height: 60px;
-}
-}
+
 
 @media (max-width: 768px) {
-  .profileImg{
-  position: absolute;
-  bottom: 220px;
-  left:25px;
-  background-color: #FFFFFF;
-  border-radius: 99px;
-  padding: 4px;
-  width: 67px;
-  height: 67px;
-}
-.mobileProfile{
-  width: 60px;
-  height: 60px;
-}
-}
-@media (max-width: 425px) {
-  .profileImg{
-  position: absolute;
-  bottom: 260px;
-  left:25px;
-  background-color: #FFFFFF;
-  border-radius: 99px;
-  padding: 4px;
-  width: 67px;
-  height: 67px;
-}
-.mobileProfile{
-  width: 60px;
-  height: 60px;
-}
-}
 
-@media (max-width: 379px) {
-  .profileImg{
-  position: absolute;
-  bottom: 260px;
-  left:25px;
-  background-color: #FFFFFF;
-  border-radius: 99px;
-  padding: 4px;
-  width: 67px;
-  height: 67px;
-}
 .mobileProfile{
   width: 60px;
   height: 60px;

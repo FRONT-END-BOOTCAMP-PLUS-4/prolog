@@ -21,7 +21,7 @@
   align-items: center;
   gap: 12px;
   padding-right: 12px;
-  border-right: 1px solid $color-gray;
+  border-right: 1px solid $theme-gray-1;
 }
 
 .profilePlaceholder {
@@ -41,32 +41,34 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+    background-color: $theme-shade-2;
 }
 
 .email {
     @include font-sm;
-  color: $color-gray;
+  color: $theme-text-2;
 }
 
 .nickname {
     @include font-xl;
-  color: $color-text-1;
+  color: $theme-text-2;
   outline: none;
   border: none;
+  background-color: $theme-shade-2;
 }
 
 .bioTextarea {
     padding: 8px;
     border-radius: 8px;
-    background-color: $color-shade-2;
-    color: $color-text-1;
+    background-color: $theme-shade-2;
+    color: $theme-text-2;
   border: none;
   resize: none;
   flex-grow: 1;
   outline: none;
 
   &::placeholder{
-    color: $color-gray;
+    color: $theme-gray-1;
   }
 }
 
@@ -82,7 +84,7 @@
     padding: 1rem 0;
     gap: 20px;
     border-radius: 1px;
-  border-bottom: 1px solid $color-gray;
+  border-bottom: 1px solid $theme-gray-1;
 }
 
 .settingItem {
@@ -93,7 +95,7 @@
 
 .settingLabel {
     @include font-xl;
-  color: $color-text-1;
+  color: $theme-text-2;
   min-width: 100px;
 }
 
@@ -107,9 +109,17 @@
     display: flex;
     gap: 12px;
 }
+.lightBtn{
+background-color: $theme-white;
+border-radius: 8px;
+}
+.darkBtn{
+ background-color: $theme-black;
+ border-radius: 8px;
+}
 
 .settingDescription {
-  color: $color-gray;
+  color: $theme-gray-1;
 }
 
 .actionButtons {

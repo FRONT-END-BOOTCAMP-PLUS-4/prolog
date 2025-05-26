@@ -6,25 +6,22 @@ import PostsSearchCont from '@/features/search-input';
 import styles from './styles.module.scss';
 import { LongCardPres } from '@/widgets/card';
 import CategoryListCont from '@/features/category-list/container/CategoryListCont';
+import { CardListCont } from '@/views/card-list';
 export default function Page() {
   return (
     <>
       <div className={styles.container}>
         <div className={styles.cardFollowFlex}>
           <ProfileCardCont />
-          <div className={styles.inputFlexBox}>
-            <div className={styles.inputContainer}>
+          <div className={styles.inputContainer}>
+            <div className={styles.inputBox}>
               <PostsSearchCont />
             </div>
           </div>
           <div className={styles.categoryCardList}>
             <CategoryListCont />
             <div className={styles.cardList}>
-              <LongCardPres />
-              <LongCardPres />
-              <LongCardPres />
-              <LongCardPres />
-              <LongCardPres />
+              <CardListCont />
             </div>
           </div>
         </div>

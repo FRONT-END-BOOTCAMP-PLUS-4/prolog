@@ -1,7 +1,7 @@
 'use client';
 
 // package
-import { useState, useRef, type JSX } from 'react';
+import { useState, useRef, type JSX, useEffect } from 'react'; // useEffect를 임포트합니다.
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -10,6 +10,8 @@ import {
   Pencil1Icon,
   ChevronDownIcon,
   MagnifyingGlassIcon,
+  SunIcon,
+  MoonIcon,
 } from '@radix-ui/react-icons';
 
 // slice
@@ -21,9 +23,11 @@ import PostsSearchCont from '@/features/search-input';
 import Button from '@/shared/ui/button';
 import { useModalStore } from '@/shared/stores/useModalStore';
 import { LoginForm } from '@/widgets/login';
+import { useThemeStore } from '@/shared/stores/useThemeStore';
+import { NotificationModalCont } from '@/widgets/notification';
 
 export default function HeaderPres(): JSX.Element {
-  const { open } = useModalStore( state => state.action);
+  const { open } = useModalStore((state) => state.action);
   // 로그인 여부
   const [isLoggedIn, setIsLoggedIn] = useState(true); // 테스트용
   // 검색창 표시 여부
@@ -32,21 +36,11 @@ export default function HeaderPres(): JSX.Element {
   const [isProfileDropdownVisible, setIsProfileDropdownVisible] =
     useState(false);
 
+  const { theme, toggleTheme } = useThemeStore();
+
   // 드롭다운, 검색창 영역 ref
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchWrapperRef = useRef<HTMLDivElement>(null);
-
-  // 임시테마 버튼
-  const changeTheme = () => {
-    const currentTheme = document.documentElement.getAttribute("data-theme");
-    
-    if(currentTheme){
-      document.documentElement.removeAttribute("data-theme");
-    }else{
-      document.documentElement.setAttribute("data-theme", "dark");
-    }
-
-  }
 
   // 검색창 영역 밖 클릭 시 검색창 닫기
   useOnClickOutside(
@@ -69,7 +63,7 @@ export default function HeaderPres(): JSX.Element {
   // 로그인 버튼 클릭
   const handleLogin = () => {
     // 임시
-    open(<LoginForm/>, 'center');
+    open(<LoginForm />, 'center');
     setIsLoggedIn(true);
   };
 
@@ -87,12 +81,16 @@ export default function HeaderPres(): JSX.Element {
     setIsProfileDropdownVisible((prev) => !prev);
   };
 
+  const handleNotificationClick = () => {
+    open(<NotificationModalCont />, 'center');
+  };
+
   return (
     <header className={styles.header}>
       {/* 로고 */}
       <Link href="/" className={styles.logo}>
         <Image
-          src="/svgs/logo.svg"
+          src={theme === 'dark' ? '/svgs/logo_dark.svg' : '/svgs/logo.svg'}
           alt="로고"
           fill
           style={{ objectFit: 'contain' }}
@@ -120,8 +118,6 @@ export default function HeaderPres(): JSX.Element {
         )}
       </div>
 
-      <button onClick={changeTheme}>테마전환</button>
-
       {/* 네비게이션 */}
       <nav
         className={`${styles.nav} ${
@@ -135,6 +131,14 @@ export default function HeaderPres(): JSX.Element {
           aria-label="검색 열기"
         >
           <MagnifyingGlassIcon className={styles.btnLogo} />
+        </button>
+
+        <button onClick={toggleTheme}>
+          {theme === 'dark' ? (
+            <MoonIcon className={styles.btnLogo} />
+          ) : (
+            <SunIcon className={styles.btnLogo} />
+          )}
         </button>
 
         {/* 글 작성 버튼 */}
@@ -153,10 +157,11 @@ export default function HeaderPres(): JSX.Element {
         ) : (
           <>
             {/* 알림 버튼 */}
-            <button className={styles.alarmBtn}>
-              <Link href="/email/stories/1">
-                <BellIcon className={styles.btnLogo} />
-              </Link>
+            <button
+              className={styles.alarmBtn}
+              onClick={handleNotificationClick}
+            >
+              <BellIcon className={styles.btnLogo} />
             </button>
             {/* 프로필 드롭다운 */}
             <div className={styles.profileDropdownWrapper} ref={dropdownRef}>

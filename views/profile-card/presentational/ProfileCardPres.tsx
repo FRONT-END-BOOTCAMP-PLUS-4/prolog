@@ -15,7 +15,7 @@ export default function ProfileCardPres({ userData }: UserProps) {
 
   return (
     <>
-      <div className={styles.container}>
+      <div className={styles.profileCardContainer}>
         <div className={styles.cardBackGroundBox}>
           <Image
             src={userData.bg ?? defaultImg}
@@ -28,7 +28,7 @@ export default function ProfileCardPres({ userData }: UserProps) {
         <div className={styles.profileImg}>
           {/* 프로필 이미지 */}
           {userData?.profileImg ? (
-            <div>
+            <div className={styles.profile}>
               <Image
                 className={styles.mobileProfile}
                 src={userData.profileImg as string}
@@ -38,7 +38,7 @@ export default function ProfileCardPres({ userData }: UserProps) {
               />
             </div>
           ) : (
-            <div>
+            <div className={styles.profile}>
               <Image
                 className={styles.mobileProfile}
                 src="/svgs/profile.svg"

@@ -58,8 +58,12 @@ export default function Page() {
             <span className={styles.settingLabel}>테마</span>
             <div className={styles.settingControls}>
               <div className={styles.settingButtonGroup}>
-                <Button>밝은</Button>
-                <Button variants="theme">어두운</Button>
+                <div className={styles.lightBtn}>
+                  <Button>밝은</Button>
+                </div>
+                <div className={styles.darkBtn}>
+                  <Button variants="theme">어두운</Button>
+                </div>
               </div>
             </div>
           </div>

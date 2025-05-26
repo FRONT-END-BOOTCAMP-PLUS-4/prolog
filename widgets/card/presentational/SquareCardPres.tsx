@@ -1,53 +1,48 @@
 // package
 import Image from 'next/image';
+import Link from 'next/link';
 
 // slice
 import styles from '../styles/SquareCardPres.module.scss';
+import { CardData } from '../types';
 
 // layer
-import TagListCont from '@/views/tag/container/TagListCont';
+import { TagListCont } from '@/features/tag-list';
+import { LikeButton } from '@/features/like';
+import Profile from '@/shared/ui/profile';
 
-export default function SquareCardPres() {
-  // 더미 데이터 오브젝트
-  const dummy = {
-    title: 'SSG에 대해서 알아보겠습..',
-    desc: 'CSR은 클라이언트 사이드 렌더링이라고 합니다. 이는 SEO에 좋지 못하지만, 좀더 인터렉티브한 디자인에는 좋은경험을 ........',
-    tags: [
-      'Start',
-      'React',
-      'TypeScript',
-      'Next',
-      'HTML',
-      'CSS',
-      'Java',
-      'MySql',
-      'End',
-    ],
-    userNickName: 'userNickName',
-    date: '2025-01-01',
-    commentCount: 16,
-    loveCount: 16,
-  };
+type Props = {
+  data: CardData;
+};
 
+export default function SquareCardPres({ data }: Props) {
   return (
     <div className={styles.container}>
-      <div className={styles.iconWrap}>
-        <Image src="/svgs/image.svg" alt="이미지" width={80} height={80} />
-      </div>
-      <div className={styles.content}>
-        <div className={styles.title}>{dummy.title}</div>
-        <div className={styles.desc}>{dummy.desc}</div>
-        <TagListCont tags={dummy.tags} />
+      <Link href="/email/stories/1" className={styles.flexGrowArea}>
+        {data.imageUrl && (
+          <div className={styles.iconWrap}>
+            <Image src={data.imageUrl} alt="이미지" width={80} height={80} />
+          </div>
+        )}
+        <div className={styles.content}>
+          <div className={styles.title}>{data.title}</div>
+          <div className={styles.descWithImg}>{data.desc}</div>
+        </div>
+      </Link>
+      <div className={styles.tagWrap}>
+        <TagListCont tags={data.tags} />
       </div>
       <div className={styles.profileBar}>
-        <div className={styles.profileInfo}>
-          <Image src="/svgs/profile.svg" alt="user" width={32} height={32} />
-          <div>
-            <div className={styles.profileName}>{dummy.userNickName}</div>
-            <div className={styles.profileDate}>{dummy.date}</div>
+        <Link href="/email/stories">
+          <div className={styles.profileInfo}>
+            <Profile
+              userNickName={data.userNickName}
+              date={data.date}
+              onClick={() => {}}
+            />
           </div>
-        </div>
-        <div style={{ display: 'flex', gap: 16 }}>
+        </Link>
+        <div className={styles.mainIcon}>
           <div className={styles.iconTextGroup}>
             <Image
               src="/svgs/comment.svg"
@@ -55,11 +50,10 @@ export default function SquareCardPres() {
               width={15}
               height={15}
             />
-            <span className={styles.iconCount}>{dummy.commentCount}</span>
+            <span className={styles.iconCount}>{data.commentCount}</span>
           </div>
           <div className={styles.iconTextGroup}>
-            <Image src="/svgs/love.svg" alt="love" width={15} height={15} />
-            <span className={styles.iconCount}>{dummy.loveCount}</span>
+            <LikeButton />
           </div>
         </div>
       </div>

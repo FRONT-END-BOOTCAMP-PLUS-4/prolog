@@ -18,38 +18,38 @@
 
 .nickname {
   @include font-sm;
-  color: $color-accent;
+  color: $theme-accent;
 }
 
 .comment {
   @include font-sm;
-  color: $color-black;
+  color: $theme-text-1;
 }
 
 .content {
   @include font-sm;
-  color: $color-black;
+  color: $theme-text-1;
 }
 
 .postTitle {
   @include font-xs;
-    color: $color-gray-400;
+    color: $theme-gray-4;
 }
 
 .date {
   @include font-xs;
-  color: $color-gray;
+  color: $theme-gray-1;
   margin-bottom: 4px;
 }
 
 .read {
-  background: $color-shade-3;
+  background: $theme-shade-3;
 
   .nickname,
   .comment,
   .content,
   .postTitle {
-    color: $color-gray;
+    color: $theme-gray-1;
   }
 }
 
@@ -68,5 +68,5 @@
 .iconSelected {
   width: 16px;
   height: 16px;
-  color: $color-accent;
+  color: $theme-accent;
 }

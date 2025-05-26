@@ -9,7 +9,7 @@
 
 .title {
   font-size: $font-title-size;
-  color: $color-black;
+  color: $theme-text-1;
   text-align: left;
 }
 
@@ -32,5 +32,5 @@
 
 .commentTitle {
   font-size: $font-title-sub-size;
-  color: $color-gray;
+  color: $theme-text-2;
 }

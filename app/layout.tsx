@@ -7,6 +7,7 @@ import Providers from './(auth)/providers';
 
 import Header from '@/app/header';
 import Modal from '@/shared/ui/modal';
+import ApplyTheme from '@/shared/ApplyTheme';
 import { auth } from '@/app/(auth)/auth';
 
 const pretendard = localFont({
@@ -32,13 +33,14 @@ export default async function RootLayout({
     <html lang="ko" className={`${pretendard.className}`}>
       <body>
         <Providers session={session}>
-          <div className={styles.layout}>
+          <ApplyTheme />
+        <div className={styles.layout}>
             <div className={styles.layout__header}>
               <Header />
             </div>
             <main className={styles.layout__main}>{children}</main>
           </div>
-          <Modal />
+          <Modal  />
         </Providers>
       </body>
     </html>

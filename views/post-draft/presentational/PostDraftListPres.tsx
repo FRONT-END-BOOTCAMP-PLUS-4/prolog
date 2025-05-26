@@ -8,11 +8,11 @@ type Props = {
   onDelete: (id: number) => void;
 };
 
-export default function PostDraftPres({ drafts, onDelete }: Props) {
+export default function PostDraftListPres({ drafts, onDelete }: Props) {
   return (
     <div className={styles.bottomSheet} onClick={(e) => e.stopPropagation()}>
       <div className={styles.layout}>
-        <div className={styles.header}>
+        <header className={styles.header}>
           <div className={styles.headerTitle}>
             <span>임시저장</span>
             <div className={styles.tooltipWrapper}>
@@ -20,7 +20,7 @@ export default function PostDraftPres({ drafts, onDelete }: Props) {
               <span className={styles.tooltip}>최대 10개까지 저장가능해요</span>
             </div>
           </div>
-        </div>
+        </header>
         <div className={styles.list}>
           {drafts.map((data) => (
             <div className={styles.item} key={data.id}>
