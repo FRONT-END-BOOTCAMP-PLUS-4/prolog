@@ -12,22 +12,37 @@ export default function CategoryListPres({
 }: CategoryListProps) {
   return (
     <>
+      <div className={styles.vh}>
+        <div className={styles.container}>
+          <div>
+            <h2 className={styles.title}>목록보기</h2>
+          </div>
+          <div className={styles.categoryListColumn}>
+            {categoryList.map((item) => (
+              <div
+                className={styles.currentText}
+                onClick={() => categoryCurrentHandler(item.id)}
+                key={item.id}
       <div className={styles.container}>
         <div>
           <h2 className={styles.title}>목록보기</h2>
         </div>
         <div className={styles.categoryListColumn}>
           {categoryList.map((item) => (
-            // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-            <div onClick={() => categoryCurrentHandler(item.id)} key={item.id}>
-              <Button
-                variants={category === item.id ? 'active' : 'basic'}
-                size="medium"
-              >
-                {item.categoryName}
-              </Button>
-            </div>
-          ))}
+            <div
+              className={styles.currentText}
+              onClick={() => categoryCurrentHandler(item.id)}
+              key={item.id}
+            >
+                <Button
+                  variants={category === item.id ? 'active' : 'basic'}
+                  size="small"
+                >
+                  {item.categoryName}
+                </Button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>
