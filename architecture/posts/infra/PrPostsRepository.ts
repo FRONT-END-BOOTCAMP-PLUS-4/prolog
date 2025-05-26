@@ -1,10 +1,7 @@
 import { PostsRepository } from '../domain/PostsRepository';
 import { BlogPost } from '@/app/generated/prisma';
 import { CreatePostDto } from '../application/dto/CreatePostDto';
-import { PrismaClient } from '../../../app/generated/prisma';
-
-// Prisma 클라이언트 인스턴스 생성
-const prisma = new PrismaClient();
+import prisma from '@/shared/lib/prisma';
 
 export class PrPostRepository implements PostsRepository {
   async createPost(newPost: CreatePostDto): Promise<BlogPost> {

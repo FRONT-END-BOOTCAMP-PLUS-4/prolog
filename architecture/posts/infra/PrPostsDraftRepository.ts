@@ -1,9 +1,8 @@
 import { PostsDraftRepository } from '../domain/PostsDraftRepository';
-import { PostTemp, PrismaClient } from '../../../app/generated/prisma';
+import { PostTemp } from '../../../app/generated/prisma';
 import { CreatePostDraftDto } from '../application/dto/CreatePostDraftDto';
 import { UpdatePostDraftDto } from '../application/dto/UpdatePostDraftDto';
-
-const prisma = new PrismaClient();
+import prisma from '@/shared/lib/prisma';
 
 export class PrPostDraftRepository implements PostsDraftRepository {
   async findAll(userId: string): Promise<PostTemp[]> {
