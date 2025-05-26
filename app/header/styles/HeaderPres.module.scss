@@ -167,6 +167,24 @@
   background-color:$theme-shade-2;
 }
 
+.notificationDropdownWrapper {
+  position: relative;
+  display: inline-block;
+  animation: slidedown 0.2s ease-out;
+}
+
+.notificationDropdownMenu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  min-width: 300px; 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 6px;
+  z-index: 1;
+  transition: background 0.15s;
+  background: $theme-shade-1;
+}
+
 @keyframes slideDown {
   from {
     opacity: 0;
