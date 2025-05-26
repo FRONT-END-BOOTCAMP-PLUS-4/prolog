@@ -3,11 +3,11 @@ import localFont from 'next/font/local';
 
 import './global.scss';
 import styles from './styles/layout.module.scss';
-import Providers from './providers';
+import Providers from './(auth)/providers';
 
 import Header from '@/app/header';
 import Modal from '@/shared/ui/modal';
-import { auth } from '@/app/auth';
+import { auth } from '@/app/(auth)/auth';
 
 const pretendard = localFont({
   src: '../public/fonts/pretendard-medium.woff2',
