@@ -1,22 +1,28 @@
-// import { auth } from '@/app/auth';
-// import { NextResponse } from 'next/server';
-// import type { NextRequest } from 'next/server';
+import { NextResponse, NextRequest } from 'next/server';
+import { getToken } from 'next-auth/jwt';
+import { auth } from '@/app/(auth)/auth';
 
-// const protecteRoutes = ["/member"]
+export async function middleware(request: NextRequest) {
+  const token = await getToken({
+    req: request,
+    secret: process.env.AUTH_SECRET,
+  });
+  const session = await auth();
+  const pathname = request.nextUrl.pathname;
 
-// export default async function middleware(request: NextRequest) {
-//     const session = await auth();
-    
-//     const { pathname } = request.nextUrl
-//     const isProtected = protecteRoutes.some( route => pathname.startsWith(route));
+  
+  if(pathname.startsWith('/api/member')){
+    if(!token){
+      return NextResponse.json({status:401, message:'Unauthorized'})
+    }
+    return NextResponse.next();
+  }
 
-//     if(isProtected && !session ){
-//         return NextResponse.redirect(new URL('/', request.url))
-//     }
+  if (!session) {
+    const url = new URL('/', request.url);
+    return NextResponse.redirect(url);
+  }
+  return NextResponse.next();
+}
 
-//     return NextResponse.next();
-// }
-
-// export const config = {
-//     matcher: ['/member/:path*'],
-//   };
+export const config = { matcher: ['/member(.*)','/api/member(.*)'] };
