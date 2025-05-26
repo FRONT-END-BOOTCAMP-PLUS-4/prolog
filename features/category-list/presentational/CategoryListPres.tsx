@@ -18,8 +18,11 @@ export default function CategoryListPres({
         </div>
         <div className={styles.categoryListColumn}>
           {categoryList.map((item) => (
-            // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-            <div onClick={() => categoryCurrentHandler(item.id)} key={item.id}>
+            <div
+              className={styles.currentText}
+              onClick={() => categoryCurrentHandler(item.id)}
+              key={item.id}
+            >
               <Button
                 variants={category === item.id ? 'active' : 'basic'}
                 size="medium"

@@ -1,10 +1,11 @@
 @use '@styles/variables.scss' as *;
-.inputFlexBox{
+.inputContainer{
   width: 100%;
   display: flex;
   justify-content: center;
-  justify-content: start;
-  margin-left: 45%;
+}
+.inputBox{
+  width: 50%;
 }
 .cardFollowFlex{
   display: flex;
@@ -17,7 +18,7 @@
   width: 100%;
   display: flex;
 
-  @media (max-width: 962px) {
+  @media (max-width: 754px) {
     flex-direction: column;
     gap: 20px; 
   }
@@ -42,5 +43,8 @@
   .container {
     padding: 10px;
   }
+  .inputBox{
+  width: 100%;
+}
 }
 
