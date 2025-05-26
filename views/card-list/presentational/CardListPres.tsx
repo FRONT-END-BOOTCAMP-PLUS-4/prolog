@@ -8,6 +8,8 @@ import { CardListPresProps } from '../types';
 // layer
 import { LongCardPres, SquareCardPres } from '@/widgets/card';
 import { SelectCont } from '@/features/select';
+import SquareCardSkeleton from '@/shared/ui/skeleton/squarecard';
+import LongCardSkeleton from '@/shared/ui/skeleton/longcard';
 
 export default function CardListPres({
   viewType,
@@ -16,7 +18,9 @@ export default function CardListPres({
   setSort,
   items,
   sortOptions,
+  isLoading = false,
 }: CardListPresProps) {
+  const skeletonCount = 6;
   return (
     <div>
       <div className={styles.filterBar}>
@@ -73,13 +77,27 @@ export default function CardListPres({
           ' ' +
           (viewType === 'card' ? styles.square : styles.long)
         }
+        aria-busy={isLoading}
+        role="status"
       >
-        {items.map((item) =>
-          viewType === 'card' ? (
-            <SquareCardPres key={item.id} data={item} />
-          ) : (
-            <LongCardPres key={item.id} data={item} />
-          ),
+        {isLoading ? (
+          Array.from({ length: skeletonCount }).map((_, idx) =>
+            viewType === 'card' ? (
+              <SquareCardSkeleton key={idx} />
+            ) : (
+              <LongCardSkeleton key={idx} />
+            ),
+          )
+        ) : items.length === 0 ? (
+          <div className={styles.emptyMessage}>데이터가 없습니다.</div>
+        ) : (
+          items.map((item) =>
+            viewType === 'card' ? (
+              <SquareCardPres key={item.id} data={item} />
+            ) : (
+              <LongCardPres key={item.id} data={item} />
+            ),
+          )
         )}
       </div>
     </div>
