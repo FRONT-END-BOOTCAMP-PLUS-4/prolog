@@ -24,15 +24,30 @@
   flex: 1;
   flex-direction: column;
   justify-content: center;
+  min-width: 0; 
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
 }
 
 .nickname {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   font-size: $font-sm-size;
-  line-height: 1.5;
-  color: $theme-soft-lavender;
+  color: $theme-primary;
+  flex-shrink: 1; 
 }
 
 .comment {
+  flex-shrink: 0;
+  margin-left: 1px; 
   font-size: $font-sm-size;
   color: $theme-text-1;
 }
@@ -41,19 +56,31 @@
   font-size: $font-sm-size;
   line-height: 2;
   color: $theme-text-1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .postTitle {
-font-size: $font-xs-size;
-line-height: 1.5;
-color: $theme-gray-4;
+  font-size: $font-xs-size;
+  line-height: 1.5;
+  color: $theme-gray-4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.date {
+.dateDesktop {
   @include font-xs;
   color: $theme-gray-4;
   display: flex;
-  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dateMobile {
+  display: none;
 }
 
 .read {
@@ -63,7 +90,9 @@ color: $theme-gray-4;
   .comment,
   .content,
   .postTitle,
-  .date {
+  .dateMobile,
+  .dateDesktop
+  {
     color: $theme-gray-1;
   }
 }
@@ -72,7 +101,7 @@ color: $theme-gray-4;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
 }
 
 .icon {
@@ -84,12 +113,24 @@ color: $theme-gray-4;
 .iconSelected {
   width: 16px;
   height: 16px;
-  // color: $theme-accent;
-  color: $theme-red;
+  color: $theme-primary;
 }
 
 @media (max-width:768px) {
   .notification img {
     display: none;
+  }
+
+  .dateDesktop {
+    display: none;
+  }
+
+  .dateMobile {
+  @include font-xs;
+  color: $theme-gray-4;
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   }
 }
