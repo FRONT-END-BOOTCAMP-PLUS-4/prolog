@@ -17,14 +17,14 @@
 .viewTypeIcon {
   cursor: pointer;
   color: $theme-gray-1; 
-  filter: brightness(0.8);
+  filter: brightness(1);
   transition:  filter 0.2s;
   width: 1.3rem;
   height: 1.3rem;
 }
 
 .viewTypeIconActive {
-  color: $theme-primary;
+  color: $theme-soft-lavender;
   filter: none;
   width: 1.3rem;
   height: 1.3rem;
