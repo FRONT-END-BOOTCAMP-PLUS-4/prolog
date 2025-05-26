@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
+
 import PostDraftPres from '../presentational/PostDraftListPres';
-import { GetPostDraftDto } from '@/architecture/posts/application/dto/GetPostDraftDto';
+import { PostDraftType } from '../types';
 
 export default function PostDraftCont() {
-  const [draftList, setDraftList] = useState<GetPostDraftDto[]>([]);
+  const [draftList, setDraftList] = useState<PostDraftType[]>([]);
 
   useEffect(() => {
     /** 임시 저장 리스트 가져오는 로직 */

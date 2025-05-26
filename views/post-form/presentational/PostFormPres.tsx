@@ -8,7 +8,6 @@ import PostDraftButtonPres from '@/views/post-draft/presentational/PostDraftButt
 
 import Button from '@/shared/ui/button';
 import { useImageDrop } from '@/shared/hooks/useImageDrop';
-import { useModalStore } from '@/shared/stores/useModalStore';
 import { useThemeStore } from '@/shared/stores/useThemeStore';
 
 type Props = {
@@ -48,8 +47,6 @@ export default function PostFormPres(props: Props) {
 
   /* 이미지 드래그 앤 드랍을 위한 ref */
   const editorRef = useRef<HTMLDivElement>(null);
-
-  const { action } = useModalStore();
 
   const { theme } = useThemeStore();
 

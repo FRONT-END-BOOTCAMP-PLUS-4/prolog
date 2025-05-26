@@ -255,11 +255,12 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://blog:blog30@new-cafe.com:5433/blogdb?schema=public"
+        "value": null
       }
     }
   },

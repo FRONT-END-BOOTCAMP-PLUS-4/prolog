@@ -1,7 +1,8 @@
-import { PostsRepository } from '../domain/PostsRepository';
-import { BlogPost } from '@/app/generated/prisma';
-import { CreatePostDto } from '../application/dto/CreatePostDto';
 import prisma from '@/shared/lib/prisma';
+import { BlogPost } from '@/app/generated/prisma';
+
+import { PostsRepository } from '../domain/PostsRepository';
+import { CreatePostDto } from '../application/dto/CreatePostDto';
 
 export class PrPostRepository implements PostsRepository {
   async createPost(newPost: CreatePostDto): Promise<BlogPost> {

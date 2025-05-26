@@ -1,10 +1,10 @@
 import { TrashIcon, InfoCircledIcon } from '@radix-ui/react-icons';
 
 import styles from '../styles/PostDraftListPres.module.scss';
-import { GetPostDraftDto } from '@/architecture/posts/application/dto/GetPostDraftDto';
+import { PostDraftType } from '../types';
 
 type Props = {
-  drafts: GetPostDraftDto[];
+  drafts: PostDraftType[];
   onDelete: (id: number) => void;
 };
 

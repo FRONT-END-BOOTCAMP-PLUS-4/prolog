@@ -58,8 +58,8 @@ export default function PostFormCont() {
 
   /* 작성 후 30초 동안 내용이 바뀌지 않으면 자동 임시 저장 */
   useDebounce({
-    callback: saveDraft,
-    delay: 30000, // 30초로 설정
+    callback: () => console.log('임시저장 함!'), // 추후 api 연결할 예정
+    delay: 60000, // 우선 1분으로 설정
     deps: [content],
     condition: !!title && !!content,
   });
