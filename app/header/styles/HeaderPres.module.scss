@@ -53,9 +53,24 @@
   z-index: 1;
 }
 
+.themeBtn {
+  display: flex;
+  cursor: pointer;
+  
+  &:hover,
+  &:focus-visible {
+    background-color: $theme-shade-3;
+    border-radius: 50%;
+    .btnLogo {
+      color: $theme-soft-lavender;
+    }
+  }
+}
+
 .writeBtn {
   display: flex;
-  
+  cursor: pointer;
+
   &:hover,
   &:focus-visible {
     background-color: $theme-shade-3;

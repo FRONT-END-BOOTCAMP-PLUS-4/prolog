@@ -149,7 +149,8 @@ export default function HeaderPres(): JSX.Element {
           <MagnifyingGlassIcon className={styles.btnLogo} />
         </button>
 
-        <button onClick={toggleTheme}>
+        {/* 테마 변경 버튼 (임시) */}
+        <button className={styles.themeBtn} onClick={toggleTheme}>
           {theme === 'dark' ? (
             <MoonIcon className={styles.btnLogo} />
           ) : (
@@ -158,7 +159,7 @@ export default function HeaderPres(): JSX.Element {
         </button>
 
         {/* 글 작성 버튼 */}
-        <button className={`${styles.profileBtn} ${styles.writeBtn}`}>
+        <button className={styles.writeBtn}>
           <Link href="/member/story">
             <Pencil1Icon className={styles.btnLogo} />
           </Link>
