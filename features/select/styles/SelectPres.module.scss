@@ -13,16 +13,12 @@
   border-radius: 6px;
   padding: 0.375rem 0.5rem 0.375rem 0.7rem;
   font-size: $font-sm-size;
-  color: $theme-gray-4;
+  color: $theme-gray-5;
   cursor: pointer;
   height: 2.25rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.placeholder {
-  color: $theme-gray-4;
 }
 
 .filterIcon {
@@ -68,7 +64,7 @@
   padding: .625rem 1rem;
   cursor: pointer;
   font-size: $font-sm-size;
-  color: $theme-gray-2;
+  color: $theme-gray-3;
   background: none;
   border: none;
   width: 100%;
@@ -84,5 +80,5 @@
 
 .optionSelected {
   font-weight:$font-sm-weight;
-  color: $theme-soft-lavender;
+  color: $theme-primary;
 }

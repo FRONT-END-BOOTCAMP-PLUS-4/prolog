@@ -16,7 +16,7 @@
 
 .viewTypeIcon {
   cursor: pointer;
-  color: $theme-gray-5; 
+  color: $theme-gray-1; 
   filter: brightness(0.8);
   transition:  filter 0.2s;
   width: 1.3rem;
@@ -24,7 +24,7 @@
 }
 
 .viewTypeIconActive {
-  color: $theme-soft-lavender;
+  color: $theme-primary;
   filter: none;
   width: 1.3rem;
   height: 1.3rem;
