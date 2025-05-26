@@ -5,8 +5,13 @@
   align-items: center;
   gap: 8px;
   padding: 8px;
-  border-radius: 8px;
   cursor: pointer;
+  border-bottom: 1px solid $theme-shade-5;
+  width: 100%;
+}
+
+.notification:hover {
+  background-color: $theme-shade-2;
 }
 
 .item {
@@ -18,7 +23,7 @@
 
 .nickname {
   @include font-sm;
-  color: $theme-accent;
+  color: $theme-soft-lavender
 }
 
 .comment {
@@ -69,4 +74,10 @@
   width: 16px;
   height: 16px;
   color: $theme-accent;
+}
+
+@media (max-width:768px) {
+  .notification img {
+    display: none;
+  }
 }
