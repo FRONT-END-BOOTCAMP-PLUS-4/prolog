@@ -41,7 +41,9 @@ export async function DELETE(req: NextRequest) {
     const repository = new PrPostDraftRepository();
     const deletePostDraft = new DeletePostDraftUsecase(repository);
 
-    await deletePostDraft.execute(Number(draftId));
+    const deletedId = await deletePostDraft.execute(Number(draftId));
+
+    return NextResponse.json(deletedId, { status: 200 });
   } catch (error) {
     console.error('임시 저장글 삭제 실패:', error);
     return NextResponse.json(

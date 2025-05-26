@@ -4,7 +4,7 @@ import { UpdatePostDraftDto } from '../application/dto/UpdatePostDraftDto';
 
 export interface PostsDraftRepository {
   findAll(userId: string): Promise<PostTemp[]>;
-  deleteById(draftId: number): Promise<void>;
-  createDraft(newDraft: CreatePostDraftDto): Promise<number | null>;
+  deleteById(draftId: number): Promise<number>;
+  createDraft(newDraft: CreatePostDraftDto): Promise<PostTemp>;
   updateDraft(newDraft: UpdatePostDraftDto): Promise<number>;
 }

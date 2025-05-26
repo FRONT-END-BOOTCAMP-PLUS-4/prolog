@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import { useState, useEffect } from 'react';
 import { ICommand, commands } from '@uiw/react-md-editor';
 import { ToastContainer, toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 import { PostDraftType } from '@/views/post-draft/types';
 
@@ -16,6 +17,8 @@ const PostFormPres = dynamic(
   () => import('@/views/post-form/presentational/PostFormPres'),
   { ssr: false },
 );
+
+const MAX_DRAFT_COUNT = 10;
 
 export default function PostFormCont() {
   /* 에디터 본문 내용 */
@@ -39,6 +42,8 @@ export default function PostFormCont() {
   /* 임시저장된 글 ID (있으면 수정, 없으면 새로 생성) */
   const [draftId, setDraftId] = useState<number>();
 
+  const router = useRouter();
+
   useEffect(() => {
     /** 임시 저장 리스트 가져오는 로직 */
     const getPostsDraftList = async () => {
@@ -49,14 +54,21 @@ export default function PostFormCont() {
       }
 
       const result = await response.json();
+
       setDraftList(result.data);
     };
-
     getPostsDraftList();
-  }, []);
+  }, [draftId]);
 
   /* 임시 저장 (draftId 유무에 따라 생성 또는 수정) */
   const saveDraft = async () => {
+    const isNewDraft = !draftId;
+
+    if (isNewDraft && draftList.length >= MAX_DRAFT_COUNT) {
+      toast.error('임시 저장은 최대 10개까지 가능합니다.');
+      return;
+    }
+
     if (draftId) {
       const result = await fetch('/api/member/posts/drafts', {
         method: 'PUT',
@@ -71,7 +83,8 @@ export default function PostFormCont() {
       });
 
       const response = await result.json();
-      setDraftId(response);
+
+      setDraftId(response.id);
     }
 
     toast.success('임시저장 되었습니다');
@@ -79,8 +92,8 @@ export default function PostFormCont() {
 
   /* 작성 후 30초 동안 내용이 바뀌지 않으면 자동 임시 저장 */
   useDebounce({
-    callback: () => console.log('임시저장 함!'), // 추후 api 연결할 예정
-    delay: 60000, // 우선 1분으로 설정
+    callback: saveDraft,
+    delay: 30000, // 30초로 설정
     deps: [content],
     condition: !!title && !!content,
   });
@@ -166,7 +179,19 @@ export default function PostFormCont() {
     }
 
     toast.success('게시글이 등록되었습니다');
-    const result = await res.json();
+    router.push('/'); // 일단 home 으로 이동시킴
+  };
+
+  /** 임시 저장 글 삭제 로직 */
+  const deleteDraft = async (draftId: number) => {
+    const confirmed = window.confirm('삭제하시겠습니까?');
+
+    if (confirmed) {
+      const res = await fetch(`/api/member/posts/drafts/?draftId=${draftId}`, {
+        method: 'DELETE',
+      });
+      const deletedId = await res.json();
+    }
   };
 
   /* 에디터 툴바에 사용할 커스텀 명령어 모음 */
@@ -216,6 +241,7 @@ export default function PostFormCont() {
         onCreatePost={createPostHandler}
         saveDraft={saveDraft}
         drafts={draftList}
+        onDelete={deleteDraft}
       />
     </>
   );

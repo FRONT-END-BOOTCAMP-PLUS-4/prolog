@@ -16,15 +16,17 @@ export class PrPostDraftRepository implements PostsDraftRepository {
     return postsDraftList;
   }
 
-  async deleteById(draftId: number): Promise<void> {
-    await prisma.postTemp.delete({
+  async deleteById(draftId: number): Promise<number> {
+    const result = await prisma.postTemp.delete({
       where: {
         id: draftId,
       },
     });
+
+    return result.id;
   }
 
-  async createDraft(newDraft: CreatePostDraftDto): Promise<number | null> {
+  async createDraft(newDraft: CreatePostDraftDto): Promise<PostTemp> {
     const draft = await prisma.postTemp.create({
       data: {
         title: newDraft.title,
@@ -34,7 +36,7 @@ export class PrPostDraftRepository implements PostsDraftRepository {
       },
     });
 
-    return draft.id;
+    return draft;
   }
 
   async updateDraft(newDraft: UpdatePostDraftDto): Promise<number> {
