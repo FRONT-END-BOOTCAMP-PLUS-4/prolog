@@ -26,7 +26,11 @@ export default function SquareCardPres({ data }: Props) {
         )}
         <div className={styles.content}>
           <div className={styles.title}>{data.title}</div>
-          <div className={styles.descWithImg}>{data.desc}</div>
+          <div
+            className={data.imageUrl ? styles.descWithImg : styles.descNoImg}
+          >
+            {data.desc}
+          </div>
         </div>
       </Link>
       <div className={styles.tagWrap}>
