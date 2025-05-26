@@ -1,26 +1,78 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { useState } from 'react';
 import { ICommand, commands } from '@uiw/react-md-editor';
+import { ToastContainer, toast } from 'react-toastify';
 
 import Image from '@/public/svgs/image.svg';
+import { getFirstImageUrlFromMarkdown } from '@/shared/utils/image';
+import { useDebounce } from '@/shared/hooks/useDebounce';
 
-/* 브라우저 전용 기능이 포함된 컴포넌트이므로 SSR 비활성화 */
+/* 브라우저에서만 동작해야 하므로 SSR 비활성화 */
 const PostFormPres = dynamic(
   () => import('@/views/post-form/presentational/PostFormPres'),
   { ssr: false },
 );
 
 export default function PostFormCont() {
+  /* 에디터 본문 내용 */
+  const [content, setContent] = useState<string | undefined>('');
+
+  /* 게시글 제목 */
+  const [title, setTitle] = useState<string>('');
+
+  /* 태그 목록 */
+  const [tags, setTags] = useState<string[]>([]);
+
+  /* AI 사용여부 (0: 사용 안함, 1: 사용함) */
+  const [isAiUsed, setIsAiUsed] = useState<number>(0);
+
+  /* 공개 여부 (0: 비공개, 1: 공개) */
+  const [isPublic, setIsPublic] = useState<number>(1);
+
+  /* 임시저장된 글 ID (있으면 수정, 없으면 새로 생성) */
+  const [draftId, setDraftId] = useState<number>();
+
+  /* 임시 저장 (draftId 유무에 따라 생성 또는 수정) */
+  const saveDraft = async () => {
+    if (draftId) {
+      const result = await fetch('/api/member/posts/drafts', {
+        method: 'PUT',
+        body: JSON.stringify({ title, content, tags, draftId }),
+      });
+
+      await result.json();
+    } else {
+      const result = await fetch('/api/member/posts/drafts', {
+        method: 'POST',
+        body: JSON.stringify({ title, content, tags }),
+      });
+
+      const response = await result.json();
+      setDraftId(response);
+    }
+
+    toast.success('임시저장 되었습니다');
+  };
+
+  /* 작성 후 30초 동안 내용이 바뀌지 않으면 자동 임시 저장 */
+  useDebounce({
+    callback: () => console.log('임시저장 함!'), // 추후 api 연결할 예정
+    delay: 60000, // 우선 1분으로 설정
+    deps: [content],
+    condition: !!title && !!content,
+  });
+
+  /* 이미지 파일을 S3에 업로드 */
   const uploadImageFiles = async (files: File[]) => {
     const formData = new FormData();
 
     files.forEach((file) => {
-      formData.append('img', file); // 'img'는 서버에서 기대하는 필드 이름
+      formData.append('img', file); // 서버에서 받는 필드명 'img'
     });
 
-    /* 추후 S3에 업로드 하는 로직으로 대체 */
-    const res = await fetch('/api/s3-upload', {
+    const res = await fetch('/api/member/posts/s3-upload', {
       method: 'POST',
       body: formData,
     });
@@ -31,10 +83,10 @@ export default function PostFormCont() {
 
     const data = await res.json();
 
-    // 항상 배열로 반환되도록 보장
     return Array.isArray(data.data) ? data.data : [data.data];
   };
 
+  /* 이미지 업로드 커맨드 정의 */
   const createImageUploadCommand = (
     uploadImages: (files: File[]) => Promise<string[]>,
   ): ICommand => ({
@@ -64,7 +116,39 @@ export default function PostFormCont() {
     },
   });
 
-  /* 커스텀 툴바 설정 */
+  /* 블로그 게시글 생성 */
+  const createPostHandler = async () => {
+    if (!title || !content) return;
+
+    const firstImg = getFirstImageUrlFromMarkdown(content);
+
+    const newPost = {
+      title: title,
+      content: content,
+      tags: tags,
+      isAiUsed: isAiUsed,
+      isPublic: isPublic,
+      userId: 'uuid-2',
+      thumbnailUrl: firstImg,
+    };
+
+    const res = await fetch('/api/member/posts', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newPost),
+    });
+
+    if (!res.ok) {
+      throw new Error('Failed to fetch create blog post');
+    }
+
+    toast.success('게시글이 등록되었습니다');
+    const result = await res.json();
+  };
+
+  /* 에디터 툴바에 사용할 커스텀 명령어 모음 */
   const customCommands: ICommand[] = [
     commands.title1,
     commands.title2,
@@ -86,9 +170,31 @@ export default function PostFormCont() {
   ];
 
   return (
-    <PostFormPres
-      customCommands={customCommands}
-      uploadImgFiles={uploadImageFiles}
-    />
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={true}
+        closeOnClick
+        pauseOnHover={false}
+        draggable={false}
+      />
+      <PostFormPres
+        customCommands={customCommands}
+        uploadImgFiles={uploadImageFiles}
+        title={title}
+        content={content}
+        tags={tags}
+        isAiUsed={isAiUsed}
+        isPublic={isPublic}
+        setIsAiUsed={setIsAiUsed}
+        setIsPublic={setIsPublic}
+        setContent={setContent}
+        setTags={setTags}
+        setTitle={setTitle}
+        onCreatePost={createPostHandler}
+        saveDraft={saveDraft}
+      />
+    </>
   );
 }

@@ -1,39 +1,54 @@
-import { useState, useRef } from 'react';
+import { useRef, Dispatch, SetStateAction } from 'react';
 import MDEditor, { ICommand } from '@uiw/react-md-editor';
 import rehypeSanitize from 'rehype-sanitize';
 
 import styles from '../styles/PostFormPres.module.scss';
 import PostTagSectionPres from './PostTagSectionPres';
-import PostDraftCont from '@/views/post-draft/container/PostDraftListCont';
+import PostDraftButtonPres from '@/views/post-draft/presentational/PostDraftButtonPres';
 
 import Button from '@/shared/ui/button';
 import { useImageDrop } from '@/shared/hooks/useImageDrop';
-import { useModalStore } from '@/shared/stores/useModalStore';
+import { useThemeStore } from '@/shared/stores/useThemeStore';
 
 type Props = {
   customCommands: ICommand[];
   uploadImgFiles: (files: File[]) => Promise<string[]>;
+  title: string;
+  content: string | undefined;
+  tags: string[];
+  isAiUsed: number;
+  isPublic: number;
+  setIsAiUsed: Dispatch<SetStateAction<number>>;
+  setIsPublic: Dispatch<SetStateAction<number>>;
+  setContent: Dispatch<SetStateAction<string | undefined>>;
+  setTags: Dispatch<SetStateAction<string[]>>;
+  setTitle: Dispatch<SetStateAction<string>>;
+  onCreatePost: () => Promise<void>;
+  saveDraft: () => Promise<void>;
 };
 
-export default function PostFormPres({
-  customCommands,
-  uploadImgFiles,
-}: Props) {
-  /* 에디터 기본 옵션 */
-  const [value, setValue] = useState<string | undefined>('');
+export default function PostFormPres(props: Props) {
+  const {
+    customCommands,
+    uploadImgFiles,
+    title,
+    content,
+    tags,
+    isAiUsed,
+    isPublic,
+    setIsAiUsed,
+    setIsPublic,
+    setContent,
+    setTags,
+    setTitle,
+    onCreatePost,
+    saveDraft,
+  } = props;
 
-  /* 태그리스트 */
-  const [tags, setTags] = useState<string[]>([]);
-
-  const [isAiUsed, setIsAiUsed] = useState<number>(0); // 0: 사용 안함, 1: 사용함
-  const [isPublic, setIsPublic] = useState<number>(1); // 0: 비공개, 1: 공개
-
-  /* 제목 */
-  const titleRef = useRef<HTMLInputElement>(null);
   /* 이미지 드래그 앤 드랍을 위한 ref */
   const editorRef = useRef<HTMLDivElement>(null);
 
-  const { action } = useModalStore();
+  const { theme } = useThemeStore();
 
   const toggleAiUsage = () => {
     setIsAiUsed((prev) => (prev === 0 ? 1 : 0));
@@ -48,7 +63,7 @@ export default function PostFormPres({
     onDropImages: async (files) => {
       const urls = await uploadImgFiles(files);
       const markdown = urls.map((url) => `![image](${url})`).join('\n');
-      setValue((prev) => `${prev}\n${markdown}`);
+      setContent((prev) => `${prev}\n${markdown}`);
     },
   });
 
@@ -58,17 +73,18 @@ export default function PostFormPres({
         type="text"
         placeholder="제목을 작성해주세요"
         className={styles.titleInput}
-        ref={titleRef}
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
       />
       <PostTagSectionPres tags={tags} setTags={setTags} />
       <div
-        data-color-mode="light"
+        data-color-mode={theme === 'dark' ? 'dark' : 'light'}
         className={styles.editorLayout}
         ref={editorRef}
       >
         <MDEditor
-          value={value}
-          onChange={setValue}
+          value={content}
+          onChange={setContent}
           commands={customCommands}
           extraCommands={[]} // 오른쪽 툴바 빈배열
           enableScroll={true} // 스크롤
@@ -99,17 +115,10 @@ export default function PostFormPres({
         </div>
 
         <div className={styles.rightControls}>
-          <div className={styles.toggleButtonWrapper}>
-            <button className={styles.toggleButton}>임시저장</button>
-            <button
-              className={styles.toggleButton}
-              onClick={() => action.open(<PostDraftCont />)}
-            >
-              10
-            </button>
-          </div>
-
-          <Button variants="active">발행하기</Button>
+          <PostDraftButtonPres saveDraft={saveDraft} />
+          <Button variants="active" onClick={onCreatePost}>
+            발행하기
+          </Button>
         </div>
       </div>
     </div>

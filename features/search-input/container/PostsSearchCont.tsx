@@ -76,10 +76,24 @@ export default function PostsSearchCont({
       }, 0);
       return;
     }
+
+    const newChipIndex = chips.length;
     setChips((prev) => [...prev, { ...chip, value: chip.value.trim() }]);
     setInputValue('');
     setShowDropdown(false);
+
     setTimeout(() => {
+      // 새로 생성된 칩이 보이도록 스크롤 조정
+      if (chipRefs.current && chipRefs.current[newChipIndex]) {
+        chipRefs.current[newChipIndex]?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+
+          // 칩이 오른쪽에서 보이게 설정
+          inline: 'end',
+        });
+      }
+      // 그 후 input에 포커스
       inputRef.current?.focus();
     }, 0);
   };
@@ -99,6 +113,17 @@ export default function PostsSearchCont({
       }
     }
     setInputValue(value);
+
+    // 타이핑할 때 input이 보이도록 스크롤 조정
+    setTimeout(() => {
+      if (inputRef.current) {
+        inputRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'end',
+        });
+      }
+    }, 0);
   };
 
   // 드롭다운 항목 생성
