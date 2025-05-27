@@ -6,11 +6,10 @@ import { ICommand, commands } from '@uiw/react-md-editor';
 import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 
-import { PostDraftType } from '@/views/post-draft/types';
-
 import Image from '@/public/svgs/image.svg';
 import { getFirstImageUrlFromMarkdown } from '@/shared/utils/image';
 import { useDebounce } from '@/shared/hooks/useDebounce';
+import { useDraftStore } from '@/shared/stores/useDraftStore';
 
 /* 브라우저에서만 동작해야 하므로 SSR 비활성화 */
 const PostFormPres = dynamic(
@@ -36,15 +35,12 @@ export default function PostFormCont() {
   /* 공개 여부 (0: 비공개, 1: 공개) */
   const [isPublic, setIsPublic] = useState<number>(1);
 
-  /* 임시저장 글 리스트 */
-  const [draftList, setDraftList] = useState<PostDraftType[]>([]);
-
   /* 임시저장된 글 ID (있으면 수정, 없으면 새로 생성) */
   const [draftId, setDraftId] = useState<number>();
 
-  const [deletedId, setDeletedId] = useState<number>();
-
   const router = useRouter();
+
+  const { drafts, setDrafts, deleteDraft: onDelete } = useDraftStore();
 
   useEffect(() => {
     /** 임시 저장 리스트 가져오는 로직 */
@@ -57,16 +53,16 @@ export default function PostFormCont() {
 
       const result = await response.json();
 
-      setDraftList(result.data);
+      setDrafts(result.data);
     };
     getPostsDraftList();
-  }, [draftId, deletedId]);
+  }, [draftId]);
 
   /* 임시 저장 (draftId 유무에 따라 생성 또는 수정) */
   const saveDraft = async () => {
     const isNewDraft = !draftId;
 
-    if (isNewDraft && draftList.length >= MAX_DRAFT_COUNT) {
+    if (isNewDraft && drafts.length >= MAX_DRAFT_COUNT) {
       toast.error('임시 저장은 최대 10개까지 가능합니다.');
       return;
     }
@@ -193,8 +189,8 @@ export default function PostFormCont() {
         method: 'DELETE',
       });
       const deletedId = await res.json();
-      setDeletedId(deletedId);
-      console.log('삭제된 초안', deletedId);
+
+      onDelete(deletedId);
     }
   };
 
@@ -244,7 +240,6 @@ export default function PostFormCont() {
         setTitle={setTitle}
         onCreatePost={createPostHandler}
         saveDraft={saveDraft}
-        drafts={draftList}
         onDelete={deleteDraft}
       />
     </>
