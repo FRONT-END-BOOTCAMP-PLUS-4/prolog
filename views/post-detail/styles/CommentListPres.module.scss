@@ -15,6 +15,6 @@
 }
 
 .commentText {
-  font-size: $font-base-size;
+  @include font-sm;
   color: $theme-text-1;
 }

@@ -12,6 +12,6 @@
 }
 
 .commentGuide {
-  font-size: $font-base-size;
+  @include font-base;
   color: $theme-gray-4;
 }
