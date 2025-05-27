@@ -7,8 +7,9 @@
   border-radius: 8px;
   padding: 20px;
   position: absolute;
-  left: 35%;
-  background-color: $theme-white;
+  top: 20%;
+  left: 38%;
+  background-color:$theme-shade-2;
 }
 .toggle {
   width: 35px;
@@ -20,6 +21,7 @@
   align-items: center;
   position: relative;
   padding: 1px;
+  background-color: $theme-shade-4;
 
   .toggleCurrent {
     position: absolute;
@@ -72,6 +74,7 @@
   }
   .text{
     font-size:20px ;
+    color: $theme-gray-1;
   }
   .userList{
     display: flex;
@@ -79,5 +82,8 @@
     justify-content: center;
     margin-top: 20px;
     gap: 10px;
+  }
+  .userName{
+    color: $theme-shade-8;
   }
   

@@ -11,7 +11,6 @@ export default function SubscriptionPres({
 }: FollowingProps) {
   return (
     <>
-      {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
       <div onClick={followerHandler}>
         <Button variants={isFollowing ? 'secondary' : 'active'} size="small">
           {isFollowing ? '팔로잉' : '팔로우'}
