@@ -3,10 +3,12 @@ import localFont from 'next/font/local';
 
 import './global.scss';
 import styles from './styles/layout.module.scss';
+import Providers from './(auth)/providers';
 
 import Header from '@/app/header';
 import Modal from '@/shared/ui/modal';
 import ApplyTheme from '@/shared/ApplyTheme';
+import { auth } from '@/app/(auth)/auth';
 
 const pretendard = localFont({
   src: '../public/fonts/pretendard-medium.woff2',
@@ -20,22 +22,26 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+
   return (
     <html lang="ko" className={`${pretendard.className}`}>
       <body>
-        <ApplyTheme />
+        <Providers session={session}>
+          <ApplyTheme />
         <div className={styles.layout}>
-          <div className={styles.layout__header}>
-            <Header />
+            <div className={styles.layout__header}>
+              <Header />
+            </div>
+            <main className={styles.layout__main}>{children}</main>
           </div>
-          <main className={styles.layout__main}>{children}</main>
-        </div>
-        <Modal />
+          <Modal  />
+        </Providers>
       </body>
     </html>
   );
