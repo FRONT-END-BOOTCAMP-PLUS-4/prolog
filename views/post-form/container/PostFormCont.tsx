@@ -58,8 +58,19 @@ export default function PostFormCont() {
     getPostsDraftList();
   }, [draftId]);
 
+  const validatePost = () => {
+    const isValid = !!title && !!content;
+
+    if (!isValid) {
+      toast.error('제목과 글을 작성해주세요');
+    }
+    return isValid;
+  };
+
   /* 임시 저장 (draftId 유무에 따라 생성 또는 수정) */
   const saveDraft = async () => {
+    if (!validatePost()) return;
+
     const isNewDraft = !draftId;
 
     if (isNewDraft && drafts.length >= MAX_DRAFT_COUNT) {
@@ -150,9 +161,9 @@ export default function PostFormCont() {
 
   /* 블로그 게시글 생성 */
   const createPostHandler = async () => {
-    if (!title || !content) return;
+    if (!validatePost()) return;
 
-    const firstImg = getFirstImageUrlFromMarkdown(content);
+    const firstImg = getFirstImageUrlFromMarkdown(content!);
 
     const newPost = {
       title: title,
