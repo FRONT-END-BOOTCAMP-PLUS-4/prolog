@@ -10,7 +10,7 @@ import Button from '@/shared/ui/button';
 import { useImageDrop } from '@/shared/hooks/useImageDrop';
 import { useThemeStore } from '@/shared/stores/useThemeStore';
 import { useModalStore } from '@/shared/stores/useModalStore';
-import { useDraftStore } from '@/shared/stores/useDraftStore';
+import { useDraftStore } from '@/views/post-draft/stores/useDraftStore';
 
 type Props = {
   customCommands: ICommand[];

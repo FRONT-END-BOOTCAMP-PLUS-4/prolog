@@ -1,7 +1,7 @@
 import { TrashIcon, InfoCircledIcon } from '@radix-ui/react-icons';
 
 import styles from '../styles/PostDraftListPres.module.scss';
-import { useDraftStore } from '@/shared/stores/useDraftStore';
+import { useDraftStore } from '@/views/post-draft/stores/useDraftStore';
 
 type Props = {
   onDelete: (id: number) => void;
