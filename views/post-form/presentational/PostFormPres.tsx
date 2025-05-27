@@ -4,13 +4,13 @@ import rehypeSanitize from 'rehype-sanitize';
 
 import styles from '../styles/PostFormPres.module.scss';
 import PostTagSectionPres from './PostTagSectionPres';
-import PostDraftListPres from '@/views/post-draft/presentational/PostDraftListPres';
+import { useDraftStore } from '@/views/post-draft/stores/useDraftStore';
+import PostDraftListCont from '@/views/post-draft/container/PostDraftListCont';
 
 import Button from '@/shared/ui/button';
 import { useImageDrop } from '@/shared/hooks/useImageDrop';
 import { useThemeStore } from '@/shared/stores/useThemeStore';
 import { useModalStore } from '@/shared/stores/useModalStore';
-import { useDraftStore } from '@/views/post-draft/stores/useDraftStore';
 
 type Props = {
   customCommands: ICommand[];
@@ -27,7 +27,6 @@ type Props = {
   setTitle: Dispatch<SetStateAction<string>>;
   onCreatePost: () => Promise<void>;
   saveDraft: () => Promise<void>;
-  onDelete: (id: number) => void;
 };
 
 export default function PostFormPres(props: Props) {
@@ -46,7 +45,6 @@ export default function PostFormPres(props: Props) {
     setTitle,
     onCreatePost,
     saveDraft,
-    onDelete,
   } = props;
 
   /* 이미지 드래그 앤 드랍을 위한 ref */
@@ -131,9 +129,7 @@ export default function PostFormPres(props: Props) {
             </button>
             <button
               className={`${styles.toggleButton} ${styles.countButton}`}
-              onClick={() =>
-                action.open(<PostDraftListPres onDelete={onDelete} />)
-              }
+              onClick={() => action.open(<PostDraftListCont />)}
             >
               {drafts?.length}
             </button>

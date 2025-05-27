@@ -6,10 +6,11 @@ import { ICommand, commands } from '@uiw/react-md-editor';
 import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 
+import { useDraftStore } from '@/views/post-draft/stores/useDraftStore';
+
 import Image from '@/public/svgs/image.svg';
 import { getFirstImageUrlFromMarkdown } from '@/shared/utils/image';
 import { useDebounce } from '@/shared/hooks/useDebounce';
-import { useDraftStore } from '@/views/post-draft/stores/useDraftStore';
 
 /* 브라우저에서만 동작해야 하므로 SSR 비활성화 */
 const PostFormPres = dynamic(
@@ -40,7 +41,7 @@ export default function PostFormCont() {
 
   const router = useRouter();
 
-  const { drafts, setDrafts, deleteDraft: onDelete } = useDraftStore();
+  const { drafts, setDrafts } = useDraftStore();
 
   useEffect(() => {
     /** 임시 저장 리스트 가져오는 로직 */
@@ -107,8 +108,8 @@ export default function PostFormCont() {
     condition: !!title && !!content,
   });
 
-  /* 이미지 파일을 S3에 업로드 */
-  const uploadImageFiles = async (files: File[]) => {
+  /** S3 에 이미지 업로드  */
+  const uploadImageFilesToS3 = async (files: File[]) => {
     const formData = new FormData();
 
     files.forEach((file) => {
@@ -191,20 +192,6 @@ export default function PostFormCont() {
     router.push('/'); // 일단 home 으로 이동시킴
   };
 
-  /** 임시 저장 글 삭제 로직 */
-  const deleteDraft = async (draftId: number) => {
-    const confirmed = window.confirm('삭제하시겠습니까?');
-
-    if (confirmed) {
-      const res = await fetch(`/api/member/posts/drafts/?draftId=${draftId}`, {
-        method: 'DELETE',
-      });
-      const deletedId = await res.json();
-
-      onDelete(deletedId);
-    }
-  };
-
   /* 에디터 툴바에 사용할 커스텀 명령어 모음 */
   const customCommands: ICommand[] = [
     commands.title1,
@@ -217,7 +204,7 @@ export default function PostFormCont() {
     commands.strikethrough,
     commands.divider,
     commands.link,
-    createImageUploadCommand(uploadImageFiles),
+    createImageUploadCommand(uploadImageFilesToS3),
     commands.divider,
     commands.code,
     commands.quote,
@@ -238,7 +225,7 @@ export default function PostFormCont() {
       />
       <PostFormPres
         customCommands={customCommands}
-        uploadImgFiles={uploadImageFiles}
+        uploadImgFiles={uploadImageFilesToS3}
         title={title}
         content={content}
         tags={tags}
@@ -251,7 +238,6 @@ export default function PostFormCont() {
         setTitle={setTitle}
         onCreatePost={createPostHandler}
         saveDraft={saveDraft}
-        onDelete={deleteDraft}
       />
     </>
   );
