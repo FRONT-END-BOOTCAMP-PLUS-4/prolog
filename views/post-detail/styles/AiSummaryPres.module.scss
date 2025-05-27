@@ -11,12 +11,11 @@
 }
 
 .summaryTitle {
-  font-size: $font-title-sub-size;
-  font-weight: 600;
+  @include font-title-sub;
   color: $theme-soft-lavender;
 }
 
 .summaryItem {
-  font-size: $font-sm-size;
+  @include font-sm;
   color: $theme-gray-4;
 }
