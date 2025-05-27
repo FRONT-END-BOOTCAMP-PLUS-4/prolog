@@ -31,9 +31,5 @@ CSR은 클라이언트 사이드 렌더링이라고 합니다. 이는 SEO에 좋
 export default function BodyTextCont() {
   const { content, tags } = dummyPost;
 
-  return (
-    <>
-      <BodyTextPres body={content} tags={tags} />
-    </>
-  );
+  return <BodyTextPres body={content} tags={tags} />;
 }
