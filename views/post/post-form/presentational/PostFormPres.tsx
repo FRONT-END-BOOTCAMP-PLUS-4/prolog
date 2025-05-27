@@ -4,7 +4,7 @@ import rehypeSanitize from 'rehype-sanitize';
 
 import styles from '../styles/PostFormPres.module.scss';
 import PostTagSectionPres from './PostTagSectionPres';
-import PostDraftButtonPres from '@/views/post-draft/presentational/PostDraftButtonPres';
+import PostDraftButtonPres from '@/views/post/post-draft/presentational/PostDraftButtonPres';
 
 import Button from '@/shared/ui/button';
 import { useImageDrop } from '@/shared/hooks/useImageDrop';
