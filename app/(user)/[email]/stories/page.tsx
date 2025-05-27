@@ -4,7 +4,6 @@ import PostsSearchCont from '@/features/search-input';
 
 //style
 import styles from './styles.module.scss';
-import { LongCardPres } from '@/widgets/card';
 import CategoryListCont from '@/features/category-list/container/CategoryListCont';
 import { CardListCont } from '@/views/home/card-list';
 export default function Page() {
@@ -20,9 +19,10 @@ export default function Page() {
           </div>
           <div className={styles.categoryCardList}>
             <CategoryListCont />
-            <div className={styles.cardList}>
+            {/* 임시 적으로 주석처리 */}
+            {/* <div className={styles.cardList}>
               <CardListCont />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
