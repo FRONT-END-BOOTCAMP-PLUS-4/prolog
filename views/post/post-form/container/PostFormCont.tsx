@@ -6,7 +6,7 @@ import { ICommand, commands } from '@uiw/react-md-editor';
 import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 
-import { useDraftStore } from '@/views/post-draft/stores/useDraftStore';
+import { useDraftStore } from '@/views/post/post-draft/stores/useDraftStore';
 
 import Image from '@/public/svgs/image.svg';
 import { getFirstImageUrlFromMarkdown } from '@/shared/utils/image';

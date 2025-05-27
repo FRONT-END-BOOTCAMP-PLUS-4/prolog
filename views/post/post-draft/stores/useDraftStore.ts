@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { PostDraftType } from '@/views/post-draft/types';
+import { PostDraftType } from '../types';
 
 type DraftStore = {
   drafts: PostDraftType[];
