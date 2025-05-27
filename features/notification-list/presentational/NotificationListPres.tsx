@@ -4,6 +4,7 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { CheckCircledIcon } from '@radix-ui/react-icons';
+
 // slice
 import styles from '../styles/NotificationListPres.module.scss';
 import { NotificationItemType } from '../types';
@@ -58,22 +59,18 @@ export default function NotificationListPres({
               height={30}
             />
             <div className={styles.item}>
-              {item.type === 'comment' ? (
-                <div>
-                  <span className={styles.nickname}>{item.userNickname}</span>
-                  <span className={styles.comment}>의 댓글</span>
-                </div>
-              ) : (
-                <div>
-                  <span className={styles.nickname}>{item.userNickname}</span>
-                  <span className={styles.comment}>의 게시글</span>
-                </div>
-              )}
+              <div className={styles.title}>
+                <span className={styles.nickname}>{item.userNickname}</span>
+                <span className={styles.comment}>
+                  {item.type === 'comment' ? '의 댓글' : '의 게시글'}
+                </span>
+              </div>
               <span className={styles.content}>{item.content}</span>
               <span className={styles.postTitle}>{item.postTitle}</span>
+              <span className={styles.dateMobile}>{item.date}</span>
             </div>
             <div className={styles.iconContainer}>
-              <span className={styles.date}>{item.date}</span>
+              <span className={styles.dateDesktop}>{item.date}</span>
               {deleteMode ? (
                 <CheckCircledIcon
                   className={

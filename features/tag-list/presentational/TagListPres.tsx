@@ -2,6 +2,9 @@
 import styles from '../styles/TagList.module.scss';
 import { TagListPresProps } from '../types';
 
+// layer
+import Tag from '@/shared/ui/tag';
+
 export default function TagListPres({
   tags,
   shouldRoll,
@@ -15,15 +18,15 @@ export default function TagListPres({
         ref={tagsRef}
       >
         {tags.map((tag, idx) => (
-          <span className={styles.tagItem} key={`${tag}-${idx}`}>
+          <Tag className={styles.tagItem} key={`${tag}-${idx}`}>
             {tag}
-          </span>
+          </Tag>
         ))}
         {shouldRoll &&
           tags.map((tag, idx) => (
-            <span className={styles.tagItem} key={`clone-${tag}-${idx}`}>
+            <Tag className={styles.tagItem} key={`clone-${tag}-${idx}`}>
               {tag}
-            </span>
+            </Tag>
           ))}
       </div>
     </div>

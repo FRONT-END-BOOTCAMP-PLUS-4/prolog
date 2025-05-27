@@ -5,8 +5,18 @@
   align-items: center;
   gap: 8px;
   padding: 8px;
-  border-radius: 8px;
   cursor: pointer;
+  border-bottom: 1px solid $theme-shade-5;
+  width: 100%;
+}
+
+.notification img {
+  margin-left: 10px;
+  margin-right: 8px;
+}
+
+.notification:hover {
+  background-color: $theme-shade-2;
 }
 
 .item {
@@ -14,32 +24,63 @@
   flex: 1;
   flex-direction: column;
   justify-content: center;
+  min-width: 0; 
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
 }
 
 .nickname {
-  @include font-sm;
-  color: $theme-accent;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: $font-sm-size;
+  color: $theme-primary;
+  flex-shrink: 1; 
 }
 
 .comment {
-  @include font-sm;
+  flex-shrink: 0;
+  margin-left: 1px; 
+  font-size: $font-sm-size;
   color: $theme-text-1;
 }
 
 .content {
-  @include font-sm;
+  font-size: $font-sm-size;
+  line-height: 2;
   color: $theme-text-1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .postTitle {
-  @include font-xs;
-    color: $theme-gray-4;
+  font-size: $font-xs-size;
+  line-height: 1.5;
+  color: $theme-gray-4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.date {
+.dateDesktop {
   @include font-xs;
-  color: $theme-gray-1;
-  margin-bottom: 4px;
+  color: $theme-gray-4;
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dateMobile {
+  display: none;
 }
 
 .read {
@@ -48,25 +89,48 @@
   .nickname,
   .comment,
   .content,
-  .postTitle {
+  .postTitle,
+  .dateMobile,
+  .dateDesktop
+  {
     color: $theme-gray-1;
   }
 }
 
 .iconContainer {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-end;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
 }
 
 .icon {
   width: 16px;
   height: 16px;
+  color: $theme-gray-3;
 }
 
 .iconSelected {
   width: 16px;
   height: 16px;
-  color: $theme-accent;
+  color: $theme-primary;
+}
+
+@media (max-width:768px) {
+  .notification img {
+    display: none;
+  }
+
+  .dateDesktop {
+    display: none;
+  }
+
+  .dateMobile {
+  @include font-xs;
+  color: $theme-gray-4;
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  }
 }
