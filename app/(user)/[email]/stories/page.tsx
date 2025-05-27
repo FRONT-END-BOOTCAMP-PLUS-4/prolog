@@ -1,11 +1,11 @@
 //slice
-import ProfileCardCont from '@/views/profile-card/container/ProfileCardCont';
+import ProfileCardCont from '@/views/story/profile-card/container/ProfileCardCont';
 import PostsSearchCont from '@/features/search-input';
 
 //style
 import styles from './styles.module.scss';
 import CategoryListCont from '@/features/category-list/container/CategoryListCont';
-import { CardListCont } from '@/views/card-list';
+import { CardListCont } from '@/views/home/card-list';
 export default function Page() {
   return (
     <>
