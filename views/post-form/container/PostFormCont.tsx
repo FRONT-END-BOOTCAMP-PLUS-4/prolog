@@ -42,6 +42,8 @@ export default function PostFormCont() {
   /* 임시저장된 글 ID (있으면 수정, 없으면 새로 생성) */
   const [draftId, setDraftId] = useState<number>();
 
+  const [deletedId, setDeletedId] = useState<number>();
+
   const router = useRouter();
 
   useEffect(() => {
@@ -58,7 +60,7 @@ export default function PostFormCont() {
       setDraftList(result.data);
     };
     getPostsDraftList();
-  }, [draftId]);
+  }, [draftId, deletedId]);
 
   /* 임시 저장 (draftId 유무에 따라 생성 또는 수정) */
   const saveDraft = async () => {
@@ -69,14 +71,7 @@ export default function PostFormCont() {
       return;
     }
 
-    if (draftId) {
-      const result = await fetch('/api/member/posts/drafts', {
-        method: 'PUT',
-        body: JSON.stringify({ title, content, tags, draftId }),
-      });
-
-      await result.json();
-    } else {
+    if (isNewDraft) {
       const result = await fetch('/api/member/posts/drafts', {
         method: 'POST',
         body: JSON.stringify({ title, content, tags }),
@@ -85,6 +80,13 @@ export default function PostFormCont() {
       const response = await result.json();
 
       setDraftId(response.id);
+    } else {
+      const result = await fetch('/api/member/posts/drafts', {
+        method: 'PUT',
+        body: JSON.stringify({ title, content, tags, draftId }),
+      });
+
+      await result.json();
     }
 
     toast.success('임시저장 되었습니다');
@@ -94,7 +96,7 @@ export default function PostFormCont() {
   useDebounce({
     callback: saveDraft,
     delay: 30000, // 30초로 설정
-    deps: [content],
+    deps: [content, draftId],
     condition: !!title && !!content,
   });
 
@@ -191,6 +193,8 @@ export default function PostFormCont() {
         method: 'DELETE',
       });
       const deletedId = await res.json();
+      setDeletedId(deletedId);
+      console.log('삭제된 초안', deletedId);
     }
   };
 

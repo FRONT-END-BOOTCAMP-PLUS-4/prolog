@@ -74,9 +74,9 @@ export async function POST(req: NextRequest) {
 
     const repository = new PrPostDraftRepository();
     const getPostDraftList = new CreatePostDraftUsecase(repository);
-    const draftList = await getPostDraftList.execute(draftWithUserId);
+    const newDraft = await getPostDraftList.execute(draftWithUserId);
 
-    return NextResponse.json(draftList, { status: 201 });
+    return NextResponse.json(newDraft, { status: 201 });
   } catch (error) {
     console.error('임시 저장글 삭제 실패:', error);
     return NextResponse.json(
