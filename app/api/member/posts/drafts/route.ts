@@ -1,10 +1,10 @@
-import { CreatePostDraftDto } from '@/architecture/posts/application/dto/CreatePostDraftDto';
-import { UpdatePostDraftDto } from '@/architecture/posts/application/dto/UpdatePostDraftDto';
-import { CreatePostDraftUsecase } from '@/architecture/posts/application/usecases/CreatePostDraftUsecase';
-import { DeletePostDraftUsecase } from '@/architecture/posts/application/usecases/DeletePostDraftUsecase';
-import { GetPostDraftListtUsecase } from '@/architecture/posts/application/usecases/GetPostDraftListUsecase';
-import { UpdatePostDraftUsecase } from '@/architecture/posts/application/usecases/UpdatePostDraftUsecase';
-import { PrPostDraftRepository } from '@/architecture/posts/infra/PrPostsDraftRepository';
+import { CreatePostDraftDto } from '@/back/posts/application/dto/CreatePostDraftDto';
+import { UpdatePostDraftDto } from '@/back/posts/application/dto/UpdatePostDraftDto';
+import { CreatePostDraftUsecase } from '@/back/posts/application/usecases/CreatePostDraftUsecase';
+import { DeletePostDraftUsecase } from '@/back/posts/application/usecases/DeletePostDraftUsecase';
+import { GetPostDraftListtUsecase } from '@/back/posts/application/usecases/GetPostDraftListUsecase';
+import { UpdatePostDraftUsecase } from '@/back/posts/application/usecases/UpdatePostDraftUsecase';
+import { PrPostDraftRepository } from '@/back/posts/infra/PrPostsDraftRepository';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
