@@ -5,7 +5,7 @@ import PostsSearchCont from '@/features/search-input';
 //style
 import styles from './styles.module.scss';
 import CategoryListCont from '@/features/category-list/container/CategoryListCont';
-import { CardListCont } from '@/views/home/card-list';
+import MyBlogCardListCont from '@/views/story/myblog-card-list/container/MyBlogCardListCont';
 export default function Page() {
   return (
     <>
@@ -20,9 +20,9 @@ export default function Page() {
           <div className={styles.categoryCardList}>
             <CategoryListCont />
             {/* 임시 적으로 주석처리 */}
-            {/* <div className={styles.cardList}>
-              <CardListCont />
-            </div> */}
+            <div className={styles.cardList}>
+              <MyBlogCardListCont />
+            </div>
           </div>
         </div>
       </div>
