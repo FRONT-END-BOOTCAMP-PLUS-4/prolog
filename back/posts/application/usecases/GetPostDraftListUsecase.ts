@@ -1,17 +1,17 @@
 import dayjs from 'dayjs';
 import { PostsDraftRepository } from '../../domain/PostsDraftRepository';
-import { GetPostDraftDto } from '../dto/GetPostDraftDto';
+import { GetPostDraftViewDto } from '../dto/GetPostDraftViewDto';
 
 export class GetPostDraftListtUsecase {
   constructor(private readonly postDraftListRepository: PostsDraftRepository) {}
 
-  async execute(userId: string): Promise<GetPostDraftDto[]> {
+  async execute(userId: string): Promise<GetPostDraftViewDto[]> {
     try {
       const draftList = await this.postDraftListRepository.findAll(userId);
 
       return draftList.map(
         (draft) =>
-          new GetPostDraftDto(
+          new GetPostDraftViewDto(
             draft.id,
             draft.title,
             draft.content,

@@ -1,4 +1,4 @@
-export class GetPostDraftDto {
+export class GetPostDraftViewDto {
   constructor(
     public id: number,
     public title: string,
