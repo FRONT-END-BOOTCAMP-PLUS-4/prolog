@@ -14,7 +14,7 @@ import { useDebounce } from '@/shared/hooks/useDebounce';
 
 /* 브라우저에서만 동작해야 하므로 SSR 비활성화 */
 const PostFormPres = dynamic(
-  () => import('@/views/post-form/presentational/PostFormPres'),
+  () => import('@/views/post/post-form/presentational/PostFormPres'),
   { ssr: false },
 );
 

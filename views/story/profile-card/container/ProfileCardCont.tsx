@@ -3,7 +3,6 @@
 import { useState } from 'react';
 //slice
 import ProfileCardPres from '../presentational/ProfileCardPres';
-
 //type
 import { User } from '../types';
 

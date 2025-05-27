@@ -4,8 +4,9 @@ import rehypeSanitize from 'rehype-sanitize';
 
 import styles from '../styles/PostFormPres.module.scss';
 import PostTagSectionPres from './PostTagSectionPres';
+
 import { useDraftStore } from '@/views/post-draft/stores/useDraftStore';
-import PostDraftListCont from '@/views/post-draft/container/PostDraftListCont';
+import PostDraftListCont from '@/views/post/post-draft/container/PostDraftListCont';
 
 import Button from '@/shared/ui/button';
 import { useImageDrop } from '@/shared/hooks/useImageDrop';

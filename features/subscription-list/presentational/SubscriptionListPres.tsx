@@ -36,7 +36,6 @@ export default function SubscriptionListPres({
                   팔로잉
                 </span>
               </div>
-              {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
               <div
                 onClick={handleFollowListDisplay}
                 className={`${styles.toggle} ${isFollow ? '' : styles.movieToggle}`}
@@ -58,7 +57,7 @@ export default function SubscriptionListPres({
                   height={32}
                 />
               </div>
-              <div>{item.nickName}</div>
+              <div className={styles.userName}>{item.nickName}</div>
             </div>
           );
         })}
