@@ -1,6 +1,6 @@
-import { CreatePostDto } from '@/architecture/posts/application/dto/CreatePostDto';
-import { CreatePostUsecase } from '@/architecture/posts/application/usecases/CreatePostUsecase';
-import { PrPostRepository } from '@/architecture/posts/infra/PrPostsRepository';
+import { CreatePostDto } from '@/back/posts/application/dto/CreatePostDto';
+import { CreatePostUsecase } from '@/back/posts/application/usecases/CreatePostUsecase';
+import { PrPostRepository } from '@/back/posts/infra/PrPostsRepository';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
