@@ -38,9 +38,14 @@ export default function HeaderPres(): JSX.Element {
 
   const { theme, toggleTheme } = useThemeStore();
 
+  const [isNotificationDropdownVisible, setIsNotificationDropdownVisible] =
+    useState(false);
+
   // 드롭다운, 검색창 영역 ref
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchWrapperRef = useRef<HTMLDivElement>(null);
+
+  const notificationDropdownRef = useRef<HTMLDivElement>(null);
 
   // 검색창 영역 밖 클릭 시 검색창 닫기
   useOnClickOutside(
@@ -58,6 +63,16 @@ export default function HeaderPres(): JSX.Element {
       if (isProfileDropdownVisible) setIsProfileDropdownVisible(false);
     },
     isProfileDropdownVisible,
+  );
+
+  // 알람 드롭다운 영역 밖 클릭 시 드롭다운 닫기
+  useOnClickOutside(
+    notificationDropdownRef,
+    () => {
+      if (isNotificationDropdownVisible)
+        setIsNotificationDropdownVisible(false);
+    },
+    isNotificationDropdownVisible,
   );
 
   // 로그인 버튼 클릭
@@ -81,8 +96,9 @@ export default function HeaderPres(): JSX.Element {
     setIsProfileDropdownVisible((prev) => !prev);
   };
 
+  // 알람 버튼 클릭 시 드롭다운 토글
   const handleNotificationClick = () => {
-    open(<NotificationModalCont />, 'center');
+    setIsNotificationDropdownVisible((prev) => !prev);
   };
 
   return (
@@ -133,7 +149,8 @@ export default function HeaderPres(): JSX.Element {
           <MagnifyingGlassIcon className={styles.btnLogo} />
         </button>
 
-        <button onClick={toggleTheme}>
+        {/* 테마 변경 버튼 (임시) */}
+        <button className={styles.themeBtn} onClick={toggleTheme}>
           {theme === 'dark' ? (
             <MoonIcon className={styles.btnLogo} />
           ) : (
@@ -142,7 +159,7 @@ export default function HeaderPres(): JSX.Element {
         </button>
 
         {/* 글 작성 버튼 */}
-        <button className={`${styles.profileBtn} ${styles.writeBtn}`}>
+        <button className={styles.writeBtn}>
           <Link href="/member/story">
             <Pencil1Icon className={styles.btnLogo} />
           </Link>
@@ -157,12 +174,25 @@ export default function HeaderPres(): JSX.Element {
         ) : (
           <>
             {/* 알림 버튼 */}
-            <button
-              className={styles.alarmBtn}
-              onClick={handleNotificationClick}
+            <div
+              className={styles.notificationDropdownWrapper}
+              ref={notificationDropdownRef}
             >
-              <BellIcon className={styles.btnLogo} />
-            </button>
+              <button
+                className={styles.alarmBtn}
+                onClick={handleNotificationClick}
+                aria-haspopup="true"
+                aria-expanded={isNotificationDropdownVisible}
+                type="button"
+              >
+                <BellIcon className={styles.btnLogo} />
+              </button>
+              {isNotificationDropdownVisible && (
+                <div className={styles.notificationDropdownMenu}>
+                  <NotificationModalCont />
+                </div>
+              )}
+            </div>
             {/* 프로필 드롭다운 */}
             <div className={styles.profileDropdownWrapper} ref={dropdownRef}>
               <button
@@ -179,7 +209,7 @@ export default function HeaderPres(): JSX.Element {
                   height={24}
                 />
               </button>
-              <button>
+              <button onClick={handleProfileBtnClick}>
                 <ChevronDownIcon
                   className={`${styles.arrowIcon} ${
                     isProfileDropdownVisible ? styles.arrowIconOpen : ''

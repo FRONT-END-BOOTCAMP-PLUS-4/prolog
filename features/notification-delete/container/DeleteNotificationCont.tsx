@@ -1,4 +1,6 @@
 'use client';
+
+// layer
 import Button from '@/shared/ui/button';
 
 type Props = {
@@ -11,8 +13,8 @@ export default function DeleteNotificationCont({ selectedIds }: Props) {
   };
 
   return (
-    <Button size="small" onClick={handleDelete}>
-      삭제하기
+    <Button style={{ border: 'none' }} size="small" onClick={handleDelete}>
+      삭제
     </Button>
   );
 }
