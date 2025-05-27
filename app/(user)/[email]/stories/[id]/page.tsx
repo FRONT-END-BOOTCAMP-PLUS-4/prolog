@@ -11,7 +11,7 @@ import {
   CommentInput,
   CommentList,
   CommentLoginPrompt,
-} from '@/views/post-detail';
+} from '@/views/detail/post-detail';
 
 export default function Page() {
   const dummy = {
