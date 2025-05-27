@@ -32,7 +32,11 @@ export default function Page() {
             date={dummy.date}
             onClick={() => {}}
           />
-          <Button variants="active" size="small">
+          <Button
+            style={{ padding: '0.2rem 0.5rem', fontSize: '13px' }}
+            variants="active"
+            size="small"
+          >
             팔로우
           </Button>
         </div>

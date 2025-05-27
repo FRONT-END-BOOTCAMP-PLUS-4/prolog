@@ -1,0 +1,13 @@
+@use "@styles/variables.scss" as *;
+
+.bodyText {
+  font-size: $font-sm-size;
+  padding: 16px ;
+}
+
+.tagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 16px ;
+}

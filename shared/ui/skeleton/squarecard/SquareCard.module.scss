@@ -1,0 +1,105 @@
+@use '@styles/variables.scss' as *;
+
+.skeleton {
+  pointer-events: none;
+  user-select: none;
+}
+
+.skeletonBox {
+  background: linear-gradient(90deg, $theme-shade-3 25%, $theme-shade-2 50%, $theme-shade-3 75%);
+  background-size: 400% 100%;
+  animation: skeletonLoading 1.2s infinite linear;
+  border-radius: 8px;
+}
+
+.container {
+  background: $theme-shade-2;
+  border-radius: 8px;
+  box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  height: 24.5rem;
+  padding: 0;
+}
+
+.flexGrowArea {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto; 
+  min-height: 0;
+}
+
+.iconWrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  height: 10rem;
+  cursor: pointer;
+  height: 10rem; 
+}
+
+.content {
+  flex: 1 1 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: .8rem 1rem 0 1rem;
+}
+
+.title {
+  font-size:$font-xl-size;
+  font-weight: $font-title-weight;
+  line-height: 2rem;
+}
+
+.descWithImg {
+  font-size: $font-base-size;
+  color: $theme-text-2;
+}
+
+.tagWrap {
+  padding: 0 10px 12px 10px;
+}
+
+.profileBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-top: 1px solid $theme-gray-4;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background: $theme-shade-2;
+  gap: 41px;
+}
+
+.profileInfo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.mainIcon{
+  display: flex;
+  gap: 16px; 
+}
+
+.iconTextGroup {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+@keyframes skeletonLoading {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}

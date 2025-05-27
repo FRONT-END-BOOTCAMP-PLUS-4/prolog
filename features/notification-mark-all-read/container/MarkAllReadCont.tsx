@@ -1,4 +1,6 @@
 'use client';
+
+// layer
 import Button from '@/shared/ui/button';
 
 export default function MarkAllReadCont() {
@@ -8,7 +10,7 @@ export default function MarkAllReadCont() {
   };
 
   return (
-    <Button size="small" onClick={handleClick}>
+    <Button style={{ border: 'none' }} size="small" onClick={handleClick}>
       전체읽음
     </Button>
   );

@@ -1,3 +1,4 @@
+'use client'
 // package
 import Image from 'next/image';
 // slice
@@ -6,6 +7,7 @@ import styles from '../styles/LoginFormPres.module.scss';
 import Button from '@/shared/ui/button';
 import Logo from '@/shared/ui/logo';
 import CleanIcon from '@/public/svgs/clean.svg';
+import { signIn } from "next-auth/react"; 
 
 export default function LoginFormPres() {
   return (
@@ -14,14 +16,12 @@ export default function LoginFormPres() {
         <div className={styles.inner}>
           {/* 로고 */}
           <Logo />
-          {/* <CleanIcon/> */}
-          {/* <Image src={CleanIcon} alt="clear" width={24} height={24} /> */}
           {/* 안내문구 */}
           <div className={styles.welcome}>BLOG에 오신것을 환영합니다.</div>
           <div className={styles.guide}>로그인 방식을 선택해주세요</div>
           {/* 버튼 영역 */}
           <div className={styles.btns}>
-            <Button variants="theme" asChild>
+            <Button variants="theme" asChild onClick={() => signIn('github', {redirectTo: '/login-ssr'})}>
               <div className={styles.btnInner}>
                 <Image
                   src="/svgs/github-mark.svg"
@@ -32,7 +32,7 @@ export default function LoginFormPres() {
                 <span>GitHub 로그인</span>
               </div>
             </Button>
-            <Button asChild>
+            <Button asChild onClick={() => signIn('google', {redirectTo: '/login-csr'})}>
               <div className={styles.btnInner}>
                 <Image
                   src="/svgs/google.webp"
@@ -40,7 +40,7 @@ export default function LoginFormPres() {
                   width={24}
                   height={24}
                 />
-                <span>Google 로그인</span>
+                <span >Google 로그인</span>
               </div>
             </Button>
           </div>

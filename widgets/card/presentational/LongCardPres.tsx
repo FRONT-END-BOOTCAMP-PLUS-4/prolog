@@ -1,6 +1,7 @@
 // package
 import Image from 'next/image';
 import Link from 'next/link';
+import { ChatBubbleIcon } from '@radix-ui/react-icons';
 
 // slice
 import styles from '../styles/LongCardPres.module.scss';
@@ -42,12 +43,7 @@ export default function LongCardPres({ data }: Props) {
           </Link>
           <div className={styles.bottom}>
             <div className={styles.iconTextGroup}>
-              <Image
-                src="/svgs/comment.svg"
-                alt="comment"
-                width={15}
-                height={15}
-              />
+              <ChatBubbleIcon className={styles.chatIcon} />
               <span className={styles.iconCount}>{data.commentCount}</span>
             </div>
             <div className={styles.iconTextGroup}>

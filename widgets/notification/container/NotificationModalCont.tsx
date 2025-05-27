@@ -5,6 +5,7 @@ export default function NotificationModalCont() {
   const [deleteMode, setDeleteMode] = useState<boolean>(false);
   const [allNotificationIds, setAllNotificationIds] = useState<number[]>([]);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
+  const [isOpen, setIsOpen] = useState(true);
 
   const toggleSelect = (notificationItemId: number) => {
     setSelectedIds((prev) =>
@@ -32,6 +33,8 @@ export default function NotificationModalCont() {
     setSelectedIds([]);
   };
 
+  if (!isOpen) return null;
+
   return (
     <NotificationModalPres
       deleteMode={deleteMode}
@@ -41,7 +44,7 @@ export default function NotificationModalCont() {
       onToggleDeleteMode={startDeleteMode}
       setAllNotificationIds={setAllNotificationIds}
       onSelectAll={onSelectAll}
-      onClose={() => console.log('닫기')}
+      onClose={() => setIsOpen(false)}
     />
   );
 }
