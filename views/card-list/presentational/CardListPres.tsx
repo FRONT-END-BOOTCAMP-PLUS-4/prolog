@@ -20,7 +20,7 @@ export default function CardListPres({
   sortOptions,
   isLoading = false,
 }: CardListPresProps) {
-  const skeletonCount = 6;
+  const skeletonCount = items.length === 0 ? 8 : items.length;
   return (
     <div>
       <div className={styles.filterBar}>
