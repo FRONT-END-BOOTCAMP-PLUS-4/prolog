@@ -19,4 +19,5 @@ export type CardListPresProps = {
   setSort: (sort: 'latest' | 'popular') => void;
   items: CardData[];
   sortOptions: { label: string; value: string }[];
+  isLoading?: boolean;
 };

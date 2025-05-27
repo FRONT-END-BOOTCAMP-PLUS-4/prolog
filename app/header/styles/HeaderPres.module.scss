@@ -53,9 +53,9 @@
   z-index: 1;
 }
 
-
-.writeBtn {
+.themeBtn {
   display: flex;
+  cursor: pointer;
   
   &:hover,
   &:focus-visible {
@@ -63,8 +63,22 @@
     border-radius: 50%;
     .btnLogo {
       color: $theme-soft-lavender;
+    }
   }
 }
+
+.writeBtn {
+  display: flex;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    background-color: $theme-shade-3;
+    border-radius: 50%;
+    .btnLogo {
+      color: $theme-soft-lavender;
+    }
+  }
 }
 
 .alarmBtn {
@@ -114,6 +128,10 @@
   justify-content: center;
 }
 
+.arrowIcon:hover {
+  cursor: pointer;
+}
+
 .arrowIconOpen {
   transform: rotate(180deg);
 }
@@ -152,7 +170,7 @@
 .dropdownItem {
   display: flex;
   padding: .625rem 1rem;
-  color: $theme-gray-4;
+  color: $theme-gray-5;
   text-decoration: none;
   font-size: $font-sm-size;
   cursor: pointer;
@@ -165,6 +183,23 @@
 
 .dropdownItem:hover {
   background-color:$theme-shade-2;
+}
+
+.notificationDropdownWrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.notificationDropdownMenu {
+  position: absolute;
+  top: 110%;
+  right: 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 6px;
+  z-index: 1;
+  transition: background 0.15s;
+  animation: slideDown 0.2s ease-out;
+  background: $theme-shade-1;
 }
 
 @keyframes slideDown {
@@ -183,7 +218,7 @@
 }
 
 .logoutItem:hover {
-  background-color: $theme-shade-8;
+  background-color: rgba(255, 0, 0, 0.03);
 }
 
 .dropdownDivider {

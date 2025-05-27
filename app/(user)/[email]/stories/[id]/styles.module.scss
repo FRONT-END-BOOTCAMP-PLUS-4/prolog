@@ -32,5 +32,6 @@
 
 .commentTitle {
   @include font-xl;
+  font-size: $font-base-size;
   color: $theme-text-2;
 }
