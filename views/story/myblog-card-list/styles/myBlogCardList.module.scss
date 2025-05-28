@@ -1,0 +1,22 @@
+.myBlogContainer{
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+.selectContainer {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; // 요소가 넘칠 때 줄바꿈 허용
+}
+
+@media (max-width: 600px) {
+  .selectContainer {
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+.selectContainer > * {
+  min-width: 0;
+}

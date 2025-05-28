@@ -17,6 +17,7 @@
   max-width: 1200px;
   width: 100%;
   display: flex;
+  gap: 110px;
 
   @media (max-width: 754px) {
     flex-direction: column;
@@ -29,7 +30,7 @@
   flex-direction: column;
   gap: 30px;
   flex: 2;
-  margin-left: 10%;
+  max-width: 100%;
 }
 @media (max-width: 768px) {
   .cardFollowFlex {
