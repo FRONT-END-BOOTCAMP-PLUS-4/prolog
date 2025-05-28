@@ -1,7 +1,8 @@
 'use client';
 
-import Button from '@/shared/ui/button';
+import { useParams, useRouter } from 'next/navigation';
 import styles from './styles.module.scss';
+import Button from '@/shared/ui/button';
 import { LikeButton } from '@/features/like';
 import { BookmarkButton } from '@/features/bookmark';
 import Profile from '@/shared/ui/profile';
@@ -12,17 +13,38 @@ import {
   CommentList,
   CommentLoginPrompt,
 } from '@/views/detail/post-detail';
+import { EditButtonCont } from '@/features/edit';
+import { DeleteButtonCont } from '@/features/delete';
 
 export default function Page() {
+  const params = useParams();
+  const router = useRouter();
   const dummy = {
     userNickName: 'userNickName',
     date: '2025-01-01',
   };
 
+  const onEditPost = () => {
+    router.push(`/member/story/edit/${params.id}`);
+  };
+
+  const onDeletePost = () => {
+    // 삭제 api 호출
+    console.log('Post deleted');
+  };
+
   return (
     <div className={styles.container}>
       {/* 제목 */}
-      <div className={styles.title}>CSR이란</div>
+      <div className={styles.titleContainer}>
+        <h1 className={styles.titleText}>CSR이란?</h1>
+        <div className={styles.actionButtons}>
+          {/* 수정 및 삭제 버튼 */}
+          <EditButtonCont onEdit={onEditPost} />
+          <span>|</span>
+          <DeleteButtonCont onDelete={onDeletePost} />
+        </div>
+      </div>
 
       <div className={styles.profileLayout}>
         {/* 프로필/팔로우 바 */}
