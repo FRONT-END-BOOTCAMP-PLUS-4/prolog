@@ -1,7 +1,8 @@
 'use client';
 
-import Button from '@/shared/ui/button';
+import { useParams, useRouter } from 'next/navigation';
 import styles from './styles.module.scss';
+import Button from '@/shared/ui/button';
 import { LikeButton } from '@/features/like';
 import { BookmarkButton } from '@/features/bookmark';
 import Profile from '@/shared/ui/profile';
@@ -12,7 +13,6 @@ import {
   CommentList,
   CommentLoginPrompt,
 } from '@/views/detail/post-detail';
-import { useParams, useRouter } from 'next/navigation';
 import { EditButtonCont } from '@/features/edit';
 import { DeleteButtonCont } from '@/features/delete';
 

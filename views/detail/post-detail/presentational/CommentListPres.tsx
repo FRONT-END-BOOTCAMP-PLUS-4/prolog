@@ -1,12 +1,11 @@
 'use client';
 
-// slice
+import { useState } from 'react';
 import styles from '../styles/CommentListPres.module.scss';
-import Profile from '@/shared/ui/profile';
 import { Comment } from '../types';
+import Profile from '@/shared/ui/profile';
 import { EditButtonCont } from '@/features/edit';
 import { DeleteButtonCont } from '@/features/delete';
-import { useState } from 'react';
 
 type Props = {
   comments: Comment[];
