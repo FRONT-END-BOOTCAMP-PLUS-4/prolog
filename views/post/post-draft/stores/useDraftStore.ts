@@ -7,8 +7,8 @@ type DraftStore = {
   setDrafts: (list: BlogPostDraftType[]) => void;
   deleteDraft: (id: number) => void;
 
-  selectedPost: BlogPostDraftType | BlogPostType | null;
-  setPost: (selectedPost: BlogPostDraftType | BlogPostType) => void;
+  selectedPost: BlogPostType | null;
+  setPost: (selectedPost: BlogPostType) => void;
 };
 
 export const useDraftStore = create<DraftStore>((set) => ({

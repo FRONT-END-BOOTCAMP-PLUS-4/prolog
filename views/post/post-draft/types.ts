@@ -3,6 +3,7 @@ export type BlogPostDraftType = {
   title: string;
   content: string;
   createdAt: string;
+  tags: string[];
 };
 
 export type BlogPostType = {
@@ -11,12 +12,12 @@ export type BlogPostType = {
   content: string;
   tags: string[];
   createdAt: string;
-  updatedAt: string;
+  userId?: string;
+  updatedAt?: string;
   aiSummary?: string;
-  isPublic: number;
-  userId: string;
-  categoryId: number;
+  isPublic?: number;
+  categoryId?: number;
   thumbnailUrl?: string;
-  aiUsageCount: number;
-  useAi: number;
+  aiUsageCount?: number;
+  useAi?: number;
 };

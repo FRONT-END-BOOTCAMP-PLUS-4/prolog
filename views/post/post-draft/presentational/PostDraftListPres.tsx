@@ -31,14 +31,15 @@ export default function PostDraftListPres({ onDelete, closeModal }: Props) {
         </header>
         <div className={styles.list}>
           {drafts.map((data) => (
-            <div
-              className={styles.item}
-              key={data.id}
-              onClick={() => handleSelectDraft(data)}
-            >
+            <div className={styles.item} key={data.id}>
               <span className={styles.date}>{data.createdAt}</span>
               <div className={styles.titleWrapper}>
-                <span className={styles.title}>{data.title}</span>
+                <span
+                  className={styles.title}
+                  onClick={() => handleSelectDraft(data)}
+                >
+                  {data.title}
+                </span>
                 <TrashIcon
                   className={styles.icon}
                   onClick={() => onDelete(data.id)}

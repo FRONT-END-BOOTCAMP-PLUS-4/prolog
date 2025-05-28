@@ -21,6 +21,8 @@ const PostFormPres = dynamic(
 const MAX_DRAFT_COUNT = 10;
 
 export default function PostFormCont() {
+  const { drafts, setDrafts, selectedPost } = useDraftStore();
+
   /* 에디터 본문 내용 */
   const [content, setContent] = useState<string | undefined>('');
 
@@ -41,9 +43,17 @@ export default function PostFormCont() {
 
   const router = useRouter();
 
-  const { drafts, setDrafts, selectedPost } = useDraftStore();
-
-  console.log('선택한 포스트', selectedPost);
+  /** 임시저장 및 수정 데이터 있다면 초깃값 설정 */
+  useEffect(() => {
+    if (selectedPost) {
+      setTitle(selectedPost.title || '');
+      setContent(selectedPost.content);
+      setTags(selectedPost.tags || []);
+      setIsAiUsed(selectedPost.useAi || 0);
+      setIsPublic(selectedPost.isPublic || 1);
+      setDraftId(selectedPost.id);
+    }
+  }, [selectedPost]);
 
   useEffect(() => {
     /** 임시 저장 리스트 가져오는 로직 */
