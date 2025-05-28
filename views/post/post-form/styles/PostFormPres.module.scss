@@ -39,6 +39,8 @@ $footer-height: 60px;
         border: none;
         box-shadow: none;
         overflow: hidden;
+      
+
     }
 
     :global(.w-md-editor-toolbar) {
@@ -57,7 +59,7 @@ $footer-height: 60px;
     :global(.w-md-editor-content) {
         /* 에디터 커스텀 */
         flex: 1;
-        overflow-y: auto;  
+        overflow-y: auto;     
     }
 
     :global(.w-md-editor-preview) {
@@ -96,7 +98,7 @@ $footer-height: 60px;
 }
 
 
-.toggleButtonWrapper {
+.buttonWrapper {
   display: flex;
   border-radius: 8px;
   overflow: hidden;

@@ -38,7 +38,8 @@
         "useTemplate": "off",
         "useImportType": "off",
         "noVar": "off",
-        "useNodejsImportProtocol": "off"
+        "useNodejsImportProtocol": "off",
+        "noNonNullAssertion": "off"
       },
       "suspicious": {
         "noArrayIndexKey": "off"

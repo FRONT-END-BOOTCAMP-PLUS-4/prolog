@@ -1,14 +1,15 @@
 import { TrashIcon, InfoCircledIcon } from '@radix-ui/react-icons';
 
 import styles from '../styles/PostDraftListPres.module.scss';
-import { PostDraftType } from '../types';
+import { useDraftStore } from '@/views/post/post-draft/stores/useDraftStore';
 
 type Props = {
-  drafts: PostDraftType[];
   onDelete: (id: number) => void;
 };
 
-export default function PostDraftListPres({ drafts, onDelete }: Props) {
+export default function PostDraftListPres({ onDelete }: Props) {
+  const { drafts } = useDraftStore();
+
   return (
     <div className={styles.bottomSheet} onClick={(e) => e.stopPropagation()}>
       <div className={styles.layout}>

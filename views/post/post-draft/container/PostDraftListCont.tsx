@@ -1,36 +1,22 @@
-import { useEffect, useState } from 'react';
+import PostDraftListPres from '../presentational/PostDraftListPres';
+import { useDraftStore } from '../stores/useDraftStore';
 
-import PostDraftPres from '../presentational/PostDraftListPres';
-import { PostDraftType } from '../types';
-
-export default function PostDraftCont() {
-  const [draftList, setDraftList] = useState<PostDraftType[]>([]);
-
-  useEffect(() => {
-    /** 임시 저장 리스트 가져오는 로직 */
-    const getPostsDraftList = async () => {
-      const response = await fetch('/api/member/posts/drafts');
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch post draftList');
-      }
-
-      const result = await response.json();
-      setDraftList(result.data);
-    };
-
-    getPostsDraftList();
-  }, []);
+export default function PostDraftListCont() {
+  const { deleteDraft: onDelete } = useDraftStore();
 
   /** 임시 저장 글 삭제 로직 */
-  const handleDeletePostDraft = async (draftId: number) => {
+  const deleteDraft = async (draftId: number) => {
     const confirmed = window.confirm('삭제하시겠습니까?');
 
     if (confirmed) {
-      console.log(`${draftId}번 임시글 삭제`);
-      await fetch(`/api/member/posts/drafts/?draftId=${draftId}`);
+      const res = await fetch(`/api/member/posts/drafts/?draftId=${draftId}`, {
+        method: 'DELETE',
+      });
+      const deletedId = await res.json();
+
+      onDelete(deletedId);
     }
   };
 
-  return <PostDraftPres drafts={draftList} onDelete={handleDeletePostDraft} />;
+  return <PostDraftListPres onDelete={deleteDraft} />;
 }
