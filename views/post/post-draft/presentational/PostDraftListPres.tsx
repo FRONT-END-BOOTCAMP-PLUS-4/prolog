@@ -8,7 +8,9 @@ type Props = {
 };
 
 export default function PostDraftListPres({ onDelete }: Props) {
-  const { drafts } = useDraftStore();
+  const { drafts, setDraft, selectedDraft } = useDraftStore();
+
+  console.log(selectedDraft);
 
   return (
     <div className={styles.bottomSheet} onClick={(e) => e.stopPropagation()}>
@@ -24,7 +26,11 @@ export default function PostDraftListPres({ onDelete }: Props) {
         </header>
         <div className={styles.list}>
           {drafts.map((data) => (
-            <div className={styles.item} key={data.id}>
+            <div
+              className={styles.item}
+              key={data.id}
+              onClick={() => setDraft(data)}
+            >
               <span className={styles.date}>{data.createdAt}</span>
               <div className={styles.titleWrapper}>
                 <span className={styles.title}>{data.title}</span>
