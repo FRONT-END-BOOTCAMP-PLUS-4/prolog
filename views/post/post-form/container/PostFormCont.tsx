@@ -6,11 +6,10 @@ import { ICommand, commands } from '@uiw/react-md-editor';
 import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 
-import { useDraftStore } from '@/views/post/post-draft/stores/useDraftStore';
-
 import Image from '@/public/svgs/image.svg';
 import { getFirstImageUrlFromMarkdown } from '@/shared/utils/image';
 import { useDebounce } from '@/shared/hooks/useDebounce';
+import { usePostEditorStore } from '../../stores/usePostEditorStore';
 
 /* 브라우저에서만 동작해야 하므로 SSR 비활성화 */
 const PostFormPres = dynamic(
@@ -21,7 +20,7 @@ const PostFormPres = dynamic(
 const MAX_DRAFT_COUNT = 10;
 
 export default function PostFormCont() {
-  const { drafts, setDrafts, selectedPost } = useDraftStore();
+  const { drafts, setDrafts, selectedPost } = usePostEditorStore();
 
   /* 에디터 본문 내용 */
   const [content, setContent] = useState<string | undefined>('');

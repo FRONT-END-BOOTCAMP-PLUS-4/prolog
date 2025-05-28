@@ -1,8 +1,9 @@
 import { TrashIcon, InfoCircledIcon } from '@radix-ui/react-icons';
 
 import styles from '../styles/PostDraftListPres.module.scss';
-import { useDraftStore } from '@/views/post/post-draft/stores/useDraftStore';
+
 import { BlogPostDraftType } from '../types';
+import { usePostEditorStore } from '../../stores/usePostEditorStore';
 
 type Props = {
   onDelete: (id: number) => void;
@@ -10,10 +11,10 @@ type Props = {
 };
 
 export default function PostDraftListPres({ onDelete, closeModal }: Props) {
-  const { drafts, setPost } = useDraftStore();
+  const { drafts, setSelectedPost } = usePostEditorStore();
 
   const handleSelectDraft = (data: BlogPostDraftType) => {
-    setPost(data);
+    setSelectedPost(data);
     closeModal();
   };
 

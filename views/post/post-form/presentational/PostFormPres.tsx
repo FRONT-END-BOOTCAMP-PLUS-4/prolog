@@ -5,13 +5,13 @@ import rehypeSanitize from 'rehype-sanitize';
 import styles from '../styles/PostFormPres.module.scss';
 import PostTagSectionPres from './PostTagSectionPres';
 
-import { useDraftStore } from '@/views/post/post-draft/stores/useDraftStore';
 import PostDraftListCont from '@/views/post/post-draft/container/PostDraftListCont';
 
 import Button from '@/shared/ui/button';
 import { useImageDrop } from '@/shared/hooks/useImageDrop';
 import { useThemeStore } from '@/shared/stores/useThemeStore';
 import { useModalStore } from '@/shared/stores/useModalStore';
+import { usePostEditorStore } from '../../stores/usePostEditorStore';
 
 type Props = {
   customCommands: ICommand[];
@@ -53,7 +53,7 @@ export default function PostFormPres(props: Props) {
 
   const { theme } = useThemeStore();
   const { action } = useModalStore();
-  const { drafts } = useDraftStore();
+  const { drafts } = usePostEditorStore();
 
   const toggleAiUsage = () => {
     setIsAiUsed((prev) => (prev === 0 ? 1 : 0));

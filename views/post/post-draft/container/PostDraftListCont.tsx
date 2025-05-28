@@ -1,12 +1,12 @@
+import { usePostEditorStore } from '../../stores/usePostEditorStore';
 import PostDraftListPres from '../presentational/PostDraftListPres';
-import { useDraftStore } from '../stores/useDraftStore';
 
 type Props = {
   closeModal: () => void;
 };
 
 export default function PostDraftListCont({ closeModal }: Props) {
-  const { deleteDraft: onDelete } = useDraftStore();
+  const { deleteDraft: onDelete } = usePostEditorStore();
 
   /** 임시 저장 글 삭제 로직 */
   const deleteDraft = async (draftId: number) => {
