@@ -49,16 +49,6 @@ export type Comment = $Result.DefaultSelection<Prisma.$CommentPayload>
  */
 export type Subscribe = $Result.DefaultSelection<Prisma.$SubscribePayload>
 /**
- * Model Provider
- * 
- */
-export type Provider = $Result.DefaultSelection<Prisma.$ProviderPayload>
-/**
- * Model UserProvider
- * 
- */
-export type UserProvider = $Result.DefaultSelection<Prisma.$UserProviderPayload>
-/**
  * Model Category
  * 
  */
@@ -263,26 +253,6 @@ export class PrismaClient<
     * ```
     */
   get subscribe(): Prisma.SubscribeDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.provider`: Exposes CRUD operations for the **Provider** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Providers
-    * const providers = await prisma.provider.findMany()
-    * ```
-    */
-  get provider(): Prisma.ProviderDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.userProvider`: Exposes CRUD operations for the **UserProvider** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more UserProviders
-    * const userProviders = await prisma.userProvider.findMany()
-    * ```
-    */
-  get userProvider(): Prisma.UserProviderDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.category`: Exposes CRUD operations for the **Category** model.
@@ -750,8 +720,6 @@ export namespace Prisma {
     PostLike: 'PostLike',
     Comment: 'Comment',
     Subscribe: 'Subscribe',
-    Provider: 'Provider',
-    UserProvider: 'UserProvider',
     Category: 'Category',
     PostTemp: 'PostTemp'
   };
@@ -772,7 +740,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "blogPost" | "notification" | "bookMark" | "postLike" | "comment" | "subscribe" | "provider" | "userProvider" | "category" | "postTemp"
+      modelProps: "user" | "blogPost" | "notification" | "bookMark" | "postLike" | "comment" | "subscribe" | "category" | "postTemp"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1294,154 +1262,6 @@ export namespace Prisma {
           }
         }
       }
-      Provider: {
-        payload: Prisma.$ProviderPayload<ExtArgs>
-        fields: Prisma.ProviderFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.ProviderFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProviderPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.ProviderFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProviderPayload>
-          }
-          findFirst: {
-            args: Prisma.ProviderFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProviderPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.ProviderFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProviderPayload>
-          }
-          findMany: {
-            args: Prisma.ProviderFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProviderPayload>[]
-          }
-          create: {
-            args: Prisma.ProviderCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProviderPayload>
-          }
-          createMany: {
-            args: Prisma.ProviderCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.ProviderCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProviderPayload>[]
-          }
-          delete: {
-            args: Prisma.ProviderDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProviderPayload>
-          }
-          update: {
-            args: Prisma.ProviderUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProviderPayload>
-          }
-          deleteMany: {
-            args: Prisma.ProviderDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.ProviderUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.ProviderUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProviderPayload>[]
-          }
-          upsert: {
-            args: Prisma.ProviderUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$ProviderPayload>
-          }
-          aggregate: {
-            args: Prisma.ProviderAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateProvider>
-          }
-          groupBy: {
-            args: Prisma.ProviderGroupByArgs<ExtArgs>
-            result: $Utils.Optional<ProviderGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.ProviderCountArgs<ExtArgs>
-            result: $Utils.Optional<ProviderCountAggregateOutputType> | number
-          }
-        }
-      }
-      UserProvider: {
-        payload: Prisma.$UserProviderPayload<ExtArgs>
-        fields: Prisma.UserProviderFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.UserProviderFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProviderPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.UserProviderFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProviderPayload>
-          }
-          findFirst: {
-            args: Prisma.UserProviderFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProviderPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.UserProviderFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProviderPayload>
-          }
-          findMany: {
-            args: Prisma.UserProviderFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProviderPayload>[]
-          }
-          create: {
-            args: Prisma.UserProviderCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProviderPayload>
-          }
-          createMany: {
-            args: Prisma.UserProviderCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.UserProviderCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProviderPayload>[]
-          }
-          delete: {
-            args: Prisma.UserProviderDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProviderPayload>
-          }
-          update: {
-            args: Prisma.UserProviderUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProviderPayload>
-          }
-          deleteMany: {
-            args: Prisma.UserProviderDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.UserProviderUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.UserProviderUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProviderPayload>[]
-          }
-          upsert: {
-            args: Prisma.UserProviderUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$UserProviderPayload>
-          }
-          aggregate: {
-            args: Prisma.UserProviderAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateUserProvider>
-          }
-          groupBy: {
-            args: Prisma.UserProviderGroupByArgs<ExtArgs>
-            result: $Utils.Optional<UserProviderGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.UserProviderCountArgs<ExtArgs>
-            result: $Utils.Optional<UserProviderCountAggregateOutputType> | number
-          }
-        }
-      }
       Category: {
         payload: Prisma.$CategoryPayload<ExtArgs>
         fields: Prisma.CategoryFieldRefs
@@ -1681,8 +1501,6 @@ export namespace Prisma {
     postLike?: PostLikeOmit
     comment?: CommentOmit
     subscribe?: SubscribeOmit
-    provider?: ProviderOmit
-    userProvider?: UserProviderOmit
     category?: CategoryOmit
     postTemp?: PostTempOmit
   }
@@ -1787,7 +1605,6 @@ export namespace Prisma {
     likes: number
     requestSubscribe: number
     responseSubscribe: number
-    userProvider: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1799,7 +1616,6 @@ export namespace Prisma {
     likes?: boolean | UserCountOutputTypeCountLikesArgs
     requestSubscribe?: boolean | UserCountOutputTypeCountRequestSubscribeArgs
     responseSubscribe?: boolean | UserCountOutputTypeCountResponseSubscribeArgs
-    userProvider?: boolean | UserCountOutputTypeCountUserProviderArgs
   }
 
   // Custom InputTypes
@@ -1869,13 +1685,6 @@ export namespace Prisma {
     where?: SubscribeWhereInput
   }
 
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountUserProviderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserProviderWhereInput
-  }
-
 
   /**
    * Count Type BlogPostCountOutputType
@@ -1936,37 +1745,6 @@ export namespace Prisma {
 
 
   /**
-   * Count Type ProviderCountOutputType
-   */
-
-  export type ProviderCountOutputType = {
-    userProvider: number
-  }
-
-  export type ProviderCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    userProvider?: boolean | ProviderCountOutputTypeCountUserProviderArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * ProviderCountOutputType without action
-   */
-  export type ProviderCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the ProviderCountOutputType
-     */
-    select?: ProviderCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * ProviderCountOutputType without action
-   */
-  export type ProviderCountOutputTypeCountUserProviderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserProviderWhereInput
-  }
-
-
-  /**
    * Models
    */
 
@@ -1982,33 +1760,36 @@ export namespace Prisma {
 
   export type UserMinAggregateOutputType = {
     id: string | null
-    nickname: string | null
+    name: string | null
     email: string | null
     profileImg: string | null
     introduction: string | null
     backgroundImg: string | null
+    provider: string | null
     createdAt: Date | null
     deletedAt: Date | null
   }
 
   export type UserMaxAggregateOutputType = {
     id: string | null
-    nickname: string | null
+    name: string | null
     email: string | null
     profileImg: string | null
     introduction: string | null
     backgroundImg: string | null
+    provider: string | null
     createdAt: Date | null
     deletedAt: Date | null
   }
 
   export type UserCountAggregateOutputType = {
     id: number
-    nickname: number
+    name: number
     email: number
     profileImg: number
     introduction: number
     backgroundImg: number
+    provider: number
     createdAt: number
     deletedAt: number
     _all: number
@@ -2017,33 +1798,36 @@ export namespace Prisma {
 
   export type UserMinAggregateInputType = {
     id?: true
-    nickname?: true
+    name?: true
     email?: true
     profileImg?: true
     introduction?: true
     backgroundImg?: true
+    provider?: true
     createdAt?: true
     deletedAt?: true
   }
 
   export type UserMaxAggregateInputType = {
     id?: true
-    nickname?: true
+    name?: true
     email?: true
     profileImg?: true
     introduction?: true
     backgroundImg?: true
+    provider?: true
     createdAt?: true
     deletedAt?: true
   }
 
   export type UserCountAggregateInputType = {
     id?: true
-    nickname?: true
+    name?: true
     email?: true
     profileImg?: true
     introduction?: true
     backgroundImg?: true
+    provider?: true
     createdAt?: true
     deletedAt?: true
     _all?: true
@@ -2123,11 +1907,12 @@ export namespace Prisma {
 
   export type UserGroupByOutputType = {
     id: string
-    nickname: string
+    name: string
     email: string
     profileImg: string | null
     introduction: string | null
     backgroundImg: string | null
+    provider: string | null
     createdAt: Date
     deletedAt: Date | null
     _count: UserCountAggregateOutputType | null
@@ -2151,11 +1936,12 @@ export namespace Prisma {
 
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    nickname?: boolean
+    name?: boolean
     email?: boolean
     profileImg?: boolean
     introduction?: boolean
     backgroundImg?: boolean
+    provider?: boolean
     createdAt?: boolean
     deletedAt?: boolean
     blogPost?: boolean | User$blogPostArgs<ExtArgs>
@@ -2166,44 +1952,46 @@ export namespace Prisma {
     likes?: boolean | User$likesArgs<ExtArgs>
     requestSubscribe?: boolean | User$requestSubscribeArgs<ExtArgs>
     responseSubscribe?: boolean | User$responseSubscribeArgs<ExtArgs>
-    userProvider?: boolean | User$userProviderArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    nickname?: boolean
+    name?: boolean
     email?: boolean
     profileImg?: boolean
     introduction?: boolean
     backgroundImg?: boolean
+    provider?: boolean
     createdAt?: boolean
     deletedAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    nickname?: boolean
+    name?: boolean
     email?: boolean
     profileImg?: boolean
     introduction?: boolean
     backgroundImg?: boolean
+    provider?: boolean
     createdAt?: boolean
     deletedAt?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
     id?: boolean
-    nickname?: boolean
+    name?: boolean
     email?: boolean
     profileImg?: boolean
     introduction?: boolean
     backgroundImg?: boolean
+    provider?: boolean
     createdAt?: boolean
     deletedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nickname" | "email" | "profileImg" | "introduction" | "backgroundImg" | "createdAt" | "deletedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "profileImg" | "introduction" | "backgroundImg" | "provider" | "createdAt" | "deletedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     blogPost?: boolean | User$blogPostArgs<ExtArgs>
     bookMark?: boolean | User$bookMarkArgs<ExtArgs>
@@ -2213,7 +2001,6 @@ export namespace Prisma {
     likes?: boolean | User$likesArgs<ExtArgs>
     requestSubscribe?: boolean | User$requestSubscribeArgs<ExtArgs>
     responseSubscribe?: boolean | User$responseSubscribeArgs<ExtArgs>
-    userProvider?: boolean | User$userProviderArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2230,15 +2017,15 @@ export namespace Prisma {
       likes: Prisma.$PostLikePayload<ExtArgs>[]
       requestSubscribe: Prisma.$SubscribePayload<ExtArgs>[]
       responseSubscribe: Prisma.$SubscribePayload<ExtArgs>[]
-      userProvider: Prisma.$UserProviderPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      nickname: string
+      name: string
       email: string
       profileImg: string | null
       introduction: string | null
       backgroundImg: string | null
+      provider: string | null
       createdAt: Date
       deletedAt: Date | null
     }, ExtArgs["result"]["user"]>
@@ -2643,7 +2430,6 @@ export namespace Prisma {
     likes<T extends User$likesArgs<ExtArgs> = {}>(args?: Subset<T, User$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     requestSubscribe<T extends User$requestSubscribeArgs<ExtArgs> = {}>(args?: Subset<T, User$requestSubscribeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscribePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     responseSubscribe<T extends User$responseSubscribeArgs<ExtArgs> = {}>(args?: Subset<T, User$responseSubscribeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscribePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    userProvider<T extends User$userProviderArgs<ExtArgs> = {}>(args?: Subset<T, User$userProviderArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProviderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2674,11 +2460,12 @@ export namespace Prisma {
    */
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'String'>
-    readonly nickname: FieldRef<"User", 'String'>
+    readonly name: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly profileImg: FieldRef<"User", 'String'>
     readonly introduction: FieldRef<"User", 'String'>
     readonly backgroundImg: FieldRef<"User", 'String'>
+    readonly provider: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly deletedAt: FieldRef<"User", 'DateTime'>
   }
@@ -3258,30 +3045,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SubscribeScalarFieldEnum | SubscribeScalarFieldEnum[]
-  }
-
-  /**
-   * User.userProvider
-   */
-  export type User$userProviderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProvider
-     */
-    select?: UserProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProvider
-     */
-    omit?: UserProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProviderInclude<ExtArgs> | null
-    where?: UserProviderWhereInput
-    orderBy?: UserProviderOrderByWithRelationInput | UserProviderOrderByWithRelationInput[]
-    cursor?: UserProviderWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserProviderScalarFieldEnum | UserProviderScalarFieldEnum[]
   }
 
   /**
@@ -10185,2149 +9948,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Provider
-   */
-
-  export type AggregateProvider = {
-    _count: ProviderCountAggregateOutputType | null
-    _avg: ProviderAvgAggregateOutputType | null
-    _sum: ProviderSumAggregateOutputType | null
-    _min: ProviderMinAggregateOutputType | null
-    _max: ProviderMaxAggregateOutputType | null
-  }
-
-  export type ProviderAvgAggregateOutputType = {
-    id: number | null
-  }
-
-  export type ProviderSumAggregateOutputType = {
-    id: number | null
-  }
-
-  export type ProviderMinAggregateOutputType = {
-    id: number | null
-    name: string | null
-  }
-
-  export type ProviderMaxAggregateOutputType = {
-    id: number | null
-    name: string | null
-  }
-
-  export type ProviderCountAggregateOutputType = {
-    id: number
-    name: number
-    _all: number
-  }
-
-
-  export type ProviderAvgAggregateInputType = {
-    id?: true
-  }
-
-  export type ProviderSumAggregateInputType = {
-    id?: true
-  }
-
-  export type ProviderMinAggregateInputType = {
-    id?: true
-    name?: true
-  }
-
-  export type ProviderMaxAggregateInputType = {
-    id?: true
-    name?: true
-  }
-
-  export type ProviderCountAggregateInputType = {
-    id?: true
-    name?: true
-    _all?: true
-  }
-
-  export type ProviderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Provider to aggregate.
-     */
-    where?: ProviderWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Providers to fetch.
-     */
-    orderBy?: ProviderOrderByWithRelationInput | ProviderOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: ProviderWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Providers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Providers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Providers
-    **/
-    _count?: true | ProviderCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: ProviderAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: ProviderSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: ProviderMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: ProviderMaxAggregateInputType
-  }
-
-  export type GetProviderAggregateType<T extends ProviderAggregateArgs> = {
-        [P in keyof T & keyof AggregateProvider]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateProvider[P]>
-      : GetScalarType<T[P], AggregateProvider[P]>
-  }
-
-
-
-
-  export type ProviderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: ProviderWhereInput
-    orderBy?: ProviderOrderByWithAggregationInput | ProviderOrderByWithAggregationInput[]
-    by: ProviderScalarFieldEnum[] | ProviderScalarFieldEnum
-    having?: ProviderScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: ProviderCountAggregateInputType | true
-    _avg?: ProviderAvgAggregateInputType
-    _sum?: ProviderSumAggregateInputType
-    _min?: ProviderMinAggregateInputType
-    _max?: ProviderMaxAggregateInputType
-  }
-
-  export type ProviderGroupByOutputType = {
-    id: number
-    name: string
-    _count: ProviderCountAggregateOutputType | null
-    _avg: ProviderAvgAggregateOutputType | null
-    _sum: ProviderSumAggregateOutputType | null
-    _min: ProviderMinAggregateOutputType | null
-    _max: ProviderMaxAggregateOutputType | null
-  }
-
-  type GetProviderGroupByPayload<T extends ProviderGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<ProviderGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ProviderGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], ProviderGroupByOutputType[P]>
-            : GetScalarType<T[P], ProviderGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type ProviderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    userProvider?: boolean | Provider$userProviderArgs<ExtArgs>
-    _count?: boolean | ProviderCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["provider"]>
-
-  export type ProviderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-  }, ExtArgs["result"]["provider"]>
-
-  export type ProviderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-  }, ExtArgs["result"]["provider"]>
-
-  export type ProviderSelectScalar = {
-    id?: boolean
-    name?: boolean
-  }
-
-  export type ProviderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name", ExtArgs["result"]["provider"]>
-  export type ProviderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    userProvider?: boolean | Provider$userProviderArgs<ExtArgs>
-    _count?: boolean | ProviderCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type ProviderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type ProviderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-
-  export type $ProviderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Provider"
-    objects: {
-      userProvider: Prisma.$UserProviderPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      name: string
-    }, ExtArgs["result"]["provider"]>
-    composites: {}
-  }
-
-  type ProviderGetPayload<S extends boolean | null | undefined | ProviderDefaultArgs> = $Result.GetResult<Prisma.$ProviderPayload, S>
-
-  type ProviderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ProviderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ProviderCountAggregateInputType | true
-    }
-
-  export interface ProviderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Provider'], meta: { name: 'Provider' } }
-    /**
-     * Find zero or one Provider that matches the filter.
-     * @param {ProviderFindUniqueArgs} args - Arguments to find a Provider
-     * @example
-     * // Get one Provider
-     * const provider = await prisma.provider.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends ProviderFindUniqueArgs>(args: SelectSubset<T, ProviderFindUniqueArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Provider that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {ProviderFindUniqueOrThrowArgs} args - Arguments to find a Provider
-     * @example
-     * // Get one Provider
-     * const provider = await prisma.provider.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends ProviderFindUniqueOrThrowArgs>(args: SelectSubset<T, ProviderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Provider that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProviderFindFirstArgs} args - Arguments to find a Provider
-     * @example
-     * // Get one Provider
-     * const provider = await prisma.provider.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends ProviderFindFirstArgs>(args?: SelectSubset<T, ProviderFindFirstArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Provider that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProviderFindFirstOrThrowArgs} args - Arguments to find a Provider
-     * @example
-     * // Get one Provider
-     * const provider = await prisma.provider.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends ProviderFindFirstOrThrowArgs>(args?: SelectSubset<T, ProviderFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Providers that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProviderFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Providers
-     * const providers = await prisma.provider.findMany()
-     * 
-     * // Get first 10 Providers
-     * const providers = await prisma.provider.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const providerWithIdOnly = await prisma.provider.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends ProviderFindManyArgs>(args?: SelectSubset<T, ProviderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Provider.
-     * @param {ProviderCreateArgs} args - Arguments to create a Provider.
-     * @example
-     * // Create one Provider
-     * const Provider = await prisma.provider.create({
-     *   data: {
-     *     // ... data to create a Provider
-     *   }
-     * })
-     * 
-     */
-    create<T extends ProviderCreateArgs>(args: SelectSubset<T, ProviderCreateArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Providers.
-     * @param {ProviderCreateManyArgs} args - Arguments to create many Providers.
-     * @example
-     * // Create many Providers
-     * const provider = await prisma.provider.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends ProviderCreateManyArgs>(args?: SelectSubset<T, ProviderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Providers and returns the data saved in the database.
-     * @param {ProviderCreateManyAndReturnArgs} args - Arguments to create many Providers.
-     * @example
-     * // Create many Providers
-     * const provider = await prisma.provider.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Providers and only return the `id`
-     * const providerWithIdOnly = await prisma.provider.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends ProviderCreateManyAndReturnArgs>(args?: SelectSubset<T, ProviderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Provider.
-     * @param {ProviderDeleteArgs} args - Arguments to delete one Provider.
-     * @example
-     * // Delete one Provider
-     * const Provider = await prisma.provider.delete({
-     *   where: {
-     *     // ... filter to delete one Provider
-     *   }
-     * })
-     * 
-     */
-    delete<T extends ProviderDeleteArgs>(args: SelectSubset<T, ProviderDeleteArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Provider.
-     * @param {ProviderUpdateArgs} args - Arguments to update one Provider.
-     * @example
-     * // Update one Provider
-     * const provider = await prisma.provider.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends ProviderUpdateArgs>(args: SelectSubset<T, ProviderUpdateArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Providers.
-     * @param {ProviderDeleteManyArgs} args - Arguments to filter Providers to delete.
-     * @example
-     * // Delete a few Providers
-     * const { count } = await prisma.provider.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends ProviderDeleteManyArgs>(args?: SelectSubset<T, ProviderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Providers.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProviderUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Providers
-     * const provider = await prisma.provider.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends ProviderUpdateManyArgs>(args: SelectSubset<T, ProviderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Providers and returns the data updated in the database.
-     * @param {ProviderUpdateManyAndReturnArgs} args - Arguments to update many Providers.
-     * @example
-     * // Update many Providers
-     * const provider = await prisma.provider.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Providers and only return the `id`
-     * const providerWithIdOnly = await prisma.provider.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends ProviderUpdateManyAndReturnArgs>(args: SelectSubset<T, ProviderUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Provider.
-     * @param {ProviderUpsertArgs} args - Arguments to update or create a Provider.
-     * @example
-     * // Update or create a Provider
-     * const provider = await prisma.provider.upsert({
-     *   create: {
-     *     // ... data to create a Provider
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Provider we want to update
-     *   }
-     * })
-     */
-    upsert<T extends ProviderUpsertArgs>(args: SelectSubset<T, ProviderUpsertArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Providers.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProviderCountArgs} args - Arguments to filter Providers to count.
-     * @example
-     * // Count the number of Providers
-     * const count = await prisma.provider.count({
-     *   where: {
-     *     // ... the filter for the Providers we want to count
-     *   }
-     * })
-    **/
-    count<T extends ProviderCountArgs>(
-      args?: Subset<T, ProviderCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], ProviderCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Provider.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProviderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends ProviderAggregateArgs>(args: Subset<T, ProviderAggregateArgs>): Prisma.PrismaPromise<GetProviderAggregateType<T>>
-
-    /**
-     * Group by Provider.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {ProviderGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends ProviderGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: ProviderGroupByArgs['orderBy'] }
-        : { orderBy?: ProviderGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ProviderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProviderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Provider model
-   */
-  readonly fields: ProviderFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Provider.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__ProviderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    userProvider<T extends Provider$userProviderArgs<ExtArgs> = {}>(args?: Subset<T, Provider$userProviderArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProviderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Provider model
-   */
-  interface ProviderFieldRefs {
-    readonly id: FieldRef<"Provider", 'Int'>
-    readonly name: FieldRef<"Provider", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Provider findUnique
-   */
-  export type ProviderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Provider
-     */
-    select?: ProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Provider
-     */
-    omit?: ProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProviderInclude<ExtArgs> | null
-    /**
-     * Filter, which Provider to fetch.
-     */
-    where: ProviderWhereUniqueInput
-  }
-
-  /**
-   * Provider findUniqueOrThrow
-   */
-  export type ProviderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Provider
-     */
-    select?: ProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Provider
-     */
-    omit?: ProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProviderInclude<ExtArgs> | null
-    /**
-     * Filter, which Provider to fetch.
-     */
-    where: ProviderWhereUniqueInput
-  }
-
-  /**
-   * Provider findFirst
-   */
-  export type ProviderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Provider
-     */
-    select?: ProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Provider
-     */
-    omit?: ProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProviderInclude<ExtArgs> | null
-    /**
-     * Filter, which Provider to fetch.
-     */
-    where?: ProviderWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Providers to fetch.
-     */
-    orderBy?: ProviderOrderByWithRelationInput | ProviderOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Providers.
-     */
-    cursor?: ProviderWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Providers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Providers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Providers.
-     */
-    distinct?: ProviderScalarFieldEnum | ProviderScalarFieldEnum[]
-  }
-
-  /**
-   * Provider findFirstOrThrow
-   */
-  export type ProviderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Provider
-     */
-    select?: ProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Provider
-     */
-    omit?: ProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProviderInclude<ExtArgs> | null
-    /**
-     * Filter, which Provider to fetch.
-     */
-    where?: ProviderWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Providers to fetch.
-     */
-    orderBy?: ProviderOrderByWithRelationInput | ProviderOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Providers.
-     */
-    cursor?: ProviderWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Providers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Providers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Providers.
-     */
-    distinct?: ProviderScalarFieldEnum | ProviderScalarFieldEnum[]
-  }
-
-  /**
-   * Provider findMany
-   */
-  export type ProviderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Provider
-     */
-    select?: ProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Provider
-     */
-    omit?: ProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProviderInclude<ExtArgs> | null
-    /**
-     * Filter, which Providers to fetch.
-     */
-    where?: ProviderWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Providers to fetch.
-     */
-    orderBy?: ProviderOrderByWithRelationInput | ProviderOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Providers.
-     */
-    cursor?: ProviderWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Providers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Providers.
-     */
-    skip?: number
-    distinct?: ProviderScalarFieldEnum | ProviderScalarFieldEnum[]
-  }
-
-  /**
-   * Provider create
-   */
-  export type ProviderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Provider
-     */
-    select?: ProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Provider
-     */
-    omit?: ProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProviderInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Provider.
-     */
-    data: XOR<ProviderCreateInput, ProviderUncheckedCreateInput>
-  }
-
-  /**
-   * Provider createMany
-   */
-  export type ProviderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Providers.
-     */
-    data: ProviderCreateManyInput | ProviderCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Provider createManyAndReturn
-   */
-  export type ProviderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Provider
-     */
-    select?: ProviderSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Provider
-     */
-    omit?: ProviderOmit<ExtArgs> | null
-    /**
-     * The data used to create many Providers.
-     */
-    data: ProviderCreateManyInput | ProviderCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Provider update
-   */
-  export type ProviderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Provider
-     */
-    select?: ProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Provider
-     */
-    omit?: ProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProviderInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Provider.
-     */
-    data: XOR<ProviderUpdateInput, ProviderUncheckedUpdateInput>
-    /**
-     * Choose, which Provider to update.
-     */
-    where: ProviderWhereUniqueInput
-  }
-
-  /**
-   * Provider updateMany
-   */
-  export type ProviderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Providers.
-     */
-    data: XOR<ProviderUpdateManyMutationInput, ProviderUncheckedUpdateManyInput>
-    /**
-     * Filter which Providers to update
-     */
-    where?: ProviderWhereInput
-    /**
-     * Limit how many Providers to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Provider updateManyAndReturn
-   */
-  export type ProviderUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Provider
-     */
-    select?: ProviderSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Provider
-     */
-    omit?: ProviderOmit<ExtArgs> | null
-    /**
-     * The data used to update Providers.
-     */
-    data: XOR<ProviderUpdateManyMutationInput, ProviderUncheckedUpdateManyInput>
-    /**
-     * Filter which Providers to update
-     */
-    where?: ProviderWhereInput
-    /**
-     * Limit how many Providers to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Provider upsert
-   */
-  export type ProviderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Provider
-     */
-    select?: ProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Provider
-     */
-    omit?: ProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProviderInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Provider to update in case it exists.
-     */
-    where: ProviderWhereUniqueInput
-    /**
-     * In case the Provider found by the `where` argument doesn't exist, create a new Provider with this data.
-     */
-    create: XOR<ProviderCreateInput, ProviderUncheckedCreateInput>
-    /**
-     * In case the Provider was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<ProviderUpdateInput, ProviderUncheckedUpdateInput>
-  }
-
-  /**
-   * Provider delete
-   */
-  export type ProviderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Provider
-     */
-    select?: ProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Provider
-     */
-    omit?: ProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProviderInclude<ExtArgs> | null
-    /**
-     * Filter which Provider to delete.
-     */
-    where: ProviderWhereUniqueInput
-  }
-
-  /**
-   * Provider deleteMany
-   */
-  export type ProviderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Providers to delete
-     */
-    where?: ProviderWhereInput
-    /**
-     * Limit how many Providers to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Provider.userProvider
-   */
-  export type Provider$userProviderArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProvider
-     */
-    select?: UserProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProvider
-     */
-    omit?: UserProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProviderInclude<ExtArgs> | null
-    where?: UserProviderWhereInput
-    orderBy?: UserProviderOrderByWithRelationInput | UserProviderOrderByWithRelationInput[]
-    cursor?: UserProviderWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: UserProviderScalarFieldEnum | UserProviderScalarFieldEnum[]
-  }
-
-  /**
-   * Provider without action
-   */
-  export type ProviderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Provider
-     */
-    select?: ProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Provider
-     */
-    omit?: ProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProviderInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model UserProvider
-   */
-
-  export type AggregateUserProvider = {
-    _count: UserProviderCountAggregateOutputType | null
-    _avg: UserProviderAvgAggregateOutputType | null
-    _sum: UserProviderSumAggregateOutputType | null
-    _min: UserProviderMinAggregateOutputType | null
-    _max: UserProviderMaxAggregateOutputType | null
-  }
-
-  export type UserProviderAvgAggregateOutputType = {
-    id: number | null
-    providerId: number | null
-  }
-
-  export type UserProviderSumAggregateOutputType = {
-    id: number | null
-    providerId: number | null
-  }
-
-  export type UserProviderMinAggregateOutputType = {
-    id: number | null
-    providerId: number | null
-    userId: string | null
-  }
-
-  export type UserProviderMaxAggregateOutputType = {
-    id: number | null
-    providerId: number | null
-    userId: string | null
-  }
-
-  export type UserProviderCountAggregateOutputType = {
-    id: number
-    providerId: number
-    userId: number
-    _all: number
-  }
-
-
-  export type UserProviderAvgAggregateInputType = {
-    id?: true
-    providerId?: true
-  }
-
-  export type UserProviderSumAggregateInputType = {
-    id?: true
-    providerId?: true
-  }
-
-  export type UserProviderMinAggregateInputType = {
-    id?: true
-    providerId?: true
-    userId?: true
-  }
-
-  export type UserProviderMaxAggregateInputType = {
-    id?: true
-    providerId?: true
-    userId?: true
-  }
-
-  export type UserProviderCountAggregateInputType = {
-    id?: true
-    providerId?: true
-    userId?: true
-    _all?: true
-  }
-
-  export type UserProviderAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which UserProvider to aggregate.
-     */
-    where?: UserProviderWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserProviders to fetch.
-     */
-    orderBy?: UserProviderOrderByWithRelationInput | UserProviderOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: UserProviderWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserProviders from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserProviders.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned UserProviders
-    **/
-    _count?: true | UserProviderCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: UserProviderAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: UserProviderSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: UserProviderMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: UserProviderMaxAggregateInputType
-  }
-
-  export type GetUserProviderAggregateType<T extends UserProviderAggregateArgs> = {
-        [P in keyof T & keyof AggregateUserProvider]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateUserProvider[P]>
-      : GetScalarType<T[P], AggregateUserProvider[P]>
-  }
-
-
-
-
-  export type UserProviderGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: UserProviderWhereInput
-    orderBy?: UserProviderOrderByWithAggregationInput | UserProviderOrderByWithAggregationInput[]
-    by: UserProviderScalarFieldEnum[] | UserProviderScalarFieldEnum
-    having?: UserProviderScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: UserProviderCountAggregateInputType | true
-    _avg?: UserProviderAvgAggregateInputType
-    _sum?: UserProviderSumAggregateInputType
-    _min?: UserProviderMinAggregateInputType
-    _max?: UserProviderMaxAggregateInputType
-  }
-
-  export type UserProviderGroupByOutputType = {
-    id: number
-    providerId: number
-    userId: string
-    _count: UserProviderCountAggregateOutputType | null
-    _avg: UserProviderAvgAggregateOutputType | null
-    _sum: UserProviderSumAggregateOutputType | null
-    _min: UserProviderMinAggregateOutputType | null
-    _max: UserProviderMaxAggregateOutputType | null
-  }
-
-  type GetUserProviderGroupByPayload<T extends UserProviderGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<UserProviderGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof UserProviderGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], UserProviderGroupByOutputType[P]>
-            : GetScalarType<T[P], UserProviderGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type UserProviderSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    providerId?: boolean
-    userId?: boolean
-    provider?: boolean | ProviderDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["userProvider"]>
-
-  export type UserProviderSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    providerId?: boolean
-    userId?: boolean
-    provider?: boolean | ProviderDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["userProvider"]>
-
-  export type UserProviderSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    providerId?: boolean
-    userId?: boolean
-    provider?: boolean | ProviderDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["userProvider"]>
-
-  export type UserProviderSelectScalar = {
-    id?: boolean
-    providerId?: boolean
-    userId?: boolean
-  }
-
-  export type UserProviderOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "providerId" | "userId", ExtArgs["result"]["userProvider"]>
-  export type UserProviderInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    provider?: boolean | ProviderDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type UserProviderIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    provider?: boolean | ProviderDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-  export type UserProviderIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    provider?: boolean | ProviderDefaultArgs<ExtArgs>
-    user?: boolean | UserDefaultArgs<ExtArgs>
-  }
-
-  export type $UserProviderPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "UserProvider"
-    objects: {
-      provider: Prisma.$ProviderPayload<ExtArgs>
-      user: Prisma.$UserPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      providerId: number
-      userId: string
-    }, ExtArgs["result"]["userProvider"]>
-    composites: {}
-  }
-
-  type UserProviderGetPayload<S extends boolean | null | undefined | UserProviderDefaultArgs> = $Result.GetResult<Prisma.$UserProviderPayload, S>
-
-  type UserProviderCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<UserProviderFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: UserProviderCountAggregateInputType | true
-    }
-
-  export interface UserProviderDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['UserProvider'], meta: { name: 'UserProvider' } }
-    /**
-     * Find zero or one UserProvider that matches the filter.
-     * @param {UserProviderFindUniqueArgs} args - Arguments to find a UserProvider
-     * @example
-     * // Get one UserProvider
-     * const userProvider = await prisma.userProvider.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends UserProviderFindUniqueArgs>(args: SelectSubset<T, UserProviderFindUniqueArgs<ExtArgs>>): Prisma__UserProviderClient<$Result.GetResult<Prisma.$UserProviderPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one UserProvider that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {UserProviderFindUniqueOrThrowArgs} args - Arguments to find a UserProvider
-     * @example
-     * // Get one UserProvider
-     * const userProvider = await prisma.userProvider.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends UserProviderFindUniqueOrThrowArgs>(args: SelectSubset<T, UserProviderFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserProviderClient<$Result.GetResult<Prisma.$UserProviderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first UserProvider that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserProviderFindFirstArgs} args - Arguments to find a UserProvider
-     * @example
-     * // Get one UserProvider
-     * const userProvider = await prisma.userProvider.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends UserProviderFindFirstArgs>(args?: SelectSubset<T, UserProviderFindFirstArgs<ExtArgs>>): Prisma__UserProviderClient<$Result.GetResult<Prisma.$UserProviderPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first UserProvider that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserProviderFindFirstOrThrowArgs} args - Arguments to find a UserProvider
-     * @example
-     * // Get one UserProvider
-     * const userProvider = await prisma.userProvider.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends UserProviderFindFirstOrThrowArgs>(args?: SelectSubset<T, UserProviderFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserProviderClient<$Result.GetResult<Prisma.$UserProviderPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more UserProviders that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserProviderFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all UserProviders
-     * const userProviders = await prisma.userProvider.findMany()
-     * 
-     * // Get first 10 UserProviders
-     * const userProviders = await prisma.userProvider.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const userProviderWithIdOnly = await prisma.userProvider.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends UserProviderFindManyArgs>(args?: SelectSubset<T, UserProviderFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProviderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a UserProvider.
-     * @param {UserProviderCreateArgs} args - Arguments to create a UserProvider.
-     * @example
-     * // Create one UserProvider
-     * const UserProvider = await prisma.userProvider.create({
-     *   data: {
-     *     // ... data to create a UserProvider
-     *   }
-     * })
-     * 
-     */
-    create<T extends UserProviderCreateArgs>(args: SelectSubset<T, UserProviderCreateArgs<ExtArgs>>): Prisma__UserProviderClient<$Result.GetResult<Prisma.$UserProviderPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many UserProviders.
-     * @param {UserProviderCreateManyArgs} args - Arguments to create many UserProviders.
-     * @example
-     * // Create many UserProviders
-     * const userProvider = await prisma.userProvider.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends UserProviderCreateManyArgs>(args?: SelectSubset<T, UserProviderCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many UserProviders and returns the data saved in the database.
-     * @param {UserProviderCreateManyAndReturnArgs} args - Arguments to create many UserProviders.
-     * @example
-     * // Create many UserProviders
-     * const userProvider = await prisma.userProvider.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many UserProviders and only return the `id`
-     * const userProviderWithIdOnly = await prisma.userProvider.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends UserProviderCreateManyAndReturnArgs>(args?: SelectSubset<T, UserProviderCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProviderPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a UserProvider.
-     * @param {UserProviderDeleteArgs} args - Arguments to delete one UserProvider.
-     * @example
-     * // Delete one UserProvider
-     * const UserProvider = await prisma.userProvider.delete({
-     *   where: {
-     *     // ... filter to delete one UserProvider
-     *   }
-     * })
-     * 
-     */
-    delete<T extends UserProviderDeleteArgs>(args: SelectSubset<T, UserProviderDeleteArgs<ExtArgs>>): Prisma__UserProviderClient<$Result.GetResult<Prisma.$UserProviderPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one UserProvider.
-     * @param {UserProviderUpdateArgs} args - Arguments to update one UserProvider.
-     * @example
-     * // Update one UserProvider
-     * const userProvider = await prisma.userProvider.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends UserProviderUpdateArgs>(args: SelectSubset<T, UserProviderUpdateArgs<ExtArgs>>): Prisma__UserProviderClient<$Result.GetResult<Prisma.$UserProviderPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more UserProviders.
-     * @param {UserProviderDeleteManyArgs} args - Arguments to filter UserProviders to delete.
-     * @example
-     * // Delete a few UserProviders
-     * const { count } = await prisma.userProvider.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends UserProviderDeleteManyArgs>(args?: SelectSubset<T, UserProviderDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more UserProviders.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserProviderUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many UserProviders
-     * const userProvider = await prisma.userProvider.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends UserProviderUpdateManyArgs>(args: SelectSubset<T, UserProviderUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more UserProviders and returns the data updated in the database.
-     * @param {UserProviderUpdateManyAndReturnArgs} args - Arguments to update many UserProviders.
-     * @example
-     * // Update many UserProviders
-     * const userProvider = await prisma.userProvider.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more UserProviders and only return the `id`
-     * const userProviderWithIdOnly = await prisma.userProvider.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends UserProviderUpdateManyAndReturnArgs>(args: SelectSubset<T, UserProviderUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserProviderPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one UserProvider.
-     * @param {UserProviderUpsertArgs} args - Arguments to update or create a UserProvider.
-     * @example
-     * // Update or create a UserProvider
-     * const userProvider = await prisma.userProvider.upsert({
-     *   create: {
-     *     // ... data to create a UserProvider
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the UserProvider we want to update
-     *   }
-     * })
-     */
-    upsert<T extends UserProviderUpsertArgs>(args: SelectSubset<T, UserProviderUpsertArgs<ExtArgs>>): Prisma__UserProviderClient<$Result.GetResult<Prisma.$UserProviderPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of UserProviders.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserProviderCountArgs} args - Arguments to filter UserProviders to count.
-     * @example
-     * // Count the number of UserProviders
-     * const count = await prisma.userProvider.count({
-     *   where: {
-     *     // ... the filter for the UserProviders we want to count
-     *   }
-     * })
-    **/
-    count<T extends UserProviderCountArgs>(
-      args?: Subset<T, UserProviderCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], UserProviderCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a UserProvider.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserProviderAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends UserProviderAggregateArgs>(args: Subset<T, UserProviderAggregateArgs>): Prisma.PrismaPromise<GetUserProviderAggregateType<T>>
-
-    /**
-     * Group by UserProvider.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserProviderGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends UserProviderGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: UserProviderGroupByArgs['orderBy'] }
-        : { orderBy?: UserProviderGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, UserProviderGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserProviderGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the UserProvider model
-   */
-  readonly fields: UserProviderFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for UserProvider.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__UserProviderClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    provider<T extends ProviderDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProviderDefaultArgs<ExtArgs>>): Prisma__ProviderClient<$Result.GetResult<Prisma.$ProviderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the UserProvider model
-   */
-  interface UserProviderFieldRefs {
-    readonly id: FieldRef<"UserProvider", 'Int'>
-    readonly providerId: FieldRef<"UserProvider", 'Int'>
-    readonly userId: FieldRef<"UserProvider", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * UserProvider findUnique
-   */
-  export type UserProviderFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProvider
-     */
-    select?: UserProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProvider
-     */
-    omit?: UserProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProviderInclude<ExtArgs> | null
-    /**
-     * Filter, which UserProvider to fetch.
-     */
-    where: UserProviderWhereUniqueInput
-  }
-
-  /**
-   * UserProvider findUniqueOrThrow
-   */
-  export type UserProviderFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProvider
-     */
-    select?: UserProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProvider
-     */
-    omit?: UserProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProviderInclude<ExtArgs> | null
-    /**
-     * Filter, which UserProvider to fetch.
-     */
-    where: UserProviderWhereUniqueInput
-  }
-
-  /**
-   * UserProvider findFirst
-   */
-  export type UserProviderFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProvider
-     */
-    select?: UserProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProvider
-     */
-    omit?: UserProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProviderInclude<ExtArgs> | null
-    /**
-     * Filter, which UserProvider to fetch.
-     */
-    where?: UserProviderWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserProviders to fetch.
-     */
-    orderBy?: UserProviderOrderByWithRelationInput | UserProviderOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for UserProviders.
-     */
-    cursor?: UserProviderWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserProviders from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserProviders.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of UserProviders.
-     */
-    distinct?: UserProviderScalarFieldEnum | UserProviderScalarFieldEnum[]
-  }
-
-  /**
-   * UserProvider findFirstOrThrow
-   */
-  export type UserProviderFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProvider
-     */
-    select?: UserProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProvider
-     */
-    omit?: UserProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProviderInclude<ExtArgs> | null
-    /**
-     * Filter, which UserProvider to fetch.
-     */
-    where?: UserProviderWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserProviders to fetch.
-     */
-    orderBy?: UserProviderOrderByWithRelationInput | UserProviderOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for UserProviders.
-     */
-    cursor?: UserProviderWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserProviders from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserProviders.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of UserProviders.
-     */
-    distinct?: UserProviderScalarFieldEnum | UserProviderScalarFieldEnum[]
-  }
-
-  /**
-   * UserProvider findMany
-   */
-  export type UserProviderFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProvider
-     */
-    select?: UserProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProvider
-     */
-    omit?: UserProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProviderInclude<ExtArgs> | null
-    /**
-     * Filter, which UserProviders to fetch.
-     */
-    where?: UserProviderWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of UserProviders to fetch.
-     */
-    orderBy?: UserProviderOrderByWithRelationInput | UserProviderOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing UserProviders.
-     */
-    cursor?: UserProviderWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` UserProviders from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` UserProviders.
-     */
-    skip?: number
-    distinct?: UserProviderScalarFieldEnum | UserProviderScalarFieldEnum[]
-  }
-
-  /**
-   * UserProvider create
-   */
-  export type UserProviderCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProvider
-     */
-    select?: UserProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProvider
-     */
-    omit?: UserProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProviderInclude<ExtArgs> | null
-    /**
-     * The data needed to create a UserProvider.
-     */
-    data: XOR<UserProviderCreateInput, UserProviderUncheckedCreateInput>
-  }
-
-  /**
-   * UserProvider createMany
-   */
-  export type UserProviderCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many UserProviders.
-     */
-    data: UserProviderCreateManyInput | UserProviderCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * UserProvider createManyAndReturn
-   */
-  export type UserProviderCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProvider
-     */
-    select?: UserProviderSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProvider
-     */
-    omit?: UserProviderOmit<ExtArgs> | null
-    /**
-     * The data used to create many UserProviders.
-     */
-    data: UserProviderCreateManyInput | UserProviderCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProviderIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * UserProvider update
-   */
-  export type UserProviderUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProvider
-     */
-    select?: UserProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProvider
-     */
-    omit?: UserProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProviderInclude<ExtArgs> | null
-    /**
-     * The data needed to update a UserProvider.
-     */
-    data: XOR<UserProviderUpdateInput, UserProviderUncheckedUpdateInput>
-    /**
-     * Choose, which UserProvider to update.
-     */
-    where: UserProviderWhereUniqueInput
-  }
-
-  /**
-   * UserProvider updateMany
-   */
-  export type UserProviderUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update UserProviders.
-     */
-    data: XOR<UserProviderUpdateManyMutationInput, UserProviderUncheckedUpdateManyInput>
-    /**
-     * Filter which UserProviders to update
-     */
-    where?: UserProviderWhereInput
-    /**
-     * Limit how many UserProviders to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * UserProvider updateManyAndReturn
-   */
-  export type UserProviderUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProvider
-     */
-    select?: UserProviderSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProvider
-     */
-    omit?: UserProviderOmit<ExtArgs> | null
-    /**
-     * The data used to update UserProviders.
-     */
-    data: XOR<UserProviderUpdateManyMutationInput, UserProviderUncheckedUpdateManyInput>
-    /**
-     * Filter which UserProviders to update
-     */
-    where?: UserProviderWhereInput
-    /**
-     * Limit how many UserProviders to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProviderIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * UserProvider upsert
-   */
-  export type UserProviderUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProvider
-     */
-    select?: UserProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProvider
-     */
-    omit?: UserProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProviderInclude<ExtArgs> | null
-    /**
-     * The filter to search for the UserProvider to update in case it exists.
-     */
-    where: UserProviderWhereUniqueInput
-    /**
-     * In case the UserProvider found by the `where` argument doesn't exist, create a new UserProvider with this data.
-     */
-    create: XOR<UserProviderCreateInput, UserProviderUncheckedCreateInput>
-    /**
-     * In case the UserProvider was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<UserProviderUpdateInput, UserProviderUncheckedUpdateInput>
-  }
-
-  /**
-   * UserProvider delete
-   */
-  export type UserProviderDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProvider
-     */
-    select?: UserProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProvider
-     */
-    omit?: UserProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProviderInclude<ExtArgs> | null
-    /**
-     * Filter which UserProvider to delete.
-     */
-    where: UserProviderWhereUniqueInput
-  }
-
-  /**
-   * UserProvider deleteMany
-   */
-  export type UserProviderDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which UserProviders to delete
-     */
-    where?: UserProviderWhereInput
-    /**
-     * Limit how many UserProviders to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * UserProvider without action
-   */
-  export type UserProviderDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserProvider
-     */
-    select?: UserProviderSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the UserProvider
-     */
-    omit?: UserProviderOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserProviderInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model Category
    */
 
@@ -14465,11 +12085,12 @@ export namespace Prisma {
 
   export const UserScalarFieldEnum: {
     id: 'id',
-    nickname: 'nickname',
+    name: 'name',
     email: 'email',
     profileImg: 'profileImg',
     introduction: 'introduction',
     backgroundImg: 'backgroundImg',
+    provider: 'provider',
     createdAt: 'createdAt',
     deletedAt: 'deletedAt'
   };
@@ -14549,23 +12170,6 @@ export namespace Prisma {
   };
 
   export type SubscribeScalarFieldEnum = (typeof SubscribeScalarFieldEnum)[keyof typeof SubscribeScalarFieldEnum]
-
-
-  export const ProviderScalarFieldEnum: {
-    id: 'id',
-    name: 'name'
-  };
-
-  export type ProviderScalarFieldEnum = (typeof ProviderScalarFieldEnum)[keyof typeof ProviderScalarFieldEnum]
-
-
-  export const UserProviderScalarFieldEnum: {
-    id: 'id',
-    providerId: 'providerId',
-    userId: 'userId'
-  };
-
-  export type UserProviderScalarFieldEnum = (typeof UserProviderScalarFieldEnum)[keyof typeof UserProviderScalarFieldEnum]
 
 
   export const CategoryScalarFieldEnum: {
@@ -14683,11 +12287,12 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
-    nickname?: StringFilter<"User"> | string
+    name?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     profileImg?: StringNullableFilter<"User"> | string | null
     introduction?: StringNullableFilter<"User"> | string | null
     backgroundImg?: StringNullableFilter<"User"> | string | null
+    provider?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     blogPost?: BlogPostListRelationFilter
@@ -14698,16 +12303,16 @@ export namespace Prisma {
     likes?: PostLikeListRelationFilter
     requestSubscribe?: SubscribeListRelationFilter
     responseSubscribe?: SubscribeListRelationFilter
-    userProvider?: UserProviderListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
-    nickname?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     profileImg?: SortOrderInput | SortOrder
     introduction?: SortOrderInput | SortOrder
     backgroundImg?: SortOrderInput | SortOrder
+    provider?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
     blogPost?: BlogPostOrderByRelationAggregateInput
@@ -14718,7 +12323,6 @@ export namespace Prisma {
     likes?: PostLikeOrderByRelationAggregateInput
     requestSubscribe?: SubscribeOrderByRelationAggregateInput
     responseSubscribe?: SubscribeOrderByRelationAggregateInput
-    userProvider?: UserProviderOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -14727,10 +12331,11 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    nickname?: StringFilter<"User"> | string
+    name?: StringFilter<"User"> | string
     profileImg?: StringNullableFilter<"User"> | string | null
     introduction?: StringNullableFilter<"User"> | string | null
     backgroundImg?: StringNullableFilter<"User"> | string | null
+    provider?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     blogPost?: BlogPostListRelationFilter
@@ -14741,16 +12346,16 @@ export namespace Prisma {
     likes?: PostLikeListRelationFilter
     requestSubscribe?: SubscribeListRelationFilter
     responseSubscribe?: SubscribeListRelationFilter
-    userProvider?: UserProviderListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
-    nickname?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     profileImg?: SortOrderInput | SortOrder
     introduction?: SortOrderInput | SortOrder
     backgroundImg?: SortOrderInput | SortOrder
+    provider?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -14763,11 +12368,12 @@ export namespace Prisma {
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
-    nickname?: StringWithAggregatesFilter<"User"> | string
+    name?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     profileImg?: StringNullableWithAggregatesFilter<"User"> | string | null
     introduction?: StringNullableWithAggregatesFilter<"User"> | string | null
     backgroundImg?: StringNullableWithAggregatesFilter<"User"> | string | null
+    provider?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     deletedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   }
@@ -15187,98 +12793,6 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Subscribe"> | Date | string
   }
 
-  export type ProviderWhereInput = {
-    AND?: ProviderWhereInput | ProviderWhereInput[]
-    OR?: ProviderWhereInput[]
-    NOT?: ProviderWhereInput | ProviderWhereInput[]
-    id?: IntFilter<"Provider"> | number
-    name?: StringFilter<"Provider"> | string
-    userProvider?: UserProviderListRelationFilter
-  }
-
-  export type ProviderOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    userProvider?: UserProviderOrderByRelationAggregateInput
-  }
-
-  export type ProviderWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    name?: string
-    AND?: ProviderWhereInput | ProviderWhereInput[]
-    OR?: ProviderWhereInput[]
-    NOT?: ProviderWhereInput | ProviderWhereInput[]
-    userProvider?: UserProviderListRelationFilter
-  }, "id" | "name">
-
-  export type ProviderOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    _count?: ProviderCountOrderByAggregateInput
-    _avg?: ProviderAvgOrderByAggregateInput
-    _max?: ProviderMaxOrderByAggregateInput
-    _min?: ProviderMinOrderByAggregateInput
-    _sum?: ProviderSumOrderByAggregateInput
-  }
-
-  export type ProviderScalarWhereWithAggregatesInput = {
-    AND?: ProviderScalarWhereWithAggregatesInput | ProviderScalarWhereWithAggregatesInput[]
-    OR?: ProviderScalarWhereWithAggregatesInput[]
-    NOT?: ProviderScalarWhereWithAggregatesInput | ProviderScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Provider"> | number
-    name?: StringWithAggregatesFilter<"Provider"> | string
-  }
-
-  export type UserProviderWhereInput = {
-    AND?: UserProviderWhereInput | UserProviderWhereInput[]
-    OR?: UserProviderWhereInput[]
-    NOT?: UserProviderWhereInput | UserProviderWhereInput[]
-    id?: IntFilter<"UserProvider"> | number
-    providerId?: IntFilter<"UserProvider"> | number
-    userId?: StringFilter<"UserProvider"> | string
-    provider?: XOR<ProviderScalarRelationFilter, ProviderWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }
-
-  export type UserProviderOrderByWithRelationInput = {
-    id?: SortOrder
-    providerId?: SortOrder
-    userId?: SortOrder
-    provider?: ProviderOrderByWithRelationInput
-    user?: UserOrderByWithRelationInput
-  }
-
-  export type UserProviderWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: UserProviderWhereInput | UserProviderWhereInput[]
-    OR?: UserProviderWhereInput[]
-    NOT?: UserProviderWhereInput | UserProviderWhereInput[]
-    providerId?: IntFilter<"UserProvider"> | number
-    userId?: StringFilter<"UserProvider"> | string
-    provider?: XOR<ProviderScalarRelationFilter, ProviderWhereInput>
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id">
-
-  export type UserProviderOrderByWithAggregationInput = {
-    id?: SortOrder
-    providerId?: SortOrder
-    userId?: SortOrder
-    _count?: UserProviderCountOrderByAggregateInput
-    _avg?: UserProviderAvgOrderByAggregateInput
-    _max?: UserProviderMaxOrderByAggregateInput
-    _min?: UserProviderMinOrderByAggregateInput
-    _sum?: UserProviderSumOrderByAggregateInput
-  }
-
-  export type UserProviderScalarWhereWithAggregatesInput = {
-    AND?: UserProviderScalarWhereWithAggregatesInput | UserProviderScalarWhereWithAggregatesInput[]
-    OR?: UserProviderScalarWhereWithAggregatesInput[]
-    NOT?: UserProviderScalarWhereWithAggregatesInput | UserProviderScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"UserProvider"> | number
-    providerId?: IntWithAggregatesFilter<"UserProvider"> | number
-    userId?: StringWithAggregatesFilter<"UserProvider"> | string
-  }
-
   export type CategoryWhereInput = {
     AND?: CategoryWhereInput | CategoryWhereInput[]
     OR?: CategoryWhereInput[]
@@ -15392,11 +12906,12 @@ export namespace Prisma {
 
   export type UserCreateInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
@@ -15407,16 +12922,16 @@ export namespace Prisma {
     likes?: PostLikeCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-    userProvider?: UserProviderCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
@@ -15427,16 +12942,16 @@ export namespace Prisma {
     likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-    userProvider?: UserProviderUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
@@ -15447,16 +12962,16 @@ export namespace Prisma {
     likes?: PostLikeUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-    userProvider?: UserProviderUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
@@ -15467,38 +12982,40 @@ export namespace Prisma {
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-    userProvider?: UserProviderUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
   }
 
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -15880,80 +13397,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type ProviderCreateInput = {
-    name: string
-    userProvider?: UserProviderCreateNestedManyWithoutProviderInput
-  }
-
-  export type ProviderUncheckedCreateInput = {
-    id?: number
-    name: string
-    userProvider?: UserProviderUncheckedCreateNestedManyWithoutProviderInput
-  }
-
-  export type ProviderUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    userProvider?: UserProviderUpdateManyWithoutProviderNestedInput
-  }
-
-  export type ProviderUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    userProvider?: UserProviderUncheckedUpdateManyWithoutProviderNestedInput
-  }
-
-  export type ProviderCreateManyInput = {
-    id?: number
-    name: string
-  }
-
-  export type ProviderUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ProviderUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type UserProviderCreateInput = {
-    provider: ProviderCreateNestedOneWithoutUserProviderInput
-    user: UserCreateNestedOneWithoutUserProviderInput
-  }
-
-  export type UserProviderUncheckedCreateInput = {
-    id?: number
-    providerId: number
-    userId: string
-  }
-
-  export type UserProviderUpdateInput = {
-    provider?: ProviderUpdateOneRequiredWithoutUserProviderNestedInput
-    user?: UserUpdateOneRequiredWithoutUserProviderNestedInput
-  }
-
-  export type UserProviderUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    providerId?: IntFieldUpdateOperationsInput | number
-    userId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type UserProviderCreateManyInput = {
-    id?: number
-    providerId: number
-    userId: string
-  }
-
-  export type UserProviderUpdateManyMutationInput = {
-
-  }
-
-  export type UserProviderUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    providerId?: IntFieldUpdateOperationsInput | number
-    userId?: StringFieldUpdateOperationsInput | string
-  }
-
   export type CategoryCreateInput = {
     name: string
     createdAt?: Date | string
@@ -16152,12 +13595,6 @@ export namespace Prisma {
     none?: SubscribeWhereInput
   }
 
-  export type UserProviderListRelationFilter = {
-    every?: UserProviderWhereInput
-    some?: UserProviderWhereInput
-    none?: UserProviderWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -16187,39 +13624,38 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type UserProviderOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
-    nickname?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     profileImg?: SortOrder
     introduction?: SortOrder
     backgroundImg?: SortOrder
+    provider?: SortOrder
     createdAt?: SortOrder
     deletedAt?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
-    nickname?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     profileImg?: SortOrder
     introduction?: SortOrder
     backgroundImg?: SortOrder
+    provider?: SortOrder
     createdAt?: SortOrder
     deletedAt?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
-    nickname?: SortOrder
+    name?: SortOrder
     email?: SortOrder
     profileImg?: SortOrder
     introduction?: SortOrder
     backgroundImg?: SortOrder
+    provider?: SortOrder
     createdAt?: SortOrder
     deletedAt?: SortOrder
   }
@@ -16599,62 +14035,6 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type ProviderCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-  }
-
-  export type ProviderAvgOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type ProviderMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-  }
-
-  export type ProviderMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-  }
-
-  export type ProviderSumOrderByAggregateInput = {
-    id?: SortOrder
-  }
-
-  export type ProviderScalarRelationFilter = {
-    is?: ProviderWhereInput
-    isNot?: ProviderWhereInput
-  }
-
-  export type UserProviderCountOrderByAggregateInput = {
-    id?: SortOrder
-    providerId?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type UserProviderAvgOrderByAggregateInput = {
-    id?: SortOrder
-    providerId?: SortOrder
-  }
-
-  export type UserProviderMaxOrderByAggregateInput = {
-    id?: SortOrder
-    providerId?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type UserProviderMinOrderByAggregateInput = {
-    id?: SortOrder
-    providerId?: SortOrder
-    userId?: SortOrder
-  }
-
-  export type UserProviderSumOrderByAggregateInput = {
-    id?: SortOrder
-    providerId?: SortOrder
-  }
-
   export type BlogPostNullableScalarRelationFilter = {
     is?: BlogPostWhereInput | null
     isNot?: BlogPostWhereInput | null
@@ -16778,13 +14158,6 @@ export namespace Prisma {
     connect?: SubscribeWhereUniqueInput | SubscribeWhereUniqueInput[]
   }
 
-  export type UserProviderCreateNestedManyWithoutUserInput = {
-    create?: XOR<UserProviderCreateWithoutUserInput, UserProviderUncheckedCreateWithoutUserInput> | UserProviderCreateWithoutUserInput[] | UserProviderUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserProviderCreateOrConnectWithoutUserInput | UserProviderCreateOrConnectWithoutUserInput[]
-    createMany?: UserProviderCreateManyUserInputEnvelope
-    connect?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-  }
-
   export type BlogPostUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<BlogPostCreateWithoutUserInput, BlogPostUncheckedCreateWithoutUserInput> | BlogPostCreateWithoutUserInput[] | BlogPostUncheckedCreateWithoutUserInput[]
     connectOrCreate?: BlogPostCreateOrConnectWithoutUserInput | BlogPostCreateOrConnectWithoutUserInput[]
@@ -16839,13 +14212,6 @@ export namespace Prisma {
     connectOrCreate?: SubscribeCreateOrConnectWithoutResponseSubscribeInput | SubscribeCreateOrConnectWithoutResponseSubscribeInput[]
     createMany?: SubscribeCreateManyResponseSubscribeInputEnvelope
     connect?: SubscribeWhereUniqueInput | SubscribeWhereUniqueInput[]
-  }
-
-  export type UserProviderUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<UserProviderCreateWithoutUserInput, UserProviderUncheckedCreateWithoutUserInput> | UserProviderCreateWithoutUserInput[] | UserProviderUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserProviderCreateOrConnectWithoutUserInput | UserProviderCreateOrConnectWithoutUserInput[]
-    createMany?: UserProviderCreateManyUserInputEnvelope
-    connect?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -16976,20 +14342,6 @@ export namespace Prisma {
     deleteMany?: SubscribeScalarWhereInput | SubscribeScalarWhereInput[]
   }
 
-  export type UserProviderUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UserProviderCreateWithoutUserInput, UserProviderUncheckedCreateWithoutUserInput> | UserProviderCreateWithoutUserInput[] | UserProviderUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserProviderCreateOrConnectWithoutUserInput | UserProviderCreateOrConnectWithoutUserInput[]
-    upsert?: UserProviderUpsertWithWhereUniqueWithoutUserInput | UserProviderUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UserProviderCreateManyUserInputEnvelope
-    set?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-    disconnect?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-    delete?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-    connect?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-    update?: UserProviderUpdateWithWhereUniqueWithoutUserInput | UserProviderUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UserProviderUpdateManyWithWhereWithoutUserInput | UserProviderUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UserProviderScalarWhereInput | UserProviderScalarWhereInput[]
-  }
-
   export type BlogPostUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<BlogPostCreateWithoutUserInput, BlogPostUncheckedCreateWithoutUserInput> | BlogPostCreateWithoutUserInput[] | BlogPostUncheckedCreateWithoutUserInput[]
     connectOrCreate?: BlogPostCreateOrConnectWithoutUserInput | BlogPostCreateOrConnectWithoutUserInput[]
@@ -17100,20 +14452,6 @@ export namespace Prisma {
     update?: SubscribeUpdateWithWhereUniqueWithoutResponseSubscribeInput | SubscribeUpdateWithWhereUniqueWithoutResponseSubscribeInput[]
     updateMany?: SubscribeUpdateManyWithWhereWithoutResponseSubscribeInput | SubscribeUpdateManyWithWhereWithoutResponseSubscribeInput[]
     deleteMany?: SubscribeScalarWhereInput | SubscribeScalarWhereInput[]
-  }
-
-  export type UserProviderUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<UserProviderCreateWithoutUserInput, UserProviderUncheckedCreateWithoutUserInput> | UserProviderCreateWithoutUserInput[] | UserProviderUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: UserProviderCreateOrConnectWithoutUserInput | UserProviderCreateOrConnectWithoutUserInput[]
-    upsert?: UserProviderUpsertWithWhereUniqueWithoutUserInput | UserProviderUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: UserProviderCreateManyUserInputEnvelope
-    set?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-    disconnect?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-    delete?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-    connect?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-    update?: UserProviderUpdateWithWhereUniqueWithoutUserInput | UserProviderUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: UserProviderUpdateManyWithWhereWithoutUserInput | UserProviderUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: UserProviderScalarWhereInput | UserProviderScalarWhereInput[]
   }
 
   export type BlogPostCreatetagsInput = {
@@ -17491,76 +14829,6 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutResponseSubscribeInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutResponseSubscribeInput, UserUpdateWithoutResponseSubscribeInput>, UserUncheckedUpdateWithoutResponseSubscribeInput>
-  }
-
-  export type UserProviderCreateNestedManyWithoutProviderInput = {
-    create?: XOR<UserProviderCreateWithoutProviderInput, UserProviderUncheckedCreateWithoutProviderInput> | UserProviderCreateWithoutProviderInput[] | UserProviderUncheckedCreateWithoutProviderInput[]
-    connectOrCreate?: UserProviderCreateOrConnectWithoutProviderInput | UserProviderCreateOrConnectWithoutProviderInput[]
-    createMany?: UserProviderCreateManyProviderInputEnvelope
-    connect?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-  }
-
-  export type UserProviderUncheckedCreateNestedManyWithoutProviderInput = {
-    create?: XOR<UserProviderCreateWithoutProviderInput, UserProviderUncheckedCreateWithoutProviderInput> | UserProviderCreateWithoutProviderInput[] | UserProviderUncheckedCreateWithoutProviderInput[]
-    connectOrCreate?: UserProviderCreateOrConnectWithoutProviderInput | UserProviderCreateOrConnectWithoutProviderInput[]
-    createMany?: UserProviderCreateManyProviderInputEnvelope
-    connect?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-  }
-
-  export type UserProviderUpdateManyWithoutProviderNestedInput = {
-    create?: XOR<UserProviderCreateWithoutProviderInput, UserProviderUncheckedCreateWithoutProviderInput> | UserProviderCreateWithoutProviderInput[] | UserProviderUncheckedCreateWithoutProviderInput[]
-    connectOrCreate?: UserProviderCreateOrConnectWithoutProviderInput | UserProviderCreateOrConnectWithoutProviderInput[]
-    upsert?: UserProviderUpsertWithWhereUniqueWithoutProviderInput | UserProviderUpsertWithWhereUniqueWithoutProviderInput[]
-    createMany?: UserProviderCreateManyProviderInputEnvelope
-    set?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-    disconnect?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-    delete?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-    connect?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-    update?: UserProviderUpdateWithWhereUniqueWithoutProviderInput | UserProviderUpdateWithWhereUniqueWithoutProviderInput[]
-    updateMany?: UserProviderUpdateManyWithWhereWithoutProviderInput | UserProviderUpdateManyWithWhereWithoutProviderInput[]
-    deleteMany?: UserProviderScalarWhereInput | UserProviderScalarWhereInput[]
-  }
-
-  export type UserProviderUncheckedUpdateManyWithoutProviderNestedInput = {
-    create?: XOR<UserProviderCreateWithoutProviderInput, UserProviderUncheckedCreateWithoutProviderInput> | UserProviderCreateWithoutProviderInput[] | UserProviderUncheckedCreateWithoutProviderInput[]
-    connectOrCreate?: UserProviderCreateOrConnectWithoutProviderInput | UserProviderCreateOrConnectWithoutProviderInput[]
-    upsert?: UserProviderUpsertWithWhereUniqueWithoutProviderInput | UserProviderUpsertWithWhereUniqueWithoutProviderInput[]
-    createMany?: UserProviderCreateManyProviderInputEnvelope
-    set?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-    disconnect?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-    delete?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-    connect?: UserProviderWhereUniqueInput | UserProviderWhereUniqueInput[]
-    update?: UserProviderUpdateWithWhereUniqueWithoutProviderInput | UserProviderUpdateWithWhereUniqueWithoutProviderInput[]
-    updateMany?: UserProviderUpdateManyWithWhereWithoutProviderInput | UserProviderUpdateManyWithWhereWithoutProviderInput[]
-    deleteMany?: UserProviderScalarWhereInput | UserProviderScalarWhereInput[]
-  }
-
-  export type ProviderCreateNestedOneWithoutUserProviderInput = {
-    create?: XOR<ProviderCreateWithoutUserProviderInput, ProviderUncheckedCreateWithoutUserProviderInput>
-    connectOrCreate?: ProviderCreateOrConnectWithoutUserProviderInput
-    connect?: ProviderWhereUniqueInput
-  }
-
-  export type UserCreateNestedOneWithoutUserProviderInput = {
-    create?: XOR<UserCreateWithoutUserProviderInput, UserUncheckedCreateWithoutUserProviderInput>
-    connectOrCreate?: UserCreateOrConnectWithoutUserProviderInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type ProviderUpdateOneRequiredWithoutUserProviderNestedInput = {
-    create?: XOR<ProviderCreateWithoutUserProviderInput, ProviderUncheckedCreateWithoutUserProviderInput>
-    connectOrCreate?: ProviderCreateOrConnectWithoutUserProviderInput
-    upsert?: ProviderUpsertWithoutUserProviderInput
-    connect?: ProviderWhereUniqueInput
-    update?: XOR<XOR<ProviderUpdateToOneWithWhereWithoutUserProviderInput, ProviderUpdateWithoutUserProviderInput>, ProviderUncheckedUpdateWithoutUserProviderInput>
-  }
-
-  export type UserUpdateOneRequiredWithoutUserProviderNestedInput = {
-    create?: XOR<UserCreateWithoutUserProviderInput, UserUncheckedCreateWithoutUserProviderInput>
-    connectOrCreate?: UserCreateOrConnectWithoutUserProviderInput
-    upsert?: UserUpsertWithoutUserProviderInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutUserProviderInput, UserUpdateWithoutUserProviderInput>, UserUncheckedUpdateWithoutUserProviderInput>
   }
 
   export type BlogPostCreateNestedOneWithoutCategoryInput = {
@@ -18002,25 +15270,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UserProviderCreateWithoutUserInput = {
-    provider: ProviderCreateNestedOneWithoutUserProviderInput
-  }
-
-  export type UserProviderUncheckedCreateWithoutUserInput = {
-    id?: number
-    providerId: number
-  }
-
-  export type UserProviderCreateOrConnectWithoutUserInput = {
-    where: UserProviderWhereUniqueInput
-    create: XOR<UserProviderCreateWithoutUserInput, UserProviderUncheckedCreateWithoutUserInput>
-  }
-
-  export type UserProviderCreateManyUserInputEnvelope = {
-    data: UserProviderCreateManyUserInput | UserProviderCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type BlogPostUpsertWithWhereUniqueWithoutUserInput = {
     where: BlogPostWhereUniqueInput
     update: XOR<BlogPostUpdateWithoutUserInput, BlogPostUncheckedUpdateWithoutUserInput>
@@ -18223,31 +15472,6 @@ export namespace Prisma {
     data: XOR<SubscribeUpdateManyMutationInput, SubscribeUncheckedUpdateManyWithoutResponseSubscribeInput>
   }
 
-  export type UserProviderUpsertWithWhereUniqueWithoutUserInput = {
-    where: UserProviderWhereUniqueInput
-    update: XOR<UserProviderUpdateWithoutUserInput, UserProviderUncheckedUpdateWithoutUserInput>
-    create: XOR<UserProviderCreateWithoutUserInput, UserProviderUncheckedCreateWithoutUserInput>
-  }
-
-  export type UserProviderUpdateWithWhereUniqueWithoutUserInput = {
-    where: UserProviderWhereUniqueInput
-    data: XOR<UserProviderUpdateWithoutUserInput, UserProviderUncheckedUpdateWithoutUserInput>
-  }
-
-  export type UserProviderUpdateManyWithWhereWithoutUserInput = {
-    where: UserProviderScalarWhereInput
-    data: XOR<UserProviderUpdateManyMutationInput, UserProviderUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type UserProviderScalarWhereInput = {
-    AND?: UserProviderScalarWhereInput | UserProviderScalarWhereInput[]
-    OR?: UserProviderScalarWhereInput[]
-    NOT?: UserProviderScalarWhereInput | UserProviderScalarWhereInput[]
-    id?: IntFilter<"UserProvider"> | number
-    providerId?: IntFilter<"UserProvider"> | number
-    userId?: StringFilter<"UserProvider"> | string
-  }
-
   export type CategoryCreateWithoutBlogPostInput = {
     name: string
     createdAt?: Date | string
@@ -18268,11 +15492,12 @@ export namespace Prisma {
 
   export type UserCreateWithoutBlogPostInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     bookMark?: BookMarkCreateNestedManyWithoutUserInput
@@ -18282,16 +15507,16 @@ export namespace Prisma {
     likes?: PostLikeCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-    userProvider?: UserProviderCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBlogPostInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     bookMark?: BookMarkUncheckedCreateNestedManyWithoutUserInput
@@ -18301,7 +15526,6 @@ export namespace Prisma {
     likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-    userProvider?: UserProviderUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBlogPostInput = {
@@ -18440,11 +15664,12 @@ export namespace Prisma {
 
   export type UserUpdateWithoutBlogPostInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bookMark?: BookMarkUpdateManyWithoutUserNestedInput
@@ -18454,16 +15679,16 @@ export namespace Prisma {
     likes?: PostLikeUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-    userProvider?: UserProviderUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBlogPostInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bookMark?: BookMarkUncheckedUpdateManyWithoutUserNestedInput
@@ -18473,7 +15698,6 @@ export namespace Prisma {
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-    userProvider?: UserProviderUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BookMarkUpsertWithWhereUniqueWithoutBlogPostInput = {
@@ -18584,11 +15808,12 @@ export namespace Prisma {
 
   export type UserCreateWithoutReceivedNotificationsInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
@@ -18598,16 +15823,16 @@ export namespace Prisma {
     likes?: PostLikeCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-    userProvider?: UserProviderCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReceivedNotificationsInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
@@ -18617,7 +15842,6 @@ export namespace Prisma {
     likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-    userProvider?: UserProviderUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReceivedNotificationsInput = {
@@ -18627,11 +15851,12 @@ export namespace Prisma {
 
   export type UserCreateWithoutSentNotificationsInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
@@ -18641,16 +15866,16 @@ export namespace Prisma {
     likes?: PostLikeCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-    userProvider?: UserProviderCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSentNotificationsInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
@@ -18660,7 +15885,6 @@ export namespace Prisma {
     likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-    userProvider?: UserProviderUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSentNotificationsInput = {
@@ -18729,11 +15953,12 @@ export namespace Prisma {
 
   export type UserUpdateWithoutReceivedNotificationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
@@ -18743,16 +15968,16 @@ export namespace Prisma {
     likes?: PostLikeUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-    userProvider?: UserProviderUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedNotificationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
@@ -18762,7 +15987,6 @@ export namespace Prisma {
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-    userProvider?: UserProviderUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutSentNotificationsInput = {
@@ -18778,11 +16002,12 @@ export namespace Prisma {
 
   export type UserUpdateWithoutSentNotificationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
@@ -18792,16 +16017,16 @@ export namespace Prisma {
     likes?: PostLikeUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-    userProvider?: UserProviderUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentNotificationsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
@@ -18811,7 +16036,6 @@ export namespace Prisma {
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-    userProvider?: UserProviderUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BlogPostCreateWithoutBookMarkInput = {
@@ -18858,11 +16082,12 @@ export namespace Prisma {
 
   export type UserCreateWithoutBookMarkInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
@@ -18872,16 +16097,16 @@ export namespace Prisma {
     likes?: PostLikeCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-    userProvider?: UserProviderCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBookMarkInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
@@ -18891,7 +16116,6 @@ export namespace Prisma {
     likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-    userProvider?: UserProviderUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBookMarkInput = {
@@ -18960,11 +16184,12 @@ export namespace Prisma {
 
   export type UserUpdateWithoutBookMarkInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
@@ -18974,16 +16199,16 @@ export namespace Prisma {
     likes?: PostLikeUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-    userProvider?: UserProviderUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBookMarkInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
@@ -18993,7 +16218,6 @@ export namespace Prisma {
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-    userProvider?: UserProviderUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BlogPostCreateWithoutLikesInput = {
@@ -19040,11 +16264,12 @@ export namespace Prisma {
 
   export type UserCreateWithoutLikesInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
@@ -19054,16 +16279,16 @@ export namespace Prisma {
     sentNotifications?: NotificationCreateNestedManyWithoutSenderInput
     requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-    userProvider?: UserProviderCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutLikesInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
@@ -19073,7 +16298,6 @@ export namespace Prisma {
     sentNotifications?: NotificationUncheckedCreateNestedManyWithoutSenderInput
     requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-    userProvider?: UserProviderUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutLikesInput = {
@@ -19142,11 +16366,12 @@ export namespace Prisma {
 
   export type UserUpdateWithoutLikesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
@@ -19156,16 +16381,16 @@ export namespace Prisma {
     sentNotifications?: NotificationUpdateManyWithoutSenderNestedInput
     requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-    userProvider?: UserProviderUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLikesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
@@ -19175,7 +16400,6 @@ export namespace Prisma {
     sentNotifications?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-    userProvider?: UserProviderUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BlogPostCreateWithoutCommentsInput = {
@@ -19222,11 +16446,12 @@ export namespace Prisma {
 
   export type UserCreateWithoutCommentsInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
@@ -19236,16 +16461,16 @@ export namespace Prisma {
     likes?: PostLikeCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-    userProvider?: UserProviderCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCommentsInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
@@ -19255,7 +16480,6 @@ export namespace Prisma {
     likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-    userProvider?: UserProviderUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCommentsInput = {
@@ -19324,11 +16548,12 @@ export namespace Prisma {
 
   export type UserUpdateWithoutCommentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
@@ -19338,16 +16563,16 @@ export namespace Prisma {
     likes?: PostLikeUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-    userProvider?: UserProviderUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
@@ -19357,16 +16582,16 @@ export namespace Prisma {
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-    userProvider?: UserProviderUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutRequestSubscribeInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
@@ -19376,16 +16601,16 @@ export namespace Prisma {
     sentNotifications?: NotificationCreateNestedManyWithoutSenderInput
     likes?: PostLikeCreateNestedManyWithoutUserInput
     responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-    userProvider?: UserProviderCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRequestSubscribeInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
@@ -19395,7 +16620,6 @@ export namespace Prisma {
     sentNotifications?: NotificationUncheckedCreateNestedManyWithoutSenderInput
     likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
     responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-    userProvider?: UserProviderUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRequestSubscribeInput = {
@@ -19405,11 +16629,12 @@ export namespace Prisma {
 
   export type UserCreateWithoutResponseSubscribeInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
@@ -19419,16 +16644,16 @@ export namespace Prisma {
     sentNotifications?: NotificationCreateNestedManyWithoutSenderInput
     likes?: PostLikeCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
-    userProvider?: UserProviderCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutResponseSubscribeInput = {
     id?: string
-    nickname: string
+    name: string
     email: string
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
+    provider?: string | null
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
@@ -19438,7 +16663,6 @@ export namespace Prisma {
     sentNotifications?: NotificationUncheckedCreateNestedManyWithoutSenderInput
     likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
-    userProvider?: UserProviderUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutResponseSubscribeInput = {
@@ -19459,11 +16683,12 @@ export namespace Prisma {
 
   export type UserUpdateWithoutRequestSubscribeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
@@ -19473,16 +16698,16 @@ export namespace Prisma {
     sentNotifications?: NotificationUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUpdateManyWithoutUserNestedInput
     responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-    userProvider?: UserProviderUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRequestSubscribeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
@@ -19492,7 +16717,6 @@ export namespace Prisma {
     sentNotifications?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-    userProvider?: UserProviderUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutResponseSubscribeInput = {
@@ -19508,11 +16732,12 @@ export namespace Prisma {
 
   export type UserUpdateWithoutResponseSubscribeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
@@ -19522,16 +16747,16 @@ export namespace Prisma {
     sentNotifications?: NotificationUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
-    userProvider?: UserProviderUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutResponseSubscribeInput = {
     id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
@@ -19541,168 +16766,6 @@ export namespace Prisma {
     sentNotifications?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
-    userProvider?: UserProviderUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserProviderCreateWithoutProviderInput = {
-    user: UserCreateNestedOneWithoutUserProviderInput
-  }
-
-  export type UserProviderUncheckedCreateWithoutProviderInput = {
-    id?: number
-    userId: string
-  }
-
-  export type UserProviderCreateOrConnectWithoutProviderInput = {
-    where: UserProviderWhereUniqueInput
-    create: XOR<UserProviderCreateWithoutProviderInput, UserProviderUncheckedCreateWithoutProviderInput>
-  }
-
-  export type UserProviderCreateManyProviderInputEnvelope = {
-    data: UserProviderCreateManyProviderInput | UserProviderCreateManyProviderInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type UserProviderUpsertWithWhereUniqueWithoutProviderInput = {
-    where: UserProviderWhereUniqueInput
-    update: XOR<UserProviderUpdateWithoutProviderInput, UserProviderUncheckedUpdateWithoutProviderInput>
-    create: XOR<UserProviderCreateWithoutProviderInput, UserProviderUncheckedCreateWithoutProviderInput>
-  }
-
-  export type UserProviderUpdateWithWhereUniqueWithoutProviderInput = {
-    where: UserProviderWhereUniqueInput
-    data: XOR<UserProviderUpdateWithoutProviderInput, UserProviderUncheckedUpdateWithoutProviderInput>
-  }
-
-  export type UserProviderUpdateManyWithWhereWithoutProviderInput = {
-    where: UserProviderScalarWhereInput
-    data: XOR<UserProviderUpdateManyMutationInput, UserProviderUncheckedUpdateManyWithoutProviderInput>
-  }
-
-  export type ProviderCreateWithoutUserProviderInput = {
-    name: string
-  }
-
-  export type ProviderUncheckedCreateWithoutUserProviderInput = {
-    id?: number
-    name: string
-  }
-
-  export type ProviderCreateOrConnectWithoutUserProviderInput = {
-    where: ProviderWhereUniqueInput
-    create: XOR<ProviderCreateWithoutUserProviderInput, ProviderUncheckedCreateWithoutUserProviderInput>
-  }
-
-  export type UserCreateWithoutUserProviderInput = {
-    id?: string
-    nickname: string
-    email: string
-    profileImg?: string | null
-    introduction?: string | null
-    backgroundImg?: string | null
-    createdAt?: Date | string
-    deletedAt?: Date | string | null
-    blogPost?: BlogPostCreateNestedManyWithoutUserInput
-    bookMark?: BookMarkCreateNestedManyWithoutUserInput
-    comments?: CommentCreateNestedManyWithoutUserInput
-    receivedNotifications?: NotificationCreateNestedManyWithoutReceiverInput
-    sentNotifications?: NotificationCreateNestedManyWithoutSenderInput
-    likes?: PostLikeCreateNestedManyWithoutUserInput
-    requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
-    responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-  }
-
-  export type UserUncheckedCreateWithoutUserProviderInput = {
-    id?: string
-    nickname: string
-    email: string
-    profileImg?: string | null
-    introduction?: string | null
-    backgroundImg?: string | null
-    createdAt?: Date | string
-    deletedAt?: Date | string | null
-    blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
-    bookMark?: BookMarkUncheckedCreateNestedManyWithoutUserInput
-    comments?: CommentUncheckedCreateNestedManyWithoutUserInput
-    receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutReceiverInput
-    sentNotifications?: NotificationUncheckedCreateNestedManyWithoutSenderInput
-    likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
-    requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
-    responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-  }
-
-  export type UserCreateOrConnectWithoutUserProviderInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutUserProviderInput, UserUncheckedCreateWithoutUserProviderInput>
-  }
-
-  export type ProviderUpsertWithoutUserProviderInput = {
-    update: XOR<ProviderUpdateWithoutUserProviderInput, ProviderUncheckedUpdateWithoutUserProviderInput>
-    create: XOR<ProviderCreateWithoutUserProviderInput, ProviderUncheckedCreateWithoutUserProviderInput>
-    where?: ProviderWhereInput
-  }
-
-  export type ProviderUpdateToOneWithWhereWithoutUserProviderInput = {
-    where?: ProviderWhereInput
-    data: XOR<ProviderUpdateWithoutUserProviderInput, ProviderUncheckedUpdateWithoutUserProviderInput>
-  }
-
-  export type ProviderUpdateWithoutUserProviderInput = {
-    name?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type ProviderUncheckedUpdateWithoutUserProviderInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type UserUpsertWithoutUserProviderInput = {
-    update: XOR<UserUpdateWithoutUserProviderInput, UserUncheckedUpdateWithoutUserProviderInput>
-    create: XOR<UserCreateWithoutUserProviderInput, UserUncheckedCreateWithoutUserProviderInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutUserProviderInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutUserProviderInput, UserUncheckedUpdateWithoutUserProviderInput>
-  }
-
-  export type UserUpdateWithoutUserProviderInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    profileImg?: NullableStringFieldUpdateOperationsInput | string | null
-    introduction?: NullableStringFieldUpdateOperationsInput | string | null
-    backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    blogPost?: BlogPostUpdateManyWithoutUserNestedInput
-    bookMark?: BookMarkUpdateManyWithoutUserNestedInput
-    comments?: CommentUpdateManyWithoutUserNestedInput
-    receivedNotifications?: NotificationUpdateManyWithoutReceiverNestedInput
-    sentNotifications?: NotificationUpdateManyWithoutSenderNestedInput
-    likes?: PostLikeUpdateManyWithoutUserNestedInput
-    requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
-    responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutUserProviderInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    nickname?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    profileImg?: NullableStringFieldUpdateOperationsInput | string | null
-    introduction?: NullableStringFieldUpdateOperationsInput | string | null
-    backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
-    bookMark?: BookMarkUncheckedUpdateManyWithoutUserNestedInput
-    comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
-    receivedNotifications?: NotificationUncheckedUpdateManyWithoutReceiverNestedInput
-    sentNotifications?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
-    likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
-    requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
-    responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
   }
 
   export type BlogPostCreateWithoutCategoryInput = {
@@ -19858,11 +16921,6 @@ export namespace Prisma {
     id?: number
     requestId: string
     createdAt?: Date | string
-  }
-
-  export type UserProviderCreateManyUserInput = {
-    id?: number
-    providerId: number
   }
 
   export type BlogPostUpdateWithoutUserInput = {
@@ -20060,20 +17118,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type UserProviderUpdateWithoutUserInput = {
-    provider?: ProviderUpdateOneRequiredWithoutUserProviderNestedInput
-  }
-
-  export type UserProviderUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    providerId?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type UserProviderUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    providerId?: IntFieldUpdateOperationsInput | number
-  }
-
   export type BookMarkCreateManyBlogPostInput = {
     id?: number
     userId: string
@@ -20184,25 +17228,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type UserProviderCreateManyProviderInput = {
-    id?: number
-    userId: string
-  }
-
-  export type UserProviderUpdateWithoutProviderInput = {
-    user?: UserUpdateOneRequiredWithoutUserProviderNestedInput
-  }
-
-  export type UserProviderUncheckedUpdateWithoutProviderInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type UserProviderUncheckedUpdateManyWithoutProviderInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    userId?: StringFieldUpdateOperationsInput | string
   }
 
 
