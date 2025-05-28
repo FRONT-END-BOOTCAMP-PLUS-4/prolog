@@ -4,7 +4,6 @@ import rehypeSanitize from 'rehype-sanitize';
 
 import styles from '../styles/PostFormPres.module.scss';
 import PostTagSectionPres from './PostTagSectionPres';
-
 import PostDraftListCont from '@/views/post/post-draft/container/PostDraftListCont';
 
 import Button from '@/shared/ui/button';

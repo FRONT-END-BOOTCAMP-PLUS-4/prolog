@@ -30,9 +30,9 @@ export default function PostDraftListPres({ onDelete, closeModal }: Props) {
             </div>
           </div>
         </header>
-        <div className={styles.list}>
+        <ul className={styles.list}>
           {drafts.map((data) => (
-            <div className={styles.item} key={data.id}>
+            <li className={styles.item} key={data.id}>
               <span className={styles.date}>{data.createdAt}</span>
               <div className={styles.titleWrapper}>
                 <span
@@ -46,9 +46,9 @@ export default function PostDraftListPres({ onDelete, closeModal }: Props) {
                   onClick={() => onDelete(data.id)}
                 />
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   );

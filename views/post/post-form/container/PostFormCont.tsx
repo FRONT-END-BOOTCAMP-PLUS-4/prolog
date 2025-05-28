@@ -20,15 +20,11 @@ const PostFormPres = dynamic(
 const MAX_DRAFT_COUNT = 10;
 
 export default function PostFormCont() {
+  const router = useRouter();
   const { drafts, setDrafts, selectedPost } = usePostEditorStore();
 
-  /* 에디터 본문 내용 */
   const [content, setContent] = useState<string | undefined>('');
-
-  /* 게시글 제목 */
   const [title, setTitle] = useState<string>('');
-
-  /* 태그 목록 */
   const [tags, setTags] = useState<string[]>([]);
 
   /* AI 사용여부 (0: 사용 안함, 1: 사용함) */
@@ -38,9 +34,7 @@ export default function PostFormCont() {
   const [isPublic, setIsPublic] = useState<number>(1);
 
   /* 임시저장된 글 ID (있으면 수정, 없으면 새로 생성) */
-  const [draftId, setDraftId] = useState<number>();
-
-  const router = useRouter();
+  const [draftId, setDraftId] = useState<number | null>();
 
   /** 임시저장 및 수정 데이터 있다면 초깃값 설정 */
   useEffect(() => {
@@ -50,7 +44,7 @@ export default function PostFormCont() {
       setTags(selectedPost.tags || []);
       setIsAiUsed(selectedPost.useAi || 0);
       setIsPublic(selectedPost.isPublic || 1);
-      setDraftId(selectedPost.id);
+      setDraftId(selectedPost.id || null);
     }
   }, [selectedPost]);
 
@@ -187,7 +181,6 @@ export default function PostFormCont() {
       thumbnailUrl: firstImg,
     };
 
-    console.log('newPost', newPost);
     const res = await fetch('/api/member/posts', {
       method: 'POST',
       headers: {
