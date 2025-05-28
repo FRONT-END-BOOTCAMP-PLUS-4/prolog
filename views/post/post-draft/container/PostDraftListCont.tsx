@@ -1,7 +1,11 @@
 import PostDraftListPres from '../presentational/PostDraftListPres';
 import { useDraftStore } from '../stores/useDraftStore';
 
-export default function PostDraftListCont() {
+type Props = {
+  closeModal: () => void;
+};
+
+export default function PostDraftListCont({ closeModal }: Props) {
   const { deleteDraft: onDelete } = useDraftStore();
 
   /** 임시 저장 글 삭제 로직 */
@@ -18,5 +22,5 @@ export default function PostDraftListCont() {
     }
   };
 
-  return <PostDraftListPres onDelete={deleteDraft} />;
+  return <PostDraftListPres onDelete={deleteDraft} closeModal={closeModal} />;
 }

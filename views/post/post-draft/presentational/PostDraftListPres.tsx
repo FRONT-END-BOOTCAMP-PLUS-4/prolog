@@ -2,15 +2,20 @@ import { TrashIcon, InfoCircledIcon } from '@radix-ui/react-icons';
 
 import styles from '../styles/PostDraftListPres.module.scss';
 import { useDraftStore } from '@/views/post/post-draft/stores/useDraftStore';
+import { BlogPostDraftType } from '../types';
 
 type Props = {
   onDelete: (id: number) => void;
+  closeModal: () => void;
 };
 
-export default function PostDraftListPres({ onDelete }: Props) {
-  const { drafts, setDraft, selectedDraft } = useDraftStore();
+export default function PostDraftListPres({ onDelete, closeModal }: Props) {
+  const { drafts, setPost } = useDraftStore();
 
-  console.log(selectedDraft);
+  const handleSelectDraft = (data: BlogPostDraftType) => {
+    setPost(data);
+    closeModal();
+  };
 
   return (
     <div className={styles.bottomSheet} onClick={(e) => e.stopPropagation()}>
@@ -29,7 +34,7 @@ export default function PostDraftListPres({ onDelete }: Props) {
             <div
               className={styles.item}
               key={data.id}
-              onClick={() => setDraft(data)}
+              onClick={() => handleSelectDraft(data)}
             >
               <span className={styles.date}>{data.createdAt}</span>
               <div className={styles.titleWrapper}>

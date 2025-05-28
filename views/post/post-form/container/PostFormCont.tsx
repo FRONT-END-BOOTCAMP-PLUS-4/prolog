@@ -41,7 +41,9 @@ export default function PostFormCont() {
 
   const router = useRouter();
 
-  const { drafts, setDrafts } = useDraftStore();
+  const { drafts, setDrafts, selectedPost } = useDraftStore();
+
+  console.log('선택한 포스트', selectedPost);
 
   useEffect(() => {
     /** 임시 저장 리스트 가져오는 로직 */
@@ -176,6 +178,7 @@ export default function PostFormCont() {
       thumbnailUrl: firstImg,
     };
 
+    console.log('newPost', newPost);
     const res = await fetch('/api/member/posts', {
       method: 'POST',
       headers: {
