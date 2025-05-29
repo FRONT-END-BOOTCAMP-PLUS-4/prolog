@@ -8,7 +8,9 @@ export class GetPostListAllDto {
     public updatedAt: string,
     public userId: string,
     public name: string,
-    public likes: number[],
-    public notification: number[],
+    public userProfileImage: string,
+    public thumbnailUrl: string | null,
+    // public likes: number[],
+    // public notification: number[],
   ) {}
 }

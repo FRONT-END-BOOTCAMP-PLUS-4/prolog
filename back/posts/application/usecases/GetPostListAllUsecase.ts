@@ -28,8 +28,10 @@ export class GetPostListAllUsecase {
               post.updatedAt ? dayjs(post.updatedAt).format('YYYY-MM-DD') : '',
               post.userId,
               post.user.name,
-              post.likes.map((like) => like.id),
-              post.notification.map((n) => n.id),
+              post.user.profileImg ?? '/svgs/profile.svg',
+              post.thumbnailUrl ?? null,
+              // post.likes.map((like) => like.id),
+              // post.notification.map((n) => n.id),
             ),
         ),
       );

@@ -59,9 +59,9 @@ export class PrPostListAllRepository implements PostListAllRepository {
       const result = await prisma.blogPost.findMany({
         where,
         include: {
-          likes: { select: { id: true } },
-          notification: { select: { id: true } },
-          user: { select: { id: true, name: true } },
+          // likes: { select: { id: true } },
+          // notification: { select: { id: true } },
+          user: { select: { id: true, name: true, profileImg: true } },
         },
       });
 
