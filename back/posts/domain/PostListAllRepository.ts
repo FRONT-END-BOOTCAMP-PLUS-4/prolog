@@ -10,9 +10,9 @@ export interface GetPostListAllFilter {
 export interface PostListAllRepository {
   findAll(filters: GetPostListAllFilter): Promise<
     (BlogPost & {
-      likes: { id: number }[];
-      notification: { id: number }[];
-      user: { id: string; name: string };
+      // likes: { id: number }[];
+      // notification: { id: number }[];
+      user: { id: string; name: string; profileImg?: string | null };
     })[]
   >;
 }
