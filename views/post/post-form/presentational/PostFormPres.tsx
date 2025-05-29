@@ -11,6 +11,8 @@ import { useImageDrop } from '@/shared/hooks/useImageDrop';
 import { useThemeStore } from '@/shared/stores/useThemeStore';
 import { useModalStore } from '@/shared/stores/useModalStore';
 import { usePostEditorStore } from '../../stores/usePostEditorStore';
+import MagicWand from '@/public/svgs/magic.svg';
+import PostAiFormPres from './PostAiFormPres';
 
 type Props = {
   customCommands: ICommand[];
@@ -52,6 +54,7 @@ export default function PostFormPres(props: Props) {
 
   const { theme } = useThemeStore();
   const { action } = useModalStore();
+  const { action: actionToAi } = useModalStore();
   const { drafts } = usePostEditorStore();
 
   const toggleAiUsage = () => {
@@ -105,6 +108,9 @@ export default function PostFormPres(props: Props) {
 
       <footer className={styles.footer}>
         <div className={styles.leftControls}>
+          <Button onClick={() => actionToAi.open(<PostAiFormPres />)}>
+            <MagicWand />
+          </Button>
           <Button
             onClick={toggleAiUsage}
             variants={isAiUsed ? 'active' : undefined}
