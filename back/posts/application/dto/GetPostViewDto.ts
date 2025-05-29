@@ -4,6 +4,7 @@ export class GetPostViewDto {
     public title: string,
     public profileImage: string | null,
     public nickname: string,
+    public userEmail: string,
     public createdAt: string,
     public updatedAt: string | null,
     public following: boolean,

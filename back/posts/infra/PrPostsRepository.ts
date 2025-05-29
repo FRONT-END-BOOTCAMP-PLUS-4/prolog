@@ -38,6 +38,7 @@ export class PrPostRepository implements PostsRepository {
       '임시 게시글 제목', // title
       'https://via.placeholder.com/150', // profileImage
       '임시 유저', // nickname
+      'email@naver.com', // userEmail
       dayjs('2025-05-29T12:00:00Z').format('YYYY-MM-DD'), // createdAt
       null, // updatedAt
       true, // following
