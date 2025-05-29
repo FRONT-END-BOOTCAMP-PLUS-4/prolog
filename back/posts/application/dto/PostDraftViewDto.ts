@@ -1,8 +1,9 @@
-export class GetPostDraftDto {
+export class PostDraftViewDto {
   constructor(
-    public id: number,
     public title: string,
     public content: string,
+    public tags: string[],
+    public id: number,
     public createdAt: string,
   ) {}
 }

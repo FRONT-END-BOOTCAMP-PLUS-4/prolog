@@ -1,6 +1,5 @@
 //slice
 import ProfileCardCont from '@/views/story/profile-card/container/ProfileCardCont';
-import PostsSearchCont from '@/features/search-input';
 
 //style
 import styles from './styles.module.scss';
@@ -12,11 +11,6 @@ export default function Page() {
       <div className={styles.container}>
         <div className={styles.cardFollowFlex}>
           <ProfileCardCont />
-          <div className={styles.inputContainer}>
-            <div className={styles.inputBox}>
-              <PostsSearchCont />
-            </div>
-          </div>
           <div className={styles.categoryCardList}>
             <CategoryListCont />
             {/* 임시 적으로 주석처리 */}

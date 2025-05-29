@@ -1,0 +1,6 @@
+@use "@styles/variables.scss" as *;
+
+.actionButton {
+  color: $theme-gray-5;
+  cursor: pointer;
+}

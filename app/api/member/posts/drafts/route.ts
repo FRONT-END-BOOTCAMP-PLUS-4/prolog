@@ -1,3 +1,5 @@
+import { NextRequest, NextResponse } from 'next/server';
+
 import { CreatePostDraftDto } from '@/back/posts/application/dto/CreatePostDraftDto';
 import { UpdatePostDraftDto } from '@/back/posts/application/dto/UpdatePostDraftDto';
 import { CreatePostDraftUsecase } from '@/back/posts/application/usecases/CreatePostDraftUsecase';
@@ -5,7 +7,6 @@ import { DeletePostDraftUsecase } from '@/back/posts/application/usecases/Delete
 import { GetPostDraftListtUsecase } from '@/back/posts/application/usecases/GetPostDraftListUsecase';
 import { UpdatePostDraftUsecase } from '@/back/posts/application/usecases/UpdatePostDraftUsecase';
 import { PrPostDraftRepository } from '@/back/posts/infra/PrPostsDraftRepository';
-import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   try {
@@ -41,7 +42,9 @@ export async function DELETE(req: NextRequest) {
     const repository = new PrPostDraftRepository();
     const deletePostDraft = new DeletePostDraftUsecase(repository);
 
-    await deletePostDraft.execute(Number(draftId));
+    const deletedId = await deletePostDraft.execute(Number(draftId));
+
+    return NextResponse.json(deletedId, { status: 200 });
   } catch (error) {
     console.error('임시 저장글 삭제 실패:', error);
     return NextResponse.json(
@@ -72,9 +75,9 @@ export async function POST(req: NextRequest) {
 
     const repository = new PrPostDraftRepository();
     const getPostDraftList = new CreatePostDraftUsecase(repository);
-    const draftList = await getPostDraftList.execute(draftWithUserId);
+    const newDraft = await getPostDraftList.execute(draftWithUserId);
 
-    return NextResponse.json(draftList, { status: 201 });
+    return NextResponse.json(newDraft, { status: 201 });
   } catch (error) {
     console.error('임시 저장글 삭제 실패:', error);
     return NextResponse.json(

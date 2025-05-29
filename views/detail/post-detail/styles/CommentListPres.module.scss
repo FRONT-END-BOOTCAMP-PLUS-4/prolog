@@ -14,6 +14,32 @@
   padding: 12px;
 }
 
+.commentHeader {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.editDone {
+  color: $theme-gray-5;
+  cursor: pointer;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 3px;
+  color: $theme-gray-3;
+}
+
+.commentEditInput {
+  width: 100%;
+  padding: 6px;
+  font-size: 14px;
+  border: 1px solid $theme-gray-5;
+  border-radius: 4px;
+}
+
 .commentText {
   @include font-sm;
   color: $theme-text-1;

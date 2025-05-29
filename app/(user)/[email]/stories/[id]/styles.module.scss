@@ -7,10 +7,22 @@
   padding: 30px;
 }
 
-.title {
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleText {
   @include font-title;
   color: $theme-text-1;
   text-align: left;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 3px;
+  color: $theme-gray-3;
 }
 
 .profileLayout {
