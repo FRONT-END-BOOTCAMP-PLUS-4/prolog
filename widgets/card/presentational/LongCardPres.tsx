@@ -24,7 +24,8 @@ export default function LongCardPres({ data }: Props) {
           <Link href="/email/stories">
             <div className={styles.profileInfo}>
               <Profile
-                userNickName={data.userNickName}
+                userProfileImage={data.userProfileImage}
+                userName={data.userName}
                 date={data.date}
                 onClick={() => {}}
               />

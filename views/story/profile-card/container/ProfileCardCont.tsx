@@ -1,30 +1,32 @@
 'use client';
 //package
-import { useState } from 'react';
+import { JSX, useEffect, useState } from 'react';
 //slice
 import ProfileCardPres from '../presentational/ProfileCardPres';
 //type
 import { User } from '../types';
+import { useSession } from 'next-auth/react';
 
-export default function ProfileCardCont() {
-  const [userData, setUserData] = useState<User>({
-    id: 'uuid',
-    bg: null,
-    profileImg: null,
-    name: '유저닉네임',
-    info: `안녕하세요! FE개발자입니다. 현재는 취준생이며 이러한 기술들을 사용중입니다. ...
-    안녕하세요! FE개발자입니다. 현재는 취준생이며 이러한 기술들을 사용중입니다. ... 
-    안녕하세요! FE개발자입니다. 현재는 취준생이며 이러한 기술들을 사용중입니다. ... 
-    안녕하세요! FE개발자입니다. 현재는 취준생이며 이러한 기술들을 사용중입니다. ... 
-    안녕하세요! FE개발자입니다. 현재는 취준생이며 이러한 기술들을 사용중입니다. ... 
-    안녕하세요! FE개발자입니다. 현재는 취준생이며 이러한 기술들을 사용중입니다. ... 
-    안녕하세요! FE개발자입니다. 현재는 취준생이며 이러한 기술들을 사용중입니다. ... 
-    안녕하세요! FE개발자입니다. 현재는 취준생이며 이러한 기술들을 사용중입니다. ... 
-    안녕하세요! FE개발자입니다. 현재는 취준생이며 이러한 기술들을 사용중입니다. ... 
-    안녕하세요! FE개발자입니다. 현재는 취준생이며 이러한 기술들을 사용중입니다. ... 
-    안녕하세요! FE개발자입니다. 현재는 취준생이며 이러한 기술들을 사용중입니다. ... 
-    안녕하세요! FE개발자입니다. 현재는 취준생이며 이러한 기술들을 사용중입니다. ... 
-    `,
-  });
-  return <ProfileCardPres userData={userData} />;
+export default function ProfileCardCont(): JSX.Element {
+  const { data: session, status } = useSession();
+  const [userData, setUserData] = useState<User>();
+
+  useEffect(() => {
+    const getUserHandler = async () => {
+      if (status === 'unauthenticated') {
+        throw new Error('로그인이 필요합니다');
+      }
+      if (status === 'authenticated') {
+        const { email } = session.user;
+        try {
+          const response = await fetch(`/api/member?email=${email}`);
+          const data = await response.json();
+          setUserData(data);
+        } catch (error) {}
+      }
+    };
+    getUserHandler();
+  }, []);
+
+  return <ProfileCardPres userData={userData!} />;
 }

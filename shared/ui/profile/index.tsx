@@ -5,14 +5,14 @@ import styles from './Profile.module.scss';
 
 type Props = {
   userProfileImage?: string;
-  userNickName: string;
+  userName: string;
   date: string;
   onClick: () => void;
 };
 
 export default function Profile({
   userProfileImage,
-  userNickName,
+  userName,
   date,
   onClick,
 }: Props) {
@@ -25,7 +25,7 @@ export default function Profile({
         height={32}
       />
       <div>
-        <div className={styles.profileName}>{userNickName}</div>
+        <div className={styles.profileName}>{userName}</div>
         <div className={styles.profileDate}>{date}</div>
       </div>
     </div>
