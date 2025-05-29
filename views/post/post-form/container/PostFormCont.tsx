@@ -121,7 +121,7 @@ export default function PostFormCont() {
       formData.append('img', file); // 서버에서 받는 필드명 'img'
     });
 
-    const res = await fetch('/api/member/posts/s3-upload', {
+    const res = await fetch('/api/member/posts/upload', {
       method: 'POST',
       body: formData,
     });
