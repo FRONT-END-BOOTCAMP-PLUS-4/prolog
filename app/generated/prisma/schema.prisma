@@ -27,7 +27,7 @@ model User {
   likes                 PostLike[]
   requestSubscribe      Subscribe[]    @relation("RequestSubscribe")
   responseSubscribe     Subscribe[]    @relation("ResponseSubscribe")
-  // userProvider          UserProvider[]
+  categories            Category[]
 
   @@map("user")
 }
@@ -35,7 +35,7 @@ model User {
 model BlogPost {
   id           Int            @id @default(autoincrement())
   userId       String         @map("user_id")
-  categoryId   Int?           @unique @map("category_id")
+  categoryId   Int?           @map("category_id")
   title        String
   content      String
   tags         String[]
@@ -45,7 +45,6 @@ model BlogPost {
   isPublic     Int            @default(1) @map("is_public")
   thumbnailUrl String?        @map("thumbnail_url")
   useAi        Int            @default(0) @map("use_ai")
-  aiUsageCount Int            @default(0) @map("ai_usage_count")
   category     Category?      @relation(fields: [categoryId], references: [id])
   user         User           @relation(fields: [userId], references: [id])
   bookMark     BookMark[]
@@ -117,30 +116,14 @@ model Subscribe {
   @@map("subscribe")
 }
 
-// model Provider {
-//   id           Int            @id @default(autoincrement())
-//   name         String         @unique
-//   userProvider UserProvider[]
-
-//   @@map("provider")
-// }
-
-// model UserProvider {
-//   id         Int      @id @default(autoincrement())
-//   providerId Int      @map("provider_id")
-//   userId     String   @map("user_id")
-//   provider   Provider @relation(fields: [providerId], references: [id])
-//   user       User     @relation(fields: [userId], references: [id])
-
-//   @@map("user_provider")
-// }
-
 model Category {
-  id        Int       @id @default(autoincrement())
-  name      String    @map("name")
-  createdAt DateTime  @default(now()) @map("created_at")
-  updatedAt DateTime? @default(now()) @map("updated_at")
-  blogPost  BlogPost?
+  id        Int        @id @default(autoincrement())
+  name      String     @map("name")
+  userId    String     @map("user_id")
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime?  @default(now()) @map("updated_at")
+  blogPost  BlogPost[]
+  user      User       @relation(fields: [userId], references: [id])
 
   @@map("category")
 }
