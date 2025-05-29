@@ -27,7 +27,10 @@ model User {
   likes                 PostLike[]
   requestSubscribe      Subscribe[]    @relation("RequestSubscribe")
   responseSubscribe     Subscribe[]    @relation("ResponseSubscribe")
+<<<<<<< HEAD
   categories            Category[]
+=======
+>>>>>>> 5c0924c836b1d198d1df8dc55c593172818a8672
 
   @@map("user")
 }
@@ -119,11 +122,17 @@ model Subscribe {
 model Category {
   id        Int        @id @default(autoincrement())
   name      String     @map("name")
+<<<<<<< HEAD
   userId    String     @map("user_id")
   createdAt DateTime   @default(now()) @map("created_at")
   updatedAt DateTime?  @default(now()) @map("updated_at")
   blogPost  BlogPost[]
   user      User       @relation(fields: [userId], references: [id])
+=======
+  createdAt DateTime   @default(now()) @map("created_at")
+  updatedAt DateTime?  @default(now()) @map("updated_at")
+  blogPost  BlogPost[]
+>>>>>>> 5c0924c836b1d198d1df8dc55c593172818a8672
 
   @@map("category")
 }
