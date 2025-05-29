@@ -1,7 +1,6 @@
 generator client {
-  provider      = "prisma-client-js"
-  output        = "../app/generated/prisma"
-  binaryTargets = ["native", "darwin-arm64"]
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
 }
 
 datasource db {
@@ -21,6 +20,7 @@ model User {
   deletedAt             DateTime?      @map("deleted_at")
   blogPost              BlogPost[]
   bookMark              BookMark[]
+  categories            Category[]
   comments              Comment[]
   receivedNotifications Notification[] @relation("ReceivedNotifications")
   sentNotifications     Notification[] @relation("SentNotifications")
@@ -120,7 +120,9 @@ model Category {
   name      String     @map("name")
   createdAt DateTime   @default(now()) @map("created_at")
   updatedAt DateTime?  @default(now()) @map("updated_at")
+  userId    String     @map("user_id")
   blogPost  BlogPost[]
+  user      User       @relation(fields: [userId], references: [id])
 
   @@map("category")
 }
