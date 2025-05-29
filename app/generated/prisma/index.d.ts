@@ -1599,25 +1599,25 @@ export namespace Prisma {
   export type UserCountOutputType = {
     blogPost: number
     bookMark: number
+    categories: number
     comments: number
     receivedNotifications: number
     sentNotifications: number
     likes: number
     requestSubscribe: number
     responseSubscribe: number
-    categories: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     blogPost?: boolean | UserCountOutputTypeCountBlogPostArgs
     bookMark?: boolean | UserCountOutputTypeCountBookMarkArgs
+    categories?: boolean | UserCountOutputTypeCountCategoriesArgs
     comments?: boolean | UserCountOutputTypeCountCommentsArgs
     receivedNotifications?: boolean | UserCountOutputTypeCountReceivedNotificationsArgs
     sentNotifications?: boolean | UserCountOutputTypeCountSentNotificationsArgs
     likes?: boolean | UserCountOutputTypeCountLikesArgs
     requestSubscribe?: boolean | UserCountOutputTypeCountRequestSubscribeArgs
     responseSubscribe?: boolean | UserCountOutputTypeCountResponseSubscribeArgs
-    categories?: boolean | UserCountOutputTypeCountCategoriesArgs
   }
 
   // Custom InputTypes
@@ -1643,6 +1643,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountBookMarkArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BookMarkWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CategoryWhereInput
   }
 
   /**
@@ -1685,13 +1692,6 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountResponseSubscribeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SubscribeWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CategoryWhereInput
   }
 
 
@@ -1986,13 +1986,13 @@ export namespace Prisma {
     deletedAt?: boolean
     blogPost?: boolean | User$blogPostArgs<ExtArgs>
     bookMark?: boolean | User$bookMarkArgs<ExtArgs>
+    categories?: boolean | User$categoriesArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
     receivedNotifications?: boolean | User$receivedNotificationsArgs<ExtArgs>
     sentNotifications?: boolean | User$sentNotificationsArgs<ExtArgs>
     likes?: boolean | User$likesArgs<ExtArgs>
     requestSubscribe?: boolean | User$requestSubscribeArgs<ExtArgs>
     responseSubscribe?: boolean | User$responseSubscribeArgs<ExtArgs>
-    categories?: boolean | User$categoriesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2036,13 +2036,13 @@ export namespace Prisma {
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     blogPost?: boolean | User$blogPostArgs<ExtArgs>
     bookMark?: boolean | User$bookMarkArgs<ExtArgs>
+    categories?: boolean | User$categoriesArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
     receivedNotifications?: boolean | User$receivedNotificationsArgs<ExtArgs>
     sentNotifications?: boolean | User$sentNotificationsArgs<ExtArgs>
     likes?: boolean | User$likesArgs<ExtArgs>
     requestSubscribe?: boolean | User$requestSubscribeArgs<ExtArgs>
     responseSubscribe?: boolean | User$responseSubscribeArgs<ExtArgs>
-    categories?: boolean | User$categoriesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2053,13 +2053,13 @@ export namespace Prisma {
     objects: {
       blogPost: Prisma.$BlogPostPayload<ExtArgs>[]
       bookMark: Prisma.$BookMarkPayload<ExtArgs>[]
+      categories: Prisma.$CategoryPayload<ExtArgs>[]
       comments: Prisma.$CommentPayload<ExtArgs>[]
       receivedNotifications: Prisma.$NotificationPayload<ExtArgs>[]
       sentNotifications: Prisma.$NotificationPayload<ExtArgs>[]
       likes: Prisma.$PostLikePayload<ExtArgs>[]
       requestSubscribe: Prisma.$SubscribePayload<ExtArgs>[]
       responseSubscribe: Prisma.$SubscribePayload<ExtArgs>[]
-      categories: Prisma.$CategoryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2467,13 +2467,13 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     blogPost<T extends User$blogPostArgs<ExtArgs> = {}>(args?: Subset<T, User$blogPostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     bookMark<T extends User$bookMarkArgs<ExtArgs> = {}>(args?: Subset<T, User$bookMarkArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookMarkPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    categories<T extends User$categoriesArgs<ExtArgs> = {}>(args?: Subset<T, User$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends User$commentsArgs<ExtArgs> = {}>(args?: Subset<T, User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     receivedNotifications<T extends User$receivedNotificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$receivedNotificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     sentNotifications<T extends User$sentNotificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$sentNotificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     likes<T extends User$likesArgs<ExtArgs> = {}>(args?: Subset<T, User$likesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostLikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     requestSubscribe<T extends User$requestSubscribeArgs<ExtArgs> = {}>(args?: Subset<T, User$requestSubscribeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscribePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     responseSubscribe<T extends User$responseSubscribeArgs<ExtArgs> = {}>(args?: Subset<T, User$responseSubscribeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SubscribePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    categories<T extends User$categoriesArgs<ExtArgs> = {}>(args?: Subset<T, User$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2948,6 +2948,30 @@ export namespace Prisma {
   }
 
   /**
+   * User.categories
+   */
+  export type User$categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    where?: CategoryWhereInput
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    cursor?: CategoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
    * User.comments
    */
   export type User$commentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3089,30 +3113,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SubscribeScalarFieldEnum | SubscribeScalarFieldEnum[]
-  }
-
-  /**
-   * User.categories
-   */
-  export type User$categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Category
-     */
-    select?: CategorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Category
-     */
-    omit?: CategoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CategoryInclude<ExtArgs> | null
-    where?: CategoryWhereInput
-    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
-    cursor?: CategoryWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
   }
 
   /**
@@ -10021,25 +10021,25 @@ export namespace Prisma {
   export type CategoryMinAggregateOutputType = {
     id: number | null
     name: string | null
-    userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    userId: string | null
   }
 
   export type CategoryMaxAggregateOutputType = {
     id: number | null
     name: string | null
-    userId: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    userId: string | null
   }
 
   export type CategoryCountAggregateOutputType = {
     id: number
     name: number
-    userId: number
     createdAt: number
     updatedAt: number
+    userId: number
     _all: number
   }
 
@@ -10055,25 +10055,25 @@ export namespace Prisma {
   export type CategoryMinAggregateInputType = {
     id?: true
     name?: true
-    userId?: true
     createdAt?: true
     updatedAt?: true
+    userId?: true
   }
 
   export type CategoryMaxAggregateInputType = {
     id?: true
     name?: true
-    userId?: true
     createdAt?: true
     updatedAt?: true
+    userId?: true
   }
 
   export type CategoryCountAggregateInputType = {
     id?: true
     name?: true
-    userId?: true
     createdAt?: true
     updatedAt?: true
+    userId?: true
     _all?: true
   }
 
@@ -10166,9 +10166,9 @@ export namespace Prisma {
   export type CategoryGroupByOutputType = {
     id: number
     name: string
-    userId: string
     createdAt: Date
     updatedAt: Date | null
+    userId: string
     _count: CategoryCountAggregateOutputType | null
     _avg: CategoryAvgAggregateOutputType | null
     _sum: CategorySumAggregateOutputType | null
@@ -10193,47 +10193,43 @@ export namespace Prisma {
   export type CategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    userId?: boolean
     blogPost?: boolean | Category$blogPostArgs<ExtArgs>
-<<<<<<< HEAD
     user?: boolean | UserDefaultArgs<ExtArgs>
-=======
->>>>>>> 5c0924c836b1d198d1df8dc55c593172818a8672
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["category"]>
 
   export type CategorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["category"]>
 
   export type CategorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     name?: boolean
-    userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    userId?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["category"]>
 
   export type CategorySelectScalar = {
     id?: boolean
     name?: boolean
-    userId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    userId?: boolean
   }
 
-  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["category"]>
   export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     blogPost?: boolean | Category$blogPostArgs<ExtArgs>
-<<<<<<< HEAD
     user?: boolean | UserDefaultArgs<ExtArgs>
     _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -10242,26 +10238,20 @@ export namespace Prisma {
   }
   export type CategoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
-=======
-    _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
->>>>>>> 5c0924c836b1d198d1df8dc55c593172818a8672
   }
 
   export type $CategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Category"
     objects: {
       blogPost: Prisma.$BlogPostPayload<ExtArgs>[]
-<<<<<<< HEAD
       user: Prisma.$UserPayload<ExtArgs>
-=======
->>>>>>> 5c0924c836b1d198d1df8dc55c593172818a8672
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       name: string
-      userId: string
       createdAt: Date
       updatedAt: Date | null
+      userId: string
     }, ExtArgs["result"]["category"]>
     composites: {}
   }
@@ -10657,10 +10647,7 @@ export namespace Prisma {
   export interface Prisma__CategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     blogPost<T extends Category$blogPostArgs<ExtArgs> = {}>(args?: Subset<T, Category$blogPostArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlogPostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-<<<<<<< HEAD
     user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-=======
->>>>>>> 5c0924c836b1d198d1df8dc55c593172818a8672
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10692,9 +10679,9 @@ export namespace Prisma {
   interface CategoryFieldRefs {
     readonly id: FieldRef<"Category", 'Int'>
     readonly name: FieldRef<"Category", 'String'>
-    readonly userId: FieldRef<"Category", 'String'>
     readonly createdAt: FieldRef<"Category", 'DateTime'>
     readonly updatedAt: FieldRef<"Category", 'DateTime'>
+    readonly userId: FieldRef<"Category", 'String'>
   }
     
 
@@ -12276,9 +12263,9 @@ export namespace Prisma {
   export const CategoryScalarFieldEnum: {
     id: 'id',
     name: 'name',
-    userId: 'userId',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    userId: 'userId'
   };
 
   export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
@@ -12399,13 +12386,13 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     blogPost?: BlogPostListRelationFilter
     bookMark?: BookMarkListRelationFilter
+    categories?: CategoryListRelationFilter
     comments?: CommentListRelationFilter
     receivedNotifications?: NotificationListRelationFilter
     sentNotifications?: NotificationListRelationFilter
     likes?: PostLikeListRelationFilter
     requestSubscribe?: SubscribeListRelationFilter
     responseSubscribe?: SubscribeListRelationFilter
-    categories?: CategoryListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -12420,13 +12407,13 @@ export namespace Prisma {
     deletedAt?: SortOrderInput | SortOrder
     blogPost?: BlogPostOrderByRelationAggregateInput
     bookMark?: BookMarkOrderByRelationAggregateInput
+    categories?: CategoryOrderByRelationAggregateInput
     comments?: CommentOrderByRelationAggregateInput
     receivedNotifications?: NotificationOrderByRelationAggregateInput
     sentNotifications?: NotificationOrderByRelationAggregateInput
     likes?: PostLikeOrderByRelationAggregateInput
     requestSubscribe?: SubscribeOrderByRelationAggregateInput
     responseSubscribe?: SubscribeOrderByRelationAggregateInput
-    categories?: CategoryOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -12444,13 +12431,13 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     blogPost?: BlogPostListRelationFilter
     bookMark?: BookMarkListRelationFilter
+    categories?: CategoryListRelationFilter
     comments?: CommentListRelationFilter
     receivedNotifications?: NotificationListRelationFilter
     sentNotifications?: NotificationListRelationFilter
     likes?: PostLikeListRelationFilter
     requestSubscribe?: SubscribeListRelationFilter
     responseSubscribe?: SubscribeListRelationFilter
-    categories?: CategoryListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -12899,27 +12886,21 @@ export namespace Prisma {
     NOT?: CategoryWhereInput | CategoryWhereInput[]
     id?: IntFilter<"Category"> | number
     name?: StringFilter<"Category"> | string
-    userId?: StringFilter<"Category"> | string
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeNullableFilter<"Category"> | Date | string | null
+    userId?: StringFilter<"Category"> | string
     blogPost?: BlogPostListRelationFilter
-<<<<<<< HEAD
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-=======
->>>>>>> 5c0924c836b1d198d1df8dc55c593172818a8672
   }
 
   export type CategoryOrderByWithRelationInput = {
     id?: SortOrder
     name?: SortOrder
-    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrderInput | SortOrder
+    userId?: SortOrder
     blogPost?: BlogPostOrderByRelationAggregateInput
-<<<<<<< HEAD
     user?: UserOrderByWithRelationInput
-=======
->>>>>>> 5c0924c836b1d198d1df8dc55c593172818a8672
   }
 
   export type CategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -12928,22 +12909,19 @@ export namespace Prisma {
     OR?: CategoryWhereInput[]
     NOT?: CategoryWhereInput | CategoryWhereInput[]
     name?: StringFilter<"Category"> | string
-    userId?: StringFilter<"Category"> | string
     createdAt?: DateTimeFilter<"Category"> | Date | string
     updatedAt?: DateTimeNullableFilter<"Category"> | Date | string | null
+    userId?: StringFilter<"Category"> | string
     blogPost?: BlogPostListRelationFilter
-<<<<<<< HEAD
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-=======
->>>>>>> 5c0924c836b1d198d1df8dc55c593172818a8672
   }, "id">
 
   export type CategoryOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
-    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrderInput | SortOrder
+    userId?: SortOrder
     _count?: CategoryCountOrderByAggregateInput
     _avg?: CategoryAvgOrderByAggregateInput
     _max?: CategoryMaxOrderByAggregateInput
@@ -12957,9 +12935,9 @@ export namespace Prisma {
     NOT?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Category"> | number
     name?: StringWithAggregatesFilter<"Category"> | string
-    userId?: StringWithAggregatesFilter<"Category"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
     updatedAt?: DateTimeNullableWithAggregatesFilter<"Category"> | Date | string | null
+    userId?: StringWithAggregatesFilter<"Category"> | string
   }
 
   export type PostTempWhereInput = {
@@ -13033,13 +13011,13 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
     bookMark?: BookMarkCreateNestedManyWithoutUserInput
+    categories?: CategoryCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutReceiverInput
     sentNotifications?: NotificationCreateNestedManyWithoutSenderInput
     likes?: PostLikeCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-    categories?: CategoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -13054,13 +13032,13 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
     bookMark?: BookMarkUncheckedCreateNestedManyWithoutUserInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutReceiverInput
     sentNotifications?: NotificationUncheckedCreateNestedManyWithoutSenderInput
     likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -13075,13 +13053,13 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
     bookMark?: BookMarkUpdateManyWithoutUserNestedInput
+    categories?: CategoryUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutReceiverNestedInput
     sentNotifications?: NotificationUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-    categories?: CategoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -13096,13 +13074,13 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
     bookMark?: BookMarkUncheckedUpdateManyWithoutUserNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutReceiverNestedInput
     sentNotifications?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -13516,18 +13494,15 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutCategoryInput
-<<<<<<< HEAD
     user: UserCreateNestedOneWithoutCategoriesInput
-=======
->>>>>>> 5c0924c836b1d198d1df8dc55c593172818a8672
   }
 
   export type CategoryUncheckedCreateInput = {
     id?: number
     name: string
-    userId: string
     createdAt?: Date | string
     updatedAt?: Date | string | null
+    userId: string
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutCategoryInput
   }
 
@@ -13536,27 +13511,24 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutCategoryNestedInput
-<<<<<<< HEAD
     user?: UserUpdateOneRequiredWithoutCategoriesNestedInput
-=======
->>>>>>> 5c0924c836b1d198d1df8dc55c593172818a8672
   }
 
   export type CategoryUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userId?: StringFieldUpdateOperationsInput | string
     blogPost?: BlogPostUncheckedUpdateManyWithoutCategoryNestedInput
   }
 
   export type CategoryCreateManyInput = {
     id?: number
     name: string
-    userId: string
     createdAt?: Date | string
     updatedAt?: Date | string | null
+    userId: string
   }
 
   export type CategoryUpdateManyMutationInput = {
@@ -13568,9 +13540,9 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type PostTempCreateInput = {
@@ -13697,6 +13669,12 @@ export namespace Prisma {
     none?: BookMarkWhereInput
   }
 
+  export type CategoryListRelationFilter = {
+    every?: CategoryWhereInput
+    some?: CategoryWhereInput
+    none?: CategoryWhereInput
+  }
+
   export type CommentListRelationFilter = {
     every?: CommentWhereInput
     some?: CommentWhereInput
@@ -13721,12 +13699,6 @@ export namespace Prisma {
     none?: SubscribeWhereInput
   }
 
-  export type CategoryListRelationFilter = {
-    every?: CategoryWhereInput
-    some?: CategoryWhereInput
-    none?: CategoryWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -13737,6 +13709,10 @@ export namespace Prisma {
   }
 
   export type BookMarkOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CategoryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -13753,10 +13729,6 @@ export namespace Prisma {
   }
 
   export type SubscribeOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type CategoryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -14169,9 +14141,9 @@ export namespace Prisma {
   export type CategoryCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    userId?: SortOrder
   }
 
   export type CategoryAvgOrderByAggregateInput = {
@@ -14181,17 +14153,17 @@ export namespace Prisma {
   export type CategoryMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    userId?: SortOrder
   }
 
   export type CategoryMinOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
-    userId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    userId?: SortOrder
   }
 
   export type CategorySumOrderByAggregateInput = {
@@ -14245,6 +14217,13 @@ export namespace Prisma {
     connect?: BookMarkWhereUniqueInput | BookMarkWhereUniqueInput[]
   }
 
+  export type CategoryCreateNestedManyWithoutUserInput = {
+    create?: XOR<CategoryCreateWithoutUserInput, CategoryUncheckedCreateWithoutUserInput> | CategoryCreateWithoutUserInput[] | CategoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutUserInput | CategoryCreateOrConnectWithoutUserInput[]
+    createMany?: CategoryCreateManyUserInputEnvelope
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+  }
+
   export type CommentCreateNestedManyWithoutUserInput = {
     create?: XOR<CommentCreateWithoutUserInput, CommentUncheckedCreateWithoutUserInput> | CommentCreateWithoutUserInput[] | CommentUncheckedCreateWithoutUserInput[]
     connectOrCreate?: CommentCreateOrConnectWithoutUserInput | CommentCreateOrConnectWithoutUserInput[]
@@ -14287,13 +14266,6 @@ export namespace Prisma {
     connect?: SubscribeWhereUniqueInput | SubscribeWhereUniqueInput[]
   }
 
-  export type CategoryCreateNestedManyWithoutUserInput = {
-    create?: XOR<CategoryCreateWithoutUserInput, CategoryUncheckedCreateWithoutUserInput> | CategoryCreateWithoutUserInput[] | CategoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: CategoryCreateOrConnectWithoutUserInput | CategoryCreateOrConnectWithoutUserInput[]
-    createMany?: CategoryCreateManyUserInputEnvelope
-    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
-  }
-
   export type BlogPostUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<BlogPostCreateWithoutUserInput, BlogPostUncheckedCreateWithoutUserInput> | BlogPostCreateWithoutUserInput[] | BlogPostUncheckedCreateWithoutUserInput[]
     connectOrCreate?: BlogPostCreateOrConnectWithoutUserInput | BlogPostCreateOrConnectWithoutUserInput[]
@@ -14306,6 +14278,13 @@ export namespace Prisma {
     connectOrCreate?: BookMarkCreateOrConnectWithoutUserInput | BookMarkCreateOrConnectWithoutUserInput[]
     createMany?: BookMarkCreateManyUserInputEnvelope
     connect?: BookMarkWhereUniqueInput | BookMarkWhereUniqueInput[]
+  }
+
+  export type CategoryUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<CategoryCreateWithoutUserInput, CategoryUncheckedCreateWithoutUserInput> | CategoryCreateWithoutUserInput[] | CategoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutUserInput | CategoryCreateOrConnectWithoutUserInput[]
+    createMany?: CategoryCreateManyUserInputEnvelope
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
   }
 
   export type CommentUncheckedCreateNestedManyWithoutUserInput = {
@@ -14350,13 +14329,6 @@ export namespace Prisma {
     connect?: SubscribeWhereUniqueInput | SubscribeWhereUniqueInput[]
   }
 
-  export type CategoryUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<CategoryCreateWithoutUserInput, CategoryUncheckedCreateWithoutUserInput> | CategoryCreateWithoutUserInput[] | CategoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: CategoryCreateOrConnectWithoutUserInput | CategoryCreateOrConnectWithoutUserInput[]
-    createMany?: CategoryCreateManyUserInputEnvelope
-    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
-  }
-
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -14399,6 +14371,20 @@ export namespace Prisma {
     update?: BookMarkUpdateWithWhereUniqueWithoutUserInput | BookMarkUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: BookMarkUpdateManyWithWhereWithoutUserInput | BookMarkUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: BookMarkScalarWhereInput | BookMarkScalarWhereInput[]
+  }
+
+  export type CategoryUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CategoryCreateWithoutUserInput, CategoryUncheckedCreateWithoutUserInput> | CategoryCreateWithoutUserInput[] | CategoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutUserInput | CategoryCreateOrConnectWithoutUserInput[]
+    upsert?: CategoryUpsertWithWhereUniqueWithoutUserInput | CategoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CategoryCreateManyUserInputEnvelope
+    set?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    disconnect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    delete?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    update?: CategoryUpdateWithWhereUniqueWithoutUserInput | CategoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CategoryUpdateManyWithWhereWithoutUserInput | CategoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
   }
 
   export type CommentUpdateManyWithoutUserNestedInput = {
@@ -14485,20 +14471,6 @@ export namespace Prisma {
     deleteMany?: SubscribeScalarWhereInput | SubscribeScalarWhereInput[]
   }
 
-  export type CategoryUpdateManyWithoutUserNestedInput = {
-    create?: XOR<CategoryCreateWithoutUserInput, CategoryUncheckedCreateWithoutUserInput> | CategoryCreateWithoutUserInput[] | CategoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: CategoryCreateOrConnectWithoutUserInput | CategoryCreateOrConnectWithoutUserInput[]
-    upsert?: CategoryUpsertWithWhereUniqueWithoutUserInput | CategoryUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: CategoryCreateManyUserInputEnvelope
-    set?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
-    disconnect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
-    delete?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
-    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
-    update?: CategoryUpdateWithWhereUniqueWithoutUserInput | CategoryUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: CategoryUpdateManyWithWhereWithoutUserInput | CategoryUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
-  }
-
   export type BlogPostUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<BlogPostCreateWithoutUserInput, BlogPostUncheckedCreateWithoutUserInput> | BlogPostCreateWithoutUserInput[] | BlogPostUncheckedCreateWithoutUserInput[]
     connectOrCreate?: BlogPostCreateOrConnectWithoutUserInput | BlogPostCreateOrConnectWithoutUserInput[]
@@ -14525,6 +14497,20 @@ export namespace Prisma {
     update?: BookMarkUpdateWithWhereUniqueWithoutUserInput | BookMarkUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: BookMarkUpdateManyWithWhereWithoutUserInput | BookMarkUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: BookMarkScalarWhereInput | BookMarkScalarWhereInput[]
+  }
+
+  export type CategoryUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<CategoryCreateWithoutUserInput, CategoryUncheckedCreateWithoutUserInput> | CategoryCreateWithoutUserInput[] | CategoryUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutUserInput | CategoryCreateOrConnectWithoutUserInput[]
+    upsert?: CategoryUpsertWithWhereUniqueWithoutUserInput | CategoryUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: CategoryCreateManyUserInputEnvelope
+    set?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    disconnect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    delete?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    update?: CategoryUpdateWithWhereUniqueWithoutUserInput | CategoryUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: CategoryUpdateManyWithWhereWithoutUserInput | CategoryUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
   }
 
   export type CommentUncheckedUpdateManyWithoutUserNestedInput = {
@@ -14609,20 +14595,6 @@ export namespace Prisma {
     update?: SubscribeUpdateWithWhereUniqueWithoutResponseSubscribeInput | SubscribeUpdateWithWhereUniqueWithoutResponseSubscribeInput[]
     updateMany?: SubscribeUpdateManyWithWhereWithoutResponseSubscribeInput | SubscribeUpdateManyWithWhereWithoutResponseSubscribeInput[]
     deleteMany?: SubscribeScalarWhereInput | SubscribeScalarWhereInput[]
-  }
-
-  export type CategoryUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<CategoryCreateWithoutUserInput, CategoryUncheckedCreateWithoutUserInput> | CategoryCreateWithoutUserInput[] | CategoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: CategoryCreateOrConnectWithoutUserInput | CategoryCreateOrConnectWithoutUserInput[]
-    upsert?: CategoryUpsertWithWhereUniqueWithoutUserInput | CategoryUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: CategoryCreateManyUserInputEnvelope
-    set?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
-    disconnect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
-    delete?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
-    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
-    update?: CategoryUpdateWithWhereUniqueWithoutUserInput | CategoryUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: CategoryUpdateManyWithWhereWithoutUserInput | CategoryUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
   }
 
   export type BlogPostCreatetagsInput = {
@@ -15009,7 +14981,6 @@ export namespace Prisma {
     connect?: BlogPostWhereUniqueInput | BlogPostWhereUniqueInput[]
   }
 
-<<<<<<< HEAD
   export type UserCreateNestedOneWithoutCategoriesInput = {
     create?: XOR<UserCreateWithoutCategoriesInput, UserUncheckedCreateWithoutCategoriesInput>
     connectOrCreate?: UserCreateOrConnectWithoutCategoriesInput
@@ -15045,29 +15016,6 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCategoriesInput, UserUpdateWithoutCategoriesInput>, UserUncheckedUpdateWithoutCategoriesInput>
   }
 
-=======
-  export type BlogPostUncheckedCreateNestedManyWithoutCategoryInput = {
-    create?: XOR<BlogPostCreateWithoutCategoryInput, BlogPostUncheckedCreateWithoutCategoryInput> | BlogPostCreateWithoutCategoryInput[] | BlogPostUncheckedCreateWithoutCategoryInput[]
-    connectOrCreate?: BlogPostCreateOrConnectWithoutCategoryInput | BlogPostCreateOrConnectWithoutCategoryInput[]
-    createMany?: BlogPostCreateManyCategoryInputEnvelope
-    connect?: BlogPostWhereUniqueInput | BlogPostWhereUniqueInput[]
-  }
-
-  export type BlogPostUpdateManyWithoutCategoryNestedInput = {
-    create?: XOR<BlogPostCreateWithoutCategoryInput, BlogPostUncheckedCreateWithoutCategoryInput> | BlogPostCreateWithoutCategoryInput[] | BlogPostUncheckedCreateWithoutCategoryInput[]
-    connectOrCreate?: BlogPostCreateOrConnectWithoutCategoryInput | BlogPostCreateOrConnectWithoutCategoryInput[]
-    upsert?: BlogPostUpsertWithWhereUniqueWithoutCategoryInput | BlogPostUpsertWithWhereUniqueWithoutCategoryInput[]
-    createMany?: BlogPostCreateManyCategoryInputEnvelope
-    set?: BlogPostWhereUniqueInput | BlogPostWhereUniqueInput[]
-    disconnect?: BlogPostWhereUniqueInput | BlogPostWhereUniqueInput[]
-    delete?: BlogPostWhereUniqueInput | BlogPostWhereUniqueInput[]
-    connect?: BlogPostWhereUniqueInput | BlogPostWhereUniqueInput[]
-    update?: BlogPostUpdateWithWhereUniqueWithoutCategoryInput | BlogPostUpdateWithWhereUniqueWithoutCategoryInput[]
-    updateMany?: BlogPostUpdateManyWithWhereWithoutCategoryInput | BlogPostUpdateManyWithWhereWithoutCategoryInput[]
-    deleteMany?: BlogPostScalarWhereInput | BlogPostScalarWhereInput[]
-  }
-
->>>>>>> 5c0924c836b1d198d1df8dc55c593172818a8672
   export type BlogPostUncheckedUpdateManyWithoutCategoryNestedInput = {
     create?: XOR<BlogPostCreateWithoutCategoryInput, BlogPostUncheckedCreateWithoutCategoryInput> | BlogPostCreateWithoutCategoryInput[] | BlogPostUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: BlogPostCreateOrConnectWithoutCategoryInput | BlogPostCreateOrConnectWithoutCategoryInput[]
@@ -15345,6 +15293,31 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CategoryCreateWithoutUserInput = {
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    blogPost?: BlogPostCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryUncheckedCreateWithoutUserInput = {
+    id?: number
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
+    blogPost?: BlogPostUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryCreateOrConnectWithoutUserInput = {
+    where: CategoryWhereUniqueInput
+    create: XOR<CategoryCreateWithoutUserInput, CategoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type CategoryCreateManyUserInputEnvelope = {
+    data: CategoryCreateManyUserInput | CategoryCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CommentCreateWithoutUserInput = {
     content: string
     createdAt?: Date | string
@@ -15487,31 +15460,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type CategoryCreateWithoutUserInput = {
-    name: string
-    createdAt?: Date | string
-    updatedAt?: Date | string | null
-    blogPost?: BlogPostCreateNestedManyWithoutCategoryInput
-  }
-
-  export type CategoryUncheckedCreateWithoutUserInput = {
-    id?: number
-    name: string
-    createdAt?: Date | string
-    updatedAt?: Date | string | null
-    blogPost?: BlogPostUncheckedCreateNestedManyWithoutCategoryInput
-  }
-
-  export type CategoryCreateOrConnectWithoutUserInput = {
-    where: CategoryWhereUniqueInput
-    create: XOR<CategoryCreateWithoutUserInput, CategoryUncheckedCreateWithoutUserInput>
-  }
-
-  export type CategoryCreateManyUserInputEnvelope = {
-    data: CategoryCreateManyUserInput | CategoryCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
   export type BlogPostUpsertWithWhereUniqueWithoutUserInput = {
     where: BlogPostWhereUniqueInput
     update: XOR<BlogPostUpdateWithoutUserInput, BlogPostUncheckedUpdateWithoutUserInput>
@@ -15570,6 +15518,33 @@ export namespace Prisma {
     postsId?: IntFilter<"BookMark"> | number
     userId?: StringFilter<"BookMark"> | string
     createdAt?: DateTimeFilter<"BookMark"> | Date | string
+  }
+
+  export type CategoryUpsertWithWhereUniqueWithoutUserInput = {
+    where: CategoryWhereUniqueInput
+    update: XOR<CategoryUpdateWithoutUserInput, CategoryUncheckedUpdateWithoutUserInput>
+    create: XOR<CategoryCreateWithoutUserInput, CategoryUncheckedCreateWithoutUserInput>
+  }
+
+  export type CategoryUpdateWithWhereUniqueWithoutUserInput = {
+    where: CategoryWhereUniqueInput
+    data: XOR<CategoryUpdateWithoutUserInput, CategoryUncheckedUpdateWithoutUserInput>
+  }
+
+  export type CategoryUpdateManyWithWhereWithoutUserInput = {
+    where: CategoryScalarWhereInput
+    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type CategoryScalarWhereInput = {
+    AND?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+    OR?: CategoryScalarWhereInput[]
+    NOT?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+    id?: IntFilter<"Category"> | number
+    name?: StringFilter<"Category"> | string
+    createdAt?: DateTimeFilter<"Category"> | Date | string
+    updatedAt?: DateTimeNullableFilter<"Category"> | Date | string | null
+    userId?: StringFilter<"Category"> | string
   }
 
   export type CommentUpsertWithWhereUniqueWithoutUserInput = {
@@ -15713,33 +15688,6 @@ export namespace Prisma {
     data: XOR<SubscribeUpdateManyMutationInput, SubscribeUncheckedUpdateManyWithoutResponseSubscribeInput>
   }
 
-  export type CategoryUpsertWithWhereUniqueWithoutUserInput = {
-    where: CategoryWhereUniqueInput
-    update: XOR<CategoryUpdateWithoutUserInput, CategoryUncheckedUpdateWithoutUserInput>
-    create: XOR<CategoryCreateWithoutUserInput, CategoryUncheckedCreateWithoutUserInput>
-  }
-
-  export type CategoryUpdateWithWhereUniqueWithoutUserInput = {
-    where: CategoryWhereUniqueInput
-    data: XOR<CategoryUpdateWithoutUserInput, CategoryUncheckedUpdateWithoutUserInput>
-  }
-
-  export type CategoryUpdateManyWithWhereWithoutUserInput = {
-    where: CategoryScalarWhereInput
-    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type CategoryScalarWhereInput = {
-    AND?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
-    OR?: CategoryScalarWhereInput[]
-    NOT?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
-    id?: IntFilter<"Category"> | number
-    name?: StringFilter<"Category"> | string
-    userId?: StringFilter<"Category"> | string
-    createdAt?: DateTimeFilter<"Category"> | Date | string
-    updatedAt?: DateTimeNullableFilter<"Category"> | Date | string | null
-  }
-
   export type CategoryCreateWithoutBlogPostInput = {
     name: string
     createdAt?: Date | string
@@ -15750,9 +15698,9 @@ export namespace Prisma {
   export type CategoryUncheckedCreateWithoutBlogPostInput = {
     id?: number
     name: string
-    userId: string
     createdAt?: Date | string
     updatedAt?: Date | string | null
+    userId: string
   }
 
   export type CategoryCreateOrConnectWithoutBlogPostInput = {
@@ -15771,13 +15719,13 @@ export namespace Prisma {
     createdAt?: Date | string
     deletedAt?: Date | string | null
     bookMark?: BookMarkCreateNestedManyWithoutUserInput
+    categories?: CategoryCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutReceiverInput
     sentNotifications?: NotificationCreateNestedManyWithoutSenderInput
     likes?: PostLikeCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-    categories?: CategoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBlogPostInput = {
@@ -15791,13 +15739,13 @@ export namespace Prisma {
     createdAt?: Date | string
     deletedAt?: Date | string | null
     bookMark?: BookMarkUncheckedCreateNestedManyWithoutUserInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutReceiverInput
     sentNotifications?: NotificationUncheckedCreateNestedManyWithoutSenderInput
     likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBlogPostInput = {
@@ -15920,9 +15868,9 @@ export namespace Prisma {
   export type CategoryUncheckedUpdateWithoutBlogPostInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserUpsertWithoutBlogPostInput = {
@@ -15947,13 +15895,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bookMark?: BookMarkUpdateManyWithoutUserNestedInput
+    categories?: CategoryUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutReceiverNestedInput
     sentNotifications?: NotificationUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-    categories?: CategoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBlogPostInput = {
@@ -15967,13 +15915,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bookMark?: BookMarkUncheckedUpdateManyWithoutUserNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutReceiverNestedInput
     sentNotifications?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BookMarkUpsertWithWhereUniqueWithoutBlogPostInput = {
@@ -16092,12 +16040,12 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
     bookMark?: BookMarkCreateNestedManyWithoutUserInput
+    categories?: CategoryCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     sentNotifications?: NotificationCreateNestedManyWithoutSenderInput
     likes?: PostLikeCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-    categories?: CategoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReceivedNotificationsInput = {
@@ -16112,12 +16060,12 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
     bookMark?: BookMarkUncheckedCreateNestedManyWithoutUserInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     sentNotifications?: NotificationUncheckedCreateNestedManyWithoutSenderInput
     likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReceivedNotificationsInput = {
@@ -16137,12 +16085,12 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
     bookMark?: BookMarkCreateNestedManyWithoutUserInput
+    categories?: CategoryCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutReceiverInput
     likes?: PostLikeCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-    categories?: CategoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSentNotificationsInput = {
@@ -16157,12 +16105,12 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
     bookMark?: BookMarkUncheckedCreateNestedManyWithoutUserInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutReceiverInput
     likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSentNotificationsInput = {
@@ -16239,12 +16187,12 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
     bookMark?: BookMarkUpdateManyWithoutUserNestedInput
+    categories?: CategoryUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     sentNotifications?: NotificationUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-    categories?: CategoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedNotificationsInput = {
@@ -16259,12 +16207,12 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
     bookMark?: BookMarkUncheckedUpdateManyWithoutUserNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     sentNotifications?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutSentNotificationsInput = {
@@ -16290,12 +16238,12 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
     bookMark?: BookMarkUpdateManyWithoutUserNestedInput
+    categories?: CategoryUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutReceiverNestedInput
     likes?: PostLikeUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-    categories?: CategoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentNotificationsInput = {
@@ -16310,12 +16258,12 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
     bookMark?: BookMarkUncheckedUpdateManyWithoutUserNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutReceiverNestedInput
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BlogPostCreateWithoutBookMarkInput = {
@@ -16369,13 +16317,13 @@ export namespace Prisma {
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
+    categories?: CategoryCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutReceiverInput
     sentNotifications?: NotificationCreateNestedManyWithoutSenderInput
     likes?: PostLikeCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-    categories?: CategoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBookMarkInput = {
@@ -16389,13 +16337,13 @@ export namespace Prisma {
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutReceiverInput
     sentNotifications?: NotificationUncheckedCreateNestedManyWithoutSenderInput
     likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBookMarkInput = {
@@ -16471,13 +16419,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
+    categories?: CategoryUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutReceiverNestedInput
     sentNotifications?: NotificationUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-    categories?: CategoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBookMarkInput = {
@@ -16491,13 +16439,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutReceiverNestedInput
     sentNotifications?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BlogPostCreateWithoutLikesInput = {
@@ -16552,12 +16500,12 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
     bookMark?: BookMarkCreateNestedManyWithoutUserInput
+    categories?: CategoryCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutReceiverInput
     sentNotifications?: NotificationCreateNestedManyWithoutSenderInput
     requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-    categories?: CategoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutLikesInput = {
@@ -16572,12 +16520,12 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
     bookMark?: BookMarkUncheckedCreateNestedManyWithoutUserInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutReceiverInput
     sentNotifications?: NotificationUncheckedCreateNestedManyWithoutSenderInput
     requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutLikesInput = {
@@ -16654,12 +16602,12 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
     bookMark?: BookMarkUpdateManyWithoutUserNestedInput
+    categories?: CategoryUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutReceiverNestedInput
     sentNotifications?: NotificationUpdateManyWithoutSenderNestedInput
     requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-    categories?: CategoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutLikesInput = {
@@ -16674,12 +16622,12 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
     bookMark?: BookMarkUncheckedUpdateManyWithoutUserNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutReceiverNestedInput
     sentNotifications?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BlogPostCreateWithoutCommentsInput = {
@@ -16734,12 +16682,12 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
     bookMark?: BookMarkCreateNestedManyWithoutUserInput
+    categories?: CategoryCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutReceiverInput
     sentNotifications?: NotificationCreateNestedManyWithoutSenderInput
     likes?: PostLikeCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-    categories?: CategoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCommentsInput = {
@@ -16754,12 +16702,12 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
     bookMark?: BookMarkUncheckedCreateNestedManyWithoutUserInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutReceiverInput
     sentNotifications?: NotificationUncheckedCreateNestedManyWithoutSenderInput
     likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
     responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCommentsInput = {
@@ -16836,12 +16784,12 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
     bookMark?: BookMarkUpdateManyWithoutUserNestedInput
+    categories?: CategoryUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutReceiverNestedInput
     sentNotifications?: NotificationUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-    categories?: CategoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -16856,12 +16804,12 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
     bookMark?: BookMarkUncheckedUpdateManyWithoutUserNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutReceiverNestedInput
     sentNotifications?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutRequestSubscribeInput = {
@@ -16876,12 +16824,12 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
     bookMark?: BookMarkCreateNestedManyWithoutUserInput
+    categories?: CategoryCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutReceiverInput
     sentNotifications?: NotificationCreateNestedManyWithoutSenderInput
     likes?: PostLikeCreateNestedManyWithoutUserInput
     responseSubscribe?: SubscribeCreateNestedManyWithoutResponseSubscribeInput
-    categories?: CategoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRequestSubscribeInput = {
@@ -16896,12 +16844,12 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
     bookMark?: BookMarkUncheckedCreateNestedManyWithoutUserInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutReceiverInput
     sentNotifications?: NotificationUncheckedCreateNestedManyWithoutSenderInput
     likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
     responseSubscribe?: SubscribeUncheckedCreateNestedManyWithoutResponseSubscribeInput
-    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRequestSubscribeInput = {
@@ -16921,12 +16869,12 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
     bookMark?: BookMarkCreateNestedManyWithoutUserInput
+    categories?: CategoryCreateNestedManyWithoutUserInput
     comments?: CommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutReceiverInput
     sentNotifications?: NotificationCreateNestedManyWithoutSenderInput
     likes?: PostLikeCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeCreateNestedManyWithoutRequestSubscribeInput
-    categories?: CategoryCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutResponseSubscribeInput = {
@@ -16941,12 +16889,12 @@ export namespace Prisma {
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
     bookMark?: BookMarkUncheckedCreateNestedManyWithoutUserInput
+    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
     comments?: CommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutReceiverInput
     sentNotifications?: NotificationUncheckedCreateNestedManyWithoutSenderInput
     likes?: PostLikeUncheckedCreateNestedManyWithoutUserInput
     requestSubscribe?: SubscribeUncheckedCreateNestedManyWithoutRequestSubscribeInput
-    categories?: CategoryUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutResponseSubscribeInput = {
@@ -16977,12 +16925,12 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
     bookMark?: BookMarkUpdateManyWithoutUserNestedInput
+    categories?: CategoryUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutReceiverNestedInput
     sentNotifications?: NotificationUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUpdateManyWithoutUserNestedInput
     responseSubscribe?: SubscribeUpdateManyWithoutResponseSubscribeNestedInput
-    categories?: CategoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRequestSubscribeInput = {
@@ -16997,12 +16945,12 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
     bookMark?: BookMarkUncheckedUpdateManyWithoutUserNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutReceiverNestedInput
     sentNotifications?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutResponseSubscribeInput = {
@@ -17028,12 +16976,12 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
     bookMark?: BookMarkUpdateManyWithoutUserNestedInput
+    categories?: CategoryUpdateManyWithoutUserNestedInput
     comments?: CommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutReceiverNestedInput
     sentNotifications?: NotificationUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUpdateManyWithoutRequestSubscribeNestedInput
-    categories?: CategoryUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutResponseSubscribeInput = {
@@ -17048,12 +16996,12 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
     bookMark?: BookMarkUncheckedUpdateManyWithoutUserNestedInput
+    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
     comments?: CommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutReceiverNestedInput
     sentNotifications?: NotificationUncheckedUpdateManyWithoutSenderNestedInput
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
-    categories?: CategoryUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BlogPostCreateWithoutCategoryInput = {
@@ -17101,7 +17049,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-<<<<<<< HEAD
   export type UserCreateWithoutCategoriesInput = {
     id?: string
     name: string
@@ -17147,8 +17094,6 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutCategoriesInput, UserUncheckedCreateWithoutCategoriesInput>
   }
 
-=======
->>>>>>> 5c0924c836b1d198d1df8dc55c593172818a8672
   export type BlogPostUpsertWithWhereUniqueWithoutCategoryInput = {
     where: BlogPostWhereUniqueInput
     update: XOR<BlogPostUpdateWithoutCategoryInput, BlogPostUncheckedUpdateWithoutCategoryInput>
@@ -17163,7 +17108,6 @@ export namespace Prisma {
   export type BlogPostUpdateManyWithWhereWithoutCategoryInput = {
     where: BlogPostScalarWhereInput
     data: XOR<BlogPostUpdateManyMutationInput, BlogPostUncheckedUpdateManyWithoutCategoryInput>
-<<<<<<< HEAD
   }
 
   export type UserUpsertWithoutCategoriesInput = {
@@ -17215,8 +17159,6 @@ export namespace Prisma {
     likes?: PostLikeUncheckedUpdateManyWithoutUserNestedInput
     requestSubscribe?: SubscribeUncheckedUpdateManyWithoutRequestSubscribeNestedInput
     responseSubscribe?: SubscribeUncheckedUpdateManyWithoutResponseSubscribeNestedInput
-=======
->>>>>>> 5c0924c836b1d198d1df8dc55c593172818a8672
   }
 
   export type BlogPostCreateManyUserInput = {
@@ -17237,6 +17179,13 @@ export namespace Prisma {
     id?: number
     postsId: number
     createdAt?: Date | string
+  }
+
+  export type CategoryCreateManyUserInput = {
+    id?: number
+    name: string
+    createdAt?: Date | string
+    updatedAt?: Date | string | null
   }
 
   export type CommentCreateManyUserInput = {
@@ -17281,13 +17230,6 @@ export namespace Prisma {
     id?: number
     requestId: string
     createdAt?: Date | string
-  }
-
-  export type CategoryCreateManyUserInput = {
-    id?: number
-    name: string
-    createdAt?: Date | string
-    updatedAt?: Date | string | null
   }
 
   export type BlogPostUpdateWithoutUserInput = {
@@ -17354,6 +17296,28 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     postsId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CategoryUpdateWithoutUserInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    blogPost?: BlogPostUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    blogPost?: BlogPostUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type CommentUpdateWithoutUserInput = {
@@ -17480,28 +17444,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     requestId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type CategoryUpdateWithoutUserInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    blogPost?: BlogPostUpdateManyWithoutCategoryNestedInput
-  }
-
-  export type CategoryUncheckedUpdateWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    blogPost?: BlogPostUncheckedUpdateManyWithoutCategoryNestedInput
-  }
-
-  export type CategoryUncheckedUpdateManyWithoutUserInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type BookMarkCreateManyBlogPostInput = {

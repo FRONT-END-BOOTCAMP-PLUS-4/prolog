@@ -1,7 +1,6 @@
 generator client {
   provider      = "prisma-client-js"
   output        = "../app/generated/prisma"
-  binaryTargets = ["native", "darwin-arm64"]
 }
 
 datasource db {
@@ -21,13 +20,13 @@ model User {
   deletedAt             DateTime?      @map("deleted_at")
   blogPost              BlogPost[]
   bookMark              BookMark[]
+  categories            Category[]
   comments              Comment[]
   receivedNotifications Notification[] @relation("ReceivedNotifications")
   sentNotifications     Notification[] @relation("SentNotifications")
   likes                 PostLike[]
   requestSubscribe      Subscribe[]    @relation("RequestSubscribe")
   responseSubscribe     Subscribe[]    @relation("ResponseSubscribe")
-  categories Category[]
 
   @@map("user")
 }
@@ -119,9 +118,9 @@ model Subscribe {
 model Category {
   id        Int        @id @default(autoincrement())
   name      String     @map("name")
-  userId    String     @map("user_id")
   createdAt DateTime   @default(now()) @map("created_at")
   updatedAt DateTime?  @default(now()) @map("updated_at")
+  userId    String     @map("user_id")
   blogPost  BlogPost[]
   user      User       @relation(fields: [userId], references: [id])
 
