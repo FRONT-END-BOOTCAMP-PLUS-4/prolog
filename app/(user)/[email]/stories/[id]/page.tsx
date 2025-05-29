@@ -59,7 +59,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         {/* 아이콘 바 */}
         <div className={styles.iconBar}>
           <BookmarkButton isBookmarked={post.isBookmarked} />
-          <LikeButton />
+          <LikeButton isLiked={post.isLiked} likeCount={post.likeCount} />
         </div>
       </div>
 
