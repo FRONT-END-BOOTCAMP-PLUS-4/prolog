@@ -133,9 +133,7 @@ export default function PostFormPres(props: Props) {
             </button>
             <button
               className={`${styles.toggleButton} ${styles.countButton}`}
-              onClick={() =>
-                action.open(<PostDraftListCont closeModal={closeModal} />)
-              }
+              onClick={() => action.open(<PostDraftListCont />)}
             >
               {drafts?.length}
             </button>
