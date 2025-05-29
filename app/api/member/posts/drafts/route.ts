@@ -1,3 +1,4 @@
+import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 import { CreatePostDraftDto } from '@/back/posts/application/dto/CreatePostDraftDto';
@@ -10,8 +11,16 @@ import { PrPostDraftRepository } from '@/back/posts/infra/PrPostsDraftRepository
 
 export async function GET(req: NextRequest) {
   try {
-    /** user_id 를 토큰으로 변경 할 예정 */
-    const userId = 'uuid-1';
+    const userData = await getToken({
+      req,
+      secret: process.env.AUTH_SECRET,
+    });
+
+    if (!userData || !userData.sub) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
+
+    const userId = userData.sub;
 
     const repository = new PrPostDraftRepository();
     const getPostDraftList = new GetPostDraftListtUsecase(repository);
@@ -65,8 +74,17 @@ export async function POST(req: NextRequest) {
         message: '게시글 생성 중 오류가 발생했습니다.',
       });
     }
-    /** user_id 를 토큰으로 변경 할 예정 */
-    const userId = 'uuid-1';
+
+    const userData = await getToken({
+      req,
+      secret: process.env.AUTH_SECRET,
+    });
+
+    if (!userData || !userData.sub) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
+
+    const userId = userData.sub;
 
     const draftWithUserId = {
       ...body,

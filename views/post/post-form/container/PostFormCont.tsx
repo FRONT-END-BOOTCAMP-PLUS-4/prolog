@@ -177,15 +177,11 @@ export default function PostFormCont() {
       tags: tags,
       isAiUsed: isAiUsed,
       isPublic: isPublic,
-      userId: 'uuid-2',
       thumbnailUrl: firstImg,
     };
 
     const res = await fetch('/api/member/posts', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify(newPost),
     });
 

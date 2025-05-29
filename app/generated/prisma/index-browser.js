@@ -144,8 +144,7 @@ exports.Prisma.BlogPostScalarFieldEnum = {
   aiSummary: 'aiSummary',
   isPublic: 'isPublic',
   thumbnailUrl: 'thumbnailUrl',
-  useAi: 'useAi',
-  aiUsageCount: 'aiUsageCount'
+  useAi: 'useAi'
 };
 
 exports.Prisma.NotificationScalarFieldEnum = {
