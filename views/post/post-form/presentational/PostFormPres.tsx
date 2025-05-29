@@ -62,10 +62,6 @@ export default function PostFormPres(props: Props) {
     setIsPublic((prev) => (prev === 0 ? 1 : 0));
   };
 
-  const closeModal = () => {
-    action.close();
-  };
-
   /* 이미지 드래그 앤 드랍 관련 커스텀 훅 */
   useImageDrop({
     ref: editorRef,
