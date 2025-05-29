@@ -56,8 +56,8 @@ export default function CommentListPres({
                 />
                 <span>|</span>
                 <DeleteButtonCont
+                  mode="comment"
                   onDelete={() => onDeleteComment(c.id)}
-                  id={c.id}
                 />
               </div>
             )}

@@ -23,11 +23,6 @@ export default function Page() {
     date: '2025-01-01',
   };
 
-  const onDeletePost = () => {
-    // 삭제 api 호출
-    console.log('Post deleted');
-  };
-
   return (
     <div className={styles.container}>
       {/* 제목 */}
@@ -37,7 +32,7 @@ export default function Page() {
           {/* 수정 및 삭제 버튼 */}
           <EditButtonCont mode="post" id={Number(params.id)} />
           <span>|</span>
-          <DeleteButtonCont onDelete={onDeletePost} />
+          <DeleteButtonCont mode="post" id={Number(params.id)} />
         </div>
       </div>
 
