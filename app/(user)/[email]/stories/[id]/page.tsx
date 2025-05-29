@@ -67,7 +67,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <AiSummary aiSummary={post.aiSummary} />
 
       {/* 본문 섹션 */}
-      <BodyText />
+      <BodyText content={post.content} tags={post.tags} />
 
       {/* 댓글 타이틀 */}
       <div className={styles.commentTitle}>댓글 목록 (19)</div>
