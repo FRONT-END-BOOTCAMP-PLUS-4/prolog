@@ -1,6 +1,6 @@
 'use client';
 
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import styles from './styles.module.scss';
 import Button from '@/shared/ui/button';
 import { LikeButton } from '@/features/like';
@@ -18,14 +18,9 @@ import { DeleteButtonCont } from '@/features/delete';
 
 export default function Page() {
   const params = useParams();
-  const router = useRouter();
   const dummy = {
     userNickName: 'userNickName',
     date: '2025-01-01',
-  };
-
-  const onEditPost = () => {
-    router.push(`/member/story/edit/${params.id}`);
   };
 
   const onDeletePost = () => {
@@ -40,7 +35,7 @@ export default function Page() {
         <h1 className={styles.titleText}>CSR이란?</h1>
         <div className={styles.actionButtons}>
           {/* 수정 및 삭제 버튼 */}
-          <EditButtonCont onEdit={onEditPost} />
+          <EditButtonCont mode="post" id={Number(params.id)} />
           <span>|</span>
           <DeleteButtonCont onDelete={onDeletePost} />
         </div>

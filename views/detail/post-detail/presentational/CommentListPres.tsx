@@ -51,8 +51,8 @@ export default function CommentListPres({
             ) : (
               <div className={styles.actionButtons}>
                 <EditButtonCont
+                  mode="comment"
                   onEdit={() => handleStartEdit(c.id, c.text)}
-                  id={c.id}
                 />
                 <span>|</span>
                 <DeleteButtonCont
