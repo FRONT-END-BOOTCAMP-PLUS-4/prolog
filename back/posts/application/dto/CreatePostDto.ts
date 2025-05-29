@@ -4,7 +4,7 @@ export class CreatePostDto {
     public content: string,
     public tags: string[],
     public isPublic: number,
-    public userId: string /** 나중에 header token 으로 전달해야 함 */,
+    public userId: string,
     public useAi: number,
     public AiSummary?: string,
     public thumbnailUrl?: string,

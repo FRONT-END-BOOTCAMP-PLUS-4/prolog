@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'blog30-test.s3.ap-northeast-2.amazonaws.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'lh3.googleusercontent.com',
         pathname: '/**',
       },
