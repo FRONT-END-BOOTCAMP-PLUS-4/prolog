@@ -21,7 +21,7 @@ export default function ProfileCardPres({ userData }: UserProps) {
       <div className={styles.profileCardContainer}>
         <div className={styles.cardBackGroundBox}>
           <Image
-            src={userData.bg ?? defaultImg}
+            src={userData?.backgroundImg ?? defaultImg}
             alt="backGroundImg"
             fill={true}
             style={{ borderRadius: '8px' }}
@@ -80,7 +80,9 @@ export default function ProfileCardPres({ userData }: UserProps) {
 
           {/* 소개글 */}
           <div className={styles.infoContent}>
-            <p>{userData?.info}</p>
+            <p>
+              {userData?.introduction ?? '자신을 소개하는 글을 작성해주세요.'}
+            </p>
           </div>
         </div>
       </div>
