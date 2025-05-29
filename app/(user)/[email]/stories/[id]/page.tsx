@@ -1,6 +1,3 @@
-'use client';
-
-import { useParams } from 'next/navigation';
 import styles from './styles.module.scss';
 import Button from '@/shared/ui/button';
 import { LikeButton } from '@/features/like';
@@ -16,12 +13,18 @@ import {
 import { EditButtonCont } from '@/features/edit';
 import { DeleteButtonCont } from '@/features/delete';
 
-export default function Page() {
-  const params = useParams();
-  const dummy = {
-    userNickName: 'userNickName',
-    date: '2025-01-01',
-  };
+const getPost = async (id: number) => {
+  const response = await fetch(`http://localhost:3000/api/posts/${id}`);
+  if (!response.ok) {
+    throw new Error('Failed to fetch post');
+  }
+  const data = await response.json();
+  return data;
+};
+
+export default async function Page({ params }: { params: { id: string } }) {
+  const postId = Number(params.id);
+  const post = await getPost(postId);
 
   return (
     <div className={styles.container}>
@@ -30,20 +33,20 @@ export default function Page() {
         <h1 className={styles.titleText}>CSR이란?</h1>
         <div className={styles.actionButtons}>
           {/* 수정 및 삭제 버튼 */}
-          <EditButtonCont mode="post" id={Number(params.id)} />
+          <EditButtonCont mode="post" id={postId} />
           <span>|</span>
-          <DeleteButtonCont mode="post" id={Number(params.id)} />
+          <DeleteButtonCont mode="post" id={postId} />
         </div>
       </div>
 
       <div className={styles.profileLayout}>
         {/* 프로필/팔로우 바 */}
         <div className={styles.profileBar}>
-          <Profile
-            userNickName={dummy.userNickName}
-            date={dummy.date}
-            onClick={() => {}}
-          />
+          {/* <Profile
+            userNickName={post.userNickName}
+            date={post.createdAt}
+            userEmail={post.userEmail}
+          /> */}
           <Button
             style={{ padding: '0.2rem 0.5rem', fontSize: '13px' }}
             variants="active"
