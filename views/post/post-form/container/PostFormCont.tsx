@@ -6,11 +6,10 @@ import { ICommand, commands } from '@uiw/react-md-editor';
 import { ToastContainer, toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 
-import { useDraftStore } from '@/views/post/post-draft/stores/useDraftStore';
-
 import Image from '@/public/svgs/image.svg';
 import { getFirstImageUrlFromMarkdown } from '@/shared/utils/image';
 import { useDebounce } from '@/shared/hooks/useDebounce';
+import { usePostEditorStore } from '../../stores/usePostEditorStore';
 
 /* 브라우저에서만 동작해야 하므로 SSR 비활성화 */
 const PostFormPres = dynamic(
@@ -21,13 +20,11 @@ const PostFormPres = dynamic(
 const MAX_DRAFT_COUNT = 10;
 
 export default function PostFormCont() {
-  /* 에디터 본문 내용 */
+  const router = useRouter();
+  const { drafts, setDrafts, selectedPost } = usePostEditorStore();
+
   const [content, setContent] = useState<string | undefined>('');
-
-  /* 게시글 제목 */
   const [title, setTitle] = useState<string>('');
-
-  /* 태그 목록 */
   const [tags, setTags] = useState<string[]>([]);
 
   /* AI 사용여부 (0: 사용 안함, 1: 사용함) */
@@ -37,11 +34,19 @@ export default function PostFormCont() {
   const [isPublic, setIsPublic] = useState<number>(1);
 
   /* 임시저장된 글 ID (있으면 수정, 없으면 새로 생성) */
-  const [draftId, setDraftId] = useState<number>();
+  const [draftId, setDraftId] = useState<number | null>();
 
-  const router = useRouter();
-
-  const { drafts, setDrafts } = useDraftStore();
+  /** 임시저장 및 수정 데이터 있다면 초깃값 설정 */
+  useEffect(() => {
+    if (selectedPost) {
+      setTitle(selectedPost.title || '');
+      setContent(selectedPost.content);
+      setTags(selectedPost.tags || []);
+      setIsAiUsed(selectedPost.useAi || 0);
+      setIsPublic(selectedPost.isPublic || 1);
+      setDraftId(selectedPost.id || null);
+    }
+  }, [selectedPost]);
 
   useEffect(() => {
     /** 임시 저장 리스트 가져오는 로직 */

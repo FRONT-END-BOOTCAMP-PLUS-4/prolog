@@ -15,6 +15,7 @@ export class GetPostDraftListtUsecase {
             draft.id,
             draft.title,
             draft.content,
+            draft.tags,
             dayjs(draft.createdAt).format('YYYY-MM-DD'),
           ),
       );

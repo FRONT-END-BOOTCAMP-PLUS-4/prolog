@@ -1,14 +1,22 @@
 import { TrashIcon, InfoCircledIcon } from '@radix-ui/react-icons';
 
 import styles from '../styles/PostDraftListPres.module.scss';
-import { useDraftStore } from '@/views/post/post-draft/stores/useDraftStore';
+
+import { BlogPostDraftType } from '../types';
+import { usePostEditorStore } from '../../stores/usePostEditorStore';
 
 type Props = {
   onDelete: (id: number) => void;
+  closeModal: () => void;
 };
 
-export default function PostDraftListPres({ onDelete }: Props) {
-  const { drafts } = useDraftStore();
+export default function PostDraftListPres({ onDelete, closeModal }: Props) {
+  const { drafts, setSelectedPost } = usePostEditorStore();
+
+  const handleSelectDraft = (data: BlogPostDraftType) => {
+    setSelectedPost(data);
+    closeModal();
+  };
 
   return (
     <div className={styles.bottomSheet} onClick={(e) => e.stopPropagation()}>
@@ -22,20 +30,25 @@ export default function PostDraftListPres({ onDelete }: Props) {
             </div>
           </div>
         </header>
-        <div className={styles.list}>
+        <ul className={styles.list}>
           {drafts.map((data) => (
-            <div className={styles.item} key={data.id}>
+            <li className={styles.item} key={data.id}>
               <span className={styles.date}>{data.createdAt}</span>
               <div className={styles.titleWrapper}>
-                <span className={styles.title}>{data.title}</span>
+                <span
+                  className={styles.title}
+                  onClick={() => handleSelectDraft(data)}
+                >
+                  {data.title}
+                </span>
                 <TrashIcon
                   className={styles.icon}
                   onClick={() => onDelete(data.id)}
                 />
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   );

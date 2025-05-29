@@ -4,14 +4,13 @@ import rehypeSanitize from 'rehype-sanitize';
 
 import styles from '../styles/PostFormPres.module.scss';
 import PostTagSectionPres from './PostTagSectionPres';
-
-import { useDraftStore } from '@/views/post/post-draft/stores/useDraftStore';
 import PostDraftListCont from '@/views/post/post-draft/container/PostDraftListCont';
 
 import Button from '@/shared/ui/button';
 import { useImageDrop } from '@/shared/hooks/useImageDrop';
 import { useThemeStore } from '@/shared/stores/useThemeStore';
 import { useModalStore } from '@/shared/stores/useModalStore';
+import { usePostEditorStore } from '../../stores/usePostEditorStore';
 
 type Props = {
   customCommands: ICommand[];
@@ -53,7 +52,7 @@ export default function PostFormPres(props: Props) {
 
   const { theme } = useThemeStore();
   const { action } = useModalStore();
-  const { drafts } = useDraftStore();
+  const { drafts } = usePostEditorStore();
 
   const toggleAiUsage = () => {
     setIsAiUsed((prev) => (prev === 0 ? 1 : 0));
@@ -61,6 +60,10 @@ export default function PostFormPres(props: Props) {
 
   const togglePublic = () => {
     setIsPublic((prev) => (prev === 0 ? 1 : 0));
+  };
+
+  const closeModal = () => {
+    action.close();
   };
 
   /* 이미지 드래그 앤 드랍 관련 커스텀 훅 */
@@ -130,7 +133,9 @@ export default function PostFormPres(props: Props) {
             </button>
             <button
               className={`${styles.toggleButton} ${styles.countButton}`}
-              onClick={() => action.open(<PostDraftListCont />)}
+              onClick={() =>
+                action.open(<PostDraftListCont closeModal={closeModal} />)
+              }
             >
               {drafts?.length}
             </button>
