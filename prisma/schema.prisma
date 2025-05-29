@@ -1,6 +1,7 @@
 generator client {
   provider = "prisma-client-js"
   output   = "../app/generated/prisma"
+  binaryTargets = ["native", "darwin-arm64"]
 }
 
 datasource db {
@@ -10,11 +11,12 @@ datasource db {
 
 model User {
   id                    String         @id @default(uuid())
-  nickname              String
+  name              String
   email                 String         @unique
   profileImg            String?        @map("profile_img")
   introduction          String?
   backgroundImg         String?        @map("background_img")
+  provider              String 
   createdAt             DateTime       @default(now()) @map("created_at")
   deletedAt             DateTime?      @map("deleted_at")
   blogPost              BlogPost[]
@@ -25,7 +27,7 @@ model User {
   likes                 PostLike[]
   requestSubscribe      Subscribe[]    @relation("RequestSubscribe")
   responseSubscribe     Subscribe[]    @relation("ResponseSubscribe")
-  userProvider          UserProvider[]
+  // userProvider          UserProvider[]
 
   @@map("user")
 }
@@ -115,23 +117,23 @@ model Subscribe {
   @@map("subscribe")
 }
 
-model Provider {
-  id           Int            @id @default(autoincrement())
-  name         String         @unique
-  userProvider UserProvider[]
+// model Provider {
+//   id           Int            @id @default(autoincrement())
+//   name         String         @unique
+//   userProvider UserProvider[]
 
-  @@map("provider")
-}
+//   @@map("provider")
+// }
 
-model UserProvider {
-  id         Int      @id @default(autoincrement())
-  providerId Int      @map("provider_id")
-  userId     String   @map("user_id")
-  provider   Provider @relation(fields: [providerId], references: [id])
-  user       User     @relation(fields: [userId], references: [id])
+// model UserProvider {
+//   id         Int      @id @default(autoincrement())
+//   providerId Int      @map("provider_id")
+//   userId     String   @map("user_id")
+//   provider   Provider @relation(fields: [providerId], references: [id])
+//   user       User     @relation(fields: [userId], references: [id])
 
-  @@map("user_provider")
-}
+//   @@map("user_provider")
+// }
 
 model Category {
   id        Int       @id @default(autoincrement())
