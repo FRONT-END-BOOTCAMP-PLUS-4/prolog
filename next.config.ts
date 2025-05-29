@@ -9,6 +9,7 @@ const nextConfig: NextConfig = {
   //   AUTH_GITHUB_SECRET: '',
   // },
   images: {
+    domains: ['encrypted-tbn0.gstatic.com', 'cdn.pixabay.com'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -18,6 +19,12 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'example.com',
+        port: '',
         pathname: '/**',
       },
     ],
