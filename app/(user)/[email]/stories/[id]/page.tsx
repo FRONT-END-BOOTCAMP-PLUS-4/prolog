@@ -64,7 +64,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       </div>
 
       {/* AI 목차 요약 */}
-      <AiSummary />
+      <AiSummary aiSummary={post.aiSummary} />
 
       {/* 본문 섹션 */}
       <BodyText />
