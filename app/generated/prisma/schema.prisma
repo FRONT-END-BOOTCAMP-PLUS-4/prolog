@@ -16,7 +16,7 @@ model User {
   profileImg            String?        @map("profile_img")
   introduction          String?
   backgroundImg         String?        @map("background_img")
-  provider              String?
+  provider              String
   createdAt             DateTime       @default(now()) @map("created_at")
   deletedAt             DateTime?      @map("deleted_at")
   blogPost              BlogPost[]

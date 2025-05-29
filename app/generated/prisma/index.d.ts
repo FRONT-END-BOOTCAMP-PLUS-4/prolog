@@ -1912,7 +1912,7 @@ export namespace Prisma {
     profileImg: string | null
     introduction: string | null
     backgroundImg: string | null
-    provider: string | null
+    provider: string
     createdAt: Date
     deletedAt: Date | null
     _count: UserCountAggregateOutputType | null
@@ -2025,7 +2025,7 @@ export namespace Prisma {
       profileImg: string | null
       introduction: string | null
       backgroundImg: string | null
-      provider: string | null
+      provider: string
       createdAt: Date
       deletedAt: Date | null
     }, ExtArgs["result"]["user"]>
@@ -12292,7 +12292,7 @@ export namespace Prisma {
     profileImg?: StringNullableFilter<"User"> | string | null
     introduction?: StringNullableFilter<"User"> | string | null
     backgroundImg?: StringNullableFilter<"User"> | string | null
-    provider?: StringNullableFilter<"User"> | string | null
+    provider?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     blogPost?: BlogPostListRelationFilter
@@ -12312,7 +12312,7 @@ export namespace Prisma {
     profileImg?: SortOrderInput | SortOrder
     introduction?: SortOrderInput | SortOrder
     backgroundImg?: SortOrderInput | SortOrder
-    provider?: SortOrderInput | SortOrder
+    provider?: SortOrder
     createdAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
     blogPost?: BlogPostOrderByRelationAggregateInput
@@ -12335,7 +12335,7 @@ export namespace Prisma {
     profileImg?: StringNullableFilter<"User"> | string | null
     introduction?: StringNullableFilter<"User"> | string | null
     backgroundImg?: StringNullableFilter<"User"> | string | null
-    provider?: StringNullableFilter<"User"> | string | null
+    provider?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     deletedAt?: DateTimeNullableFilter<"User"> | Date | string | null
     blogPost?: BlogPostListRelationFilter
@@ -12355,7 +12355,7 @@ export namespace Prisma {
     profileImg?: SortOrderInput | SortOrder
     introduction?: SortOrderInput | SortOrder
     backgroundImg?: SortOrderInput | SortOrder
-    provider?: SortOrderInput | SortOrder
+    provider?: SortOrder
     createdAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -12373,7 +12373,7 @@ export namespace Prisma {
     profileImg?: StringNullableWithAggregatesFilter<"User"> | string | null
     introduction?: StringNullableWithAggregatesFilter<"User"> | string | null
     backgroundImg?: StringNullableWithAggregatesFilter<"User"> | string | null
-    provider?: StringNullableWithAggregatesFilter<"User"> | string | null
+    provider?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     deletedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
   }
@@ -12911,7 +12911,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
@@ -12931,7 +12931,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
@@ -12951,7 +12951,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
@@ -12971,7 +12971,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
@@ -12991,7 +12991,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
   }
@@ -13003,7 +13003,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -13015,7 +13015,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -15497,7 +15497,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     bookMark?: BookMarkCreateNestedManyWithoutUserInput
@@ -15516,7 +15516,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     bookMark?: BookMarkUncheckedCreateNestedManyWithoutUserInput
@@ -15669,7 +15669,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bookMark?: BookMarkUpdateManyWithoutUserNestedInput
@@ -15688,7 +15688,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     bookMark?: BookMarkUncheckedUpdateManyWithoutUserNestedInput
@@ -15813,7 +15813,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
@@ -15832,7 +15832,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
@@ -15856,7 +15856,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
@@ -15875,7 +15875,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
@@ -15958,7 +15958,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
@@ -15977,7 +15977,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
@@ -16007,7 +16007,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
@@ -16026,7 +16026,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
@@ -16087,7 +16087,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
@@ -16106,7 +16106,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
@@ -16189,7 +16189,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
@@ -16208,7 +16208,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
@@ -16269,7 +16269,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
@@ -16288,7 +16288,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
@@ -16371,7 +16371,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
@@ -16390,7 +16390,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
@@ -16451,7 +16451,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
@@ -16470,7 +16470,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
@@ -16553,7 +16553,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
@@ -16572,7 +16572,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
@@ -16591,7 +16591,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
@@ -16610,7 +16610,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
@@ -16634,7 +16634,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostCreateNestedManyWithoutUserInput
@@ -16653,7 +16653,7 @@ export namespace Prisma {
     profileImg?: string | null
     introduction?: string | null
     backgroundImg?: string | null
-    provider?: string | null
+    provider: string
     createdAt?: Date | string
     deletedAt?: Date | string | null
     blogPost?: BlogPostUncheckedCreateNestedManyWithoutUserInput
@@ -16688,7 +16688,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
@@ -16707,7 +16707,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
@@ -16737,7 +16737,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUpdateManyWithoutUserNestedInput
@@ -16756,7 +16756,7 @@ export namespace Prisma {
     profileImg?: NullableStringFieldUpdateOperationsInput | string | null
     introduction?: NullableStringFieldUpdateOperationsInput | string | null
     backgroundImg?: NullableStringFieldUpdateOperationsInput | string | null
-    provider?: NullableStringFieldUpdateOperationsInput | string | null
+    provider?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     blogPost?: BlogPostUncheckedUpdateManyWithoutUserNestedInput
