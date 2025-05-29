@@ -58,7 +58,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 
         {/* 아이콘 바 */}
         <div className={styles.iconBar}>
-          <BookmarkButton />
+          <BookmarkButton isBookmarked={post.isBookmarked} />
           <LikeButton />
         </div>
       </div>
