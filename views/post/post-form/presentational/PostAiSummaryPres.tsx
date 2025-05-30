@@ -1,55 +1,22 @@
-import { useState } from 'react';
-
 import Button from '@/shared/ui/button';
 import styles from '../styles/PostAiFormPres.module.scss';
 import { useModalStore } from '@/shared/stores/useModalStore';
+import { AiSummaryType } from '../types';
 
-type AiSummaryType = {
-  title: string;
-  summary: string;
+type Props = {
+  summary: AiSummaryType[] | null;
+  isLoading: boolean;
+  isRequested: boolean;
+  requestAiSummary: () => void;
 };
 
-const mockSummary = [
-  {
-    title: '프로젝트 개요',
-    summary: '프로젝트의 목적과 배경에 대해 간략히 설명합니다.',
-  },
-  {
-    title: '사용한 기술 스택',
-    summary: '프론트엔드, 백엔드, 인프라 등 사용된 주요 기술들을 소개합니다.',
-  },
-  {
-    title: '주요 기능 소개',
-    summary: '핵심 기능들과 사용자 흐름을 요약합니다.',
-  },
-  {
-    title: '문제 해결 과정',
-    summary: '개발 중 겪은 문제들과 해결 방법을 설명합니다.',
-  },
-  {
-    title: '회고 및 개선점',
-    summary: '프로젝트를 통해 얻은 인사이트와 앞으로의 개선 방향을 공유합니다.',
-  },
-];
-
-export default function PostAiFormPres() {
-  const [isRequested, setIsRequested] = useState(false); // 요청 여부
-  const [isLoading, setIsLoading] = useState(false); // 로딩 중 여부
-  const [summary, setSummary] = useState<AiSummaryType[] | null>(null);
-
+export default function PostAiSummaryPres({
+  summary,
+  isLoading,
+  isRequested,
+  requestAiSummary,
+}: Props) {
   const { action } = useModalStore();
-
-  const requestAiSummary = () => {
-    console.log('AI 요약 요청 시작');
-    setIsRequested(true);
-    setIsLoading(true);
-    setSummary(null);
-
-    setTimeout(() => {
-      setSummary(mockSummary);
-      setIsLoading(false);
-    }, 2000);
-  };
 
   return (
     <div className={styles.bottomSheet} onClick={(e) => e.stopPropagation()}>

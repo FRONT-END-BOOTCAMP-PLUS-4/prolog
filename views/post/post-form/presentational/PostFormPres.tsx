@@ -5,6 +5,7 @@ import rehypeSanitize from 'rehype-sanitize';
 import styles from '../styles/PostFormPres.module.scss';
 import PostTagSectionPres from './PostTagSectionPres';
 import PostDraftListCont from '@/views/post/post-draft/container/PostDraftListCont';
+import PostAiSummaryCont from '../container/PostAiSummaryCont';
 
 import Button from '@/shared/ui/button';
 import { useImageDrop } from '@/shared/hooks/useImageDrop';
@@ -12,7 +13,6 @@ import { useThemeStore } from '@/shared/stores/useThemeStore';
 import { useModalStore } from '@/shared/stores/useModalStore';
 import { usePostEditorStore } from '../../stores/usePostEditorStore';
 import MagicWand from '@/public/svgs/magic.svg';
-import PostAiFormPres from './PostAiFormPres';
 
 type Props = {
   customCommands: ICommand[];
@@ -108,7 +108,11 @@ export default function PostFormPres(props: Props) {
 
       <footer className={styles.footer}>
         <div className={styles.leftControls}>
-          <Button onClick={() => actionToAi.open(<PostAiFormPres />)}>
+          <Button
+            onClick={() =>
+              actionToAi.open(<PostAiSummaryCont content={content} />)
+            }
+          >
             <MagicWand />
           </Button>
           <Button
