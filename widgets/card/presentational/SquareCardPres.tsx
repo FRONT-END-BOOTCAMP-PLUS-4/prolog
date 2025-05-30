@@ -18,11 +18,16 @@ type Props = {
 
 export default function SquareCardPres({ data }: Props) {
   return (
-    <div className={styles.container}>
+    <div className={styles.cardContainer}>
       <Link href="/email/stories/1" className={styles.flexGrowArea}>
         {data.imageUrl && (
           <div className={styles.iconWrap}>
-            <Image src={data.imageUrl} alt="이미지" width={80} height={80} />
+            <Image
+              src={data.imageUrl}
+              alt="이미지"
+              fill
+              style={{ objectFit: 'cover' }}
+            />
           </div>
         )}
         <div className={styles.content}>
