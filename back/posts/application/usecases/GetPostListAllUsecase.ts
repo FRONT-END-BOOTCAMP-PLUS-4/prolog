@@ -3,12 +3,12 @@ import { GetPostListAllDto } from '../dto/GetPostListAllDto';
 import { PostListAllRepository } from '../../domain/PostListAllRepository';
 import { stripMarkdown } from '@/shared/utils/stripmarkdown';
 
-export interface GetPostListAllFilter {
+export type GetPostListAllFilter = {
   name?: string;
   tags?: string[];
   title?: string;
   content?: string;
-}
+};
 
 export class GetPostListAllUsecase {
   constructor(private readonly postsRepository: PostListAllRepository) {}
@@ -16,24 +16,20 @@ export class GetPostListAllUsecase {
   async execute(filters: GetPostListAllFilter): Promise<GetPostListAllDto[]> {
     try {
       const postList = await this.postsRepository.findAll(filters);
-      return await Promise.all(
-        postList.map(
-          async (post) =>
-            new GetPostListAllDto(
-              post.id,
-              post.title,
-              stripMarkdown(post.content),
-              post.tags,
-              dayjs(post.createdAt).format('YYYY-MM-DD'),
-              post.updatedAt ? dayjs(post.updatedAt).format('YYYY-MM-DD') : '',
-              post.userId,
-              post.user.name,
-              post.user.profileImg ?? '/svgs/profile.svg',
-              post.thumbnailUrl ?? null,
-              // post.likes.map((like) => like.id),
-              // post.notification.map((n) => n.id),
-            ),
-        ),
+      return postList.map(
+        (post) =>
+          new GetPostListAllDto(
+            post.id,
+            post.title,
+            stripMarkdown(post.content),
+            post.tags,
+            dayjs(post.createdAt).format('YYYY-MM-DD'),
+            post.updatedAt ? dayjs(post.updatedAt).format('YYYY-MM-DD') : '',
+            post.userId,
+            post.user.name,
+            post.user.profileImg ?? '/svgs/profile.svg',
+            post.thumbnailUrl ?? null,
+          ),
       );
     } catch (error) {
       console.error('Error fetching postList:', error);
