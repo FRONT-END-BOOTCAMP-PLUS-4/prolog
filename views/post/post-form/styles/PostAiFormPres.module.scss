@@ -1,19 +1,18 @@
 @use '@styles/variables.scss' as *;
 
-$footer-height: 60px;
-
-
-.aiSummaryModal {
+.bottomSheet {
   position: fixed;
-  bottom: $footer-height + 20px;
+  bottom: $posts-form-footer + 20px;
   left: 30px;
-  width: 300px;
-  background: $theme-shade-1;
-  color: $theme-text-1;
+
+  width: 350px;
+  background-color: $theme-shade-1;
   padding: 16px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
   z-index: 100;
+
+  color: $theme-text-1;
 
   .chatBubble {
     margin-bottom: 12px;
@@ -28,29 +27,21 @@ $footer-height: 60px;
   }
 
   .result {
-    margin-top: 10px;
+    margin-top: 20px;
+
+    h4 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+    }
 
     ul {
-      margin: 8px 0;
       padding-left: 16px;
+      margin-bottom: 12px;
+
+      li {
+        list-style: disc;
+        font-size: $font-sm-size;
+      }
     }
   }
-}
-
-
-.bottomSheet {
-  width: 100%;
-  padding: 16px;
-  background-color: $theme-shade-2;
-
-  position: absolute;
-  bottom: 0;
-  left: 0;
-
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-
-  min-height: calc(53px * 10);
 }

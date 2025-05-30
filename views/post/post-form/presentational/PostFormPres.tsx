@@ -112,16 +112,10 @@ export default function PostFormPres(props: Props) {
             <MagicWand />
           </Button>
           <Button
-            onClick={toggleAiUsage}
-            variants={isAiUsed ? 'active' : undefined}
-          >
-            {isAiUsed ? 'AI 사용' : 'AI 사용 안함'}
-          </Button>
-          <Button
             onClick={togglePublic}
             variants={isPublic ? 'active' : undefined}
           >
-            {isPublic ? '공개' : '비공개'}
+            {isPublic ? '게시글 공개' : '게시글 비공개'}
           </Button>
         </div>
 
