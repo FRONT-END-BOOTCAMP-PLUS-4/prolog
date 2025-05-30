@@ -16,20 +16,12 @@
 .tagList { 
   display: flex;
   gap: 8px;
+  white-space: nowrap; 
   width: max-content;
 }
 
 .rolling {
   animation: slide 15s linear infinite; 
-}
-
-.tagItem {
-  background: $theme-mist-lavender;
-  color: $theme-primary;
-  border-radius: 16px;
-  font-size: 12px;
-  padding: 4px 16px;
-  font-weight: 400;
 }
 
 @keyframes slide {

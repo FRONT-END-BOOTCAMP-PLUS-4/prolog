@@ -18,16 +18,10 @@ export default function TagListPres({
         ref={tagsRef}
       >
         {tags.map((tag, idx) => (
-          <Tag className={styles.tagItem} key={`${tag}-${idx}`}>
-            {tag}
-          </Tag>
+          <Tag key={`${tag}-${idx}`}>{tag}</Tag>
         ))}
         {shouldRoll &&
-          tags.map((tag, idx) => (
-            <Tag className={styles.tagItem} key={`clone-${tag}-${idx}`}>
-              {tag}
-            </Tag>
-          ))}
+          tags.map((tag, idx) => <Tag key={`clone-${tag}-${idx}`}>{tag}</Tag>)}
       </div>
     </div>
   );
