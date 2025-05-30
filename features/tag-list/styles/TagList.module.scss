@@ -7,10 +7,6 @@
   height: 32px;
   display: flex;
   align-items: center;
-
-    &:hover .tagList.rolling {
-    animation-play-state: paused;
-  }
 }
 
 .tagList { 
@@ -20,14 +16,24 @@
   width: max-content;
 }
 
-.rolling {
-  animation: slide 15s linear infinite; 
+.tagList.rolling {
+  animation: slide 15s linear infinite;
+  animation-play-state: paused;
+}
+
+:global(.cardContainer):hover :global(.tagList.rolling) {
+  animation-play-state: running;
+}
+
+:global(.cardContainer):hover :global(.tagList.rolling):hover {
+  animation-play-state: paused;
 }
 
 @keyframes slide {
   from {
     transform: translateX(0);
-  }to {
+  }
+  to {
     transform: translateX(-50%);
   }
 }

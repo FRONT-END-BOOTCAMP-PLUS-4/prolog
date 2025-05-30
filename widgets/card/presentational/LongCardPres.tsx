@@ -18,7 +18,7 @@ type Props = {
 
 export default function LongCardPres({ data }: Props) {
   return (
-    <div className={styles.cardContainer}>
+    <div className={`${styles.cardContainer} cardContainer`}>
       <div className={styles.cardRow}>
         <div className={styles.cardLeft}>
           <Link href="/email/stories">
