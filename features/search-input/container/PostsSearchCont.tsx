@@ -2,7 +2,7 @@
 
 // package
 import { useRef, useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { ToastContainer, toast } from 'react-toastify';
 
 // slice
@@ -100,6 +100,7 @@ export default function PostsSearchCont({
   const chipRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const pathname = usePathname();
+  const router = useRouter();
 
   // 페이지 이동 시 전체 상태 초기화
   useEffect(() => {
@@ -258,6 +259,20 @@ export default function PostsSearchCont({
     if (onSearch) onSearch(params);
     setSearchParams(params);
     setShowDropdown(false);
+
+    // 검색 실행 시 홈으로 이동
+    const urlParams = new URLSearchParams();
+    if (params.name) urlParams.append('name', params.name);
+    if (params.tags) params.tags.forEach((tag) => urlParams.append('tag', tag));
+    if (params.title) urlParams.append('title', params.title);
+    if (params.content) urlParams.append('content', params.content);
+
+    // 현재 페이지가 홈이 아니면 홈으로 이동
+    if (pathname !== '/') {
+      router.push('/?' + urlParams.toString());
+    } else {
+      router.push('/?' + urlParams.toString());
+    }
   };
 
   // 인풋에서 키보드 이벤트 (입력 제한 적용)
@@ -271,7 +286,6 @@ export default function PostsSearchCont({
       e.preventDefault();
       return;
     }
-
     // 드롭다운 내 키보드 네비게이션
     if (showDropdown && dropdownItems.length > 0) {
       if (e.key === 'ArrowDown') {
