@@ -1,3 +1,4 @@
+import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 import { CreatePostDto } from '@/back/posts/application/dto/CreatePostDto';
@@ -6,7 +7,18 @@ import { PrPostRepository } from '@/back/posts/infra/PrPostsRepository';
 
 export async function POST(req: NextRequest) {
   try {
-    const body: CreatePostDto = await req.json();
+    const userData = await getToken({
+      req,
+      secret: process.env.AUTH_SECRET,
+    });
+
+    if (!userData || !userData.sub) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
+
+    const userId = userData.sub;
+
+    const body = await req.json();
 
     const { title, content } = body;
 
@@ -16,9 +28,14 @@ export async function POST(req: NextRequest) {
       });
     }
 
+    const postDataWithUserId: CreatePostDto = {
+      ...body,
+      userId: userId,
+    };
+
     const repository = new PrPostRepository();
     const createPostUsecase = new CreatePostUsecase(repository);
-    const newPost = await createPostUsecase.execute(body);
+    const newPost = await createPostUsecase.execute(postDataWithUserId);
 
     return NextResponse.json(newPost, { status: 201 });
   } catch (error) {

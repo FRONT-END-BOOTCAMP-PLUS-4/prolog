@@ -1,16 +1,19 @@
-export type CardData = {
-  id: string;
-  title: string;
-  desc: string;
-  tags: string[];
-  userNickName: string;
-  date: string;
-  commentCount: number;
-  loveCount: number;
-  imageUrl: string;
-};
+import { CardData } from '@/widgets/card/types';
 
 export type ViewType = 'card' | 'list';
+
+export type ApiPost = {
+  id: number | string;
+  title: string;
+  content: string;
+  tags: string[];
+  name?: string;
+  userProfileImage?: string;
+  createdAt: string;
+  commentCount?: number;
+  loveCount?: number;
+  thumbnailUrl?: string | null;
+};
 
 export type CardListPresProps = {
   viewType: ViewType;

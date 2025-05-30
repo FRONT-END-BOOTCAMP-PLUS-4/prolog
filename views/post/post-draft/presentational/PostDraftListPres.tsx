@@ -4,18 +4,19 @@ import styles from '../styles/PostDraftListPres.module.scss';
 
 import { BlogPostDraftType } from '../types';
 import { usePostEditorStore } from '../../stores/usePostEditorStore';
+import { useModalStore } from '@/shared/stores/useModalStore';
 
 type Props = {
   onDelete: (id: number) => void;
-  closeModal: () => void;
 };
 
-export default function PostDraftListPres({ onDelete, closeModal }: Props) {
+export default function PostDraftListPres({ onDelete }: Props) {
   const { drafts, setSelectedPost } = usePostEditorStore();
+  const { action } = useModalStore();
 
   const handleSelectDraft = (data: BlogPostDraftType) => {
     setSelectedPost(data);
-    closeModal();
+    action.close();
   };
 
   return (

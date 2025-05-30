@@ -3,9 +3,10 @@ export type CardData = {
   title: string;
   desc: string;
   tags: string[];
-  userNickName: string;
+  userProfileImage: string;
+  userName: string;
   date: string;
   commentCount: number;
   loveCount: number;
-  imageUrl: string;
+  imageUrl: string | null;
 };

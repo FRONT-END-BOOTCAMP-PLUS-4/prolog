@@ -144,8 +144,7 @@ exports.Prisma.BlogPostScalarFieldEnum = {
   aiSummary: 'aiSummary',
   isPublic: 'isPublic',
   thumbnailUrl: 'thumbnailUrl',
-  useAi: 'useAi',
-  aiUsageCount: 'aiUsageCount'
+  useAi: 'useAi'
 };
 
 exports.Prisma.NotificationScalarFieldEnum = {
@@ -192,7 +191,8 @@ exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
   name: 'name',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  userId: 'userId'
 };
 
 exports.Prisma.PostTempScalarFieldEnum = {

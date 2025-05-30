@@ -27,7 +27,6 @@ CREATE TABLE "blog_post" (
     "is_public" INTEGER NOT NULL DEFAULT 1,
     "thumbnail_url" TEXT,
     "use_ai" INTEGER NOT NULL DEFAULT 0,
-    "ai_usage_count" INTEGER NOT NULL DEFAULT 0,
 
     CONSTRAINT "blog_post_pkey" PRIMARY KEY ("id")
 );
@@ -93,6 +92,7 @@ CREATE TABLE "category" (
     "name" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) DEFAULT CURRENT_TIMESTAMP,
+    "user_id" TEXT NOT NULL,
 
     CONSTRAINT "category_pkey" PRIMARY KEY ("id")
 );
@@ -111,9 +111,6 @@ CREATE TABLE "post_temp" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "user_email_key" ON "user"("email");
-
--- CreateIndex
-CREATE UNIQUE INDEX "blog_post_category_id_key" ON "blog_post"("category_id");
 
 -- AddForeignKey
 ALTER TABLE "blog_post" ADD CONSTRAINT "blog_post_category_id_fkey" FOREIGN KEY ("category_id") REFERENCES "category"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -153,3 +150,6 @@ ALTER TABLE "subscribe" ADD CONSTRAINT "subscribe_request_id_fkey" FOREIGN KEY (
 
 -- AddForeignKey
 ALTER TABLE "subscribe" ADD CONSTRAINT "subscribe_response_id_fkey" FOREIGN KEY ("response_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "category" ADD CONSTRAINT "category_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "user"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
