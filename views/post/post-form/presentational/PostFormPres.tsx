@@ -5,12 +5,14 @@ import rehypeSanitize from 'rehype-sanitize';
 import styles from '../styles/PostFormPres.module.scss';
 import PostTagSectionPres from './PostTagSectionPres';
 import PostDraftListCont from '@/views/post/post-draft/container/PostDraftListCont';
+import PostAiSummaryCont from '../container/PostAiSummaryCont';
 
 import Button from '@/shared/ui/button';
 import { useImageDrop } from '@/shared/hooks/useImageDrop';
 import { useThemeStore } from '@/shared/stores/useThemeStore';
 import { useModalStore } from '@/shared/stores/useModalStore';
 import { usePostEditorStore } from '../../stores/usePostEditorStore';
+import MagicWand from '@/public/svgs/magic.svg';
 
 type Props = {
   customCommands: ICommand[];
@@ -52,6 +54,7 @@ export default function PostFormPres(props: Props) {
 
   const { theme } = useThemeStore();
   const { action } = useModalStore();
+  const { action: actionToAi } = useModalStore();
   const { drafts } = usePostEditorStore();
 
   const toggleAiUsage = () => {
@@ -106,16 +109,17 @@ export default function PostFormPres(props: Props) {
       <footer className={styles.footer}>
         <div className={styles.leftControls}>
           <Button
-            onClick={toggleAiUsage}
-            variants={isAiUsed ? 'active' : undefined}
+            onClick={() =>
+              actionToAi.open(<PostAiSummaryCont content={content} />)
+            }
           >
-            {isAiUsed ? 'AI 사용' : 'AI 사용 안함'}
+            <MagicWand />
           </Button>
           <Button
             onClick={togglePublic}
             variants={isPublic ? 'active' : undefined}
           >
-            {isPublic ? '공개' : '비공개'}
+            {isPublic ? '게시글 공개' : '게시글 비공개'}
           </Button>
         </div>
 
