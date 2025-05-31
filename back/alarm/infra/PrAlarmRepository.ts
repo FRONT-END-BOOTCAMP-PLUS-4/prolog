@@ -31,4 +31,12 @@ export class PrAlarmRepository implements AlarmRepository {
     });
     return true;
   }
+
+  async deleteId(alarmId: number[], receiverId: string) {
+    await prisma.notification.deleteMany({
+      where: { receiverId, id: { in: alarmId } },
+    });
+
+    return true;
+  }
 }
