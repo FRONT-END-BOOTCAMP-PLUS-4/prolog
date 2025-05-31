@@ -21,8 +21,10 @@ export default function Profile({
   userEmail,
 }: Props) {
   const router = useRouter();
+  const email = userEmail ?? '';
+  const userId = email.split('@')[0];
   const onClickHandler = () => {
-    router.push(`/${userEmail}/stories`);
+    router.push(`/${userId}/stories`);
   };
 
   return (

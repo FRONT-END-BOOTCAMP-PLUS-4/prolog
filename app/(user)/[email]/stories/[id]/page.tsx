@@ -1,3 +1,4 @@
+import { cookies } from 'next/headers';
 import styles from './styles.module.scss';
 import Button from '@/shared/ui/button';
 import { LikeButton } from '@/features/like';
@@ -13,8 +14,15 @@ import {
 import { EditButtonCont } from '@/features/edit';
 import { DeleteButtonCont } from '@/features/delete';
 
-const getPost = async (id: number) => {
-  const response = await fetch(`http://localhost:3000/api/posts/${id}`);
+const getPost = async (postId: number) => {
+  const cookieStore = await cookies();
+  const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
+    headers: {
+      cookie: cookieStore.toString(),
+    },
+    cache: 'no-store',
+  });
+  console.log('response:', response);
   if (!response.ok) {
     throw new Error('Failed to fetch post');
   }
@@ -43,7 +51,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         {/* 프로필/팔로우 바 */}
         <div className={styles.profileBar}>
           <Profile
-            userNickName={post.nickname}
+            userName={post.nickname}
             date={post.createdAt}
             userEmail={post.userEmail}
           />
