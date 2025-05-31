@@ -22,14 +22,14 @@ async function main() {
     data: [
       {
         id: `${userId}test1`,
-        name: `${user}임시유저1`,
+        name: `${user.name}임시유저1`,
         email: `${user}임시유저1@example.com`,
         createdAt: new Date(),
         provider: 'github',
       },
       {
         id: `${userId}test2`,
-        name: `${user}임시유저2`,
+        name: `${user.name}임시유저2`,
         email: `${user}임시유저2@example.com`,
         createdAt: new Date(),
         provider: 'google',
