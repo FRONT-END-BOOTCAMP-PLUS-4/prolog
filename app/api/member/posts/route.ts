@@ -5,6 +5,7 @@ import { CreatePostDto } from '@/back/posts/application/dto/CreatePostDto';
 import { CreatePostUsecase } from '@/back/posts/application/usecases/CreatePostUsecase';
 import { PrPostRepository } from '@/back/posts/infra/PrPostsRepository';
 import { PrSubscribeRepository } from '@/back/subscribe/infra/PrSubscribeRepository';
+import { PrNotificationRepository } from '@/back/notification/infra/PrNotificationRepository';
 
 export async function POST(req: NextRequest) {
   try {
@@ -36,10 +37,12 @@ export async function POST(req: NextRequest) {
 
     const postRepository = new PrPostRepository();
     const subscribeRepository = new PrSubscribeRepository();
+    const notificationRepository = new PrNotificationRepository();
 
     const createPostUsecase = new CreatePostUsecase(
       postRepository,
       subscribeRepository,
+      notificationRepository,
     );
     const newPost = await createPostUsecase.execute(postDataWithUserId);
 
