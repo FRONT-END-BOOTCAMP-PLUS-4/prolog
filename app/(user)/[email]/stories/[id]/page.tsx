@@ -50,11 +50,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <div className={styles.profileLayout}>
         {/* 프로필/팔로우 바 */}
         <div className={styles.profileBar}>
-          <Profile
-            userName={post.nickname}
-            date={post.createdAt}
-            userEmail={post.userEmail}
-          />
+          <Profile userName={post.nickname} date={post.createdAt} />
           <Button
             style={{ padding: '0.2rem 0.5rem', fontSize: '13px' }}
             variants="active"
