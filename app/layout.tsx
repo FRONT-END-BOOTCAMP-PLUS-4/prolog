@@ -9,18 +9,23 @@ import Header from '@/app/header';
 import Modal from '@/shared/ui/modal';
 import ApplyTheme from '@/shared/ApplyTheme';
 import { auth } from '@/app/(auth)/auth';
+import { getMetadata } from '@/shared/utils/metadata';
 
 const pretendard = localFont({
   src: '../public/fonts/pretendard-medium.woff2',
 });
 
-export const metadata: Metadata = {
-  title: 'prolog',
-  description: '/',
-  icons: {
-    icon: '/',
-  },
+export const generateMetadata = () => {
+  return getMetadata();
 };
+
+// export const metadata: Metadata = {
+//   title: 'prolog',
+//   description: '/',
+//   icons: {
+//     icon: '/',
+//   },
+// };
 
 export default async function RootLayout({
   children,
@@ -34,13 +39,13 @@ export default async function RootLayout({
       <body>
         <Providers session={session}>
           <ApplyTheme />
-        <div className={styles.layout}>
+          <div className={styles.layout}>
             <div className={styles.layout__header}>
               <Header />
             </div>
             <main className={styles.layout__main}>{children}</main>
           </div>
-          <Modal  />
+          <Modal />
         </Providers>
       </body>
     </html>
