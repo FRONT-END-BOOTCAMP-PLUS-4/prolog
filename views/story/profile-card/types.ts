@@ -1,7 +1,8 @@
 export type User = {
   id: string;
-  bg: string | null;
+  email: string;
+  backgroundImg: string | null;
   profileImg: string | null;
   name: string;
-  info: string | null;
+  introduction: string | null;
 };

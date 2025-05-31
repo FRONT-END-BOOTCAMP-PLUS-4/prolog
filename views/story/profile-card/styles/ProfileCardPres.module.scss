@@ -61,26 +61,28 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 30px;
-  // background-color: $color-shade-1;
 }
 .infoContent{
+  min-height: 150px;
   padding: 20px;
   color: gray;
   font-size: $font-xs-size;
   font-weight: $font-xs-weight;
   line-height:$font-xs-line-height ;
-  // background-color: $color-shade-1;
 }
 .nameText{
   @include font-xl;
   color: $theme-text-2;
 }
-
+.mobileProfile{
+  border-radius: 100%;
+}
 
 
 @media (max-width: 768px) {
 
 .mobileProfile{
+  border-radius: 100%;
   width: 60px;
   height: 60px;
 }
