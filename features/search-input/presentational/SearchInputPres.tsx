@@ -25,6 +25,7 @@ export default function SearchInputPres({
   searchTypes,
   highlightedIndex,
   setHighlightedIndex,
+  inputRestrictionMessage,
 }: SearchInputPresProps & {
   highlightedIndex: number;
   setHighlightedIndex: (idx: number) => void;
@@ -98,25 +99,46 @@ export default function SearchInputPres({
             setInputValue(e.target.value);
             setShowDropdown(true);
           }}
-          onClick={() => setShowDropdown((prev) => !prev)}
-          onFocus={() => setHighlightedIndex(-1)}
+          onClick={() => setShowDropdown(true)}
+          onFocus={() => {
+            setShowDropdown(true);
+            setHighlightedIndex(-1);
+          }}
           onKeyDown={handleKeyDown}
           placeholder={chips.length === 0 ? placeholder : ''}
+          type="search"
+          role="combobox"
+          aria-autocomplete="list"
+          aria-expanded={showDropdown}
+          aria-controls="search-dropdown-list"
+          aria-activedescendant={
+            highlightedIndex >= 0
+              ? `dropdown-item-${highlightedIndex}`
+              : undefined
+          }
         />
       </div>
 
       {/* 드롭다운 영역 */}
       {showDropdown && (
-        <div className={styles.dropdown}>
+        <div
+          className={styles.dropdown}
+          role="listbox"
+          id="search-dropdown-list"
+          tabIndex={0}
+        >
           {dropdownItems.length > 0
-            ? // 드롭다운에 항목이 있을 때
-              dropdownItems.map((item, idx) => (
+            ? dropdownItems.map((item, idx) => (
                 <div
                   key={item.key}
+                  id={`dropdown-item-${idx}`}
+                  role="option"
+                  aria-selected={highlightedIndex === idx}
+                  tabIndex={-1}
                   className={`
-                    ${styles.dropdownItem}
-                    ${highlightedIndex === idx ? styles.highlighted : ''}
-                  `}
+            ${styles.dropdownItem}
+            ${highlightedIndex === idx ? styles.highlighted : ''}
+          `}
                   onMouseDown={(e) => {
                     e.preventDefault();
                     item.onClick();
@@ -126,13 +148,17 @@ export default function SearchInputPres({
                   {item.label}
                 </div>
               ))
-            : // 드롭다운에 항목, 입력값 없을 때 안내 문구
-              inputValue.trim() === '' && (
+            : inputValue.trim() === '' &&
+              (inputRestrictionMessage ? (
+                <div className={styles.dropdownEmpty}>
+                  {inputRestrictionMessage}
+                </div>
+              ) : (
                 <>
                   <div className={styles.dropdownEmpty}>#: 태그 검색</div>
                   <div className={styles.dropdownEmpty}>@: 유저 검색</div>
                 </>
-              )}
+              ))}
         </div>
       )}
     </div>
