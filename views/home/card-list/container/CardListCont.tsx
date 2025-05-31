@@ -1,9 +1,15 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+// package
+import React, { useState, useEffect } from 'react';
+
+// slice
 import CardListPres from '../presentational/CardListPres';
 import { ViewType, ApiPost } from '../types';
+
+// layer
 import { CardData } from '@/widgets/card/types';
+import { useSearch } from '@/shared/contexts/SearchContext';
 
 const SORT_OPTIONS = [
   { label: '최신순', value: 'latest' },
@@ -15,10 +21,20 @@ export default function CardListCont() {
   const [sort, setSort] = useState<'latest' | 'popular'>('latest');
   const [isLoading, setIsLoading] = useState(true);
   const [items, setItems] = useState<CardData[]>([]);
+  const { searchParams } = useSearch();
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('/api/posts?sort=' + sort)
+
+    const params = new URLSearchParams();
+    if (searchParams.name) params.append('name', searchParams.name);
+    if (searchParams.tags)
+      searchParams.tags.forEach((tag) => params.append('tag', tag));
+    if (searchParams.title) params.append('title', searchParams.title);
+    if (searchParams.content) params.append('content', searchParams.content);
+    params.append('sort', sort);
+
+    fetch('/api/posts?' + params.toString())
       .then((res) => res.json())
       .then((data) => {
         const mapped = (data.data as ApiPost[]).map((post) => ({
@@ -35,14 +51,14 @@ export default function CardListCont() {
         }));
         setTimeout(() => {
           setIsLoading(false);
-        }, 1000);
+        }, 500);
         setItems(mapped);
       })
       .catch(() => {
         setItems([]);
         setIsLoading(false);
       });
-  }, [sort]);
+  }, [sort, searchParams]);
 
   const sortedItems = [...items].sort((a, b) => {
     if (sort === 'popular') {

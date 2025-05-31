@@ -6,4 +6,5 @@ export type TagListPresProps = {
   tags: string[];
   shouldRoll: boolean;
   tagsRef: React.RefObject<HTMLDivElement | null>;
+  duration?: number;
 };

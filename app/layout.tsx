@@ -1,4 +1,3 @@
-import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
 import './global.scss';
@@ -6,10 +5,11 @@ import styles from './styles/layout.module.scss';
 import Providers from './(auth)/providers';
 
 import Header from '@/app/header';
-import Modal from '@/shared/ui/modal';
 import ApplyTheme from '@/shared/ApplyTheme';
 import { auth } from '@/app/(auth)/auth';
+import Modal from '@/shared/ui/modal';
 import { getMetadata } from '@/shared/utils/metadata';
+import { SearchProvider } from '@/shared/contexts/SearchContext';
 
 const pretendard = localFont({
   src: '../public/fonts/pretendard-medium.woff2',
@@ -39,13 +39,15 @@ export default async function RootLayout({
       <body>
         <Providers session={session}>
           <ApplyTheme />
-          <div className={styles.layout}>
-            <div className={styles.layout__header}>
-              <Header />
+          <SearchProvider>
+            <div className={styles.layout}>
+              <div className={styles.layout__header}>
+                <Header />
+              </div>
+              <main className={styles.layout__main}>{children}</main>
             </div>
-            <main className={styles.layout__main}>{children}</main>
-          </div>
-          <Modal />
+            <Modal />
+          </SearchProvider>
         </Providers>
       </body>
     </html>

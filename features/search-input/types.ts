@@ -1,6 +1,6 @@
 import { RefObject } from 'react';
 
-export type SearchType = 'title' | 'user' | 'tag';
+export type SearchType = 'title' | 'user' | 'tag' | 'content';
 
 export type Chip = {
   type: 'tag' | 'user';
@@ -14,23 +14,24 @@ export type DropdownItem = {
 };
 
 export type SearchInputPresProps = {
-  chips: Chip[];
-  inputValue: string;
-  setInputValue: (v: string) => void;
-  showDropdown: boolean;
-  setShowDropdown: React.Dispatch<React.SetStateAction<boolean>>;
   inputRef: RefObject<HTMLInputElement | null>;
   containerRef: RefObject<HTMLDivElement | null>;
   chipRefs: RefObject<(HTMLButtonElement | null)[]>;
   dropdownItems: DropdownItem[];
-  handleRemoveChip: (idx: number) => void;
+  chips: Chip[];
+  inputValue: string;
+  showDropdown: boolean;
+  searchTypes: SearchType[];
+  setShowDropdown: React.Dispatch<React.SetStateAction<boolean>>;
   handleKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   handleChipKeyDown: (
     e: React.KeyboardEvent<HTMLButtonElement>,
     idx: number,
   ) => void;
   handleChipFocus: (idx: number) => void;
-  searchTypes: SearchType[];
+  setInputValue: (v: string) => void;
+  handleRemoveChip: (idx: number) => void;
+  inputRestrictionMessage?: string;
 };
 
 export type PostsSearchContProps = {
@@ -49,3 +50,9 @@ export function getMode(
   if (enabledTypes.includes('title')) return 'title';
   return null;
 }
+
+export type Post = {
+  tags?: string[];
+  name?: string;
+  title?: string;
+};
