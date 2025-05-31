@@ -6,10 +6,10 @@ import styles from '../styles/CardListPres.module.scss';
 import { CardListPresProps } from '../types';
 
 // layer
-import { LongCardPres, SquareCardPres } from '@/widgets/card';
 import { SelectCont } from '@/features/select';
-import SquareCardSkeleton from '@/shared/ui/skeleton/squarecard';
+import { LongCardPres, SquareCardPres } from '@/widgets/card';
 import LongCardSkeleton from '@/shared/ui/skeleton/longcard';
+import SquareCardSkeleton from '@/shared/ui/skeleton/squarecard';
 
 export default function CardListPres({
   viewType,
@@ -20,7 +20,7 @@ export default function CardListPres({
   sortOptions,
   isLoading = false,
 }: CardListPresProps) {
-  const skeletonCount = items.length === 0 ? 8 : items.length;
+  const skeletonCount = items.length === 0 ? 12 : items.length;
   return (
     <div>
       <div className={styles.filterBar}>
@@ -89,7 +89,7 @@ export default function CardListPres({
             ),
           )
         ) : items.length === 0 ? (
-          <div className={styles.emptyMessage}>데이터가 없습니다.</div>
+          <div className={styles.emptyMessage}>검색 결과가 없습니다.</div>
         ) : (
           items.map((item) =>
             viewType === 'card' ? (
