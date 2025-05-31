@@ -10,7 +10,7 @@ export class GetPostListAllDto {
     public name: string,
     public userProfileImage: string,
     public thumbnailUrl: string | null,
-    // public likes: number[],
-    // public notification: number[],
+    public loveCount: number,
+    public commentCount: number,
   ) {}
 }
