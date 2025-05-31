@@ -56,21 +56,19 @@ const makeDropdownItems = (
     }))
     .slice(0, 10);
 
-// 입력 제한
 function isAllowedInput({ chips, value }: { chips: Chip[]; value: string }) {
   const hasUserChip = chips.some((chip) => chip.type === 'user');
   const hasTagChip = chips.some((chip) => chip.type === 'tag');
-  // 둘 다 있을 경우, 가장 마지막 칩의 타입 기준으로 제한
   if (chips.length > 0) {
     const lastType = chips[chips.length - 1].type;
     if (lastType === 'user') {
-      return value.startsWith('@') || value === '';
+      // 빈 값만 허용 (입력 불가)
+      return value === '';
     }
     if (lastType === 'tag') {
       return value.startsWith('#') || value === '';
     }
   }
-  // 둘 중 하나만 있을 경우
   if (hasUserChip && !value.startsWith('@') && value !== '') return false;
   if (hasTagChip && !value.startsWith('#') && value !== '') return false;
   return true;
@@ -399,7 +397,7 @@ export default function PostsSearchCont({
   const getInputRestrictionMessage = () => {
     if (chips.length === 0) return '';
     const lastType = chips[chips.length - 1].type;
-    if (lastType === 'user') return '@태그만 입력 가능합니다.';
+    if (lastType === 'user') return '한 명의 유저만 입력 가능합니다.';
     if (lastType === 'tag') return '#태그만 입력 가능합니다.';
     return '';
   };

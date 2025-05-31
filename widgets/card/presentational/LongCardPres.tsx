@@ -27,7 +27,7 @@ export default function LongCardPres({ data }: Props) {
                 userProfileImage={data.userProfileImage}
                 userName={data.userName}
                 date={data.date}
-                onClick={() => {}}
+                userEmail='userEmail'
               />
             </div>
           </Link>
@@ -48,7 +48,10 @@ export default function LongCardPres({ data }: Props) {
               <span className={styles.iconCount}>{data.commentCount}</span>
             </div>
             <div className={styles.iconTextGroup}>
-              <LikeButton />
+              <LikeButton 
+              isLiked={false}
+              likeCount={data.loveCount}
+            />
             </div>
           </div>
         </div>

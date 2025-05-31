@@ -6,21 +6,11 @@
   border-radius: 8px;
   box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.08);
   padding: clamp(0.5rem, 2vw, 1rem);
-  animation: zoomIn 400ms;
   overflow: hidden;
 }
 
 .cardContainer:hover .title {
   color: $theme-primary-hover;
-}
-
-@keyframes zoomIn {
-  0% {
-    scale: 0.7;
-  }
-  100% {
-    scale: 1;
-  }
 }
 
 .cardContainer:hover {
