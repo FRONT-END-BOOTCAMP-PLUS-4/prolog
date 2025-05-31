@@ -10,9 +10,25 @@ export class PrAlarmRepository implements AlarmRepository {
         type: true,
         postsId: true,
         receiverId: true,
-        senderId: true
-      }
+        senderId: true,
+      },
     });
     return alarmList;
+  }
+
+  async check(receiverId: string, alarmId: number) {
+    await prisma.notification.updateMany({
+      where: { id: alarmId, receiverId },
+      data: { checkStatus: 1 },
+    });
+    return true;
+  }
+
+  async checkAll(receiverId: string) {
+    await prisma.notification.updateMany({
+      where: { receiverId: receiverId },
+      data: { checkStatus: 1 },
+    });
+    return true;
   }
 }
