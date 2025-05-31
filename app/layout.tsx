@@ -1,4 +1,3 @@
-import { Metadata } from 'next';
 import localFont from 'next/font/local';
 
 import './global.scss';
@@ -6,22 +5,27 @@ import styles from './styles/layout.module.scss';
 import Providers from './(auth)/providers';
 
 import Header from '@/app/header';
-import Modal from '@/shared/ui/modal';
 import ApplyTheme from '@/shared/ApplyTheme';
 import { auth } from '@/app/(auth)/auth';
+import Modal from '@/shared/ui/modal';
+import { getMetadata } from '@/shared/utils/metadata';
 import { SearchProvider } from '@/shared/contexts/SearchContext';
 
 const pretendard = localFont({
   src: '../public/fonts/pretendard-medium.woff2',
 });
 
-export const metadata: Metadata = {
-  title: 'prolog',
-  description: '/',
-  icons: {
-    icon: '/',
-  },
+export const generateMetadata = () => {
+  return getMetadata();
 };
+
+// export const metadata: Metadata = {
+//   title: 'prolog',
+//   description: '/',
+//   icons: {
+//     icon: '/',
+//   },
+// };
 
 export default async function RootLayout({
   children,
