@@ -5,14 +5,19 @@ export type GetPostListAllFilter = {
   tags?: string[];
   title?: string;
   content?: string;
+  page?: number;
+  pageSize?: number;
+  sort?: 'latest' | 'popular';
+};
+
+export type BlogPostWithCounts = BlogPost & {
+  user: { id: string; name: string; profileImg?: string | null };
+  _count: { likes: number; comments: number };
 };
 
 export type PostListAllRepository = {
-  findAll(filters: GetPostListAllFilter): Promise<
-    (BlogPost & {
-      // likes: { id: number }[];
-      // notification: { id: number }[];
-      user: { id: string; name: string; profileImg?: string | null };
-    })[]
-  >;
+  findAll(filters: GetPostListAllFilter): Promise<{
+    posts: BlogPostWithCounts[];
+    totalCount: number;
+  }>;
 };
