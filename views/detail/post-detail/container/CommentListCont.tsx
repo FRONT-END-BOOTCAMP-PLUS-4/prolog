@@ -54,10 +54,15 @@ export default function CommentListCont() {
   };
 
   const handleDeleteComment = async (id: number) => {
-    console.log(`DELETE /comments/${id}`);
-
-    // API 요청 (예시용)
-    // await fetch(`/api/comments/${id}`, { method: 'DELETE' });
+    fetch(`/api/member/comments/${id}`, {
+      method: 'DELETE',
+    })
+      .then(() => {
+        console.log(`Comment with id ${id} deleted`);
+      })
+      .catch((error) => {
+        console.error(`Failed to delete comment with id ${id}:`, error);
+      });
 
     setComments((prev) => prev.filter((c) => c.id !== id));
   };
