@@ -7,7 +7,7 @@ import { CheckCircledIcon } from '@radix-ui/react-icons';
 
 // slice
 import styles from '../styles/NotificationListPres.module.scss';
-import { type Notification } from '../container/NotificationListCont';
+import { type Notification } from '../types';
 
 type Props = {
   notificationList: Notification[];
