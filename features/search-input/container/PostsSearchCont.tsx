@@ -116,15 +116,17 @@ export default function PostsSearchCont({
           new Set(posts.flatMap((post) => post.tags || [])),
         )
           .filter((tag): tag is string => typeof tag === 'string')
-          .map((tag) => `#${tag}`);
+          .map((tag) => `#${tag}`)
+          .sort((a, b) => a.localeCompare(b));
 
         const userNames = Array.from(new Set(posts.map((post) => post.name)))
           .filter((name): name is string => typeof name === 'string')
-          .map((name) => `@${name}`);
+          .map((name) => `@${name}`)
+          .sort((a, b) => a.localeCompare(b));
 
-        const titles = Array.from(
-          new Set(posts.map((post) => post.title)),
-        ).filter((title): title is string => typeof title === 'string');
+        const titles = Array.from(new Set(posts.map((post) => post.title)))
+          .filter((title): title is string => typeof title === 'string')
+          .sort((a, b) => a.localeCompare(b));
 
         setTagLabels(tags);
         setUserLabels(userNames);
@@ -404,7 +406,6 @@ export default function PostsSearchCont({
 
   useOnClickOutside(containerRef, () => setShowDropdown(false), showDropdown);
 
-  // 드롭다운 표시 시 하이라이트 인덱스 초기화
   useEffect(() => {
     if (showDropdown) setHighlightedIndex(-1);
   }, [showDropdown, inputValue]);
