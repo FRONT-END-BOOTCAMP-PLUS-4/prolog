@@ -21,7 +21,7 @@ type Props = {
 export default function NotificationListPres(props: Props) {
   const { notificationList, selecterId, selectList, isCheck, submitRead, isSuccess } =
     props;
-console.log("isSuccess:",isSuccess)
+    
   // check
   const isSelectd = (idx: number) => selectList.includes(idx);
 
