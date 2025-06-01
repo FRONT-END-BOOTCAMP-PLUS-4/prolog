@@ -9,9 +9,13 @@ import {
 import prisma from '@/shared/lib/prisma';
 
 export class PrPostListAllRepository implements PostListAllRepository {
-  async findAll(filters: GetPostListAllFilter): Promise<{
+  async findAll(
+    filters: GetPostListAllFilter,
+    currentUserId: string,
+  ): Promise<{
     posts: BlogPostWithCounts[];
     totalCount: number;
+    likedPostIds: number[];
   }> {
     try {
       const orConditions: OrCondition[] = [];
@@ -72,19 +76,8 @@ export class PrPostListAllRepository implements PostListAllRepository {
         prisma.blogPost.findMany({
           where,
           include: {
-            user: {
-              select: {
-                id: true,
-                name: true,
-                profileImg: true,
-              },
-            },
-            _count: {
-              select: {
-                likes: true,
-                comments: true,
-              },
-            },
+            user: { select: { id: true, name: true, profileImg: true } },
+            _count: { select: { likes: true, comments: true } },
           },
           orderBy,
           skip,
@@ -93,7 +86,23 @@ export class PrPostListAllRepository implements PostListAllRepository {
         prisma.blogPost.count({ where }),
       ]);
 
-      return { posts, totalCount };
+      // 게시글 id 배열
+      const postIds = posts.map((post) => post.id);
+
+      // 현재 유저가 좋아요 누른 게시글 id 목록
+      let likedPostIds: number[] = [];
+      if (currentUserId && postIds.length > 0) {
+        const likes = await prisma.postLike.findMany({
+          where: {
+            postsId: { in: postIds },
+            userId: currentUserId,
+          },
+          select: { postsId: true },
+        });
+        likedPostIds = likes.map((like) => like.postsId);
+      }
+
+      return { posts, totalCount, likedPostIds };
     } catch (error) {
       console.error('Repository Error:', error);
       throw error;
