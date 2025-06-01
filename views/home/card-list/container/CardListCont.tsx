@@ -66,6 +66,7 @@ export default function CardListCont() {
     commentCount: post.commentCount ?? 0,
     loveCount: post.loveCount ?? 0,
     imageUrl: post.thumbnailUrl ?? null,
+    isLiked: post.isLiked ?? false,
   }));
 
   const uniqueItems: CardData[] = mappedItems.filter(

@@ -20,6 +20,7 @@ export type PostListItem = {
   thumbnailUrl: string | null;
   commentCount?: number;
   loveCount?: number;
+  isLiked?: boolean;
 };
 
 export type UseInfiniteScrollPostsResult = {
