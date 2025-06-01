@@ -16,7 +16,7 @@ export class PrPostRepository implements PostsRepository {
         tags: newPost.tags,
         isPublic: newPost.isPublic,
         useAi: newPost.useAi,
-        aiSummary: newPost.AiSummary,
+        aiSummary: newPost.aiSummary,
         thumbnailUrl: newPost.thumbnailUrl,
       },
     });

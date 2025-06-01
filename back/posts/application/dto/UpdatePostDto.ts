@@ -1,11 +1,11 @@
-export class CreatePostDto {
+export class UpdatePostDto {
   constructor(
     public title: string,
     public content: string,
     public tags: string[],
     public isPublic: number,
-    public userId: string,
     public useAi: number,
+    public postId: number,
     public aiSummary?: string,
     public thumbnailUrl?: string,
   ) {}
