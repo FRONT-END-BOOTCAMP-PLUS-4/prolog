@@ -1,17 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
+
 import { PrPostListAllRepository } from '@/back/posts/infra/PrPostListAllRepository';
 import { GetPostListAllUsecase } from '@/back/posts/application/usecases/GetPostListAllUsecase';
-
-// 숫자 파라미터 유효성 검사
-const validateNumericParam = (value: string, defaultValue: number): number => {
-  const parsed = Number(value);
-  return Number.isInteger(parsed) && parsed > 0 ? parsed : defaultValue;
-};
-
-// 정렬 파라미터 유효성 검사
-const validateSortParam = (value: string | null): 'latest' | 'popular' => {
-  return value === 'popular' ? 'popular' : 'latest';
-};
+import {
+  validateNumericParam,
+  validateSortParam,
+} from '@/shared/utils/validators';
 
 export async function GET(req: NextRequest) {
   try {
