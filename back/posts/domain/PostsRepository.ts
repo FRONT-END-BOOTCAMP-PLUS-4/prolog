@@ -4,5 +4,5 @@ import { GetPostViewDto } from '../application/dto/GetPostViewDto';
 
 export interface PostsRepository {
   createPost(newPost: CreatePostDto): Promise<BlogPost>;
-  getPostById(id: number): Promise<GetPostViewDto>;
+  getPostById(postId: number, currentUserId: string): Promise<GetPostViewDto>;
 }
