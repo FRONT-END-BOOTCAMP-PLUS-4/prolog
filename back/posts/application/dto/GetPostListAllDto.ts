@@ -12,5 +12,6 @@ export class GetPostListAllDto {
     public thumbnailUrl: string | null,
     public loveCount: number,
     public commentCount: number,
+    public isLiked: boolean,
   ) {}
 }

@@ -9,4 +9,5 @@ export type CardData = {
   commentCount: number;
   loveCount: number;
   imageUrl: string | null;
+  isLiked: boolean;
 };

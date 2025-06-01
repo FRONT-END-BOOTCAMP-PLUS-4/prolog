@@ -11,12 +11,15 @@ export class GetPostListAllUsecase {
   constructor(private readonly postsRepository: PostListAllRepository) {}
 
   async execute(
+    currentUserId: string,
     filters: GetPostListAllFilter,
   ): Promise<GetPostListAllResponseDto> {
     try {
-      const { posts: postList, totalCount } =
-        await this.postsRepository.findAll(filters);
-
+      const {
+        posts: postList,
+        totalCount,
+        likedPostIds,
+      } = await this.postsRepository.findAll(filters, currentUserId);
       const page = filters.page ?? 1;
       const pageSize = filters.pageSize ?? 20;
 
@@ -35,6 +38,7 @@ export class GetPostListAllUsecase {
             post.thumbnailUrl ?? null,
             post._count.likes,
             post._count.comments,
+            likedPostIds.includes(post.id),
           ),
       );
 
