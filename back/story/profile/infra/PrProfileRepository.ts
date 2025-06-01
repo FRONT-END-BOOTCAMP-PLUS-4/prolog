@@ -7,7 +7,6 @@ export class PrProfileRepository implements ProfileRepository {
   async findById(email: string): Promise<User> {
     const userData = await prisma.user.findFirst({
       where: {
-        // Replace 'id' with the actual unique field you want to query by
         name: email,
       },
     });

@@ -10,7 +10,6 @@ import { error } from 'console';
 export default function CheckUserCont(): JSX.Element {
   // 유저 체크 로직
   const { data: session, status } = useSession();
-  console.log('email', session);
 
   const username = session?.user?.name ?? '';
   return <HeaderPres username={username} />;
