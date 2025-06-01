@@ -7,85 +7,66 @@ import { CheckCircledIcon } from '@radix-ui/react-icons';
 
 // slice
 import styles from '../styles/NotificationListPres.module.scss';
-import { NotificationItemType } from '../types';
+import { type Notification } from '../container/NotificationListCont';
 
 type Props = {
-  list: NotificationItemType[];
-  deleteMode: boolean;
-  selectedIds: number[];
-  onToggleSelect: (id: number) => void;
+  notificationList: Notification[];
+  isSelect: boolean;
+  selecterId: ( notificationId: number) => void;
 };
 
-export default function NotificationListPres({
-  list,
-  deleteMode,
-  selectedIds,
-  onToggleSelect,
-}: Props) {
-  const router = useRouter();
+export default function NotificationListPres(props: Props) {
+  const { notificationList, selecterId, isSelect} = props;
 
-  if (list.length === 0) {
+  const router = useRouter();
+  const blogPageRouter = (userName: string, postId: number) => {
+    router.push(`/${userName}/stories/${postId}`);
+  };
+
+  if (!notificationList.length) {
     return <p className={styles.empty}>알람 내역이 없어요</p>;
-  }
+  };
 
   return (
-    <>
-      {list.map((item) => {
-        const handleClick = () => {
-          if (deleteMode) {
-            onToggleSelect(item.id);
-          } else {
-            router.push(`/${item.userNickname}/stories/${item.postId}`);
-          }
-        };
-
+    <div className={styles.container}>
+      {notificationList.map((notification) => {
         return (
-          <div
-            key={item.id}
-            className={[
-              styles.notification,
-              item.isRead ? styles.read : styles.unread,
-              deleteMode && selectedIds.includes(item.id)
-                ? styles.selected
-                : '',
-            ].join(' ')}
-            onClick={handleClick}
-          >
-            <Image
-              src={item.userProfileImage ?? '/svgs/profile.svg'}
-              alt="프로필 이미지"
-              className={styles.profileImage}
-              width={30}
-              height={30}
-            />
-            <div className={styles.item}>
-              <div className={styles.title}>
-                <span className={styles.nickname}>{item.userNickname}</span>
-                <span className={styles.comment}>
-                  {item.type === 'comment' ? '의 댓글' : '의 게시글'}
-                </span>
-              </div>
-              <span className={styles.content}>{item.content}</span>
-              <span className={styles.postTitle}>{item.postTitle}</span>
-              <span className={styles.dateMobile}>{item.date}</span>
+          <div key={notification.idx} className={styles.notification} onClick={() => blogPageRouter(notification.userName, notification.postsId)}>
+            {/* 유저 프로필이미지 */}
+            <div className={styles.userImage}>
+              <Image
+                src={notification.userImage ?? '/svgs/profile.svg'}
+                fill
+                alt="유저이미지"
+              />
             </div>
-            <div className={styles.iconContainer}>
-              <span className={styles.dateDesktop}>{item.date}</span>
-              {deleteMode ? (
-                <CheckCircledIcon
-                  className={
-                    selectedIds.includes(item.id)
-                      ? styles.iconSelected
-                      : styles.icon
-                  }
-                />
-              ) : (
-                <div className={styles.icon} />
-              )}
+
+            <div className={styles.infoContainer}>
+              {/* 유저이름 및 알람 유형 */}
+              <div className={styles.infoContainer__info}>
+                <span className={styles.infoContainer__name}>
+                  {notification.userName}
+                </span>
+                <span>{notification.notificationType ? '게시글' : '댓글'}</span>
+              </div>
+              {/* 댓글내용 및 게시글 내용 */}
+              <p className={styles.infoContainer__content}>
+                {notification.content}
+              </p>
+              {/* 게시글 제목 */}
+              <p className={styles.infoContainer__title}>
+                {notification.title}
+              </p>
+            </div>
+
+            {/* 알람시간 */}
+            <div className={styles.time}>
+              <span>{notification.date}</span>
+              { isSelect && <CheckCircledIcon className={styles.time__icon} onClick={() => selecterId(notification.idx)}/>}
             </div>
           </div>
         );
       })}
-    </>
+    </div>
   );
 }
