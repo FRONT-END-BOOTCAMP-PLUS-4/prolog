@@ -3,16 +3,22 @@ import Image from 'next/image';
 //slice
 import SubscriptionCont from '@/features/subscription/container/SubscriptionCont';
 import { useModalStore } from '@/shared/stores/useModalStore';
-import { User } from '../types';
+import { SubscribeUser, User } from '../types';
 //style
 import styles from '../styles/ProfileCardPres.module.scss';
 import SubscriptionListCont from '@/features/subscription-list/container/SubscriptionListCont';
 
 type UserProps = {
   userData: User;
+  followers: SubscribeUser;
+  following: SubscribeUser;
 };
 
-export default function ProfileCardPres({ userData }: UserProps) {
+export default function ProfileCardPres({
+  userData,
+  followers,
+  following,
+}: UserProps) {
   const defaultImg = '/svgs/my-card-background.jpg';
   const openModal = useModalStore((state) => state.action.open);
 
@@ -65,15 +71,27 @@ export default function ProfileCardPres({ userData }: UserProps) {
             </div>
             <div
               onClick={() => {
-                openModal(<SubscriptionListCont />, 'center');
+                openModal(
+                  <SubscriptionListCont
+                    followers={followers}
+                    following={following}
+                  />,
+                  'center',
+                );
               }}
               className={styles.followContainer}
             >
               <button className={styles.followText}>
-                팔로워<span className={styles.followNumberText}>17</span>
+                팔로워
+                <span className={styles.followNumberText}>
+                  {followers.totalCount}
+                </span>
               </button>
               <button className={styles.followText}>
-                팔로잉<span className={styles.followNumberText}>15</span>
+                팔로잉
+                <span className={styles.followNumberText}>
+                  {following.totalCount}
+                </span>
               </button>
             </div>
           </div>

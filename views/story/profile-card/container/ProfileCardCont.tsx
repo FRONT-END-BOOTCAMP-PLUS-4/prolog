@@ -4,12 +4,20 @@ import { JSX, useEffect, useState } from 'react';
 //slice
 import ProfileCardPres from '../presentational/ProfileCardPres';
 //type
-import { User } from '../types';
+import { SubscribeUser, User } from '../types';
 import { useSession } from 'next-auth/react';
 
 export default function ProfileCardCont(): JSX.Element {
   const { data: session, status } = useSession();
   const [userData, setUserData] = useState<User>();
+  const [followers, setFollowers] = useState<SubscribeUser>({
+    users: [],
+    totalCount: 0,
+  });
+  const [following, setFollowing] = useState<SubscribeUser>({
+    users: [],
+    totalCount: 0,
+  });
 
   useEffect(() => {
     const getUserHandler = async () => {
@@ -27,6 +35,24 @@ export default function ProfileCardCont(): JSX.Element {
     };
     getUserHandler();
   }, []);
+  useEffect(() => {
+    const subscribeHandler = async () => {
+      if (status === 'authenticated') {
+        const { id } = session.user;
+        const response = await fetch(`/api/member/subscription?id=${id}`);
+        const data = await response.json();
+        setFollowers(data.followers);
+        setFollowing(data.following);
+      }
+    };
+    subscribeHandler();
+  }, []);
 
-  return <ProfileCardPres userData={userData!} />;
+  return (
+    <ProfileCardPres
+      followers={followers}
+      following={following}
+      userData={userData!}
+    />
+  );
 }
