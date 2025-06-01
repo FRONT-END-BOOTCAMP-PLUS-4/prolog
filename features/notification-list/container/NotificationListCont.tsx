@@ -4,100 +4,47 @@ import { useEffect, useState } from 'react';
 import { NotificationItemType } from '../types';
 import NotificationListPres from '../presentational/NotificationListPres';
 
-type Props = {
-  deleteMode: boolean;
-  selectedIds: number[];
-  setAllNotificationIds: (ids: number[]) => void;
-  onToggleSelect: (id: number) => void;
-};
+export type Notification = {
+  idx: number,
+  userImage: string | null,
+  userName: string,
+  notificationType: number,
+  content: string,
+  title: string,
+  date: string,
+  postsId: number,
+  isRead: boolean,
+}
 
-const dummyNotifications: NotificationItemType[] = [
-  {
-    id: 1,
-    userNickname: 'UserNickName1',
-    type: 'comment',
-    content: '댓글 내용',
-    postTitle: '게시글 제목',
-    postId: '1',
-    date: '2025-01-01',
-    isRead: false,
-  },
-  {
-    id: 2,
-    userProfileImage: '/svgs/profile.svg',
-    userNickname: 'UserNickName2',
-    type: 'post',
-    content: '게시글 내용',
-    postTitle: '게시글 제목',
-    postId: '2',
-    date: '2025-01-02',
-    isRead: false,
-  },
-  {
-    id: 3,
-    userNickname: 'UserNickName3',
-    type: 'comment',
-    content: '댓글 내용',
-    postTitle: '게시글 제목',
-    postId: '2',
-    date: '2025-01-03',
+export default function NotificationListCont(props) {
+  const [isSelect, setIsSelect] = useState<boolean>(false);
+  const [selectList, setSelectList] = useState<number[]>([]);
+  const clickSelecterId = ( idx: number) => {
+    setSelectList([...selectList, idx])
+  }
+  const [notificationList, setNotificationList] = useState<Notification[]>([{
+    idx: 1,
+    userImage: null,
+    userName: 'test1',
+    notificationType: 1,
+    content: "게시글 내용입니다.",
+    title: "게시글 제목",
+    date: '2025-05-01',
+    postsId: 1,
     isRead: true,
   },
   {
-    id: 4,
-    userNickname: 'UserNickName4',
-    type: 'post',
-    content: '게시글 내용',
-    postTitle: '게시글 제목',
-    postId: '1',
-    date: '2025-01-04',
-    isRead: true,
-  },
-  {
-    id: 5,
-    userNickname: 'UserNickName5',
-    type: 'comment',
-    content: '댓글 내용',
-    postTitle: '게시글 제목',
-    postId: '1',
-    date: '2025-01-05',
+    idx: 2,
+    userImage: null,
+    userName: 'test2',
+    notificationType: 0,
+    content: "댓글 내용입니다.",
+    title: "게시글 제목",
+    date: '2025-05-01',
+    postsId: 2,
     isRead: false,
-  },
-  {
-    id: 6,
-    userNickname: 'UserNickName6',
-    type: 'post',
-    content: '게시글 내용',
-    postTitle: '게시글 제목',
-    postId: '2',
-    date: '2025-01-06',
-    isRead: false,
-  },
-];
+  }
+]);
 
-export default function NotificationListCont({
-  deleteMode,
-  selectedIds,
-  setAllNotificationIds,
-  onToggleSelect,
-}: Props) {
-  const [list, setList] = useState<NotificationItemType[]>([]);
-
-  useEffect(() => {
-    console.log('GET 알림 리스트');
-    setList(dummyNotifications);
-  }, []);
-
-  useEffect(() => {
-    setAllNotificationIds(list.map((item) => item.id));
-  }, [list, setAllNotificationIds]);
-
-  return (
-    <NotificationListPres
-      list={list}
-      deleteMode={deleteMode}
-      selectedIds={selectedIds}
-      onToggleSelect={onToggleSelect}
-    />
-  );
+  return <NotificationListPres notificationList={notificationList} isSelect={isSelect} selecterId={clickSelecterId}/>;
 }
