@@ -13,10 +13,8 @@ export type GetPostListAllFilter = {
 
 // 정렬
 export type BlogPostOrderBy =
-  | { createdAt: 'desc' | 'asc' }
-  | Array<
-      { likes: { _count: 'desc' | 'asc' } } | { createdAt: 'desc' | 'asc' }
-    >;
+  | { likes: { _count: 'desc' | 'asc' } }
+  | { createdAt: 'desc' | 'asc' };
 
 // 유저 정보와 좋아요/댓글 수가 포함된 게시글
 export type BlogPostWithCounts = BlogPost & {

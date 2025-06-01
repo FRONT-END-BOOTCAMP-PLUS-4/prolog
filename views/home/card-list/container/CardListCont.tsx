@@ -1,7 +1,7 @@
 'use client';
 
 // package
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 // slice
 import CardListPres from '../presentational/CardListPres';
@@ -15,18 +15,26 @@ import { useInfiniteScrollTrigger } from '../hooks/useInfiniteScrollTrigger';
 import { CardData } from '@/widgets/card/types';
 import { useSearch } from '@/shared/contexts/SearchContext';
 import { useInfiniteScroll } from '@/shared/hooks/useInfiniteScroll';
+import { useLocalStorage } from '@/shared/hooks/useLocalStorage';
 import { PostListFilter } from '@/shared/types';
+
+const MIN_SKELETON_TIME = 1000;
 
 const SORT_OPTIONS = [
   { label: '최신순', value: 'latest' },
   { label: '인기순', value: 'popular' },
 ];
 
-const MIN_SKELETON_TIME = 1000;
-
 export default function CardListCont() {
-  const [viewType, setViewType] = useState<ViewType>('card');
-  const [sort, setSort] = useState<'latest' | 'popular'>('latest');
+  const [viewType, setViewType] = useLocalStorage<ViewType>(
+    'cardlist-viewtype',
+    'card',
+  );
+  const [sort, setSort] = useLocalStorage<'latest' | 'popular'>(
+    'cardlist-sort',
+    'latest',
+  );
+
   const { searchParams } = useSearch();
 
   const filter: PostListFilter = {
@@ -38,14 +46,8 @@ export default function CardListCont() {
     pageSize: 20,
   };
 
-  const {
-    posts,
-    loading,
-    error,
-    hasMore,
-    fetchNext,
-    reset,
-  } = useInfiniteScroll(filter);
+  const { posts, loading, error, hasMore, fetchNext, reset } =
+    useInfiniteScroll(filter);
 
   useResetOnFilterChange([sort, searchParams], () => reset({ ...filter }));
   const isMinSkeleton = useMinSkeleton(loading, MIN_SKELETON_TIME);
@@ -53,7 +55,7 @@ export default function CardListCont() {
   const loaderRef = useRef<HTMLDivElement>(null);
   useInfiniteScrollTrigger(loaderRef, fetchNext, hasMore, loading);
 
-  const mappedItems: CardData[] = posts.map(post => ({
+  const mappedItems: CardData[] = posts.map((post) => ({
     id: String(post.id),
     title: post.title,
     desc: post.content,
@@ -66,6 +68,10 @@ export default function CardListCont() {
     imageUrl: post.thumbnailUrl ?? null,
   }));
 
+  const uniqueItems: CardData[] = mappedItems.filter(
+    (item, idx, arr) => arr.findIndex((i) => i.id === item.id) === idx,
+  );
+
   return (
     <>
       <CardListPres
@@ -73,7 +79,7 @@ export default function CardListCont() {
         setViewType={setViewType}
         sort={sort}
         setSort={setSort}
-        items={mappedItems}
+        items={uniqueItems}
         sortOptions={SORT_OPTIONS}
         isLoading={isMinSkeleton}
       />

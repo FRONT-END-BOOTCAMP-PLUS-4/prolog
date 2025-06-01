@@ -86,7 +86,7 @@
   align-items: center;
   justify-items: center;
   height: 40px;
-  margin-top: 15px;
+  margin-top: 6px;
 }
 
 .iconWrap {
@@ -112,7 +112,7 @@
 
 .cardContainer:hover .iconWrap img {
   transform: scale(1.2);
-    filter: brightness(0.9); 
+  filter: brightness(0.9); 
 }
 
 .bottom {

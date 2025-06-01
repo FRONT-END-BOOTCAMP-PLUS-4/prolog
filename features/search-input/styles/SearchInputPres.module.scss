@@ -60,15 +60,23 @@
   &.tag {
     background: $theme-mist-lavender;
     color: $theme-primary;
+
+    &:hover {
+      background: $theme-soft-lavender;
+      color: $theme-white;
+    }
   }
   &.user {
     background: #e3f7e3;
     color: #1b6b1b;
-  }
-  &:hover {
-    background: #eceaff;
+
+    &:hover {
+      background: #b6e6b6;
+      color: $theme-white;
+    }
   }
 }
+
 
 .chipRemove {
   background: none;

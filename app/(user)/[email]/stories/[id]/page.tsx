@@ -41,8 +41,10 @@ export default async function Page({ params }: { params: { id: string } }) {
         <h1 className={styles.titleText}>CSR이란?</h1>
         <div className={styles.actionButtons}>
           {/* 수정 및 삭제 버튼 */}
-          <EditButtonCont mode="post" id={postId} />
-          <span>|</span>
+          <div className={styles.editWrapper}>
+            <EditButtonCont mode="post" id={postId} />
+            <span>|</span>
+          </div>
           <DeleteButtonCont mode="post" id={postId} />
         </div>
       </div>

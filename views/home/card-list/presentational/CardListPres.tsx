@@ -24,6 +24,7 @@ export default function CardListPres({
 }: CardListPresProps) {
   const skeletonCount =
     items.length === 0 ? DEFAULT_SKELETON_COUNT : items.length;
+
   return (
     <div>
       <div className={styles.filterBar}>
@@ -33,6 +34,7 @@ export default function CardListPres({
             value={sort}
             onChange={(val) => setSort(val as 'latest' | 'popular')}
             className={styles.selectWrap}
+            storageKey="cardlist-sort"
           />
         </div>
         <div className={styles.viewTypeBar}>
@@ -86,9 +88,9 @@ export default function CardListPres({
         {isLoading ? (
           Array.from({ length: skeletonCount }).map((_, idx) =>
             viewType === 'card' ? (
-              <SquareCardSkeleton key={idx} />
+              <SquareCardSkeleton key={`skeleton-${idx}`} />
             ) : (
-              <LongCardSkeleton key={idx} />
+              <LongCardSkeleton key={`skeleton-${idx}`} />
             ),
           )
         ) : items.length === 0 ? (
@@ -96,9 +98,9 @@ export default function CardListPres({
         ) : (
           items.map((item) =>
             viewType === 'card' ? (
-              <SquareCardPres key={item.id} data={item} />
+              <SquareCardPres key={`item-${item.id}`} data={item} />
             ) : (
-              <LongCardPres key={item.id} data={item} />
+              <LongCardPres key={`item-${item.id}`} data={item} />
             ),
           )
         )}

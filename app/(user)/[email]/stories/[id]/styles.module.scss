@@ -25,6 +25,19 @@
   color: $theme-gray-3;
 }
 
+.editWrapper {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+  @media (max-width: 768px) {
+    .editWrapper {
+      display: none;
+    }
+  }
+
+
 .profileLayout {
   width: 100%;
   display: flex;

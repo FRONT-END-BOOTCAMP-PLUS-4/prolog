@@ -58,16 +58,15 @@ export class PrPostListAllRepository implements PostListAllRepository {
       const take = pageSize;
 
       // 정렬 조건
-      let orderBy: BlogPostOrderBy;
+      let orderBy: BlogPostOrderBy[];
       switch (filters.sort) {
         case 'popular':
           orderBy = [{ likes: { _count: 'desc' } }, { createdAt: 'desc' }];
           break;
         default:
-          orderBy = { createdAt: 'desc' };
+          orderBy = [{ createdAt: 'desc' }];
           break;
       }
-
       // 게시글 목록과 전체 개수 동시 조회
       const [posts, totalCount] = await Promise.all([
         prisma.blogPost.findMany({
