@@ -1,136 +1,90 @@
 @use "@styles/variables.scss" as *;
 
-.notification {
+
+.container{
+  display: flex;
+  flex-direction: column;
+}
+
+.notification{
   display: flex;
   align-items: center;
-  gap: 8px;
   padding: 8px;
   cursor: pointer;
   border-bottom: 1px solid $theme-shade-5;
-  width: 100%;
+  gap: 12px;
+  border-radius: 4px;
+
+  &:hover{
+    background-color: $theme-shade-4;
+  }
+
 }
 
-.notification img {
-  margin-left: 10px;
-  margin-right: 8px;
-}
 
-.notification:hover {
-  background-color: $theme-shade-2;
-}
-
-.item {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: center;
-  min-width: 0; 
-}
-
-.title {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  min-width: 0;
-}
-
-.nickname {
-  min-width: 0;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-size: $font-sm-size;
-  color: $theme-primary;
-  flex-shrink: 1; 
-}
-
-.comment {
+.userImage{
+  position: relative;
+  width: 30px;
+  height: 30px;
   flex-shrink: 0;
-  margin-left: 1px; 
-  font-size: $font-sm-size;
-  color: $theme-text-1;
-}
-
-.content {
-  font-size: $font-sm-size;
-  line-height: 2;
-  color: $theme-text-1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.postTitle {
-  font-size: $font-xs-size;
-  line-height: 1.5;
-  color: $theme-gray-4;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.dateDesktop {
-  @include font-xs;
-  color: $theme-gray-4;
-  display: flex;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.dateMobile {
-  display: none;
-}
-
-.read {
-  background: $theme-shade-3;
-
-  .nickname,
-  .comment,
-  .content,
-  .postTitle,
-  .dateMobile,
-  .dateDesktop
-  {
-    color: $theme-gray-1;
-  }
-}
-
-.iconContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
-}
-
-.icon {
-  width: 16px;
-  height: 16px;
-  color: $theme-gray-3;
-}
-
-.iconSelected {
-  width: 16px;
-  height: 16px;
-  color: $theme-primary;
-}
-
-@media (max-width:768px) {
-  .notification img {
+  @media (max-width: 768px) {
     display: none;
   }
+}
 
-  .dateDesktop {
-    display: none;
-  }
-
-  .dateMobile {
-  @include font-xs;
-  color: $theme-gray-4;
+.infoContainer{
+  flex-grow: 1;
   display: flex;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  flex-direction: column;
+  gap: 4px;
+  width: 180px;
+
+  &__info{
+    max-width: 180px;
+    color: $theme-text-1;
+    font-size: $font-sm-size;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
+
+  &__name{
+    color: $theme-primary;
+  font-size: $font-base-size;
+  padding-right: 4px;
+  }
+
+  &__title{
+    color: $theme-gray-3;
+    font-size: $font-sm-size;
+  }
+
+}
+
+
+.time{
+  white-space: nowrap;
+  align-self: flex-start;
+  font-size: $font-sm-size;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: $theme-gray-4;
+
+  &__icon{
+    width: 20px;
+    height: 20px;
+
+    &:hover{
+      color: $theme-green;
+    }
+  }
+}
+
+.empty{
+  min-width: 325px;
+  white-space: nowrap;
+  text-align: center;
+  color: $theme-gray-1;
 }
