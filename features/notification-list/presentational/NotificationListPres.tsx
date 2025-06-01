@@ -1,7 +1,6 @@
 'use client';
 
 // package
-import { useState } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { CheckCircledIcon } from '@radix-ui/react-icons';
@@ -58,7 +57,7 @@ export default function NotificationListPres(props: Props) {
               >
                 {/* 유저이름 및 알람 유형 */}
                 <div className={styles.infoContainer__info}>
-                  <span className={styles.infoContainer__name}>
+                  <span className={`${styles.infoContainer__name} ${notification.checkStatus ? "" : styles.infoContainer__new}`}>
                     {notification.senderName}
                   </span>
                 </div>
