@@ -1,1 +1,40 @@
 @use "@styles/variables.scss" as *;
+
+.container {
+  min-width: 250px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: $theme-shade-1;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  padding: 8px;
+}
+
+.centerContainer{
+    flex-grow: 1;
+    overflow: auto; // 넘침 감추기
+}
+
+
+.bottomContainer{
+
+    &__selectSection{
+        display: flex;
+        justify-content: flex-end;
+        gap: 4px;
+    }
+
+    &__deleteSection{
+        display: flex;
+        justify-content: space-between;
+    
+        &__right{
+            display: flex;
+            gap: 4px;
+        }
+    }
+}
+
+
