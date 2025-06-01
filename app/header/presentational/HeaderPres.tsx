@@ -18,13 +18,14 @@ import {
 import styles from '../styles/HeaderPres.module.scss';
 
 // layer
-import useOnClickOutside from '@/shared/hooks/useOnClickOutside';
+
 import PostsSearchCont from '@/features/search-input';
 import Button from '@/shared/ui/button';
 import { useModalStore } from '@/shared/stores/useModalStore';
 import { LoginForm } from '@/widgets/login';
 import { useThemeStore } from '@/shared/stores/useThemeStore';
 import { NotificationModalCont } from '@/widgets/notification';
+import { useOnClickOutside } from '@/shared/hooks/useOnClickOutside';
 
 export default function HeaderPres(): JSX.Element {
   const { open } = useModalStore((state) => state.action);

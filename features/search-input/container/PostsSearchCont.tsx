@@ -11,7 +11,7 @@ import type { Chip, DropdownItem, PostsSearchContProps, Post } from '../types';
 import { getMode } from '../types';
 
 // layer
-import useOnClickOutside from '@/shared/hooks/useOnClickOutside';
+import { useOnClickOutside } from '@/shared/hooks/useOnClickOutside';
 import { useSearch } from '@/shared/contexts/SearchContext';
 
 // 칩 중복 체크

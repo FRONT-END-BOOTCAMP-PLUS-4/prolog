@@ -6,8 +6,8 @@ import SelectPres from '../presentational/SelectPres';
 import { SelectContProps } from '../types';
 
 // layer
-import useOnClickOutside from '@/shared/hooks/useOnClickOutside';
-import useLocalStorage from '@/shared/hooks/useLocalStorage';
+import { useOnClickOutside } from '@/shared/hooks/useOnClickOutside';
+import { useLocalStorage } from '@/shared/hooks/useLocalStorage';
 
 export default function SelectCont({
   options,
