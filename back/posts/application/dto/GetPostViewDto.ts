@@ -10,7 +10,6 @@ export class GetPostViewDto {
     public aiSummary: string | null, // AI 요약 (nullable)
     public profileImage: string | null, // 작성자 프로필 이미지 (nullable)
     public nickname: string, // 작성자 닉네임
-    public userEmail: string, // 작성자 이메일
     public isLiked: boolean, // 내가 좋아요 눌렀는지
     public isBookmarked: boolean, // 내가 북마크 했는지
     public following: boolean, // 내가 이 유저를 팔로잉 중인지

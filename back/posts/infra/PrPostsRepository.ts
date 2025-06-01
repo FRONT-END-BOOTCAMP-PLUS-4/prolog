@@ -47,7 +47,6 @@ export class PrPostRepository implements PostsRepository {
           select: {
             id: true, // 게시글 유저 uuid
             name: true, // 게시글 유저 이름
-            email: true, // 게시글 유저 이메일
             profileImg: true, // 게시글 유저 프로필
           },
         },
@@ -100,7 +99,6 @@ export class PrPostRepository implements PostsRepository {
         : null,
       profileImage: postDetail.user.profileImg,
       nickname: postDetail.user.name,
-      userEmail: postDetail.user.email,
       isLiked: Boolean(liked),
       isBookmarked: Boolean(bookmarked),
       following: Boolean(following),
