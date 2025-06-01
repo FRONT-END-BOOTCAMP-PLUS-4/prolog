@@ -38,10 +38,10 @@ export default function LongCardPres({ data }: Props) {
                 <div className={styles.desc}>{data.desc}</div>
               </div>
             </div>
-            <div className={styles.tagWrap}>
-              <TagListCont tags={data.tags} />
-            </div>
           </Link>
+          <div className={styles.tagWrap}>
+            <TagListCont tags={data.tags} />
+          </div>
           <div className={styles.bottom}>
             <div className={styles.iconTextGroup}>
               <ChatBubbleIcon className={styles.chatIcon} />
