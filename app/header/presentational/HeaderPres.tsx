@@ -26,7 +26,7 @@ import { useThemeStore } from '@/shared/stores/useThemeStore';
 import { NotificationModalCont } from '@/widgets/notification';
 import { useOnClickOutside } from '@/shared/hooks/useOnClickOutside';
 
-export default function HeaderPres() {
+export default function HeaderPres({ username }: { username: string }) {
   const { open } = useModalStore((state) => state.action);
   // 로그인 여부
   const [isLoggedIn, setIsLoggedIn] = useState(true); // 테스트용
@@ -230,7 +230,7 @@ export default function HeaderPres() {
               {isProfileDropdownVisible && (
                 <div className={styles.dropdownMenu}>
                   <Link
-                    href="/email/stories"
+                    href={`/${username}/stories`}
                     className={styles.dropdownItem}
                     onClick={() => setIsProfileDropdownVisible(false)}
                   >
