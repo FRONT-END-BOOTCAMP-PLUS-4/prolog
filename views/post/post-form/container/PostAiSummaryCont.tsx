@@ -15,6 +15,7 @@ export default function PostAiSummaryCont({
   content,
   setAiSummary,
   aiSummary,
+  setIsAiUsed,
 }: Props) {
   const [summary, setSummary] = useState<AiSummaryType[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -60,6 +61,7 @@ export default function PostAiSummaryCont({
         isLoading={isLoading}
         requestAiSummary={requestAiSummary}
         aiSummary={aiSummary}
+        setIsAiUsed={setIsAiUsed}
       />
     </>
   );
