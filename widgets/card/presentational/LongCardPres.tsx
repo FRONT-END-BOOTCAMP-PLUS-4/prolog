@@ -21,7 +21,7 @@ export default function LongCardPres({ data }: Props) {
     <div className={`${styles.cardContainer} cardContainer`}>
       <div className={styles.cardRow}>
         <div className={styles.cardLeft}>
-          <Link href={`/email/stories/${data.id}`}>
+          <Link href={`/${data.userName}/stories`}>
             <div className={styles.profileInfo}>
               <Profile
                 userProfileImage={data.userProfileImage}

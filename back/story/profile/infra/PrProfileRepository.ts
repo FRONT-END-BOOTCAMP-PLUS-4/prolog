@@ -4,10 +4,10 @@ import { ProfileRepository } from '../domain/ProfileRepository';
 import { User } from '@/app/generated/prisma';
 
 export class PrProfileRepository implements ProfileRepository {
-  async findById(clientEmail: string): Promise<User> {
-    const userData = await prisma.user.findUnique({
+  async findById(email: string): Promise<User> {
+    const userData = await prisma.user.findFirst({
       where: {
-        email: clientEmail,
+        name: email,
       },
     });
     if (!userData) {

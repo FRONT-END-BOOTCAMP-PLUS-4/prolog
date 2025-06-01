@@ -5,24 +5,22 @@ import { JSX, useEffect, useState } from 'react';
 import ProfileCardPres from '../presentational/ProfileCardPres';
 //type
 import { User } from '../types';
-import { usePathname } from 'next/navigation';
 
-export default function ProfileCardCont(): JSX.Element {
-  const pathname = usePathname();
-  const segments = pathname.split('/').filter(Boolean);
-  const email = segments[0];
+export default function ProfileCardCont({
+  username,
+}: { username: string }): JSX.Element {
   const [userData, setUserData] = useState<User>();
-
+  console.log(username);
   useEffect(() => {
     const getUserHandler = async () => {
       try {
-        const response = await fetch(`/api/${email}/stories`);
+        const response = await fetch(`/api/${username}/stories`);
         const data = await response.json();
         setUserData(data);
       } catch (error) {}
     };
     getUserHandler();
-  }, [email]);
+  }, [username]);
 
   return <ProfileCardPres userData={userData!} />;
 }
