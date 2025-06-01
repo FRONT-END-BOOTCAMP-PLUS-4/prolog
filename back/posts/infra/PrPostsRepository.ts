@@ -107,4 +107,13 @@ export class PrPostRepository implements PostsRepository {
       aiSummary: postDetail.aiSummary as AiSummaryType[] | null,
     };
   }
+
+  async findWriterByPostId(postId: number): Promise<{ userId: string }> {
+    const post = await prisma.blogPost.findUnique({
+      where: { id: postId },
+      select: { userId: true },
+    });
+    if (!post) throw new Error('Post not found');
+    return post;
+  }
 }
