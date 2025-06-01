@@ -1,7 +1,7 @@
 'use client';
 
 // package
-import { useState, useRef, type JSX, useEffect } from 'react'; // useEffect를 임포트합니다.
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -18,15 +18,15 @@ import {
 import styles from '../styles/HeaderPres.module.scss';
 
 // layer
-import useOnClickOutside from '@/shared/hooks/useOnClickOutside';
 import PostsSearchCont from '@/features/search-input';
 import Button from '@/shared/ui/button';
 import { useModalStore } from '@/shared/stores/useModalStore';
 import { LoginForm } from '@/widgets/login';
 import { useThemeStore } from '@/shared/stores/useThemeStore';
 import { NotificationModalCont } from '@/widgets/notification';
+import { useOnClickOutside } from '@/shared/hooks/useOnClickOutside';
 
-export default function HeaderPres(): JSX.Element {
+export default function HeaderPres() {
   const { open } = useModalStore((state) => state.action);
   // 로그인 여부
   const [isLoggedIn, setIsLoggedIn] = useState(true); // 테스트용
@@ -38,14 +38,23 @@ export default function HeaderPres(): JSX.Element {
 
   const { theme, toggleTheme } = useThemeStore();
 
+  const [searchKey, setSearchKey] = useState(0);
+
   const [isNotificationDropdownVisible, setIsNotificationDropdownVisible] =
     useState(false);
+
+  const handleLogoClick = () => {
+    setSearchKey((prev) => prev + 1); // key를 변경하면 컴포넌트가 remount되어 state가 초기화됨
+    // 이후 라우터 이동 등 추가 동작
+  };
 
   // 드롭다운, 검색창 영역 ref
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchWrapperRef = useRef<HTMLDivElement>(null);
 
   const notificationDropdownRef = useRef<HTMLDivElement>(null);
+
+  const searchRef = useRef<{ resetAll: () => void }>(null);
 
   // 검색창 영역 밖 클릭 시 검색창 닫기
   useOnClickOutside(
@@ -104,7 +113,7 @@ export default function HeaderPres(): JSX.Element {
   return (
     <header className={styles.header}>
       {/* 로고 */}
-      <Link href="/" className={styles.logo}>
+      <Link href="/" className={styles.logo} onClick={handleLogoClick}>
         <Image
           src={theme === 'dark' ? '/svgs/logo_dark.svg' : '/svgs/logo.svg'}
           alt="로고"
@@ -120,7 +129,7 @@ export default function HeaderPres(): JSX.Element {
           isSearchVisible ? styles.visible : ''
         }`}
       >
-        <PostsSearchCont />
+        <PostsSearchCont key={searchKey} />
         {/* 검색창이 열려 있을 때 닫기 버튼 표시 */}
         {isSearchVisible && (
           <button

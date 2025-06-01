@@ -1,6 +1,3 @@
-// package
-import { useEffect } from 'react';
-
 /**
  * 지정한 ref 요소 바깥을 클릭(또는 터치)하면 handler 함수가 실행되는 커스텀 훅
  *
@@ -12,7 +9,11 @@ import { useEffect } from 'react';
  * @param handler - 요소 바깥 클릭/터치 시 실행할 함수
  * @param enabled - (선택) true일 때만 동작, false면 비활성화 (기본값: true)
  */
-export default function useOnClickOutside<T extends HTMLElement>(
+
+// package
+import { useEffect } from 'react';
+
+export function useOnClickOutside<T extends HTMLElement>(
   ref: React.RefObject<T | null>,
   handler: (event: MouseEvent | TouchEvent) => void,
   enabled = true,

@@ -9,6 +9,11 @@
   cursor: pointer;
   white-space: nowrap; 
 
+   &:hover {
+        background: $theme-soft-lavender; 
+        color: $theme-white;
+    }
+
 
     &__sm {
         font-size: $font-sm-size;
