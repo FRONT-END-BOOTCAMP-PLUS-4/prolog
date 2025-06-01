@@ -22,7 +22,7 @@ export default function ProfileCardCont(): JSX.Element {
       } catch (error) {}
     };
     getUserHandler();
-  }, []);
+  }, [email]);
 
   return <ProfileCardPres userData={userData!} />;
 }
