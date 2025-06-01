@@ -90,7 +90,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       {loggedIn ? <CommentInput /> : <CommentLoginPrompt />}
 
       {/* 댓글 리스트 */}
-      <CommentList />
+      <CommentList postId={postId} />
     </div>
   );
 }
