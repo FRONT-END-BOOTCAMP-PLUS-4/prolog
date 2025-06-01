@@ -21,17 +21,17 @@ export default function LongCardPres({ data }: Props) {
     <div className={`${styles.cardContainer} cardContainer`}>
       <div className={styles.cardRow}>
         <div className={styles.cardLeft}>
-          <Link href="/email/stories">
+          <Link href={`/email/stories/${data.id}`}>
             <div className={styles.profileInfo}>
               <Profile
                 userProfileImage={data.userProfileImage}
                 userName={data.userName}
                 date={data.date}
-                userEmail='userEmail'
+                userEmail="userEmail"
               />
             </div>
           </Link>
-          <Link href="/email/stories/1">
+          <Link href={`/email/stories/${data.id}`}>
             <div className={styles.main}>
               <div className={styles.textWrap}>
                 <div className={styles.title}>{data.title}</div>
@@ -48,10 +48,7 @@ export default function LongCardPres({ data }: Props) {
               <span className={styles.iconCount}>{data.commentCount}</span>
             </div>
             <div className={styles.iconTextGroup}>
-              <LikeButton 
-              isLiked={false}
-              likeCount={data.loveCount}
-            />
+              <LikeButton isLiked={false} likeCount={data.loveCount} />
             </div>
           </div>
         </div>
