@@ -1,22 +1,26 @@
 import dayjs from 'dayjs';
 import { GetPostListAllDto } from '../dto/GetPostListAllDto';
-import { PostListAllRepository } from '../../domain/PostListAllRepository';
+import { GetPostListAllResponseDto } from '../dto/GetPostListAllResponseDto';
+import {
+  PostListAllRepository,
+  GetPostListAllFilter,
+} from '../../domain/PostListAllRepository';
 import { stripMarkdown } from '@/shared/utils/stripmarkdown';
-
-export type GetPostListAllFilter = {
-  name?: string;
-  tags?: string[];
-  title?: string;
-  content?: string;
-};
 
 export class GetPostListAllUsecase {
   constructor(private readonly postsRepository: PostListAllRepository) {}
 
-  async execute(filters: GetPostListAllFilter): Promise<GetPostListAllDto[]> {
+  async execute(
+    filters: GetPostListAllFilter,
+  ): Promise<GetPostListAllResponseDto> {
     try {
-      const postList = await this.postsRepository.findAll(filters);
-      return postList.map(
+      const { posts: postList, totalCount } =
+        await this.postsRepository.findAll(filters);
+
+      const page = filters.page ?? 1;
+      const pageSize = filters.pageSize ?? 20;
+
+      const data = postList.map(
         (post) =>
           new GetPostListAllDto(
             post.id,
@@ -29,7 +33,29 @@ export class GetPostListAllUsecase {
             post.user.name,
             post.user.profileImg ?? '/svgs/profile.svg',
             post.thumbnailUrl ?? null,
+            post._count.likes,
+            post._count.comments,
           ),
+      );
+
+      const hasMore = (page - 1) * pageSize + data.length < totalCount;
+      const timestamp = new Date().toISOString();
+
+      return new GetPostListAllResponseDto(
+        true,
+        {
+          name: filters.name,
+          tags: filters.tags,
+          title: filters.title,
+          content: filters.content,
+          page,
+          pageSize,
+        },
+        data.length,
+        data,
+        hasMore,
+        totalCount,
+        timestamp,
       );
     } catch (error) {
       console.error('Error fetching postList:', error);

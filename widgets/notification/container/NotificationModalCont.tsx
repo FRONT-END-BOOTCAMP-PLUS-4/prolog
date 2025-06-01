@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NotificationModalPres from '../presentational/NotificationModalPres';
 
 export default function NotificationModalCont() {
@@ -6,6 +6,10 @@ export default function NotificationModalCont() {
   const [allNotificationIds, setAllNotificationIds] = useState<number[]>([]);
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
   const [isOpen, setIsOpen] = useState(true);
+
+  useEffect(()=>{
+    fetch('/api/member/notifications')
+  },[])
 
   const toggleSelect = (notificationItemId: number) => {
     setSelectedIds((prev) =>
