@@ -36,45 +36,58 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  justify-content: space-between;
   width: 180px;
+  height: 60px;
 
   &__info{
     max-width: 180px;
     color: $theme-text-1;
     font-size: $font-sm-size;
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   }
 
   &__name{
     color: $theme-primary;
-  font-size: $font-base-size;
+  font-size: $font-sm-size;
   padding-right: 4px;
   }
 
   &__title{
     color: $theme-gray-3;
+    font-size: $font-xs-size;
+    overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  }
+
+  &__content{
     font-size: $font-sm-size;
+    overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   }
 
 }
 
 
 .time{
+  height: 100%;
   white-space: nowrap;
   align-self: flex-start;
-  font-size: $font-sm-size;
+  font-size: $font-xs-size;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  gap: 8px;
   color: $theme-gray-4;
 
   &__icon{
     width: 20px;
     height: 20px;
+    cursor: pointer;
 
     &:hover{
       color: $theme-green;
