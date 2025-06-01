@@ -48,67 +48,86 @@ export function useInfiniteScroll(
   // 중복 요청 방지
   const loadingRef = useRef(false);
 
-  // 필터가 바뀌면 초기화
-  const reset = useCallback((newFilter?: PostListFilter) => {
-    setPosts([]);
-    setPage(1);
-    setHasMore(true);
-    setError(null);
-    setFilter(newFilter ?? initialFilter);
-  }, [initialFilter]);
+  // 게시글 API 호출
+  const fetchPosts = useCallback(
+    async (pageToFetch: number, filterToUse: PostListFilter) => {
+      if (loadingRef.current || !hasMore) return;
 
-  // 데이터 패칭 함수
-  const fetchPosts = useCallback(async (pageToFetch: number, filterToUse: PostListFilter) => {
-    if (loadingRef.current || !hasMore) return;
-    loadingRef.current = true;
-    setLoading(true);
-    setError(null);
+      loadingRef.current = true;
+      setLoading(true);
+      setError(null);
 
-    try {
-      const params = new URLSearchParams();
-      if (filterToUse.name) params.append('name', filterToUse.name);
-      if (filterToUse.title) params.append('title', filterToUse.title);
-      if (filterToUse.content) params.append('content', filterToUse.content);
-      if (filterToUse.tags && filterToUse.tags.length > 0) {
-        filterToUse.tags.forEach(tag => params.append('tag', tag));
+      try {
+        const params = new URLSearchParams();
+
+        if (filterToUse.name) params.append('name', filterToUse.name);
+        if (filterToUse.title) params.append('title', filterToUse.title);
+        if (filterToUse.content) params.append('content', filterToUse.content);
+        if (filterToUse.tags && filterToUse.tags.length > 0) {
+          filterToUse.tags.forEach((tag) => params.append('tag', tag));
+        }
+        if (filterToUse.sort) params.append('sort', filterToUse.sort);
+        params.append('page', String(pageToFetch));
+        params.append('pageSize', String(filterToUse.pageSize ?? 20));
+
+        const res = await fetch(`/api/posts?${params.toString()}`);
+        if (!res.ok) throw new Error('데이터를 불러오지 못했습니다.');
+
+        const data: { data: PostListItem[]; hasMore: boolean } =
+          await res.json();
+
+        setPosts((prev) => {
+          // 기존 데이터에 새 데이터 병합 후 id 기준 중복 제거
+          const merged =
+            pageToFetch === 1 ? data.data : [...prev, ...data.data];
+          return merged.filter(
+            (item, idx, arr) => arr.findIndex((i) => i.id === item.id) === idx,
+          );
+        });
+        setHasMore(data.hasMore);
+      } catch (err) {
+        const message = err instanceof Error ? err.message : '알 수 없는 오류';
+        setError(message);
+      } finally {
+        setLoading(false);
+        loadingRef.current = false;
       }
-      if (filterToUse.sort) params.append('sort', filterToUse.sort);
-      params.append('page', String(pageToFetch));
-      params.append('pageSize', String(filterToUse.pageSize ?? 20));
+    },
+    [hasMore],
+  );
 
-      const res = await fetch(`/api/posts?${params.toString()}`);
-      if (!res.ok) throw new Error('데이터를 불러오지 못했습니다.');
-      const data = await res.json();
+  // 리스트 및 필터 초기화 및 첫 페이지 호출
+  const reset = useCallback(
+    (newFilter?: PostListFilter) => {
+      const appliedFilter = newFilter ?? initialFilter;
 
-      setPosts(prev =>
-        pageToFetch === 1 ? data.data : [...prev, ...data.data],
-      );
-      setHasMore(data.hasMore);
-    } catch (err: any) {
-      setError(err.message || '알 수 없는 오류');
-    } finally {
-      setLoading(false);
-      loadingRef.current = false;
-    }
-  }, [hasMore]);
+      setPosts([]);
+      setPage(1);
+      setHasMore(true);
+      setError(null);
+      setFilter(appliedFilter);
+      fetchPosts(1, appliedFilter);
+    },
+    [initialFilter, fetchPosts],
+  );
 
-  // 최초 및 필터 변경
-  useEffect(() => {
-    fetchPosts(1, filter);
-  }, [filter]);
-
-  // 다음 페이지 패칭 함수
+  // 다음 페이지 패칭
   const fetchNext = useCallback(() => {
     if (!loading && hasMore) {
-      setPage(prev => prev + 1);
+      setPage((prev) => prev + 1);
     }
   }, [loading, hasMore]);
 
-  // 페이지 변경 시 데이터 패칭
+  // 페이지 변경 시 데이터 호출
   useEffect(() => {
-    if (page === 1) return; // 첫 페이지는 이미 패칭
+    if (page === 1) return; // 첫 페이지는 reset 시에 이미 호출됨
     fetchPosts(page, filter);
-  }, [page]);
+  }, [page, filter, fetchPosts]);
+
+  // 최초 마운트 시 첫 페이지 호출
+  useEffect(() => {
+    fetchPosts(1, filter);
+  }, []);
 
   return {
     posts,

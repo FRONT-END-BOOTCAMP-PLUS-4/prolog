@@ -15,7 +15,7 @@ import { useInfiniteScrollTrigger } from '../hooks/useInfiniteScrollTrigger';
 import { CardData } from '@/widgets/card/types';
 import { useSearch } from '@/shared/contexts/SearchContext';
 import { useInfiniteScroll } from '@/shared/hooks/useInfiniteScroll';
-import useLocalStorage from '@/shared/hooks/useLocalStorage';
+import { useLocalStorage } from '@/shared/hooks/useLocalStorage';
 import { PostListFilter } from '@/shared/types';
 
 const MIN_SKELETON_TIME = 1000;
@@ -68,6 +68,10 @@ export default function CardListCont() {
     imageUrl: post.thumbnailUrl ?? null,
   }));
 
+  const uniqueItems: CardData[] = mappedItems.filter(
+    (item, idx, arr) => arr.findIndex((i) => i.id === item.id) === idx,
+  );
+
   return (
     <>
       <CardListPres
@@ -75,7 +79,7 @@ export default function CardListCont() {
         setViewType={setViewType}
         sort={sort}
         setSort={setSort}
-        items={mappedItems}
+        items={uniqueItems}
         sortOptions={SORT_OPTIONS}
         isLoading={isMinSkeleton}
       />
