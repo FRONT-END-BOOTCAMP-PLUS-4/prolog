@@ -5,84 +5,19 @@ import { Cross1Icon } from '@radix-ui/react-icons';
 import styles from '../styles/NotificationModalPres.module.scss';
 
 // layer
-import Button from '@/shared/ui/button';
 import { NotificationListCont } from '@/features/notification-list';
-import { MarkAllReadCont } from '@/features/notification-mark-all-read';
-import { DeleteNotificationCont } from '@/features/notification-delete';
+import Button from '@/shared/ui/button';
 
-type Props = {
-  deleteMode: boolean;
-  selectedIds: number[];
-  onToggleSelect: (id: number) => void;
-  setAllNotificationIds: (ids: number[]) => void;
-  onSelectAll: () => void;
-  onCancel: () => void;
-  onToggleDeleteMode: () => void;
-  onClose: () => void;
-};
 
-export default function NotificationModalPres({
-  deleteMode,
-  selectedIds,
-  onToggleSelect,
-  setAllNotificationIds,
-  onSelectAll,
-  onCancel,
-  onToggleDeleteMode,
-  onClose,
-}: Props) {
+
+
+export default function NotificationModalPres() {
   return (
     <div className={styles.modal}>
-      <button className={styles.close} onClick={onClose}>
+      <button className={styles.close}>
         <Cross1Icon />
       </button>
-
-      <>
-        <div className={styles.list}>
-          <NotificationListCont
-            deleteMode={deleteMode}
-            selectedIds={selectedIds}
-            setAllNotificationIds={setAllNotificationIds}
-            onToggleSelect={onToggleSelect}
-          />
-        </div>
-        <div className={styles.footer}>
-          {deleteMode ? (
-            <div className={styles.deleteMode}>
-              <div className={styles.deleteModeInner}>
-                <Button
-                  style={{ border: 'none' }}
-                  size="small"
-                  onClick={onSelectAll}
-                >
-                  전체선택
-                </Button>
-                <DeleteNotificationCont selectedIds={selectedIds} />
-              </div>
-              <div className={styles.deleteModeInner}>
-                <Button
-                  style={{ border: 'none' }}
-                  size="small"
-                  onClick={onCancel}
-                >
-                  완료
-                </Button>
-              </div>
-            </div>
-          ) : (
-            <div className={styles.normalMode}>
-              <MarkAllReadCont />
-              <Button
-                style={{ border: 'none' }}
-                size="small"
-                onClick={onToggleDeleteMode}
-              >
-                삭제
-              </Button>
-            </div>
-          )}
-        </div>
-      </>
+      <NotificationListCont/>
     </div>
   );
 }
