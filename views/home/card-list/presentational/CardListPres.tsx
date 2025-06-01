@@ -24,6 +24,7 @@ export default function CardListPres({
 }: CardListPresProps) {
   const skeletonCount =
     items.length === 0 ? DEFAULT_SKELETON_COUNT : items.length;
+
   return (
     <div>
       <div className={styles.filterBar}>
@@ -33,6 +34,7 @@ export default function CardListPres({
             value={sort}
             onChange={(val) => setSort(val as 'latest' | 'popular')}
             className={styles.selectWrap}
+            storageKey="cardlist-sort" // 정렬 옵션을 localStorage에 저장
           />
         </div>
         <div className={styles.viewTypeBar}>
