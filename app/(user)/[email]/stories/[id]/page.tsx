@@ -42,7 +42,8 @@ export default async function Page({ params }: { params: { id: string } }) {
         <div className={styles.actionButtons}>
           {/* 수정 및 삭제 버튼 */}
           <div className={styles.editWrapper}>
-            <EditButtonCont mode="post" id={postId} />
+            <EditButtonCont mode="post" post={post} />
+            {/* <EditButtonCont mode="post" id={postId} /> */}
             <span>|</span>
           </div>
           <DeleteButtonCont mode="post" id={postId} />
