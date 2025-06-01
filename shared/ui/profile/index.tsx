@@ -1,5 +1,9 @@
+'use client';
+
 // package
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
+
 // slice
 import styles from './Profile.module.scss';
 
@@ -7,17 +11,24 @@ type Props = {
   userProfileImage?: string;
   userName: string;
   date: string;
-  onClick: () => void;
+  userEmail: string;
 };
 
 export default function Profile({
   userProfileImage,
   userName,
   date,
-  onClick,
+  userEmail,
 }: Props) {
+  const router = useRouter();
+  const email = userEmail ?? '';
+  const userId = email.split('@')[0];
+  const onClickHandler = () => {
+    router.push(`/${userId}/stories`);
+  };
+
   return (
-    <div className={styles.profileInfo} onClick={onClick}>
+    <div className={styles.profileInfo} onClick={onClickHandler}>
       <Image
         src={userProfileImage ?? '/svgs/profile.svg'}
         alt="user profile image"

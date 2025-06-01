@@ -5,26 +5,41 @@ import { TagListPresProps } from '../types';
 // layer
 import Tag from '@/shared/ui/tag';
 
+type Props = TagListPresProps & {
+  duration?: number;
+  onTagClick?: (tag: string) => void;
+};
+
 export default function TagListPres({
   tags,
   shouldRoll,
   tagsRef,
-}: TagListPresProps) {
+  duration = 15,
+  onTagClick,
+}: Props) {
   return (
     <div className={styles.tagListContainer}>
-      {/* 롤링이 필요할 경우 태그 리스트를 두 번 렌더링해 무한 롤링 효과 구현 */}
       <div
-        className={`${styles.tagList} ${shouldRoll ? styles.rolling : ''}`}
+        className={`${styles.tagList} tagList ${shouldRoll ? `${styles.rolling} rolling` : ''}`}
         ref={tagsRef}
+        style={shouldRoll ? { animationDuration: `${duration}s` } : undefined}
       >
         {tags.map((tag, idx) => (
-          <Tag className={styles.tagItem} key={`${tag}-${idx}`}>
+          <Tag
+            key={`${tag}-${idx}`}
+            onClick={onTagClick ? () => onTagClick(tag) : undefined}
+            style={{ cursor: onTagClick ? 'pointer' : undefined }}
+          >
             {tag}
           </Tag>
         ))}
         {shouldRoll &&
           tags.map((tag, idx) => (
-            <Tag className={styles.tagItem} key={`clone-${tag}-${idx}`}>
+            <Tag
+              key={`clone-${tag}-${idx}`}
+              onClick={onTagClick ? () => onTagClick(tag) : undefined}
+              style={{ cursor: onTagClick ? 'pointer' : undefined }}
+            >
               {tag}
             </Tag>
           ))}

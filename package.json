@@ -2,7 +2,10 @@
   "name": "prolog",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
+    "unseed": "ts-node --esm -r tsconfig-paths/register prisma/unseed.js",
+    "seed": "ts-node --esm -r tsconfig-paths/register prisma/seed.js",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
@@ -31,7 +34,7 @@
     "@biomejs/biome": "1.9.4",
     "@eslint/eslintrc": "^3",
     "@svgr/webpack": "^8.1.0",
-    "@types/node": "^20",
+    "@types/node": "^20.17.57",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@typescript-eslint/eslint-plugin": "^8.32.1",
@@ -43,6 +46,8 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "prettier": "^3.5.3",
     "sass": "^1.88.0",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5"
   }
 }

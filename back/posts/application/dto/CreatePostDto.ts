@@ -6,7 +6,7 @@ export class CreatePostDto {
     public isPublic: number,
     public userId: string,
     public useAi: number,
-    public AiSummary?: string,
+    public aiSummary?: string,
     public thumbnailUrl?: string,
   ) {}
 }

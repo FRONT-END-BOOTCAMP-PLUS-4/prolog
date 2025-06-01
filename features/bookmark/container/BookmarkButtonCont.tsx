@@ -4,8 +4,10 @@ import { useState } from 'react';
 // slice
 import BookmarkButtonPres from '../presentational/BookmarkButtonPres';
 
-export default function BookmarkButtonCont() {
-  const [bookmarked, setBookmarked] = useState(false);
+export default function BookmarkButtonCont({
+  isBookmarked,
+}: { isBookmarked: boolean }) {
+  const [bookmarked, setBookmarked] = useState(isBookmarked);
 
   const toggleBookmark = () => {
     // 실제 API 호출 자리

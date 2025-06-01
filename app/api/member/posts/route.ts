@@ -4,6 +4,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { CreatePostDto } from '@/back/posts/application/dto/CreatePostDto';
 import { CreatePostUsecase } from '@/back/posts/application/usecases/CreatePostUsecase';
 import { PrPostRepository } from '@/back/posts/infra/PrPostsRepository';
+import { PrSubscribeRepository } from '@/back/subscribe/infra/PrSubscribeRepository';
+import { PrNotificationRepository } from '@/back/notification/infra/PrNotificationRepository';
 
 export async function POST(req: NextRequest) {
   try {
@@ -33,8 +35,15 @@ export async function POST(req: NextRequest) {
       userId: userId,
     };
 
-    const repository = new PrPostRepository();
-    const createPostUsecase = new CreatePostUsecase(repository);
+    const postRepository = new PrPostRepository();
+    const subscribeRepository = new PrSubscribeRepository();
+    const notificationRepository = new PrNotificationRepository();
+
+    const createPostUsecase = new CreatePostUsecase(
+      postRepository,
+      subscribeRepository,
+      notificationRepository,
+    );
     const newPost = await createPostUsecase.execute(postDataWithUserId);
 
     return NextResponse.json(newPost, { status: 201 });
