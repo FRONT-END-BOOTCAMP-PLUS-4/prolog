@@ -4,6 +4,7 @@ import { BlogPost } from '@/app/generated/prisma';
 import { PostsRepository } from '../domain/PostsRepository';
 import { CreatePostDto } from '../application/dto/CreatePostDto';
 import { GetPostViewDto } from '../application/dto/GetPostViewDto';
+import { AiSummaryType } from '@/views/post/post-form/types';
 
 export class PrPostRepository implements PostsRepository {
   async createPost(newPost: CreatePostDto): Promise<BlogPost> {
@@ -103,6 +104,7 @@ export class PrPostRepository implements PostsRepository {
       isBookmarked: Boolean(bookmarked),
       following: Boolean(following),
       likeCount: postDetail._count.likes,
+      aiSummary: postDetail.aiSummary as AiSummaryType[] | null,
     };
   }
 }

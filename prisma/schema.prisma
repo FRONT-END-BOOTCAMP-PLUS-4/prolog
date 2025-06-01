@@ -40,10 +40,10 @@ model BlogPost {
   tags         String[]
   createdAt    DateTime       @default(now()) @map("created_at")
   updatedAt    DateTime?      @updatedAt @map("updated_at")
-  aiSummary    String?        @map("ai_summary")
   isPublic     Int            @default(1) @map("is_public")
   thumbnailUrl String?        @map("thumbnail_url")
   useAi        Int            @default(0) @map("use_ai")
+  aiSummary    Json?          @map("ai_summary")
   category     Category?      @relation(fields: [categoryId], references: [id])
   user         User           @relation(fields: [userId], references: [id])
   bookMark     BookMark[]

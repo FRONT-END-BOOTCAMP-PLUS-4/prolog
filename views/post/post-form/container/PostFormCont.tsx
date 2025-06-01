@@ -10,6 +10,7 @@ import Image from '@/public/svgs/image.svg';
 import { getFirstImageUrlFromMarkdown } from '@/shared/utils/image';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { usePostEditorStore } from '../../stores/usePostEditorStore';
+import { AiSummaryType } from '../types';
 
 /* 브라우저에서만 동작해야 하므로 SSR 비활성화 */
 const PostFormPres = dynamic(
@@ -30,6 +31,8 @@ export default function PostFormCont() {
   /* AI 사용여부 (0: 사용 안함, 1: 사용함) */
   const [isAiUsed, setIsAiUsed] = useState<number>(0);
 
+  const [aiSummary, setAiSummary] = useState<AiSummaryType[] | null>(null);
+
   /* 공개 여부 (0: 비공개, 1: 공개) */
   const [isPublic, setIsPublic] = useState<number>(1);
 
@@ -45,6 +48,7 @@ export default function PostFormCont() {
       setIsAiUsed(selectedPost.useAi || 0);
       setIsPublic(selectedPost.isPublic || 1);
       setDraftId(selectedPost.id || null);
+      setAiSummary(selectedPost.aiSummary || null);
     }
   }, [selectedPost]);
 
@@ -175,9 +179,10 @@ export default function PostFormCont() {
       title: title,
       content: content,
       tags: tags,
-      isAiUsed: isAiUsed,
+      useAi: isAiUsed,
       isPublic: isPublic,
       thumbnailUrl: firstImg,
+      aiSummary: aiSummary,
     };
 
     const res = await fetch('/api/member/posts', {
@@ -230,7 +235,6 @@ export default function PostFormCont() {
         title={title}
         content={content}
         tags={tags}
-        isAiUsed={isAiUsed}
         isPublic={isPublic}
         setIsAiUsed={setIsAiUsed}
         setIsPublic={setIsPublic}
@@ -239,6 +243,8 @@ export default function PostFormCont() {
         setTitle={setTitle}
         onCreatePost={createPostHandler}
         saveDraft={saveDraft}
+        setAiSummary={setAiSummary}
+        aiSummary={aiSummary}
       />
     </>
   );

@@ -13,6 +13,7 @@ import { useThemeStore } from '@/shared/stores/useThemeStore';
 import { useModalStore } from '@/shared/stores/useModalStore';
 import { usePostEditorStore } from '../../stores/usePostEditorStore';
 import MagicWand from '@/public/svgs/magic.svg';
+import { AiSummaryType } from '../types';
 
 type Props = {
   customCommands: ICommand[];
@@ -20,7 +21,6 @@ type Props = {
   title: string;
   content: string | undefined;
   tags: string[];
-  isAiUsed: number;
   isPublic: number;
   setIsAiUsed: Dispatch<SetStateAction<number>>;
   setIsPublic: Dispatch<SetStateAction<number>>;
@@ -29,6 +29,8 @@ type Props = {
   setTitle: Dispatch<SetStateAction<string>>;
   onCreatePost: () => Promise<void>;
   saveDraft: () => Promise<void>;
+  setAiSummary: Dispatch<SetStateAction<AiSummaryType[] | null>>;
+  aiSummary: AiSummaryType[] | null;
 };
 
 export default function PostFormPres(props: Props) {
@@ -38,7 +40,6 @@ export default function PostFormPres(props: Props) {
     title,
     content,
     tags,
-    isAiUsed,
     isPublic,
     setIsAiUsed,
     setIsPublic,
@@ -47,6 +48,8 @@ export default function PostFormPres(props: Props) {
     setTitle,
     onCreatePost,
     saveDraft,
+    setAiSummary,
+    aiSummary,
   } = props;
 
   /* 이미지 드래그 앤 드랍을 위한 ref */
@@ -56,10 +59,6 @@ export default function PostFormPres(props: Props) {
   const { action } = useModalStore();
   const { action: actionToAi } = useModalStore();
   const { drafts } = usePostEditorStore();
-
-  const toggleAiUsage = () => {
-    setIsAiUsed((prev) => (prev === 0 ? 1 : 0));
-  };
 
   const togglePublic = () => {
     setIsPublic((prev) => (prev === 0 ? 1 : 0));
@@ -109,8 +108,16 @@ export default function PostFormPres(props: Props) {
       <footer className={styles.footer}>
         <div className={styles.leftControls}>
           <Button
+            variants={aiSummary ? 'active' : 'secondary'}
             onClick={() =>
-              actionToAi.open(<PostAiSummaryCont content={content} />)
+              actionToAi.open(
+                <PostAiSummaryCont
+                  content={content}
+                  setAiSummary={setAiSummary}
+                  aiSummary={aiSummary}
+                  setIsAiUsed={setIsAiUsed}
+                />,
+              )
             }
           >
             <MagicWand />
