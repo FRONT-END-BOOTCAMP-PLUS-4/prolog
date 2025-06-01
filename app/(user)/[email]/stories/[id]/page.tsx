@@ -30,9 +30,16 @@ const getPost = async (postId: number) => {
   return data;
 };
 
+const isLoggedIn = async () => {
+  const cookieStore = await cookies();
+  const accessToken = cookieStore.get('authjs.session-token');
+  return !!accessToken;
+};
+
 export default async function Page({ params }: { params: { id: string } }) {
   const postId = Number(params.id);
   const post = await getPost(postId);
+  const loggedIn = await isLoggedIn();
 
   return (
     <div className={styles.container}>
@@ -80,8 +87,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <div className={styles.commentTitle}>댓글 목록 (19)</div>
 
       {/* 댓글 등록 박스 */}
-      <CommentInput />
-      <CommentLoginPrompt />
+      {loggedIn ? <CommentInput /> : <CommentLoginPrompt />}
 
       {/* 댓글 리스트 */}
       <CommentList />
