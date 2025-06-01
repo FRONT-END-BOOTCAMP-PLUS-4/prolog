@@ -3,9 +3,9 @@ import { GetProfileDto } from '../dto/GetProfileDto';
 
 export class GetProfileUseCase {
   constructor(private profileRepository: ProfileRepository) {}
-  async execute(userId: string): Promise<GetProfileDto> {
+  async execute(email: string): Promise<GetProfileDto> {
     try {
-      const userData = await this.profileRepository.findById(userId);
+      const userData = await this.profileRepository.findById(email);
 
       return {
         name: userData.name,

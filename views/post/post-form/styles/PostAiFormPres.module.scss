@@ -27,67 +27,82 @@
     margin-top: 12px;
   }
 
-.result {
-  margin-top: 24px;
-  max-height: 280px; // 필요에 따라 조절 가능
-  overflow-y: auto;
-  padding-right: 4px; // 스크롤바와 콘텐츠 간 여유
+  .result {
+    margin-top: 24px;
+    max-height: 280px; // 필요에 따라 조절 가능
+    overflow-y: auto;
+    padding-right: 4px; // 스크롤바와 콘텐츠 간 여유
 
-  h4 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-    position: sticky;
-    top: 0;
-    background: $theme-shade-1;
-    padding: 8px 0;
-    z-index: 1;
-  }
+    h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      position: sticky;
+      top: 0;
+      background: $theme-shade-1;
+      padding: 8px 0;
+      z-index: 1;
+    }
 
-  ul {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 16px;
-    padding-left: 0;
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 16px;
+      padding-left: 0;
 
-    li {
-      list-style: none;
+      li {
+        list-style: none;
 
-      &.summaryItem {
-        strong {
-          font-size: $font-base-size;
-          display: block;
-          margin-bottom: 4px;
+        &.summaryItem {
+          strong {
+            font-size: $font-base-size;
+            display: block;
+            margin-bottom: 4px;
+          }
+
+          p {
+            font-size: $font-sm-size;
+            line-height: 1.4;
+            color: $theme-text-2;
+          }
         }
 
-        p {
-          font-size: $font-sm-size;
-          line-height: 1.4;
-          color: $theme-text-2;
-        }
-      }
+        &.skeletonItem {
+          .skeletonTitle,
+          .skeletonText {
+            background-color: $theme-shade-3;
+            border-radius: 6px;
+            animation: pulse 1.5s infinite ease-in-out;
+          }
 
-      &.skeletonItem {
-        .skeletonTitle,
-        .skeletonText {
-          background-color: $theme-shade-3;
-          border-radius: 6px;
-          animation: pulse 1.5s infinite ease-in-out;
-        }
+          .skeletonTitle {
+            height: 16px;
+            width: 70%;
+            margin-bottom: 6px;
+          }
 
-        .skeletonTitle {
-          height: 16px;
-          width: 70%;
-          margin-bottom: 6px;
-        }
-
-        .skeletonText {
-          height: 12px;
-          width: 90%;
+          .skeletonText {
+            height: 12px;
+            width: 90%;
+          }
         }
       }
     }
   }
 }
+
+// 스켈레톤용 pulse 애니메이션
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
 }
+
+

@@ -11,18 +11,12 @@ type Props = {
   userProfileImage?: string;
   userName: string;
   date: string;
-  userEmail: string;
 };
 
-export default function Profile({
-  userProfileImage,
-  userName,
-  date,
-  userEmail,
-}: Props) {
+export default function Profile({ userProfileImage, userName, date }: Props) {
   const router = useRouter();
   const onClickHandler = () => {
-    router.push(`/${userEmail}/stories`);
+    router.push(`/${userName}/stories`);
   };
 
   return (

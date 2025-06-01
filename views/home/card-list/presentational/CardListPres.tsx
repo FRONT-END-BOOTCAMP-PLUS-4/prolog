@@ -6,10 +6,12 @@ import styles from '../styles/CardListPres.module.scss';
 import { CardListPresProps } from '../types';
 
 // layer
-import { LongCardPres, SquareCardPres } from '@/widgets/card';
 import { SelectCont } from '@/features/select';
-import SquareCardSkeleton from '@/shared/ui/skeleton/squarecard';
+import { LongCardPres, SquareCardPres } from '@/widgets/card';
 import LongCardSkeleton from '@/shared/ui/skeleton/longcard';
+import SquareCardSkeleton from '@/shared/ui/skeleton/squarecard';
+
+const DEFAULT_SKELETON_COUNT = 12;
 
 export default function CardListPres({
   viewType,
@@ -20,7 +22,9 @@ export default function CardListPres({
   sortOptions,
   isLoading = false,
 }: CardListPresProps) {
-  const skeletonCount = items.length === 0 ? 8 : items.length;
+  const skeletonCount =
+    items.length === 0 ? DEFAULT_SKELETON_COUNT : items.length;
+
   return (
     <div>
       <div className={styles.filterBar}>
@@ -30,6 +34,7 @@ export default function CardListPres({
             value={sort}
             onChange={(val) => setSort(val as 'latest' | 'popular')}
             className={styles.selectWrap}
+            storageKey="cardlist-sort"
           />
         </div>
         <div className={styles.viewTypeBar}>
@@ -83,19 +88,19 @@ export default function CardListPres({
         {isLoading ? (
           Array.from({ length: skeletonCount }).map((_, idx) =>
             viewType === 'card' ? (
-              <SquareCardSkeleton key={idx} />
+              <SquareCardSkeleton key={`skeleton-${idx}`} />
             ) : (
-              <LongCardSkeleton key={idx} />
+              <LongCardSkeleton key={`skeleton-${idx}`} />
             ),
           )
         ) : items.length === 0 ? (
-          <div className={styles.emptyMessage}>데이터가 없습니다.</div>
+          <div className={styles.emptyMessage}>검색 결과가 없습니다.</div>
         ) : (
           items.map((item) =>
             viewType === 'card' ? (
-              <SquareCardPres key={item.id} data={item} />
+              <SquareCardPres key={`item-${item.id}`} data={item} />
             ) : (
-              <LongCardPres key={item.id} data={item} />
+              <LongCardPres key={`item-${item.id}`} data={item} />
             ),
           )
         )}

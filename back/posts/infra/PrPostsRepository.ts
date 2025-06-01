@@ -4,7 +4,7 @@ import { BlogPost } from '@/app/generated/prisma';
 import { PostsRepository } from '../domain/PostsRepository';
 import { CreatePostDto } from '../application/dto/CreatePostDto';
 import { GetPostViewDto } from '../application/dto/GetPostViewDto';
-import dayjs from 'dayjs';
+import { AiSummaryType } from '@/views/post/post-form/types';
 
 export class PrPostRepository implements PostsRepository {
   async createPost(newPost: CreatePostDto): Promise<BlogPost> {
@@ -16,7 +16,7 @@ export class PrPostRepository implements PostsRepository {
         tags: newPost.tags,
         isPublic: newPost.isPublic,
         useAi: newPost.useAi,
-        aiSummary: newPost.AiSummary,
+        aiSummary: newPost.aiSummary,
         thumbnailUrl: newPost.thumbnailUrl,
       },
     });
@@ -24,33 +24,87 @@ export class PrPostRepository implements PostsRepository {
     return createdPost;
   }
 
-  async getPostById(id: number): Promise<GetPostViewDto> {
-    // const post = await prisma.blogPost.findUnique({
-    //   where: { id },
-    // });
+  async getPostById(
+    postId: number,
+    currentUserId: string,
+  ): Promise<GetPostViewDto> {
+    const postDetail = await prisma.blogPost.findUnique({
+      where: {
+        id: postId, // 상세 조회할 게시글 ID
+      },
+      select: {
+        id: true, // 게시글 ID
+        title: true, // 게시글 제목
+        thumbnailUrl: true, // 게시글 썸네일
+        content: true, // 게시글 본문
+        createdAt: true, // 게시글 작성날짜
+        updatedAt: true, // 게시글 수정날짜
+        tags: true, // 게시글 태그
+        aiSummary: true, // ai 요약
+        useAi: true, // ai 사용여부
 
-    // if (!post) {
-    //   throw new Error(`Post with id ${id} not found`);
-    // }
+        // 유저 정보
+        user: {
+          select: {
+            id: true, // 게시글 유저 uuid
+            name: true, // 게시글 유저 이름
+            profileImg: true, // 게시글 유저 프로필
+          },
+        },
 
-    const post = new GetPostViewDto(
-      id,
-      '임시 게시글 제목', // title
-      'https://via.placeholder.com/150', // profileImage
-      '임시 유저', // nickname
-      'email@naver.com', // userEmail
-      dayjs('2025-05-29T12:00:00Z').format('YYYY-MM-DD'), // createdAt
-      null, // updatedAt
-      true, // following
-      true, // isBookmarked
-      false, // isLiked
-      42, // likeCount
-      '이것은 게시글 본문입니다.', // content
-      ['Next.js', 'CSR', 'React'], // tags
-      '이 글은 CSR에 대해 설명합니다.', // aiSummary
-      'https://via.placeholder.com/600x300', // thumbnailUrl
-    );
+        // 좋아요 개수
+        _count: {
+          select: {
+            likes: true,
+          },
+        },
+      },
+    });
 
-    return post;
+    // 좋아요 여부
+    const liked = await prisma.postLike.findFirst({
+      where: {
+        postsId: postId,
+        userId: currentUserId,
+      },
+    });
+
+    // 북마크 여부
+    const bookmarked = await prisma.bookMark.findFirst({
+      where: {
+        postsId: postId,
+        userId: currentUserId,
+      },
+    });
+
+    // 팔로우 여부
+    let following = null;
+    if (postDetail && postDetail.user) {
+      following = await prisma.subscribe.findFirst({
+        where: {
+          requestId: currentUserId,
+          responseId: postDetail.user.id,
+        },
+      });
+    }
+
+    if (!postDetail) {
+      throw new Error('Post not found');
+    }
+
+    return {
+      ...postDetail,
+      createdAt: postDetail.createdAt.toISOString(),
+      updatedAt: postDetail.updatedAt
+        ? postDetail.updatedAt.toISOString()
+        : null,
+      profileImage: postDetail.user.profileImg,
+      nickname: postDetail.user.name,
+      isLiked: Boolean(liked),
+      isBookmarked: Boolean(bookmarked),
+      following: Boolean(following),
+      likeCount: postDetail._count.likes,
+      aiSummary: postDetail.aiSummary as AiSummaryType[] | null,
+    };
   }
 }

@@ -11,7 +11,7 @@ import type { Chip, DropdownItem, PostsSearchContProps, Post } from '../types';
 import { getMode } from '../types';
 
 // layer
-import useOnClickOutside from '@/shared/hooks/useOnClickOutside';
+import { useOnClickOutside } from '@/shared/hooks/useOnClickOutside';
 import { useSearch } from '@/shared/contexts/SearchContext';
 
 // 칩 중복 체크
@@ -56,21 +56,19 @@ const makeDropdownItems = (
     }))
     .slice(0, 10);
 
-// 입력 제한
 function isAllowedInput({ chips, value }: { chips: Chip[]; value: string }) {
   const hasUserChip = chips.some((chip) => chip.type === 'user');
   const hasTagChip = chips.some((chip) => chip.type === 'tag');
-  // 둘 다 있을 경우, 가장 마지막 칩의 타입 기준으로 제한
   if (chips.length > 0) {
     const lastType = chips[chips.length - 1].type;
     if (lastType === 'user') {
-      return value.startsWith('@') || value === '';
+      // 빈 값만 허용 (입력 불가)
+      return value === '';
     }
     if (lastType === 'tag') {
       return value.startsWith('#') || value === '';
     }
   }
-  // 둘 중 하나만 있을 경우
   if (hasUserChip && !value.startsWith('@') && value !== '') return false;
   if (hasTagChip && !value.startsWith('#') && value !== '') return false;
   return true;
@@ -118,15 +116,17 @@ export default function PostsSearchCont({
           new Set(posts.flatMap((post) => post.tags || [])),
         )
           .filter((tag): tag is string => typeof tag === 'string')
-          .map((tag) => `#${tag}`);
+          .map((tag) => `#${tag}`)
+          .sort((a, b) => a.localeCompare(b));
 
         const userNames = Array.from(new Set(posts.map((post) => post.name)))
           .filter((name): name is string => typeof name === 'string')
-          .map((name) => `@${name}`);
+          .map((name) => `@${name}`)
+          .sort((a, b) => a.localeCompare(b));
 
-        const titles = Array.from(
-          new Set(posts.map((post) => post.title)),
-        ).filter((title): title is string => typeof title === 'string');
+        const titles = Array.from(new Set(posts.map((post) => post.title)))
+          .filter((title): title is string => typeof title === 'string')
+          .sort((a, b) => a.localeCompare(b));
 
         setTagLabels(tags);
         setUserLabels(userNames);
@@ -399,14 +399,13 @@ export default function PostsSearchCont({
   const getInputRestrictionMessage = () => {
     if (chips.length === 0) return '';
     const lastType = chips[chips.length - 1].type;
-    if (lastType === 'user') return '@태그만 입력 가능합니다.';
+    if (lastType === 'user') return '한 명의 유저만 입력 가능합니다.';
     if (lastType === 'tag') return '#태그만 입력 가능합니다.';
     return '';
   };
 
   useOnClickOutside(containerRef, () => setShowDropdown(false), showDropdown);
 
-  // 드롭다운 표시 시 하이라이트 인덱스 초기화
   useEffect(() => {
     if (showDropdown) setHighlightedIndex(-1);
   }, [showDropdown, inputValue]);

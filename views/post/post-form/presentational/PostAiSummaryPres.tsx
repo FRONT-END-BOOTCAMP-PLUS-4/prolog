@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 import Button from '@/shared/ui/button';
 import styles from '../styles/PostAiFormPres.module.scss';
 import { useModalStore } from '@/shared/stores/useModalStore';
@@ -6,17 +8,35 @@ import { AiSummaryType } from '../types';
 type Props = {
   summary: AiSummaryType[] | null;
   isLoading: boolean;
-  isRequested: boolean;
   requestAiSummary: () => void;
+  setAiSummary: Dispatch<SetStateAction<AiSummaryType[] | null>>;
+  aiSummary: AiSummaryType[] | null;
+  setIsAiUsed: Dispatch<SetStateAction<number>>;
 };
 
 export default function PostAiSummaryPres({
   summary,
   isLoading,
-  isRequested,
   requestAiSummary,
+  setAiSummary,
+  aiSummary,
+  setIsAiUsed,
 }: Props) {
   const { action } = useModalStore();
+
+  const summaryToDisplay = summary || aiSummary;
+
+  const handleUseSummary = () => {
+    setAiSummary(summaryToDisplay);
+    action.close();
+    setIsAiUsed(1); // 사용함
+  };
+
+  const handleCancelSummary = () => {
+    setAiSummary(null);
+    action.close();
+    setIsAiUsed(0); // 사용안함
+  };
 
   return (
     <div className={styles.bottomSheet} onClick={(e) => e.stopPropagation()}>
@@ -24,17 +44,17 @@ export default function PostAiSummaryPres({
         AI에게 이 글을 요약해서 목차를 받아볼까요?
       </p>
 
-      {!isRequested && (
+      {!summaryToDisplay && !isLoading && (
         <div className={styles.choices}>
           <Button onClick={requestAiSummary}>네, 부탁해요</Button>
           <Button onClick={() => action.close()}>아니요</Button>
         </div>
       )}
 
-      {isRequested && (
+      {(summaryToDisplay || isLoading) && (
         <>
           <div className={styles.result}>
-            <h4>✨ AI가 제안하는 목차</h4>
+            <title>✨ AI가 제안하는 목차</title>
             <ul>
               {isLoading
                 ? Array.from({ length: 4 }).map((_, idx) => (
@@ -43,7 +63,7 @@ export default function PostAiSummaryPres({
                       <div className={styles.skeletonText} />
                     </li>
                   ))
-                : summary?.map((item, idx) => (
+                : summaryToDisplay?.map((item, idx) => (
                     <li key={idx} className={styles.summaryItem}>
                       <strong>{item.title}</strong>
                       <p>{item.summary}</p>
@@ -52,11 +72,11 @@ export default function PostAiSummaryPres({
             </ul>
           </div>
 
-          {!isLoading && (
+          {!isLoading && summaryToDisplay && (
             <div className={styles.choices}>
-              <Button>사용할래요</Button>
+              <Button onClick={handleUseSummary}>사용할래요</Button>
               <Button onClick={requestAiSummary}>다시 만들어줘</Button>
-              <Button onClick={() => action.close()}>사용 안 할래요</Button>
+              <Button onClick={handleCancelSummary}>사용 안 할래요</Button>
             </div>
           )}
         </>

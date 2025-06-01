@@ -10,6 +10,7 @@ import Image from '@/public/svgs/image.svg';
 import { getFirstImageUrlFromMarkdown } from '@/shared/utils/image';
 import { useDebounce } from '@/shared/hooks/useDebounce';
 import { usePostEditorStore } from '../../stores/usePostEditorStore';
+import { AiSummaryType } from '../types';
 
 /* 브라우저에서만 동작해야 하므로 SSR 비활성화 */
 const PostFormPres = dynamic(
@@ -30,11 +31,15 @@ export default function PostFormCont() {
   /* AI 사용여부 (0: 사용 안함, 1: 사용함) */
   const [isAiUsed, setIsAiUsed] = useState<number>(0);
 
+  const [aiSummary, setAiSummary] = useState<AiSummaryType[] | null>(null);
+
   /* 공개 여부 (0: 비공개, 1: 공개) */
   const [isPublic, setIsPublic] = useState<number>(1);
 
   /* 임시저장된 글 ID (있으면 수정, 없으면 새로 생성) */
   const [draftId, setDraftId] = useState<number | null>();
+
+  const [postId, setPostId] = useState<number | null>();
 
   /** 임시저장 및 수정 데이터 있다면 초깃값 설정 */
   useEffect(() => {
@@ -44,7 +49,9 @@ export default function PostFormCont() {
       setTags(selectedPost.tags || []);
       setIsAiUsed(selectedPost.useAi || 0);
       setIsPublic(selectedPost.isPublic || 1);
-      setDraftId(selectedPost.id || null);
+      setDraftId(selectedPost.draftId);
+      setPostId(selectedPost.postId);
+      setAiSummary(selectedPost.aiSummary || null);
     }
   }, [selectedPost]);
 
@@ -175,18 +182,30 @@ export default function PostFormCont() {
       title: title,
       content: content,
       tags: tags,
-      isAiUsed: isAiUsed,
+      useAi: isAiUsed,
       isPublic: isPublic,
       thumbnailUrl: firstImg,
+      aiSummary: aiSummary,
     };
 
-    const res = await fetch('/api/member/posts', {
-      method: 'POST',
-      body: JSON.stringify(newPost),
-    });
+    if (postId) {
+      const res = await fetch(`/api/member/posts/${postId}`, {
+        method: 'PUT',
+        body: JSON.stringify(newPost),
+      });
 
-    if (!res.ok) {
-      throw new Error('Failed to fetch create blog post');
+      if (!res.ok) {
+        throw new Error('Failed to fetch updated blog post');
+      }
+    } else {
+      const res = await fetch('/api/member/posts', {
+        method: 'POST',
+        body: JSON.stringify(newPost),
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to fetch create blog post');
+      }
     }
 
     toast.success('게시글이 등록되었습니다');
@@ -230,7 +249,6 @@ export default function PostFormCont() {
         title={title}
         content={content}
         tags={tags}
-        isAiUsed={isAiUsed}
         isPublic={isPublic}
         setIsAiUsed={setIsAiUsed}
         setIsPublic={setIsPublic}
@@ -239,6 +257,8 @@ export default function PostFormCont() {
         setTitle={setTitle}
         onCreatePost={createPostHandler}
         saveDraft={saveDraft}
+        setAiSummary={setAiSummary}
+        aiSummary={aiSummary}
       />
     </>
   );

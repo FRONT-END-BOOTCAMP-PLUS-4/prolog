@@ -1,3 +1,4 @@
+import { cookies } from 'next/headers';
 import styles from './styles.module.scss';
 import Button from '@/shared/ui/button';
 import { LikeButton } from '@/features/like';
@@ -13,8 +14,15 @@ import {
 import { EditButtonCont } from '@/features/edit';
 import { DeleteButtonCont } from '@/features/delete';
 
-const getPost = async (id: number) => {
-  const response = await fetch(`http://localhost:3000/api/posts/${id}`);
+const getPost = async (postId: number) => {
+  const cookieStore = await cookies();
+  const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
+    headers: {
+      cookie: cookieStore.toString(),
+    },
+    cache: 'no-store',
+  });
+
   if (!response.ok) {
     throw new Error('Failed to fetch post');
   }
@@ -33,8 +41,11 @@ export default async function Page({ params }: { params: { id: string } }) {
         <h1 className={styles.titleText}>CSR이란?</h1>
         <div className={styles.actionButtons}>
           {/* 수정 및 삭제 버튼 */}
-          <EditButtonCont mode="post" id={postId} />
-          <span>|</span>
+          <div className={styles.editWrapper}>
+            <EditButtonCont mode="post" post={post} />
+            {/* <EditButtonCont mode="post" id={postId} /> */}
+            <span>|</span>
+          </div>
           <DeleteButtonCont mode="post" id={postId} />
         </div>
       </div>
@@ -42,11 +53,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <div className={styles.profileLayout}>
         {/* 프로필/팔로우 바 */}
         <div className={styles.profileBar}>
-          <Profile
-            userNickName={post.nickname}
-            date={post.createdAt}
-            userEmail={post.userEmail}
-          />
+          <Profile userName={post.nickname} date={post.createdAt} />
           <Button
             style={{ padding: '0.2rem 0.5rem', fontSize: '13px' }}
             variants="active"
