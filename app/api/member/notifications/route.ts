@@ -65,11 +65,11 @@ export async function DELETE(req: NextRequest) {
 
 
   try {
-    const body = (await req.json()) as { alarmId: number[] };
+    const body = await req.json();
     const prAlarmRepository = new PrAlarmRepository();
     const deleteAlarmUsecase = new DeleteAlarmUsecase(prAlarmRepository);
     const execute = await deleteAlarmUsecase.execute(
-      body.alarmId,
+      body,
       token.userId,
     );
     return NextResponse.json({ status: 200, data: execute });
