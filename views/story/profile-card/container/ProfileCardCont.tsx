@@ -4,12 +4,15 @@ import { JSX, useEffect, useState } from 'react';
 //slice
 import ProfileCardPres from '../presentational/ProfileCardPres';
 //type
+
 import { SubscribeUser, User } from '../types';
+
 import { useSession } from 'next-auth/react';
 
 export default function ProfileCardCont(): JSX.Element {
   const { data: session, status } = useSession();
   const [userData, setUserData] = useState<User>();
+
   const [followers, setFollowers] = useState<SubscribeUser>({
     users: [],
     totalCount: 0,
@@ -18,6 +21,7 @@ export default function ProfileCardCont(): JSX.Element {
     users: [],
     totalCount: 0,
   });
+
 
   useEffect(() => {
     const getUserHandler = async () => {
@@ -35,6 +39,7 @@ export default function ProfileCardCont(): JSX.Element {
     };
     getUserHandler();
   }, []);
+
   useEffect(() => {
     const subscribeHandler = async () => {
       if (status === 'authenticated') {
@@ -55,4 +60,8 @@ export default function ProfileCardCont(): JSX.Element {
       userData={userData!}
     />
   );
+
+
+  return <ProfileCardPres userData={userData!} />;
+
 }

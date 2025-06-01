@@ -5,6 +5,7 @@ export type User = {
   profileImg: string | null;
   name: string;
   introduction: string | null;
+
 };
 export type Subscribe = {
   id: string;
@@ -15,4 +16,5 @@ export type Subscribe = {
 export type SubscribeUser = {
   users: Subscribe[];
   totalCount: number;
+
 };

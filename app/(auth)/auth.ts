@@ -27,34 +27,33 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
   callbacks: {
     async signIn({ user, account }) {
+      // Oauth에서 제공자가 없다면 로그인 불가
+      if (!account) return false;
 
-        // Oauth에서 제공자가 없다면 로그인 불가
-        if(!account) return false;
+      // 새로운 사용자일경우 db에 값저장
+      if (user.email && user.name) {
+        const existingUser = await prisma.user.findUnique({
+          where: { email: user.email, provider: account.provider },
+        });
 
-        // 새로운 사용자일경우 db에 값저장
-        if (user.email && user.name) {
-          const existingUser = await prisma.user.findUnique({
-            where: { email: user.email, provider: account.provider },
+        if (!existingUser) {
+          await prisma.user.create({
+            data: {
+              id: user.id,
+              email: user.email,
+              name: user.name,
+              profileImg: user.image,
+              provider: account.provider,
+            },
           });
-
-          if (!existingUser) {
-            await prisma.user.create({
-              data: {
-                id: user.id,
-                email: user.email,
-                name: user.name,
-                profileImg: user.image,
-                provider: account.provider,
-              },
-            })
-          };
-          user.id = existingUser ? existingUser.id : user.id
         }
+        user.id = existingUser ? existingUser.id : user.id;
+      }
 
       return true;
     },
 
-    async jwt({ token, user, account}) {
+    async jwt({ token, user, account }) {
       if (account) {
         token.accessToken = account.access_token;
         token.refreshToken = account.refresh_token;

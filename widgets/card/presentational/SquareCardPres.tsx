@@ -18,11 +18,16 @@ type Props = {
 
 export default function SquareCardPres({ data }: Props) {
   return (
-    <div className={styles.container}>
+    <div className={`${styles.cardContainer} cardContainer`}>
       <Link href="/email/stories/1" className={styles.flexGrowArea}>
         {data.imageUrl && (
           <div className={styles.iconWrap}>
-            <Image src={data.imageUrl} alt="이미지" width={80} height={80} />
+            <Image
+              src={data.imageUrl}
+              alt="이미지"
+              fill
+              style={{ objectFit: 'cover' }}
+            />
           </div>
         )}
         <div className={styles.content}>
@@ -41,9 +46,10 @@ export default function SquareCardPres({ data }: Props) {
         <Link href="/email/stories">
           <div className={styles.profileInfo}>
             <Profile
-              userNickName={data.userNickName}
+              userProfileImage={data.userProfileImage}
+              userName={data.userName}
               date={data.date}
-              onClick={() => {}}
+              userEmail='userEmail'
             />
           </div>
         </Link>
@@ -53,7 +59,10 @@ export default function SquareCardPres({ data }: Props) {
             <span className={styles.iconCount}>{data.commentCount}</span>
           </div>
           <div className={styles.iconTextGroup}>
-            <LikeButton />
+            <LikeButton 
+              isLiked={false}
+              likeCount={data.loveCount}
+            />
           </div>
         </div>
       </div>

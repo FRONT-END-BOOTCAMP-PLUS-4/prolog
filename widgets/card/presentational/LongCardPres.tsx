@@ -18,15 +18,16 @@ type Props = {
 
 export default function LongCardPres({ data }: Props) {
   return (
-    <div className={styles.container}>
+    <div className={`${styles.cardContainer} cardContainer`}>
       <div className={styles.cardRow}>
         <div className={styles.cardLeft}>
           <Link href="/email/stories">
             <div className={styles.profileInfo}>
               <Profile
-                userNickName={data.userNickName}
+                userProfileImage={data.userProfileImage}
+                userName={data.userName}
                 date={data.date}
-                onClick={() => {}}
+                userEmail='userEmail'
               />
             </div>
           </Link>
@@ -47,13 +48,21 @@ export default function LongCardPres({ data }: Props) {
               <span className={styles.iconCount}>{data.commentCount}</span>
             </div>
             <div className={styles.iconTextGroup}>
-              <LikeButton />
+              <LikeButton 
+              isLiked={false}
+              likeCount={data.loveCount}
+            />
             </div>
           </div>
         </div>
         {data.imageUrl && (
-          <div className={styles.mainIcon}>
-            <Image src={data.imageUrl} alt="main" width={80} height={64} />
+          <div className={styles.iconWrap}>
+            <Image
+              src={data.imageUrl}
+              alt="이미지"
+              fill
+              style={{ objectFit: 'cover' }}
+            />
           </div>
         )}
       </div>

@@ -4,9 +4,14 @@ import { useState } from 'react';
 // slice
 import LikeButtonPres from '../presentational/LikeButtonPres';
 
-export default function LikeButtonCont() {
-  const [liked, setLiked] = useState(false);
-  const [count, setCount] = useState(16);
+type Props = {
+  isLiked: boolean;
+  likeCount: number;
+};
+
+export default function LikeButtonCont({ isLiked, likeCount }: Props) {
+  const [liked, setLiked] = useState(isLiked);
+  const [count, setCount] = useState(likeCount);
 
   const toggleLike = () => {
     if (liked) {

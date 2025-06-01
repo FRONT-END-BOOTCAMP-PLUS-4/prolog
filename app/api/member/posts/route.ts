@@ -1,12 +1,26 @@
+import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 import { CreatePostDto } from '@/back/posts/application/dto/CreatePostDto';
 import { CreatePostUsecase } from '@/back/posts/application/usecases/CreatePostUsecase';
 import { PrPostRepository } from '@/back/posts/infra/PrPostsRepository';
+import { PrSubscribeRepository } from '@/back/subscribe/infra/PrSubscribeRepository';
+import { PrNotificationRepository } from '@/back/notification/infra/PrNotificationRepository';
 
 export async function POST(req: NextRequest) {
   try {
-    const body: CreatePostDto = await req.json();
+    const userData = await getToken({
+      req,
+      secret: process.env.AUTH_SECRET,
+    });
+
+    if (!userData || !userData.sub) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
+
+    const userId = userData.sub;
+
+    const body = await req.json();
 
     const { title, content } = body;
 
@@ -16,9 +30,21 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const repository = new PrPostRepository();
-    const createPostUsecase = new CreatePostUsecase(repository);
-    const newPost = await createPostUsecase.execute(body);
+    const postDataWithUserId: CreatePostDto = {
+      ...body,
+      userId: userId,
+    };
+
+    const postRepository = new PrPostRepository();
+    const subscribeRepository = new PrSubscribeRepository();
+    const notificationRepository = new PrNotificationRepository();
+
+    const createPostUsecase = new CreatePostUsecase(
+      postRepository,
+      subscribeRepository,
+      notificationRepository,
+    );
+    const newPost = await createPostUsecase.execute(postDataWithUserId);
 
     return NextResponse.json(newPost, { status: 201 });
   } catch (error) {

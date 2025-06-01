@@ -9,7 +9,13 @@ const nextConfig: NextConfig = {
   //   AUTH_GITHUB_SECRET: '',
   // },
   images: {
+    domains: ['encrypted-tbn0.gstatic.com', 'cdn.pixabay.com'],
     remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'blog30-test.s3.ap-northeast-2.amazonaws.com',
+        pathname: '/**',
+      },
       {
         protocol: 'https',
         hostname: 'lh3.googleusercontent.com',
@@ -18,6 +24,17 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'avatars.githubusercontent.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'example.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'blog30-test.s3.ap-northeast-2.amazonaws.com',
         pathname: '/**',
       },
     ],
