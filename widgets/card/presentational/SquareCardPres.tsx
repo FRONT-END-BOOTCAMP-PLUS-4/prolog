@@ -43,13 +43,12 @@ export default function SquareCardPres({ data }: Props) {
         <TagListCont tags={data.tags} />
       </div>
       <div className={styles.profileBar}>
-        <Link href="/email/stories">
+        <Link href={`/${data.userName}/stories`}>
           <div className={styles.profileInfo}>
             <Profile
               userProfileImage={data.userProfileImage}
               userName={data.userName}
               date={data.date}
-              userEmail="userEmail"
             />
           </div>
         </Link>
