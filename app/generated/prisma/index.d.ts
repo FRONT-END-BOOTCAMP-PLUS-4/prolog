@@ -503,13 +503,13 @@ export namespace Prisma {
   /**
    * Is T a Record?
    */
-  type IsObject<T> = T extends Array<any>
+  type IsObject<T extends any> = T extends Array<any>
   ? False
   : T extends Date
   ? False
   : T extends Uint8Array
   ? False
-  : T extends bigint
+  : T extends BigInt
   ? False
   : T extends object
   ? True
@@ -519,7 +519,7 @@ export namespace Prisma {
   /**
    * If it's T[], return T
    */
-  export type UnEnumerate<T> = T extends Array<infer U> ? U : T
+  export type UnEnumerate<T extends unknown> = T extends Array<infer U> ? U : T
 
   /**
    * From ts-toolbelt
@@ -580,7 +580,7 @@ export namespace Prisma {
       0: AtLoose<O, K>;
   }[strict];
 
-  export type ComputeRaw<A> = A extends Function ? A : {
+  export type ComputeRaw<A extends any> = A extends Function ? A : {
     [K in keyof A]: A[K];
   } & {};
 
@@ -629,7 +629,7 @@ export namespace Prisma {
     1: 0
   }[B]
 
-  export type Extends<A1, A2> = [A1] extends [never]
+  export type Extends<A1 extends any, A2 extends any> = [A1] extends [never]
     ? 0 // anything `never` is false
     : A1 extends A2
     ? 1
@@ -1513,7 +1513,7 @@ export namespace Prisma {
   }
 
   export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
-  export type GetEvents<T> = T extends Array<LogLevel | LogDefinition> ?
+  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
     GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
     : never
 
@@ -3168,7 +3168,6 @@ export namespace Prisma {
     content: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    aiSummary: string | null
     isPublic: number | null
     thumbnailUrl: string | null
     useAi: number | null
@@ -3182,7 +3181,6 @@ export namespace Prisma {
     content: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    aiSummary: string | null
     isPublic: number | null
     thumbnailUrl: string | null
     useAi: number | null
@@ -3227,7 +3225,6 @@ export namespace Prisma {
     content?: true
     createdAt?: true
     updatedAt?: true
-    aiSummary?: true
     isPublic?: true
     thumbnailUrl?: true
     useAi?: true
@@ -3241,7 +3238,6 @@ export namespace Prisma {
     content?: true
     createdAt?: true
     updatedAt?: true
-    aiSummary?: true
     isPublic?: true
     thumbnailUrl?: true
     useAi?: true
@@ -3358,7 +3354,7 @@ export namespace Prisma {
     tags: string[]
     createdAt: Date
     updatedAt: Date | null
-    aiSummary: string | null
+    aiSummary: string[]
     isPublic: number
     thumbnailUrl: string | null
     useAi: number
@@ -3492,7 +3488,7 @@ export namespace Prisma {
       tags: string[]
       createdAt: Date
       updatedAt: Date | null
-      aiSummary: string | null
+      aiSummary: string[]
       isPublic: number
       thumbnailUrl: string | null
       useAi: number
@@ -3933,7 +3929,7 @@ export namespace Prisma {
     readonly tags: FieldRef<"BlogPost", 'String[]'>
     readonly createdAt: FieldRef<"BlogPost", 'DateTime'>
     readonly updatedAt: FieldRef<"BlogPost", 'DateTime'>
-    readonly aiSummary: FieldRef<"BlogPost", 'String'>
+    readonly aiSummary: FieldRef<"BlogPost", 'String[]'>
     readonly isPublic: FieldRef<"BlogPost", 'Int'>
     readonly thumbnailUrl: FieldRef<"BlogPost", 'String'>
     readonly useAi: FieldRef<"BlogPost", 'Int'>
@@ -12482,7 +12478,7 @@ export namespace Prisma {
     tags?: StringNullableListFilter<"BlogPost">
     createdAt?: DateTimeFilter<"BlogPost"> | Date | string
     updatedAt?: DateTimeNullableFilter<"BlogPost"> | Date | string | null
-    aiSummary?: StringNullableFilter<"BlogPost"> | string | null
+    aiSummary?: StringNullableListFilter<"BlogPost">
     isPublic?: IntFilter<"BlogPost"> | number
     thumbnailUrl?: StringNullableFilter<"BlogPost"> | string | null
     useAi?: IntFilter<"BlogPost"> | number
@@ -12503,7 +12499,7 @@ export namespace Prisma {
     tags?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrderInput | SortOrder
-    aiSummary?: SortOrderInput | SortOrder
+    aiSummary?: SortOrder
     isPublic?: SortOrder
     thumbnailUrl?: SortOrderInput | SortOrder
     useAi?: SortOrder
@@ -12527,7 +12523,7 @@ export namespace Prisma {
     tags?: StringNullableListFilter<"BlogPost">
     createdAt?: DateTimeFilter<"BlogPost"> | Date | string
     updatedAt?: DateTimeNullableFilter<"BlogPost"> | Date | string | null
-    aiSummary?: StringNullableFilter<"BlogPost"> | string | null
+    aiSummary?: StringNullableListFilter<"BlogPost">
     isPublic?: IntFilter<"BlogPost"> | number
     thumbnailUrl?: StringNullableFilter<"BlogPost"> | string | null
     useAi?: IntFilter<"BlogPost"> | number
@@ -12548,7 +12544,7 @@ export namespace Prisma {
     tags?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrderInput | SortOrder
-    aiSummary?: SortOrderInput | SortOrder
+    aiSummary?: SortOrder
     isPublic?: SortOrder
     thumbnailUrl?: SortOrderInput | SortOrder
     useAi?: SortOrder
@@ -12571,7 +12567,7 @@ export namespace Prisma {
     tags?: StringNullableListFilter<"BlogPost">
     createdAt?: DateTimeWithAggregatesFilter<"BlogPost"> | Date | string
     updatedAt?: DateTimeNullableWithAggregatesFilter<"BlogPost"> | Date | string | null
-    aiSummary?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
+    aiSummary?: StringNullableListFilter<"BlogPost">
     isPublic?: IntWithAggregatesFilter<"BlogPost"> | number
     thumbnailUrl?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
     useAi?: IntWithAggregatesFilter<"BlogPost"> | number
@@ -13125,7 +13121,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -13146,7 +13142,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -13162,7 +13158,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -13183,7 +13179,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -13202,7 +13198,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -13214,7 +13210,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -13229,7 +13225,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -13902,7 +13898,6 @@ export namespace Prisma {
     content?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    aiSummary?: SortOrder
     isPublic?: SortOrder
     thumbnailUrl?: SortOrder
     useAi?: SortOrder
@@ -13916,7 +13911,6 @@ export namespace Prisma {
     content?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    aiSummary?: SortOrder
     isPublic?: SortOrder
     thumbnailUrl?: SortOrder
     useAi?: SortOrder
@@ -14601,6 +14595,10 @@ export namespace Prisma {
     set: string[]
   }
 
+  export type BlogPostCreateaiSummaryInput = {
+    set: string[]
+  }
+
   export type CategoryCreateNestedOneWithoutBlogPostInput = {
     create?: XOR<CategoryCreateWithoutBlogPostInput, CategoryUncheckedCreateWithoutBlogPostInput>
     connectOrCreate?: CategoryCreateOrConnectWithoutBlogPostInput
@@ -14670,6 +14668,11 @@ export namespace Prisma {
   }
 
   export type BlogPostUpdatetagsInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type BlogPostUpdateaiSummaryInput = {
     set?: string[]
     push?: string | string[]
   }
@@ -15233,7 +15236,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -15252,7 +15255,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -15488,7 +15491,7 @@ export namespace Prisma {
     tags?: StringNullableListFilter<"BlogPost">
     createdAt?: DateTimeFilter<"BlogPost"> | Date | string
     updatedAt?: DateTimeNullableFilter<"BlogPost"> | Date | string | null
-    aiSummary?: StringNullableFilter<"BlogPost"> | string | null
+    aiSummary?: StringNullableListFilter<"BlogPost">
     isPublic?: IntFilter<"BlogPost"> | number
     thumbnailUrl?: StringNullableFilter<"BlogPost"> | string | null
     useAi?: IntFilter<"BlogPost"> | number
@@ -15994,7 +15997,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -16014,7 +16017,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -16135,7 +16138,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -16155,7 +16158,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -16272,7 +16275,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -16292,7 +16295,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -16368,7 +16371,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -16388,7 +16391,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -16454,7 +16457,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -16474,7 +16477,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -16550,7 +16553,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -16570,7 +16573,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -16636,7 +16639,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -16656,7 +16659,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -16732,7 +16735,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -16752,7 +16755,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -17010,7 +17013,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -17029,7 +17032,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -17169,7 +17172,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -17238,7 +17241,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -17257,7 +17260,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -17275,7 +17278,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -17566,7 +17569,7 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
+    aiSummary?: BlogPostCreateaiSummaryInput | string[]
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
@@ -17578,7 +17581,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -17597,7 +17600,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
@@ -17615,7 +17618,7 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
+    aiSummary?: BlogPostUpdateaiSummaryInput | string[]
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
