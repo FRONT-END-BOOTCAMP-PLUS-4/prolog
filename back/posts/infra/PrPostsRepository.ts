@@ -26,7 +26,7 @@ export class PrPostRepository implements PostsRepository {
 
   async getPostById(
     postId: number,
-    currentUserId: string,
+    currentUserId: string | null,
   ): Promise<GetPostViewDto> {
     const postDetail = await prisma.blogPost.findUnique({
       where: {
@@ -61,35 +61,29 @@ export class PrPostRepository implements PostsRepository {
       },
     });
 
-    // 좋아요 여부
-    const liked = await prisma.postLike.findFirst({
-      where: {
-        postsId: postId,
-        userId: currentUserId,
-      },
-    });
-
-    // 북마크 여부
-    const bookmarked = await prisma.bookMark.findFirst({
-      where: {
-        postsId: postId,
-        userId: currentUserId,
-      },
-    });
-
-    // 팔로우 여부
-    let following = null;
-    if (postDetail && postDetail.user) {
-      following = await prisma.subscribe.findFirst({
-        where: {
-          requestId: currentUserId,
-          responseId: postDetail.user.id,
-        },
-      });
-    }
-
     if (!postDetail) {
       throw new Error('Post not found');
+    }
+
+    let liked = false;
+    let bookmarked = false;
+    let following = false;
+
+    if (currentUserId) {
+      const [likeRow, bookmarkRow, followRow] = await Promise.all([
+        prisma.postLike.findFirst({
+          where: { postsId: postId, userId: currentUserId },
+        }),
+        prisma.bookMark.findFirst({
+          where: { postsId: postId, userId: currentUserId },
+        }),
+        prisma.subscribe.findFirst({
+          where: { requestId: currentUserId, responseId: postDetail.user.id },
+        }),
+      ]);
+      liked = !!likeRow;
+      bookmarked = !!bookmarkRow;
+      following = !!followRow;
     }
 
     return {
