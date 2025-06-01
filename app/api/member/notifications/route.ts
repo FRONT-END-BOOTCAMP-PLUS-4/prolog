@@ -28,6 +28,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest) {
+  
   const token = await getToken({
     req,
     secret: process.env.AUTH_SECRET,
@@ -37,13 +38,14 @@ export async function PUT(req: NextRequest) {
   }
 
   try {
-    const body = (await req.json()) as { alarmId: number };
+    const body = await req.json();
     const prAlarmRepository = new PrAlarmRepository();
     const putAlarmCheckUsecase = new PutAlarmCheckUsecase(prAlarmRepository);
     const execute = await putAlarmCheckUsecase.execute(
       token.userId,
-      body.alarmId,
+      body,
     );
+
     return NextResponse.json({ status: 200, data: execute });
   } catch (error) {
     console.log(error);
