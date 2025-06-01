@@ -39,8 +39,12 @@ export type OrCondition = {
 };
 
 export interface PostListAllRepository {
-  findAll(filters: GetPostListAllFilter): Promise<{
+  findAll(
+    filters: GetPostListAllFilter,
+    currentUserId: string,
+  ): Promise<{
     posts: BlogPostWithCounts[];
     totalCount: number;
+    likedPostIds: number[];
   }>;
 }

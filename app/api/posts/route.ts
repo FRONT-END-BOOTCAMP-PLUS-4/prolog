@@ -1,3 +1,4 @@
+import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 import { PrPostListAllRepository } from '@/back/posts/infra/PrPostListAllRepository';
 import { GetPostListAllUsecase } from '@/back/posts/application/usecases/GetPostListAllUsecase';
@@ -9,6 +10,10 @@ import {
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
+
+    // currentUserId 추출
+    const cookieStore = await cookies();
+    const currentUserId = cookieStore.get('userId')?.value || '';
 
     // 필터 파라미터 추출
     const filters = {
@@ -30,8 +35,8 @@ export async function GET(req: NextRequest) {
     const repository = new PrPostListAllRepository();
     const usecase = new GetPostListAllUsecase(repository);
 
-    // 게시글 목록 조회 (usecase에서 응답 구조까지 반환)
-    const response = await usecase.execute({
+    // 게시글 목록 조회
+    const response = await usecase.execute(currentUserId, {
       ...filters,
       page,
       pageSize,
