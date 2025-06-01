@@ -2,32 +2,11 @@ import {
   PostListAllRepository,
   GetPostListAllFilter,
   BlogPostWithCounts,
+  BlogPostWhereInput,
+  OrCondition,
+  BlogPostOrderBy,
 } from '../domain/PostListAllRepository';
 import prisma from '@/shared/lib/prisma';
-
-type BlogPostWhereInput = {
-  user?: {
-    name?: { contains: string; mode: 'insensitive' };
-  };
-  OR?: Array<{
-    tags?: { hasSome: string[] };
-    title?: { contains: string; mode: 'insensitive' };
-    content?: { contains: string; mode: 'insensitive' };
-  }>;
-  isPublic?: number; // 공개 게시글만 조회
-};
-
-type OrCondition = {
-  tags?: { hasSome: string[] };
-  title?: { contains: string; mode: 'insensitive' };
-  content?: { contains: string; mode: 'insensitive' };
-};
-
-type BlogPostOrderBy =
-  | { createdAt: 'desc' | 'asc' }
-  | Array<
-      { likes: { _count: 'desc' | 'asc' } } | { createdAt: 'desc' | 'asc' }
-    >;
 
 export class PrPostListAllRepository implements PostListAllRepository {
   async findAll(filters: GetPostListAllFilter): Promise<{

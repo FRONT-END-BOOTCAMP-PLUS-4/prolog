@@ -1,23 +1,10 @@
 import dayjs from 'dayjs';
 import { GetPostListAllDto } from '../dto/GetPostListAllDto';
-import { PostListAllRepository } from '../../domain/PostListAllRepository';
+import {
+  PostListAllRepository,
+  GetPostListAllFilter,
+} from '../../domain/PostListAllRepository';
 import { stripMarkdown } from '@/shared/utils/stripmarkdown';
-import { BlogPost } from '@/app/generated/prisma';
-
-export type GetPostListAllFilter = {
-  name?: string;
-  tags?: string[];
-  title?: string;
-  content?: string;
-  page?: number;
-  pageSize?: number;
-  sort?: 'latest' | 'popular';
-};
-
-export type BlogPostWithCounts = BlogPost & {
-  user: { id: string; name: string; profileImg?: string | null };
-  _count: { likes: number; comments: number };
-};
 
 export class GetPostListAllUsecase {
   constructor(private readonly postsRepository: PostListAllRepository) {}
