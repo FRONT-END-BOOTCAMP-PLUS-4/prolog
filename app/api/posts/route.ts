@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-
 import { PrPostListAllRepository } from '@/back/posts/infra/PrPostListAllRepository';
 import { GetPostListAllUsecase } from '@/back/posts/application/usecases/GetPostListAllUsecase';
 import {
@@ -17,10 +16,10 @@ export async function GET(req: NextRequest) {
       title: searchParams.get('title') || undefined,
       content: searchParams.get('content') || undefined,
       tags: searchParams.getAll('tag').filter(Boolean),
-      sort: validateSortParam(searchParams.get('sort')), // 유효성 검사 추가
+      sort: validateSortParam(searchParams.get('sort')),
     };
 
-    // 페이지네이션 페이지, 20개씩
+    // 페이지네이션
     const page = validateNumericParam(searchParams.get('page') || '1', 1);
     const pageSize = validateNumericParam(
       searchParams.get('pageSize') || '20',
@@ -31,29 +30,14 @@ export async function GET(req: NextRequest) {
     const repository = new PrPostListAllRepository();
     const usecase = new GetPostListAllUsecase(repository);
 
-    // 게시글 목록 조회
-    const { posts, totalCount } = await usecase.execute({
+    // 게시글 목록 조회 (usecase에서 응답 구조까지 반환)
+    const response = await usecase.execute({
       ...filters,
       page,
       pageSize,
     });
 
-    // 응답 데이터 구성
-    const response = {
-      success: true,
-      filters: {
-        ...filters,
-        page,
-        pageSize,
-      },
-      count: posts.length,
-      data: posts,
-      hasMore: (page - 1) * pageSize + posts.length < totalCount,
-      totalCount,
-      timestamp: new Date().toISOString(),
-    };
-
-    // 캐시 헤더 추가
+    // 캐시 헤더 추가 및 응답 반환
     return NextResponse.json(response, {
       headers: {
         'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=30',
