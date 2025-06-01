@@ -21,7 +21,6 @@ type Props = {
   title: string;
   content: string | undefined;
   tags: string[];
-  isAiUsed: number;
   isPublic: number;
   setIsAiUsed: Dispatch<SetStateAction<number>>;
   setIsPublic: Dispatch<SetStateAction<number>>;
@@ -41,7 +40,6 @@ export default function PostFormPres(props: Props) {
     title,
     content,
     tags,
-    isAiUsed,
     isPublic,
     setIsAiUsed,
     setIsPublic,
@@ -117,6 +115,7 @@ export default function PostFormPres(props: Props) {
                   content={content}
                   setAiSummary={setAiSummary}
                   aiSummary={aiSummary}
+                  setIsAiUsed={setIsAiUsed}
                 />,
               )
             }

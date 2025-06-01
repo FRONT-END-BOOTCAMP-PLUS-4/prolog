@@ -8,6 +8,7 @@ type Props = {
   content?: string;
   setAiSummary: Dispatch<SetStateAction<AiSummaryType[] | null>>;
   aiSummary: AiSummaryType[] | null;
+  setIsAiUsed: Dispatch<SetStateAction<number>>;
 };
 
 export default function PostAiSummaryCont({

@@ -1,16 +1,17 @@
+import { Dispatch, SetStateAction } from 'react';
+
 import Button from '@/shared/ui/button';
 import styles from '../styles/PostAiFormPres.module.scss';
 import { useModalStore } from '@/shared/stores/useModalStore';
 import { AiSummaryType } from '../types';
-import { Dispatch, SetStateAction } from 'react';
 
 type Props = {
   summary: AiSummaryType[] | null;
   isLoading: boolean;
-
   requestAiSummary: () => void;
   setAiSummary: Dispatch<SetStateAction<AiSummaryType[] | null>>;
   aiSummary: AiSummaryType[] | null;
+  setIsAiUsed: Dispatch<SetStateAction<number>>;
 };
 
 export default function PostAiSummaryPres({
@@ -19,6 +20,7 @@ export default function PostAiSummaryPres({
   requestAiSummary,
   setAiSummary,
   aiSummary,
+  setIsAiUsed,
 }: Props) {
   const { action } = useModalStore();
 
@@ -27,11 +29,13 @@ export default function PostAiSummaryPres({
   const handleUseSummary = () => {
     setAiSummary(summaryToDisplay);
     action.close();
+    setIsAiUsed(1); // 사용함
   };
 
   const handleCancelSummary = () => {
     setAiSummary(null);
     action.close();
+    setIsAiUsed(0); // 사용안함
   };
 
   return (
@@ -50,7 +54,7 @@ export default function PostAiSummaryPres({
       {(summaryToDisplay || isLoading) && (
         <>
           <div className={styles.result}>
-            <h4>✨ AI가 제안하는 목차</h4>
+            <title>✨ AI가 제안하는 목차</title>
             <ul>
               {isLoading
                 ? Array.from({ length: 4 }).map((_, idx) => (

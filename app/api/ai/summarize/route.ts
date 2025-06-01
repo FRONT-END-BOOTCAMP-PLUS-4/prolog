@@ -1,6 +1,7 @@
+import { NextRequest, NextResponse } from 'next/server';
+
 import { CreateAiSummary } from '@/back/ai/application/usecases/CreateAiSummary';
 import { OpenAiRepository } from '@/back/ai/infra/OpenAiRepository';
-import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   try {
