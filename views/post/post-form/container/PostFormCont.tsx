@@ -39,6 +39,8 @@ export default function PostFormCont() {
   /* 임시저장된 글 ID (있으면 수정, 없으면 새로 생성) */
   const [draftId, setDraftId] = useState<number | null>();
 
+  console.log('aiSummary', aiSummary);
+
   /** 임시저장 및 수정 데이터 있다면 초깃값 설정 */
   useEffect(() => {
     if (selectedPost) {
@@ -110,12 +112,12 @@ export default function PostFormCont() {
   };
 
   /* 작성 후 30초 동안 내용이 바뀌지 않으면 자동 임시 저장 */
-  useDebounce({
-    callback: saveDraft,
-    delay: 30000, // 30초로 설정
-    deps: [content, draftId],
-    condition: !!title && !!content,
-  });
+  // useDebounce({
+  //   callback: saveDraft,
+  //   delay: 30000, // 30초로 설정
+  //   deps: [content, draftId],
+  //   condition: !!title && !!content,
+  // });
 
   /** S3 에 이미지 업로드  */
   const uploadImageFilesToS3 = async (files: File[]) => {
@@ -179,7 +181,7 @@ export default function PostFormCont() {
       title: title,
       content: content,
       tags: tags,
-      isAiUsed: isAiUsed,
+      useAi: isAiUsed,
       isPublic: isPublic,
       thumbnailUrl: firstImg,
       aiSummary: aiSummary,
