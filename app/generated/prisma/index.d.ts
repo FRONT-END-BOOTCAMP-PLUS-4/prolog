@@ -503,13 +503,13 @@ export namespace Prisma {
   /**
    * Is T a Record?
    */
-  type IsObject<T> = T extends Array<any>
+  type IsObject<T extends any> = T extends Array<any>
   ? False
   : T extends Date
   ? False
   : T extends Uint8Array
   ? False
-  : T extends bigint
+  : T extends BigInt
   ? False
   : T extends object
   ? True
@@ -519,7 +519,7 @@ export namespace Prisma {
   /**
    * If it's T[], return T
    */
-  export type UnEnumerate<T> = T extends Array<infer U> ? U : T
+  export type UnEnumerate<T extends unknown> = T extends Array<infer U> ? U : T
 
   /**
    * From ts-toolbelt
@@ -580,7 +580,7 @@ export namespace Prisma {
       0: AtLoose<O, K>;
   }[strict];
 
-  export type ComputeRaw<A> = A extends Function ? A : {
+  export type ComputeRaw<A extends any> = A extends Function ? A : {
     [K in keyof A]: A[K];
   } & {};
 
@@ -629,7 +629,7 @@ export namespace Prisma {
     1: 0
   }[B]
 
-  export type Extends<A1, A2> = [A1] extends [never]
+  export type Extends<A1 extends any, A2 extends any> = [A1] extends [never]
     ? 0 // anything `never` is false
     : A1 extends A2
     ? 1
@@ -1513,7 +1513,7 @@ export namespace Prisma {
   }
 
   export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
-  export type GetEvents<T> = T extends Array<LogLevel | LogDefinition> ?
+  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
     GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
     : never
 
@@ -3168,7 +3168,6 @@ export namespace Prisma {
     content: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    aiSummary: string | null
     isPublic: number | null
     thumbnailUrl: string | null
     useAi: number | null
@@ -3182,7 +3181,6 @@ export namespace Prisma {
     content: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    aiSummary: string | null
     isPublic: number | null
     thumbnailUrl: string | null
     useAi: number | null
@@ -3197,10 +3195,10 @@ export namespace Prisma {
     tags: number
     createdAt: number
     updatedAt: number
-    aiSummary: number
     isPublic: number
     thumbnailUrl: number
     useAi: number
+    aiSummary: number
     _all: number
   }
 
@@ -3227,7 +3225,6 @@ export namespace Prisma {
     content?: true
     createdAt?: true
     updatedAt?: true
-    aiSummary?: true
     isPublic?: true
     thumbnailUrl?: true
     useAi?: true
@@ -3241,7 +3238,6 @@ export namespace Prisma {
     content?: true
     createdAt?: true
     updatedAt?: true
-    aiSummary?: true
     isPublic?: true
     thumbnailUrl?: true
     useAi?: true
@@ -3256,10 +3252,10 @@ export namespace Prisma {
     tags?: true
     createdAt?: true
     updatedAt?: true
-    aiSummary?: true
     isPublic?: true
     thumbnailUrl?: true
     useAi?: true
+    aiSummary?: true
     _all?: true
   }
 
@@ -3358,10 +3354,10 @@ export namespace Prisma {
     tags: string[]
     createdAt: Date
     updatedAt: Date | null
-    aiSummary: string | null
     isPublic: number
     thumbnailUrl: string | null
     useAi: number
+    aiSummary: JsonValue | null
     _count: BlogPostCountAggregateOutputType | null
     _avg: BlogPostAvgAggregateOutputType | null
     _sum: BlogPostSumAggregateOutputType | null
@@ -3392,10 +3388,10 @@ export namespace Prisma {
     tags?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    aiSummary?: boolean
     isPublic?: boolean
     thumbnailUrl?: boolean
     useAi?: boolean
+    aiSummary?: boolean
     category?: boolean | BlogPost$categoryArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
     bookMark?: boolean | BlogPost$bookMarkArgs<ExtArgs>
@@ -3414,10 +3410,10 @@ export namespace Prisma {
     tags?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    aiSummary?: boolean
     isPublic?: boolean
     thumbnailUrl?: boolean
     useAi?: boolean
+    aiSummary?: boolean
     category?: boolean | BlogPost$categoryArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["blogPost"]>
@@ -3431,10 +3427,10 @@ export namespace Prisma {
     tags?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    aiSummary?: boolean
     isPublic?: boolean
     thumbnailUrl?: boolean
     useAi?: boolean
+    aiSummary?: boolean
     category?: boolean | BlogPost$categoryArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["blogPost"]>
@@ -3448,13 +3444,13 @@ export namespace Prisma {
     tags?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    aiSummary?: boolean
     isPublic?: boolean
     thumbnailUrl?: boolean
     useAi?: boolean
+    aiSummary?: boolean
   }
 
-  export type BlogPostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "categoryId" | "title" | "content" | "tags" | "createdAt" | "updatedAt" | "aiSummary" | "isPublic" | "thumbnailUrl" | "useAi", ExtArgs["result"]["blogPost"]>
+  export type BlogPostOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "categoryId" | "title" | "content" | "tags" | "createdAt" | "updatedAt" | "isPublic" | "thumbnailUrl" | "useAi" | "aiSummary", ExtArgs["result"]["blogPost"]>
   export type BlogPostInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | BlogPost$categoryArgs<ExtArgs>
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -3492,10 +3488,10 @@ export namespace Prisma {
       tags: string[]
       createdAt: Date
       updatedAt: Date | null
-      aiSummary: string | null
       isPublic: number
       thumbnailUrl: string | null
       useAi: number
+      aiSummary: Prisma.JsonValue | null
     }, ExtArgs["result"]["blogPost"]>
     composites: {}
   }
@@ -3933,10 +3929,10 @@ export namespace Prisma {
     readonly tags: FieldRef<"BlogPost", 'String[]'>
     readonly createdAt: FieldRef<"BlogPost", 'DateTime'>
     readonly updatedAt: FieldRef<"BlogPost", 'DateTime'>
-    readonly aiSummary: FieldRef<"BlogPost", 'String'>
     readonly isPublic: FieldRef<"BlogPost", 'Int'>
     readonly thumbnailUrl: FieldRef<"BlogPost", 'String'>
     readonly useAi: FieldRef<"BlogPost", 'Int'>
+    readonly aiSummary: FieldRef<"BlogPost", 'Json'>
   }
     
 
@@ -12196,10 +12192,10 @@ export namespace Prisma {
     tags: 'tags',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    aiSummary: 'aiSummary',
     isPublic: 'isPublic',
     thumbnailUrl: 'thumbnailUrl',
-    useAi: 'useAi'
+    useAi: 'useAi',
+    aiSummary: 'aiSummary'
   };
 
   export type BlogPostScalarFieldEnum = (typeof BlogPostScalarFieldEnum)[keyof typeof BlogPostScalarFieldEnum]
@@ -12291,6 +12287,14 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
@@ -12305,6 +12309,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -12351,6 +12364,20 @@ export namespace Prisma {
    * Reference to a field of type 'Int[]'
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+    
+
+
+  /**
+   * Reference to a field of type 'QueryMode'
+   */
+  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 
@@ -12482,10 +12509,10 @@ export namespace Prisma {
     tags?: StringNullableListFilter<"BlogPost">
     createdAt?: DateTimeFilter<"BlogPost"> | Date | string
     updatedAt?: DateTimeNullableFilter<"BlogPost"> | Date | string | null
-    aiSummary?: StringNullableFilter<"BlogPost"> | string | null
     isPublic?: IntFilter<"BlogPost"> | number
     thumbnailUrl?: StringNullableFilter<"BlogPost"> | string | null
     useAi?: IntFilter<"BlogPost"> | number
+    aiSummary?: JsonNullableFilter<"BlogPost">
     category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     bookMark?: BookMarkListRelationFilter
@@ -12503,10 +12530,10 @@ export namespace Prisma {
     tags?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrderInput | SortOrder
-    aiSummary?: SortOrderInput | SortOrder
     isPublic?: SortOrder
     thumbnailUrl?: SortOrderInput | SortOrder
     useAi?: SortOrder
+    aiSummary?: SortOrderInput | SortOrder
     category?: CategoryOrderByWithRelationInput
     user?: UserOrderByWithRelationInput
     bookMark?: BookMarkOrderByRelationAggregateInput
@@ -12527,10 +12554,10 @@ export namespace Prisma {
     tags?: StringNullableListFilter<"BlogPost">
     createdAt?: DateTimeFilter<"BlogPost"> | Date | string
     updatedAt?: DateTimeNullableFilter<"BlogPost"> | Date | string | null
-    aiSummary?: StringNullableFilter<"BlogPost"> | string | null
     isPublic?: IntFilter<"BlogPost"> | number
     thumbnailUrl?: StringNullableFilter<"BlogPost"> | string | null
     useAi?: IntFilter<"BlogPost"> | number
+    aiSummary?: JsonNullableFilter<"BlogPost">
     category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     bookMark?: BookMarkListRelationFilter
@@ -12548,10 +12575,10 @@ export namespace Prisma {
     tags?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrderInput | SortOrder
-    aiSummary?: SortOrderInput | SortOrder
     isPublic?: SortOrder
     thumbnailUrl?: SortOrderInput | SortOrder
     useAi?: SortOrder
+    aiSummary?: SortOrderInput | SortOrder
     _count?: BlogPostCountOrderByAggregateInput
     _avg?: BlogPostAvgOrderByAggregateInput
     _max?: BlogPostMaxOrderByAggregateInput
@@ -12571,10 +12598,10 @@ export namespace Prisma {
     tags?: StringNullableListFilter<"BlogPost">
     createdAt?: DateTimeWithAggregatesFilter<"BlogPost"> | Date | string
     updatedAt?: DateTimeNullableWithAggregatesFilter<"BlogPost"> | Date | string | null
-    aiSummary?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
     isPublic?: IntWithAggregatesFilter<"BlogPost"> | number
     thumbnailUrl?: StringNullableWithAggregatesFilter<"BlogPost"> | string | null
     useAi?: IntWithAggregatesFilter<"BlogPost"> | number
+    aiSummary?: JsonNullableWithAggregatesFilter<"BlogPost">
   }
 
   export type NotificationWhereInput = {
@@ -13125,10 +13152,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     category?: CategoryCreateNestedOneWithoutBlogPostInput
     user: UserCreateNestedOneWithoutBlogPostInput
     bookMark?: BookMarkCreateNestedManyWithoutBlogPostInput
@@ -13146,10 +13173,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     bookMark?: BookMarkUncheckedCreateNestedManyWithoutBlogPostInput
     comments?: CommentUncheckedCreateNestedManyWithoutBlogPostInput
     notification?: NotificationUncheckedCreateNestedManyWithoutBlogPostInput
@@ -13162,10 +13189,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     category?: CategoryUpdateOneWithoutBlogPostNestedInput
     user?: UserUpdateOneRequiredWithoutBlogPostNestedInput
     bookMark?: BookMarkUpdateManyWithoutBlogPostNestedInput
@@ -13183,10 +13210,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     bookMark?: BookMarkUncheckedUpdateManyWithoutBlogPostNestedInput
     comments?: CommentUncheckedUpdateManyWithoutBlogPostNestedInput
     notification?: NotificationUncheckedUpdateManyWithoutBlogPostNestedInput
@@ -13202,10 +13229,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type BlogPostUpdateManyMutationInput = {
@@ -13214,10 +13241,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type BlogPostUncheckedUpdateManyInput = {
@@ -13229,10 +13256,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type NotificationCreateInput = {
@@ -13861,6 +13888,29 @@ export namespace Prisma {
     hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
     isEmpty?: boolean
   }
+  export type JsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type CategoryNullableScalarRelationFilter = {
     is?: CategoryWhereInput | null
@@ -13881,10 +13931,10 @@ export namespace Prisma {
     tags?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    aiSummary?: SortOrder
     isPublic?: SortOrder
     thumbnailUrl?: SortOrder
     useAi?: SortOrder
+    aiSummary?: SortOrder
   }
 
   export type BlogPostAvgOrderByAggregateInput = {
@@ -13902,7 +13952,6 @@ export namespace Prisma {
     content?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    aiSummary?: SortOrder
     isPublic?: SortOrder
     thumbnailUrl?: SortOrder
     useAi?: SortOrder
@@ -13916,7 +13965,6 @@ export namespace Prisma {
     content?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    aiSummary?: SortOrder
     isPublic?: SortOrder
     thumbnailUrl?: SortOrder
     useAi?: SortOrder
@@ -13959,6 +14007,32 @@ export namespace Prisma {
     _sum?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedIntNullableFilter<$PrismaModel>
     _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
   }
 
   export type BlogPostScalarRelationFilter = {
@@ -15226,6 +15300,29 @@ export namespace Prisma {
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
+  export type NestedJsonNullableFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
 
   export type BlogPostCreateWithoutUserInput = {
     title: string
@@ -15233,10 +15330,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     category?: CategoryCreateNestedOneWithoutBlogPostInput
     bookMark?: BookMarkCreateNestedManyWithoutBlogPostInput
     comments?: CommentCreateNestedManyWithoutBlogPostInput
@@ -15252,10 +15349,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     bookMark?: BookMarkUncheckedCreateNestedManyWithoutBlogPostInput
     comments?: CommentUncheckedCreateNestedManyWithoutBlogPostInput
     notification?: NotificationUncheckedCreateNestedManyWithoutBlogPostInput
@@ -15488,10 +15585,10 @@ export namespace Prisma {
     tags?: StringNullableListFilter<"BlogPost">
     createdAt?: DateTimeFilter<"BlogPost"> | Date | string
     updatedAt?: DateTimeNullableFilter<"BlogPost"> | Date | string | null
-    aiSummary?: StringNullableFilter<"BlogPost"> | string | null
     isPublic?: IntFilter<"BlogPost"> | number
     thumbnailUrl?: StringNullableFilter<"BlogPost"> | string | null
     useAi?: IntFilter<"BlogPost"> | number
+    aiSummary?: JsonNullableFilter<"BlogPost">
   }
 
   export type BookMarkUpsertWithWhereUniqueWithoutUserInput = {
@@ -15994,10 +16091,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     category?: CategoryCreateNestedOneWithoutBlogPostInput
     user: UserCreateNestedOneWithoutBlogPostInput
     bookMark?: BookMarkCreateNestedManyWithoutBlogPostInput
@@ -16014,10 +16111,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     bookMark?: BookMarkUncheckedCreateNestedManyWithoutBlogPostInput
     comments?: CommentUncheckedCreateNestedManyWithoutBlogPostInput
     likes?: PostLikeUncheckedCreateNestedManyWithoutBlogPostInput
@@ -16135,10 +16232,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     category?: CategoryUpdateOneWithoutBlogPostNestedInput
     user?: UserUpdateOneRequiredWithoutBlogPostNestedInput
     bookMark?: BookMarkUpdateManyWithoutBlogPostNestedInput
@@ -16155,10 +16252,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     bookMark?: BookMarkUncheckedUpdateManyWithoutBlogPostNestedInput
     comments?: CommentUncheckedUpdateManyWithoutBlogPostNestedInput
     likes?: PostLikeUncheckedUpdateManyWithoutBlogPostNestedInput
@@ -16272,10 +16369,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     category?: CategoryCreateNestedOneWithoutBlogPostInput
     user: UserCreateNestedOneWithoutBlogPostInput
     comments?: CommentCreateNestedManyWithoutBlogPostInput
@@ -16292,10 +16389,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     comments?: CommentUncheckedCreateNestedManyWithoutBlogPostInput
     notification?: NotificationUncheckedCreateNestedManyWithoutBlogPostInput
     likes?: PostLikeUncheckedCreateNestedManyWithoutBlogPostInput
@@ -16368,10 +16465,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     category?: CategoryUpdateOneWithoutBlogPostNestedInput
     user?: UserUpdateOneRequiredWithoutBlogPostNestedInput
     comments?: CommentUpdateManyWithoutBlogPostNestedInput
@@ -16388,10 +16485,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     comments?: CommentUncheckedUpdateManyWithoutBlogPostNestedInput
     notification?: NotificationUncheckedUpdateManyWithoutBlogPostNestedInput
     likes?: PostLikeUncheckedUpdateManyWithoutBlogPostNestedInput
@@ -16454,10 +16551,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     category?: CategoryCreateNestedOneWithoutBlogPostInput
     user: UserCreateNestedOneWithoutBlogPostInput
     bookMark?: BookMarkCreateNestedManyWithoutBlogPostInput
@@ -16474,10 +16571,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     bookMark?: BookMarkUncheckedCreateNestedManyWithoutBlogPostInput
     comments?: CommentUncheckedCreateNestedManyWithoutBlogPostInput
     notification?: NotificationUncheckedCreateNestedManyWithoutBlogPostInput
@@ -16550,10 +16647,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     category?: CategoryUpdateOneWithoutBlogPostNestedInput
     user?: UserUpdateOneRequiredWithoutBlogPostNestedInput
     bookMark?: BookMarkUpdateManyWithoutBlogPostNestedInput
@@ -16570,10 +16667,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     bookMark?: BookMarkUncheckedUpdateManyWithoutBlogPostNestedInput
     comments?: CommentUncheckedUpdateManyWithoutBlogPostNestedInput
     notification?: NotificationUncheckedUpdateManyWithoutBlogPostNestedInput
@@ -16636,10 +16733,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     category?: CategoryCreateNestedOneWithoutBlogPostInput
     user: UserCreateNestedOneWithoutBlogPostInput
     bookMark?: BookMarkCreateNestedManyWithoutBlogPostInput
@@ -16656,10 +16753,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     bookMark?: BookMarkUncheckedCreateNestedManyWithoutBlogPostInput
     notification?: NotificationUncheckedCreateNestedManyWithoutBlogPostInput
     likes?: PostLikeUncheckedCreateNestedManyWithoutBlogPostInput
@@ -16732,10 +16829,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     category?: CategoryUpdateOneWithoutBlogPostNestedInput
     user?: UserUpdateOneRequiredWithoutBlogPostNestedInput
     bookMark?: BookMarkUpdateManyWithoutBlogPostNestedInput
@@ -16752,10 +16849,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     bookMark?: BookMarkUncheckedUpdateManyWithoutBlogPostNestedInput
     notification?: NotificationUncheckedUpdateManyWithoutBlogPostNestedInput
     likes?: PostLikeUncheckedUpdateManyWithoutBlogPostNestedInput
@@ -17010,10 +17107,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     user: UserCreateNestedOneWithoutBlogPostInput
     bookMark?: BookMarkCreateNestedManyWithoutBlogPostInput
     comments?: CommentCreateNestedManyWithoutBlogPostInput
@@ -17029,10 +17126,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     bookMark?: BookMarkUncheckedCreateNestedManyWithoutBlogPostInput
     comments?: CommentUncheckedCreateNestedManyWithoutBlogPostInput
     notification?: NotificationUncheckedCreateNestedManyWithoutBlogPostInput
@@ -17169,10 +17266,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type BookMarkCreateManyUserInput = {
@@ -17238,10 +17335,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     category?: CategoryUpdateOneWithoutBlogPostNestedInput
     bookMark?: BookMarkUpdateManyWithoutBlogPostNestedInput
     comments?: CommentUpdateManyWithoutBlogPostNestedInput
@@ -17257,10 +17354,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     bookMark?: BookMarkUncheckedUpdateManyWithoutBlogPostNestedInput
     comments?: CommentUncheckedUpdateManyWithoutBlogPostNestedInput
     notification?: NotificationUncheckedUpdateManyWithoutBlogPostNestedInput
@@ -17275,10 +17372,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type BookMarkUpdateWithoutUserInput = {
@@ -17566,10 +17663,10 @@ export namespace Prisma {
     tags?: BlogPostCreatetagsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string | null
-    aiSummary?: string | null
     isPublic?: number
     thumbnailUrl?: string | null
     useAi?: number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
   }
 
   export type BlogPostUpdateWithoutCategoryInput = {
@@ -17578,10 +17675,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     user?: UserUpdateOneRequiredWithoutBlogPostNestedInput
     bookMark?: BookMarkUpdateManyWithoutBlogPostNestedInput
     comments?: CommentUpdateManyWithoutBlogPostNestedInput
@@ -17597,10 +17694,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
     bookMark?: BookMarkUncheckedUpdateManyWithoutBlogPostNestedInput
     comments?: CommentUncheckedUpdateManyWithoutBlogPostNestedInput
     notification?: NotificationUncheckedUpdateManyWithoutBlogPostNestedInput
@@ -17615,10 +17712,10 @@ export namespace Prisma {
     tags?: BlogPostUpdatetagsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    aiSummary?: NullableStringFieldUpdateOperationsInput | string | null
     isPublic?: IntFieldUpdateOperationsInput | number
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     useAi?: IntFieldUpdateOperationsInput | number
+    aiSummary?: NullableJsonNullValueInput | InputJsonValue
   }
 
 

@@ -4,6 +4,7 @@ import { BlogPost } from '@/app/generated/prisma';
 import { PostsRepository } from '../domain/PostsRepository';
 import { CreatePostDto } from '../application/dto/CreatePostDto';
 import { GetPostViewDto } from '../application/dto/GetPostViewDto';
+import { AiSummaryType } from '@/views/post/post-form/types';
 
 export class PrPostRepository implements PostsRepository {
   async createPost(newPost: CreatePostDto): Promise<BlogPost> {
@@ -47,7 +48,6 @@ export class PrPostRepository implements PostsRepository {
           select: {
             id: true, // 게시글 유저 uuid
             name: true, // 게시글 유저 이름
-            email: true, // 게시글 유저 이메일
             profileImg: true, // 게시글 유저 프로필
           },
         },
@@ -100,11 +100,11 @@ export class PrPostRepository implements PostsRepository {
         : null,
       profileImage: postDetail.user.profileImg,
       nickname: postDetail.user.name,
-      userEmail: postDetail.user.email,
       isLiked: Boolean(liked),
       isBookmarked: Boolean(bookmarked),
       following: Boolean(following),
       likeCount: postDetail._count.likes,
+      aiSummary: postDetail.aiSummary as AiSummaryType[] | null,
     };
   }
 }

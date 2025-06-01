@@ -3,9 +3,10 @@ import { ChevronDownIcon } from '@radix-ui/react-icons';
 
 // slice
 import styles from '../styles/AiSummaryPres.module.scss';
+import { AiSummaryType } from '@/views/post/post-form/types';
 
 type AiSummaryPresProps = {
-  aiSummary: string;
+  aiSummary: AiSummaryType[];
   isOpen: boolean;
   onToggle: () => void;
 };
@@ -31,7 +32,15 @@ export default function AiSummaryPres({
         //     </li>
         //   ))}
         // </ol>
-        <div>{aiSummary}</div>
+        // <div>{aiSummary}</div>
+        <ol className={styles.summaryList}>
+          {aiSummary?.map((sum, idx) => (
+            <li key={idx} className={styles.summaryItem}>
+              <div className={styles.itemTitle}>{sum.title}</div>
+              <p className={styles.itemSummary}>{sum.summary}</p>
+            </li>
+          ))}
+        </ol>
       )}
     </div>
   );

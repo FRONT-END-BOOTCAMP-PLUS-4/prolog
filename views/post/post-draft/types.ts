@@ -1,3 +1,5 @@
+import { AiSummaryType } from '../post-form/types';
+
 export type BlogPostDraftType = {
   id: number;
   title: string;
@@ -14,7 +16,7 @@ export type BlogPostType = {
   createdAt: string;
   userId?: string;
   updatedAt?: string;
-  aiSummary?: string;
+  aiSummary?: AiSummaryType[];
   isPublic?: number;
   categoryId?: number;
   thumbnailUrl?: string;

@@ -40,3 +40,29 @@
 .arrowIconOpen {
   transform: rotate(180deg);
 }
+
+
+.summaryList {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.summaryItem {
+  list-style: decimal;
+}
+
+.itemTitle {
+  font-size: $font-lg-size;
+  font-weight: bold;
+  color: $theme-text-1;
+  margin-bottom: 0.25rem;
+}
+
+.itemSummary {
+  font-size: $font-sm-size;
+  color: $theme-text-2;
+  margin: 0;
+  padding-left: 0.5rem;
+}

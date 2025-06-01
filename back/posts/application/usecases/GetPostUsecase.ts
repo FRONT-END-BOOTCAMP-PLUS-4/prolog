@@ -23,7 +23,6 @@ export class GetPostUsecase {
       post.aiSummary ?? null,
       post.profileImage ?? null,
       post.nickname,
-      post.userEmail,
       post.isLiked,
       post.isBookmarked,
       post.following,
