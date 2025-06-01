@@ -1,3 +1,5 @@
+import { AiSummaryType } from '@/views/post/post-form/types';
+
 export class GetPostViewDto {
   constructor(
     public id: number, // 게시글 ID
@@ -7,7 +9,7 @@ export class GetPostViewDto {
     public createdAt: string, // 작성일 (ISO string 권장)
     public updatedAt: string | null, // 수정일 (nullable, ISO string)
     public tags: string[], // 태그 배열 (nullable 아님)
-    public aiSummary: string[], // AI 요약
+    public aiSummary: AiSummaryType[] | null,
     // public aiSummary: string | null, // AI 요약 (nullable)
     public profileImage: string | null, // 작성자 프로필 이미지 (nullable)
     public nickname: string, // 작성자 닉네임
