@@ -12,24 +12,30 @@ import { type Notification } from '../types';
 type Props = {
   notificationList: Notification[];
   isCheck: boolean;
+  isSuccess: boolean;
   selectList: number[];
   selecterId: (notificationId: number) => void;
+  submitRead: (id: number) => void;
 };
 
 export default function NotificationListPres(props: Props) {
-
-  const { notificationList, selecterId, selectList, isCheck } = props;
-
+  const { notificationList, selecterId, selectList, isCheck, submitRead, isSuccess } =
+    props;
+console.log("isSuccess:",isSuccess)
   // check
-  const isSelectd = (idx: number) => selectList.includes(idx);  
+  const isSelectd = (idx: number) => selectList.includes(idx);
 
   // router
   const router = useRouter();
-  const blogPageRouter = (userName: string, postId: number) => {
+  const blogPageRouter = async (
+    userName: string,
+    postId: number,
+    id: number,
+  ) => {
+    submitRead(id);
     router.push(`/${userName}/stories/${postId}`);
   };
 
-  // empty
   if (!notificationList.length) {
     return <p className={styles.empty}>알람 내역이 없어요</p>;
   }
@@ -52,12 +58,22 @@ export default function NotificationListPres(props: Props) {
               <div
                 className={styles.infoContainer}
                 onClick={() =>
-                  blogPageRouter(notification.senderName, notification.postsId)
+                  blogPageRouter(
+                    notification.senderName,
+                    notification.postsId,
+                    notification.id,
+                  )
                 }
               >
                 {/* 유저이름 및 알람 유형 */}
                 <div className={styles.infoContainer__info}>
-                  <span className={`${styles.infoContainer__name} ${notification.checkStatus ? "" : styles.infoContainer__new}`}>
+                  <span
+                    className={`
+                      ${styles.infoContainer__name} 
+                      ${isSuccess ? styles.old : ""} 
+                      ${notification.checkStatus === 0 && !isSuccess ? styles.infoContainer__new : ""}
+                    `}
+                  >
                     {notification.senderName}
                   </span>
                 </div>

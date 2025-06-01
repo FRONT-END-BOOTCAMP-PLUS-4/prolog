@@ -22,7 +22,6 @@ export class GetAlarmListUsecase {
         senderName: alarm.senderName,
         senderProfileImg: alarm.senderProfileImg,
       }));
-      console.log("mapper:",mapper)
 
     return mapper;
   }

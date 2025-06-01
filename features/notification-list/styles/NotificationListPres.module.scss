@@ -36,6 +36,9 @@
     display: none;
   }
 }
+.old{
+  color: $theme-gray-3;  
+}
 
 .infoContainer{
   flex-grow: 1;
@@ -44,11 +47,13 @@
   justify-content: space-between;
   width: 180px;
   height: 60px;
-  color: $theme-gray-3;
+  color: $theme-gray-3; 
 
   &:hover{
     color: $theme-primary;
   }
+
+
 
   &__new{
     color: $theme-primary;
