@@ -11,6 +11,8 @@ import { LongCardPres, SquareCardPres } from '@/widgets/card';
 import LongCardSkeleton from '@/shared/ui/skeleton/longcard';
 import SquareCardSkeleton from '@/shared/ui/skeleton/squarecard';
 
+const DEFAULT_SKELETON_COUNT = 12;
+
 export default function CardListPres({
   viewType,
   setViewType,
@@ -20,7 +22,8 @@ export default function CardListPres({
   sortOptions,
   isLoading = false,
 }: CardListPresProps) {
-  const skeletonCount = items.length === 0 ? 12 : items.length;
+  const skeletonCount =
+    items.length === 0 ? DEFAULT_SKELETON_COUNT : items.length;
   return (
     <div>
       <div className={styles.filterBar}>
