@@ -77,12 +77,15 @@ export function useInfiniteScroll(
           await res.json();
 
         setPosts((prev) => {
-          // 기존 데이터에 새 데이터 병합 후 id 기준 중복 제거
-          const merged =
+          const newPosts =
             pageToFetch === 1 ? data.data : [...prev, ...data.data];
-          return merged.filter(
-            (item, idx, arr) => arr.findIndex((i) => i.id === item.id) === idx,
+          // id 기준 중복 제거
+          const uniquePosts = newPosts.filter(
+            (post, index, self) =>
+              index === self.findIndex((p) => p.id === post.id),
           );
+          // **정렬하지 않고, 백엔드에서 온 순서대로 반환**
+          return uniquePosts;
         });
         setHasMore(data.hasMore);
       } catch (err) {
@@ -100,16 +103,28 @@ export function useInfiniteScroll(
   const reset = useCallback(
     (newFilter?: PostListFilter) => {
       const appliedFilter = newFilter ?? initialFilter;
-
       setPosts([]);
       setPage(1);
       setHasMore(true);
       setError(null);
       setFilter(appliedFilter);
-      fetchPosts(1, appliedFilter);
     },
-    [initialFilter, fetchPosts],
+    [initialFilter],
   );
+
+  // 페이지나 filter가 바뀔 때 fetch
+  useEffect(() => {
+    if (page === 1 && posts.length === 0) {
+      fetchPosts(1, filter);
+    } else if (page > 1) {
+      fetchPosts(page, filter);
+    }
+  }, [page, filter]);
+
+  // 최초 마운트 시 첫 페이지 호출
+  useEffect(() => {
+    fetchPosts(1, filter);
+  }, []);
 
   // 다음 페이지 패칭
   const fetchNext = useCallback(() => {
@@ -117,17 +132,6 @@ export function useInfiniteScroll(
       setPage((prev) => prev + 1);
     }
   }, [loading, hasMore]);
-
-  // 페이지 변경 시 데이터 호출
-  useEffect(() => {
-    if (page === 1) return; // 첫 페이지는 reset 시에 이미 호출됨
-    fetchPosts(page, filter);
-  }, [page, filter, fetchPosts]);
-
-  // 최초 마운트 시 첫 페이지 호출
-  useEffect(() => {
-    fetchPosts(1, filter);
-  }, []);
 
   return {
     posts,
