@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 
 import PostAiSummaryPres from '../presentational/PostAiSummaryPres';
@@ -6,24 +6,28 @@ import { AiSummaryType } from '../types';
 
 type Props = {
   content?: string;
+  setAiSummary: Dispatch<SetStateAction<AiSummaryType[] | null>>;
+  aiSummary: AiSummaryType[] | null;
 };
 
-export default function PostAiSummaryCont({ content }: Props) {
+export default function PostAiSummaryCont({
+  content,
+  setAiSummary,
+  aiSummary,
+}: Props) {
   const [summary, setSummary] = useState<AiSummaryType[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [isRequested, setIsRequested] = useState(false); // AI 요청 여부
 
   const requestAiSummary = async () => {
     if (!content || content.length < 500) {
-      toast.warn('AI 요약은 500자 이상부터 사용할 수 있어요.');
+      toast.warn('500자 이상부터 사용할 수 있어요.');
       return;
     }
 
-    setIsRequested(true);
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/ai', {
+      const response = await fetch('/api/ai/summarize', {
         method: 'POST',
         body: JSON.stringify(content),
       });
@@ -51,9 +55,10 @@ export default function PostAiSummaryCont({ content }: Props) {
       />
       <PostAiSummaryPres
         summary={summary}
+        setAiSummary={setAiSummary}
         isLoading={isLoading}
-        isRequested={isRequested}
         requestAiSummary={requestAiSummary}
+        aiSummary={aiSummary}
       />
     </>
   );
