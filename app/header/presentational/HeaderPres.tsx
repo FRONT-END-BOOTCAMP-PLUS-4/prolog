@@ -2,6 +2,7 @@
 
 // package
 import { useState, useRef } from 'react';
+import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -29,7 +30,7 @@ import { useOnClickOutside } from '@/shared/hooks/useOnClickOutside';
 export default function HeaderPres({ username }: { username: string }) {
   const { open } = useModalStore((state) => state.action);
   // 로그인 여부
-  const [isLoggedIn, setIsLoggedIn] = useState(true); // 테스트용
+  const { data } = useSession();
   // 검색창 표시 여부
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   // 프로필 드롭다운 표시 여부
@@ -88,12 +89,11 @@ export default function HeaderPres({ username }: { username: string }) {
   const handleLogin = () => {
     // 임시
     open(<LoginForm />, 'center');
-    setIsLoggedIn(true);
   };
 
   // 로그아웃 버튼 클릭
   const handleLogout = () => {
-    setIsLoggedIn(false);
+    signOut();
     setIsProfileDropdownVisible(false);
   };
 
@@ -175,7 +175,7 @@ export default function HeaderPres({ username }: { username: string }) {
         </button>
 
         {/* 로그인/로그아웃 및 프로필 드롭다운 */}
-        {!isLoggedIn ? (
+        {!data ? (
           // 로그인 버튼
           <Button variants="purple" size="small" onClick={handleLogin}>
             로그인
@@ -226,6 +226,7 @@ export default function HeaderPres({ username }: { username: string }) {
                   aria-hidden
                 />
               </button>
+
               {/* 드롭다운 메뉴 */}
               {isProfileDropdownVisible && (
                 <div className={styles.dropdownMenu}>
@@ -253,6 +254,7 @@ export default function HeaderPres({ username }: { username: string }) {
                   </button>
                 </div>
               )}
+
             </div>
           </>
         )}
