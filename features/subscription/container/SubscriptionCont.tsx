@@ -51,6 +51,9 @@ export default function SubscriptionCont({ userId }: { userId: string }) {
         try {
           const response = await fetch('/api/member/subscription', {
             method: 'POST',
+            headers: {
+              'content-type': 'application/json',
+            },
             body: JSON.stringify({ isFollowing, userId, id }),
           });
           const data = await response.json();
