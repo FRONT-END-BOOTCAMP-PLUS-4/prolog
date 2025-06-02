@@ -16,14 +16,11 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ message: '입력값 오류' }, { status: 400 });
     }
 
-    console.log('댓글 조회 요청:', { postId, userId });
-
     const commentRepository = new PrCommentRepository();
     const comments = await commentRepository.findAllByPostId(
       Number(postId),
       userId,
     );
-    console.log('조회된 댓글:', comments);
 
     return NextResponse.json(comments, { status: 200 });
   } catch (error) {
