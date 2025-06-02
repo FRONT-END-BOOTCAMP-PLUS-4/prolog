@@ -7,7 +7,7 @@ import {
   UserInfo,
 } from '../domain/SubscribeRepository';
 
-export class PrSubscriptionRepository implements SubscriptionRepository {
+export class PrSubscribeRepository implements SubscriptionRepository {
   // 공통 쿼리 로직
   private async findUsersBySubscription(
     whereClause: object,
