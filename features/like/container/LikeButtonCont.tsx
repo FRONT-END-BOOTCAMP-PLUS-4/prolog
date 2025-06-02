@@ -2,6 +2,7 @@
 
 // package
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 // slice
 import LikeButtonPres from '../presentational/LikeButtonPres';
@@ -25,6 +26,10 @@ export default function LikeButtonCont({
 
   const toggleLike = async () => {
     if (loading) return;
+    if (!userId) {
+      toast.warning('로그인 후 이용 가능한 기능입니다.');
+      return;
+    }
     setLoading(true);
 
     try {
@@ -44,7 +49,7 @@ export default function LikeButtonCont({
       setLiked(data.liked);
       setCount(data.likeCount);
     } catch (error) {
-      console.error(error);
+      toast.error('좋아요 처리 중 오류가 발생했습니다.');
     } finally {
       setLoading(false);
     }
