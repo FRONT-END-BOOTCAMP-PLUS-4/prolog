@@ -17,6 +17,7 @@ import { getMetadata } from '@/shared/utils/metadata';
 
 const getPost = async (postId: number) => {
   const cookieStore = await cookies();
+
   const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
     headers: {
       cookie: cookieStore.toString(),
@@ -29,6 +30,26 @@ const getPost = async (postId: number) => {
   }
   const data = await response.json();
   return data;
+};
+
+const getCommentCount = async (postId: number) => {
+  const cookieStore = await cookies();
+
+  const res = await fetch(
+    `http://localhost:3000/api/comments/count?postId=${postId}`,
+    {
+      headers: {
+        cookie: cookieStore.toString(),
+      },
+
+      cache: 'no-store',
+    },
+  );
+
+  if (!res.ok) return 0;
+
+  const data = await res.json();
+  return data.count;
 };
 
 const isLoggedIn = async () => {
@@ -101,7 +122,9 @@ export default async function Page({ params }: { params: { id: string } }) {
       <BodyText content={post.content} tags={post.tags} />
 
       {/* 댓글 타이틀 */}
-      <div className={styles.commentTitle}>댓글 목록 (19)</div>
+      <div className={styles.commentTitle}>
+        댓글 목록 ({getCommentCount(postId)})
+      </div>
 
       {/* 댓글 등록 박스 */}
       {loggedIn ? <CommentInput /> : <CommentLoginPrompt />}
