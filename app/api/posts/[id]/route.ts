@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: number } },
+  { params }: { params: Promise<{ id: number }> },
 ) {
   try {
     // 1. 로그인 시도 (토큰 없으면 undefined)
@@ -16,7 +16,8 @@ export async function GET(
 
     // 2. 비로그인 시에도 허용, 로그인 시에는 userId 셋팅
     const currentUserId = userData?.sub ?? null;
-    const postId = Number(params.id);
+    const { id } = await params;
+    const postId = Number(id);
 
     const repository = new PrPostRepository();
     const getPostUsecase = new GetPostUsecase(repository);
