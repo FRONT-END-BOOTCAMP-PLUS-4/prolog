@@ -33,7 +33,7 @@ import {
   PostListFilter,
   PostListItem,
   UseInfiniteScrollPostsResult,
-} from '@/shared/types';
+} from '../types';
 
 export function useInfiniteScroll(
   initialFilter: PostListFilter = {},
@@ -45,10 +45,8 @@ export function useInfiniteScroll(
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState<PostListFilter>(initialFilter);
 
-  // 중복 요청 방지
   const loadingRef = useRef(false);
 
-  // 게시글 API 호출
   const fetchPosts = useCallback(
     async (pageToFetch: number, filterToUse: PostListFilter) => {
       if (loadingRef.current || !hasMore) return;
@@ -79,12 +77,10 @@ export function useInfiniteScroll(
         setPosts((prev) => {
           const newPosts =
             pageToFetch === 1 ? data.data : [...prev, ...data.data];
-          // id 기준 중복 제거
           const uniquePosts = newPosts.filter(
             (post, index, self) =>
               index === self.findIndex((p) => p.id === post.id),
           );
-          // **정렬하지 않고, 백엔드에서 온 순서대로 반환**
           return uniquePosts;
         });
         setHasMore(data.hasMore);
@@ -126,7 +122,6 @@ export function useInfiniteScroll(
     fetchPosts(1, filter);
   }, []);
 
-  // 다음 페이지 패칭
   const fetchNext = useCallback(() => {
     if (!loading && hasMore) {
       setPage((prev) => prev + 1);
