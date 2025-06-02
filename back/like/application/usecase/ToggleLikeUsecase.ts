@@ -4,7 +4,9 @@ import { ToggleLikeRepository } from '../../domain/ToggleLikeRepository';
 export class ToggleLikeUseCase {
   constructor(private likeRepo: ToggleLikeRepository) {}
 
-  async execute(dto: ToggleLikeDto) {
+  async execute(userId: string, postId: number) {
+    const dto = new ToggleLikeDto(userId, postId);
+
     const existing = await this.likeRepo.findLike(dto);
     if (existing) {
       await this.likeRepo.deleteLike(dto);
