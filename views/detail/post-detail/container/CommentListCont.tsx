@@ -3,9 +3,11 @@
 import { useEffect, useState } from 'react';
 import CommentListPres from '../presentational/CommentListPres';
 import { Comment } from '../types';
+import { useCommentStore } from '../stores/useCommentStore';
 
 export default function CommentListCont({ postId }: { postId: number }) {
   const [comments, setComments] = useState<Comment[]>([]);
+  const trigger = useCommentStore((state) => state.trigger);
 
   useEffect(() => {
     if (!postId) return;
@@ -20,14 +22,14 @@ export default function CommentListCont({ postId }: { postId: number }) {
           nickname: string;
           createdAt: string;
           content: string;
-          isMine: boolean; // 서버에서 오는 DTO 필드에 맞게 맵핑
+          isMine: boolean;
         }
 
         setComments(
           (data as ServerComment[]).map(
             (c: ServerComment): Comment => ({
               id: c.id,
-              userNickName: c.nickname, // ← 서버에서 오는 DTO 필드에 맞게 맵핑
+              userNickName: c.nickname,
               date: c.createdAt,
               text: c.content,
               isMine: c.isMine,
@@ -38,7 +40,7 @@ export default function CommentListCont({ postId }: { postId: number }) {
       .catch(() => {
         setComments([]);
       });
-  }, [postId]);
+  }, [postId, trigger]);
 
   const handleEditComment = async (id: number, newText: string) => {
     fetch(`/api/member/comments/${id}`, {
