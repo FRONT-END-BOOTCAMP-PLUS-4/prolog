@@ -10,7 +10,11 @@ type Props = {
 export default function BodyTextPres({ content, tags }: Props) {
   return (
     <>
-      <div className={styles.bodyText}>{content}</div>
+      <div
+        className={styles.bodyText}
+        dangerouslySetInnerHTML={{ __html: content }}
+      />
+      {/* <div className={styles.bodyText}>{content}</div> */}
       <div className={styles.tagList}>
         {tags.map((tag, idx) => (
           <Tag key={`${tag}-${idx}`}>{tag}</Tag>
