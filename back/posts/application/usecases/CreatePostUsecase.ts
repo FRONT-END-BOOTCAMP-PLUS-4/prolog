@@ -1,4 +1,5 @@
-import { SubscribeRepository } from '@/back/subscribe/domain/SubscribeRepository';
+// import { SubscribeRepository } from '@/back/subscribe/domain/SubscribeRepository';
+import { SubscribePostRepository } from '@/back/subscribe/domain/SubscribePostRepository';
 import { PostsRepository } from '../../domain/PostsRepository';
 import { CreatePostDto } from '../dto/CreatePostDto';
 import { NotificationRepository } from '@/back/notification/domain/NotificationRepository';
@@ -6,7 +7,7 @@ import { NotificationRepository } from '@/back/notification/domain/NotificationR
 export class CreatePostUsecase {
   constructor(
     private readonly postRepository: PostsRepository,
-    private readonly subscribeRepository: SubscribeRepository,
+    private readonly subscribeRepository: SubscribePostRepository,
     private readonly notificationRepository: NotificationRepository,
   ) {}
 
