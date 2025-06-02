@@ -69,11 +69,12 @@ export default function CommentListCont({ postId }: { postId: number }) {
       .then(() => {
         console.log(`Comment with id ${id} deleted`);
       })
+      .then(() => {
+        setComments((prev) => prev.filter((c) => c.id !== id));
+      })
       .catch((error) => {
         console.error(`Failed to delete comment with id ${id}:`, error);
       });
-
-    setComments((prev) => prev.filter((c) => c.id !== id));
   };
 
   return (
