@@ -14,9 +14,10 @@ import { useInfiniteScrollTrigger } from '../hooks/useInfiniteScrollTrigger';
 import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
 
 // layer
-import { useSearch } from '@/shared/contexts/SearchContext';
-import { useLocalStorage } from '@/shared/hooks/useLocalStorage';
 import { CardData } from '@/widgets/card/types';
+import { useSearch } from '@/shared/contexts/SearchContext';
+
+import { useLocalStorage } from '@/shared/hooks/useLocalStorage';
 
 const MIN_SKELETON_TIME = 1000;
 
@@ -26,6 +27,9 @@ const SORT_OPTIONS = [
 ];
 
 export default function CardListCont() {
+  const { data: session } = useSession();
+  const userId = session?.user?.id ?? '';
+
   const [viewType, setViewType] = useLocalStorage<ViewType>(
     'card-view-type',
     'card',
@@ -40,7 +44,7 @@ export default function CardListCont() {
     title: searchParams.title,
     content: searchParams.content,
     sort,
-    pageSize: 20,
+    pageSize: 24,
   };
 
   const { posts, loading, error, hasMore, fetchNext, reset } =
@@ -69,9 +73,6 @@ export default function CardListCont() {
   const uniqueItems: CardData[] = mappedItems.filter(
     (item, idx, arr) => arr.findIndex((i) => i.id === item.id) === idx,
   );
-
-  const { data: session } = useSession();
-  const userId = session?.user?.id ?? '';
 
   return (
     <>

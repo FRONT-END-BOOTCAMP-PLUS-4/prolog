@@ -66,7 +66,7 @@ export function useInfiniteScroll(
         }
         if (filterToUse.sort) params.append('sort', filterToUse.sort);
         params.append('page', String(pageToFetch));
-        params.append('pageSize', String(filterToUse.pageSize ?? 20));
+        params.append('pageSize', String(filterToUse.pageSize ?? 24));
 
         const res = await fetch(`/api/posts?${params.toString()}`);
         if (!res.ok) throw new Error('데이터를 불러오지 못했습니다.');

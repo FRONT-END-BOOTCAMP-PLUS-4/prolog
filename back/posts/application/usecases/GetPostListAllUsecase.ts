@@ -21,7 +21,7 @@ export class GetPostListAllUsecase {
         likedPostIds,
       } = await this.postsRepository.findAll(filters, currentUserId);
       const page = filters.page ?? 1;
-      const pageSize = filters.pageSize ?? 20;
+      const pageSize = filters.pageSize ?? 24;
 
       const data = postList.map(
         (post) =>

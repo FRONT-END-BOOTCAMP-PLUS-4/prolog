@@ -26,8 +26,8 @@ export async function GET(req: NextRequest) {
 
     const page = validateNumericParam(searchParams.get('page') || '1', 1);
     const pageSize = validateNumericParam(
-      searchParams.get('pageSize') || '20',
-      20,
+      searchParams.get('pageSize') || '24',
+      24,
     );
 
     const repository = new PrPostListAllRepository();

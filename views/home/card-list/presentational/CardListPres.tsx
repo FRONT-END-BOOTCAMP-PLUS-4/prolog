@@ -1,3 +1,5 @@
+'use client';
+
 // package
 import { ViewGridIcon, ViewHorizontalIcon } from '@radix-ui/react-icons';
 
@@ -11,7 +13,7 @@ import { LongCardPres, SquareCardPres } from '@/widgets/card';
 import LongCardSkeleton from '@/shared/ui/skeleton/longcard';
 import SquareCardSkeleton from '@/shared/ui/skeleton/squarecard';
 
-const DEFAULT_SKELETON_COUNT = 12;
+const DEFAULT_SKELETON_COUNT = 24;
 
 export default function CardListPres({
   viewType,
