@@ -25,6 +25,14 @@ button {
   border: none;
 }
 
+.cardContainer:hover .tagList.rolling {
+  animation-play-state: running;
+}
+
+.cardContainer:hover .tagList.rolling:hover {
+  animation-play-state: paused;
+}
+
 @media  (max-width:768px) {
     html,body {
     width: 100%;
