@@ -9,7 +9,7 @@ import { CardData } from '../types';
 
 // layer
 import { TagListCont } from '@/features/tag-list';
-import LikeButtonCont from '@/features/like/container/LikeButtonCont';
+import { LikeButton } from '@/features/like';
 import Profile from '@/shared/ui/profile';
 
 type Props = {
@@ -59,7 +59,7 @@ export default function SquareCardPres({ data, userId }: Props) {
             <span className={styles.iconCount}>{data.commentCount}</span>
           </div>
           <div className={styles.iconTextGroup}>
-            <LikeButtonCont
+            <LikeButton
               isLiked={data.isLiked}
               likeCount={data.loveCount}
               userId={userId}
