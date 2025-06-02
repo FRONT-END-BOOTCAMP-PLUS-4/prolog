@@ -12445,11 +12445,11 @@ export namespace Prisma {
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: string
-    email?: string
+    name?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    name?: StringFilter<"User"> | string
+    email?: StringFilter<"User"> | string
     profileImg?: StringNullableFilter<"User"> | string | null
     introduction?: StringNullableFilter<"User"> | string | null
     backgroundImg?: StringNullableFilter<"User"> | string | null
@@ -12465,7 +12465,7 @@ export namespace Prisma {
     likes?: PostLikeListRelationFilter
     requestSubscribe?: SubscribeListRelationFilter
     responseSubscribe?: SubscribeListRelationFilter
-  }, "id" | "email">
+  }, "id" | "name">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
