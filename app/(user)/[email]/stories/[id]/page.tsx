@@ -13,6 +13,7 @@ import {
 } from '@/views/detail/post-detail';
 import { EditButtonCont } from '@/features/edit';
 import { DeleteButtonCont } from '@/features/delete';
+import { getMetadata } from '@/shared/utils/metadata';
 
 const getPost = async (postId: number) => {
   const cookieStore = await cookies();
@@ -30,15 +31,31 @@ const getPost = async (postId: number) => {
   return data;
 };
 
+export const generateMetadata = async ({
+  params,
+}: {
+  params: Promise<{ id: string; email: string }>;
+}) => {
+  const { id, email } = await params;
+  const post = await getPost(Number(id));
+
+  return getMetadata({
+    title: post?.title,
+    description: post?.title,
+    ogImage: post?.thumbnailUrl,
+    asPath: `/${email}/stories/${id}`,
+  });
+};
 export default async function Page({ params }: { params: { id: string } }) {
   const postId = Number(params.id);
+
   const post = await getPost(postId);
 
   return (
     <div className={styles.container}>
       {/* 제목 */}
       <div className={styles.titleContainer}>
-        <h1 className={styles.titleText}>CSR이란?</h1>
+        <h1 className={styles.titleText}>{post.title}</h1>
         <div className={styles.actionButtons}>
           {/* 수정 및 삭제 버튼 */}
           <div className={styles.editWrapper}>
