@@ -1,1 +1,1 @@
-export { default as DeleteNotificationCont } from './container/DeleteNotificationCont';
+export { default as NotificationDeleteCont } from './container/NotificationDeleteCont';
