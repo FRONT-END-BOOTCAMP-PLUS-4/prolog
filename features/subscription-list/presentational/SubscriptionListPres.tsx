@@ -52,18 +52,20 @@ export default function SubscriptionListPres({
         </div>
         <div className={styles.list}>
           {isFollow
-            ? followList?.users?.map((item, index) => {
+
+            ? followerList?.users?.map((item, index) => {
                 return (
                   <div className={styles.flexCenter} key={index}>
                     <div className={styles.userListContainer}>
                       <div>
                         <Image
+                          className={styles.imgBox}
                           src={
                             item.profileImg ?? ('/svgs/profile.svg' as string)
                           }
                           alt="프로필이미지"
-                          width={32}
-                          height={32}
+                          width={40}
+                          height={40}
                         />
                       </div>
                       <div className={styles.userName}>{item.name}</div>
@@ -75,12 +77,15 @@ export default function SubscriptionListPres({
                 return (
                   <div className={styles.flexCenter} key={index}>
                     <div className={styles.userListContainer}>
-                      <div>
+                      <div className={styles.imgBox}>
                         <Image
+                          className={styles.imgBox}
                           src={
                             item.profileImg ?? ('/svgs/profile.svg' as string)
                           }
                           alt="프로필이미지"
+                          width={40}
+                          height={40}
                           width={32}
                           height={32}
                         />
