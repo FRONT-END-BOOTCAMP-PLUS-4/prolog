@@ -6,12 +6,10 @@ import { Comment } from '../types';
 
 export default function CommentListCont({ postId }: { postId: number }) {
   const [comments, setComments] = useState<Comment[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!postId) return;
-    setLoading(true);
-    fetch(`/api/member/comments?postId=${postId}`)
+    fetch(`/api/comments?postId=${postId}`)
       .then((res) => {
         if (!res.ok) throw new Error();
         return res.json();
@@ -22,6 +20,7 @@ export default function CommentListCont({ postId }: { postId: number }) {
           nickname: string;
           createdAt: string;
           content: string;
+          isMine: boolean; // 서버에서 오는 DTO 필드에 맞게 맵핑
         }
 
         setComments(
@@ -31,16 +30,13 @@ export default function CommentListCont({ postId }: { postId: number }) {
               userNickName: c.nickname, // ← 서버에서 오는 DTO 필드에 맞게 맵핑
               date: c.createdAt,
               text: c.content,
-              // ...필요시 추가 필드 맵핑
+              isMine: c.isMine,
             }),
           ),
         );
       })
       .catch(() => {
         setComments([]);
-      })
-      .finally(() => {
-        setLoading(false);
       });
   }, [postId]);
 

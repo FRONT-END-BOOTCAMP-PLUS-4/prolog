@@ -50,17 +50,19 @@ export default function CommentListPres({
                 완료
               </button>
             ) : (
-              <div className={styles.actionButtons}>
-                <EditButtonCont
-                  mode="comment"
-                  onEdit={() => handleStartEdit(c.id, c.text)}
-                />
-                <span>|</span>
-                <DeleteButtonCont
-                  mode="comment"
-                  onDelete={() => onDeleteComment(c.id)}
-                />
-              </div>
+              c.isMine && ( // ← 내가 쓴 댓글일 때만 보이게!
+                <div className={styles.actionButtons}>
+                  <EditButtonCont
+                    mode="comment"
+                    onEdit={() => handleStartEdit(c.id, c.text)}
+                  />
+                  <span>|</span>
+                  <DeleteButtonCont
+                    mode="comment"
+                    onDelete={() => onDeleteComment(c.id)}
+                  />
+                </div>
+              )
             )}
           </div>
 

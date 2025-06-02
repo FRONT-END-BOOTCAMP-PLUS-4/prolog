@@ -17,7 +17,10 @@ export class PrCommentRepository implements CommentRepository {
     return createdComment;
   }
 
-  async findAllByPostId(postId: number): Promise<GetCommentDto[]> {
+  async findAllByPostId(
+    postId: number,
+    currentUserId: string | null,
+  ): Promise<GetCommentDto[]> {
     const comments = await prisma.comment.findMany({
       where: { postsId: postId },
       orderBy: { createdAt: 'asc' },
@@ -42,6 +45,7 @@ export class PrCommentRepository implements CommentRepository {
       profileImage: comment.user.profileImg,
       nickname: comment.user.name,
       userEmail: comment.user.email,
+      isMine: currentUserId ? comment.userId === currentUserId : false,
     }));
   }
 }

@@ -4,5 +4,8 @@ import { GetCommentDto } from '../application/dto/GetCommentDto';
 
 export interface CommentRepository {
   createComment(newComment: CreateCommentDto): Promise<Comment>;
-  findAllByPostId(postId: number): Promise<GetCommentDto[]>;
+  findAllByPostId(
+    postId: number,
+    currentUserId: string | null,
+  ): Promise<GetCommentDto[]>;
 }
