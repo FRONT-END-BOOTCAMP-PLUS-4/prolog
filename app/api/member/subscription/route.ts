@@ -3,10 +3,8 @@ import { CreateFollowRequestDto } from '@/back/subscribe/application/dto/CreateF
 import { CancelFollowUsecase } from '@/back/subscribe/application/usecases/CancelFollowUsecase';
 import { CheckFollowStatusUsecase } from '@/back/subscribe/application/usecases/CheckFollowStatusUsecase';
 import { CreateFollowUsecase } from '@/back/subscribe/application/usecases/CreateFollowUsecase';
-import { GetFollowersUsecase } from '@/back/subscribe/application/usecases/GetFollowerUsecase';
-import { GetFollowingUsecase } from '@/back/subscribe/application/usecases/GetFollowingUsecase';
 import { PrFollowRepository } from '@/back/subscribe/infra/PrFollowRepository';
-import { PrSubscriptionRepository } from '@/back/subscribe/infra/PrSubscribeRepository';
+
 import { NextRequest, NextResponse } from 'next/server';
 export async function GET(request: NextRequest) {
   const userId = request.nextUrl.searchParams.get('id');
