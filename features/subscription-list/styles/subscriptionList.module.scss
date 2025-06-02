@@ -1,7 +1,8 @@
 @use '@styles/variables.scss' as *;
 @use '@styles/mixins.scss' as *;
 .container{
-  width: 400px;
+  width: 550px;
+  height: 700px;
   margin-top: 2rem;
   box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
@@ -10,6 +11,9 @@
   top: 20%;
   left: 38%;
   background-color:$theme-shade-2;
+}
+.searchbar{
+  width: 300px;
 }
 .toggle {
   width: 35px;
@@ -72,18 +76,31 @@
     color: $theme-gray-4;
     font-weight: 200
   }
+  .list{
+    display: flex;
+    flex-direction: column;
+    padding-left: 150px;
+    
+  }
+  .flexCenter{
+    display: flex;
+    justify-items: center;
+    margin-top: 5px;
+  }
   .text{
     font-size:20px ;
     color: $theme-gray-1;
   }
-  .userList{
+  .userListContainer{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     margin-top: 20px;
-    gap: 10px;
+    gap: 100px;
   }
+ 
   .userName{
     color: $theme-shade-8;
+    text-align: center;
   }
   
