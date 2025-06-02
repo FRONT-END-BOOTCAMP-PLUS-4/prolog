@@ -1,88 +1,121 @@
 // package
-import { Cross1Icon } from '@radix-ui/react-icons';
+import { useState } from 'react';
 
 // slice
 import styles from '../styles/NotificationModalPres.module.scss';
 
 // layer
+import { NotificationListPres } from '@/features/notification-list';
+import { type Notification } from '@/features/notification-list/types';
+
 import Button from '@/shared/ui/button';
-import { NotificationListCont } from '@/features/notification-list';
-import { MarkAllReadCont } from '@/features/notification-mark-all-read';
-import { DeleteNotificationCont } from '@/features/notification-delete';
 
 type Props = {
-  deleteMode: boolean;
-  selectedIds: number[];
-  onToggleSelect: (id: number) => void;
-  setAllNotificationIds: (ids: number[]) => void;
-  onSelectAll: () => void;
-  onCancel: () => void;
-  onToggleDeleteMode: () => void;
-  onClose: () => void;
+  allCheck: () => void;
+  allCancel: () => void;
+  submitRead: () => void;
+  isSuccess: boolean;
+  notificationList: Notification[];
+  selectList: number[];
+  clickSelecterId: (idx: number) => void;
+  submitDelete: (idx: number[]) => void;
 };
 
-export default function NotificationModalPres({
-  deleteMode,
-  selectedIds,
-  onToggleSelect,
-  setAllNotificationIds,
-  onSelectAll,
-  onCancel,
-  onToggleDeleteMode,
-  onClose,
-}: Props) {
-  return (
-    <div className={styles.modal}>
-      <button className={styles.close} onClick={onClose}>
-        <Cross1Icon />
-      </button>
+export default function NotificationModalPres(props: Props) {
+  const {
+    selectList,
+    clickSelecterId,
+    notificationList,
+    allCheck,
+    allCancel,
+    submitRead,
+    isSuccess,
+    submitDelete,
+  } = props;
+  const [isCheck, setisCheck] = useState<boolean>(false);
+  const changeBtnList = () => {
+    setisCheck(!isCheck);
+    allCancel();
+  };
+  const isSame: boolean = notificationList.length === selectList.length;
 
-      <>
-        <div className={styles.list}>
-          <NotificationListCont
-            deleteMode={deleteMode}
-            selectedIds={selectedIds}
-            setAllNotificationIds={setAllNotificationIds}
-            onToggleSelect={onToggleSelect}
-          />
+  const SelectSection = () => {
+    return (
+      <div className={styles.bottomContainer__selectSection}>
+        <Button
+          size="small"
+          style={{ padding: '0.4rem' }}
+          onClick={() => submitRead()}
+        >
+          전체읽기
+        </Button>
+        <Button
+          size="small"
+          variants="active"
+          onClick={changeBtnList}
+          style={{ padding: '0.4rem' }}
+        >
+          삭제하기
+        </Button>
+      </div>
+    );
+  };
+
+  const DeleteSction = () => {
+    return (
+      <div className={styles.bottomContainer__deleteSection}>
+        <Button
+          size="small"
+          style={{ padding: '0.4rem' }}
+          onClick={isSame ? allCancel : allCheck}
+        >
+          {isSame ? '전체해제' : '전체선택'}
+        </Button>
+        <div className={styles.bottomContainer__deleteSection__right}>
+          <Button
+            onClick={changeBtnList}
+            size="small"
+            style={{ padding: '0.4rem' }}
+          >
+            취소
+          </Button>
+          <Button
+            size="small"
+            variants="red"
+            style={{ padding: '0.4rem' }}
+            onClick={() => {
+              submitDelete(selectList);
+              allCancel();
+            }}
+          >{`삭제하기 ${selectList.length}`}</Button>
         </div>
-        <div className={styles.footer}>
-          {deleteMode ? (
-            <div className={styles.deleteMode}>
-              <div className={styles.deleteModeInner}>
-                <Button
-                  style={{ border: 'none' }}
-                  size="small"
-                  onClick={onSelectAll}
-                >
-                  전체선택
-                </Button>
-                <DeleteNotificationCont selectedIds={selectedIds} />
-              </div>
-              <div className={styles.deleteModeInner}>
-                <Button
-                  style={{ border: 'none' }}
-                  size="small"
-                  onClick={onCancel}
-                >
-                  완료
-                </Button>
-              </div>
-            </div>
-          ) : (
-            <div className={styles.normalMode}>
-              <MarkAllReadCont />
-              <Button
-                style={{ border: 'none' }}
-                size="small"
-                onClick={onToggleDeleteMode}
-              >
-                삭제
-              </Button>
-            </div>
-          )}
+      </div>
+    );
+  };
+
+  // ----------------------------------------------- render
+  return (
+    <div className={styles.container}>
+      {/* 중단 영역 */}
+      <div className={styles.centerContainer}>
+        <NotificationListPres
+          notificationList={notificationList}
+          selectList={selectList}
+          isCheck={isCheck}
+          selecterId={clickSelecterId}
+          submitRead={submitRead}
+          isSuccess={isSuccess}
+        />
+      </div>
+
+      {/* 하단 영역 */}
+      {notificationList.length ? (
+        <div className={styles.bottomContainer}>
+          {isCheck ? <DeleteSction /> : <SelectSection />}
         </div>
-      </>
+      ) : (
+        ''
+      )}
     </div>
   );
 }

@@ -9,17 +9,17 @@ export type BlogPostDraftType = {
 };
 
 export type BlogPostType = {
-  id: number;
+  postId?: number;
+  draftId?: number;
   title: string;
   content: string;
   tags: string[];
   createdAt: string;
   userId?: string;
   updatedAt?: string;
-  aiSummary?: AiSummaryType[];
+  aiSummary?: AiSummaryType[] | null;
   isPublic?: number;
   categoryId?: number;
   thumbnailUrl?: string;
-  aiUsageCount?: number;
   useAi?: number;
 };
