@@ -1,4 +1,3 @@
-import { marked } from 'marked';
 import { cookies } from 'next/headers';
 import styles from './styles.module.scss';
 import Button from '@/shared/ui/button';
@@ -53,19 +52,12 @@ export const generateMetadata = async ({
     asPath: `/${email}/stories/${id}`,
   });
 };
+
 export default async function Page({ params }: { params: { id: string } }) {
   const postId = Number(params.id);
 
   const post = await getPost(postId);
   const loggedIn = await isLoggedIn();
-
-  console.log('markdown', post.content);
-
-  const html = marked(post.content, {
-    breaks: true,
-    gfm: true,
-  }) as string;
-  console.log('html', html);
 
   return (
     <div className={styles.container}>
@@ -76,7 +68,6 @@ export default async function Page({ params }: { params: { id: string } }) {
           {/* 수정 및 삭제 버튼 */}
           <div className={styles.editWrapper}>
             <EditButtonCont mode="post" post={post} />
-            {/* <EditButtonCont mode="post" id={postId} /> */}
             <span>|</span>
           </div>
           <DeleteButtonCont mode="post" id={postId} />
@@ -107,8 +98,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <AiSummary aiSummary={post.aiSummary} />
 
       {/* 본문 섹션 */}
-      <BodyText content={html} tags={post.tags} />
-      {/* <BodyText content={post.content} tags={post.tags} /> */}
+      <BodyText content={post.content} tags={post.tags} />
 
       {/* 댓글 타이틀 */}
       <div className={styles.commentTitle}>댓글 목록 (19)</div>
