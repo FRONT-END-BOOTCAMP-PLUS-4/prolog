@@ -101,6 +101,10 @@
  
   .userName{
     color: $theme-shade-8;
+    @include font-xl;
     text-align: center;
+  }
+  .imgBox{
+    border-radius: 100%;
   }
   
