@@ -67,16 +67,11 @@ export default function CommentListPres({
           </div>
 
           {editId === c.id ? (
-            <input
+            <textarea
               value={editText}
               onChange={(e) => setEditText(e.target.value)}
               className={styles.commentEditInput}
             />
-            // <CommentInput
-            //   editText={editText}
-            //   onChange={handleEditTextChange}
-            //   className={styles.commentEditInput}
-            // />
           ) : (
             <div className={styles.commentText}>{c.text}</div>
           )}
