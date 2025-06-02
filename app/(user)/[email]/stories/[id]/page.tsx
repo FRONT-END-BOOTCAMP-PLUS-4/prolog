@@ -53,8 +53,11 @@ export const generateMetadata = async ({
   });
 };
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const postId = Number(params.id);
+export default async function Page({
+  params,
+}: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const postId = Number(id);
 
   const post = await getPost(postId);
   const loggedIn = await isLoggedIn();
