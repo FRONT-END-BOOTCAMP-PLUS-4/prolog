@@ -73,6 +73,7 @@ export const generateMetadata = async ({
     asPath: `/${email}/stories/${id}`,
   });
 };
+
 export default async function Page({ params }: { params: { id: string } }) {
   const postId = Number(params.id);
 
@@ -88,7 +89,6 @@ export default async function Page({ params }: { params: { id: string } }) {
           {/* 수정 및 삭제 버튼 */}
           <div className={styles.editWrapper}>
             <EditButtonCont mode="post" post={post} />
-            {/* <EditButtonCont mode="post" id={postId} /> */}
             <span>|</span>
           </div>
           <DeleteButtonCont mode="post" id={postId} />

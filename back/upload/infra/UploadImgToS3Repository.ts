@@ -5,10 +5,10 @@ import { UploadImgRepository } from '../domain/UploadImgRepository';
 const Bucket = process.env.AWS_BUCKET_NAME;
 
 const s3 = new S3Client({
-  region: process.env.AWS_REGION,
+  region: process.env.MY_AWS_REGION,
   credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY as string,
-    secretAccessKey: process.env.AWS_SCREAT_KEY as string,
+    accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY as string,
+    secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_KEY as string,
   },
 });
 
@@ -31,7 +31,7 @@ export class PrUploadImgS3Repository implements UploadImgRepository {
 
       await s3.send(command);
 
-      const imageUrl = `https://${Bucket}.s3.${process.env.AWS_REGION}.amazonaws.com/${fileName}`;
+      const imageUrl = `https://${Bucket}.s3.${process.env.MY_AWS_REGION}.amazonaws.com/${fileName}`;
       return imageUrl;
     });
 

@@ -1,15 +1,17 @@
 import Image from 'next/image';
-import { UserList } from '../types';
 import PostsSearchCont from '@/features/search-input';
 
 import styles from '../styles/subscriptionList.module.scss';
+import { SubscribeUser } from '@/views/story/profile-card/types';
 type UserListProps = {
-  followerList: UserList[];
   handleFollowListDisplay: () => void;
   isFollow: boolean;
+  followerList: SubscribeUser;
+  followList: SubscribeUser;
 };
 export default function SubscriptionListPres({
   followerList,
+  followList,
   handleFollowListDisplay,
   isFollow,
 }: UserListProps) {
@@ -43,24 +45,54 @@ export default function SubscriptionListPres({
                 <span className={styles.toggleCurrent}></span>
               </div>
             </div>
-            <PostsSearchCont />
+            <div className={styles.searchbar}>
+              <PostsSearchCont />
+            </div>
           </div>
         </div>
-        {followerList.map((item, index) => {
-          return (
-            <div className={styles.userList} key={index}>
-              <div>
-                <Image
-                  src={item.profileImg}
-                  alt="프로필이미지"
-                  width={32}
-                  height={32}
-                />
-              </div>
-              <div className={styles.userName}>{item.nickName}</div>
-            </div>
-          );
-        })}
+        <div className={styles.list}>
+          {isFollow
+            ? followerList?.users?.map((item, index) => {
+                return (
+                  <div className={styles.flexCenter} key={index}>
+                    <div className={styles.userListContainer}>
+                      <div>
+                        <Image
+                          className={styles.imgBox}
+                          src={
+                            item.profileImg ?? ('/svgs/profile.svg' as string)
+                          }
+                          alt="프로필이미지"
+                          width={40}
+                          height={40}
+                        />
+                      </div>
+                      <div className={styles.userName}>{item.name}</div>
+                    </div>
+                  </div>
+                );
+              })
+            : followList?.users?.map((item, index) => {
+                return (
+                  <div className={styles.flexCenter} key={index}>
+                    <div className={styles.userListContainer}>
+                      <div className={styles.imgBox}>
+                        <Image
+                          className={styles.imgBox}
+                          src={
+                            item.profileImg ?? ('/svgs/profile.svg' as string)
+                          }
+                          alt="프로필이미지"
+                          width={40}
+                          height={40}
+                        />
+                      </div>
+                      <div className={styles.userName}>{item.name}</div>
+                    </div>
+                  </div>
+                );
+              })}
+        </div>
       </div>
     </>
   );

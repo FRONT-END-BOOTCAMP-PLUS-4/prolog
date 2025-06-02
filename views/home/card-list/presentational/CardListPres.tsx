@@ -34,7 +34,6 @@ export default function CardListPres({
             value={sort}
             onChange={(val) => setSort(val as 'latest' | 'popular')}
             className={styles.selectWrap}
-            storageKey="cardlist-sort"
           />
         </div>
         <div className={styles.viewTypeBar}>

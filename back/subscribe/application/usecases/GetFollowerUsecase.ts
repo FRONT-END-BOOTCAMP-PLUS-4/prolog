@@ -1,17 +1,16 @@
-import { SubscribeRepository } from '../../domain/SubscribeRepository';
+import {
+  FollowersResponse,
+  SubscriptionRepository,
+} from '../../domain/SubscribeRepository';
+export class GetFollowersUsecase {
+  constructor(private subscriptionRepository: SubscriptionRepository) {}
 
-export class GetFollowerUsecase {
-  constructor(private readonly subscribeRepository: SubscribeRepository) {}
-
-  async execute(userId: string) {
-    try {
-      const followerList =
-        await this.subscribeRepository.findFollowersByUserId(userId);
-
-      return followerList;
-    } catch (error) {
-      console.error('Error fetching follower list:', error);
-      throw new Error('Failed to fetch follower list');
-    }
+  async execute(userId: string): Promise<FollowersResponse> {
+    const responseUser =
+      await this.subscriptionRepository.findFollowersByUserId(userId);
+    return {
+      users: responseUser.users,
+      totalCount: responseUser.totalCount,
+    };
   }
 }

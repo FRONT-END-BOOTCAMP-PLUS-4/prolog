@@ -3,16 +3,24 @@ import Image from 'next/image';
 //slice
 import SubscriptionCont from '@/features/subscription/container/SubscriptionCont';
 import { useModalStore } from '@/shared/stores/useModalStore';
-import { User } from '../types';
+import { SubscribeUser, User } from '../types';
 //style
 import styles from '../styles/ProfileCardPres.module.scss';
 import SubscriptionListCont from '@/features/subscription-list/container/SubscriptionListCont';
 
 type UserProps = {
   userData: User;
+  followerList: SubscribeUser;
+  followList: SubscribeUser;
+  userId: string;
 };
 
-export default function ProfileCardPres({ userData }: UserProps) {
+export default function ProfileCardPres({
+  userData,
+  userId,
+  followList,
+  followerList,
+}: UserProps) {
   const defaultImg = '/svgs/my-card-background.jpg';
   const openModal = useModalStore((state) => state.action.open);
 
@@ -60,20 +68,32 @@ export default function ProfileCardPres({ userData }: UserProps) {
             <div className={styles.userInfo}>
               <h2 className={styles.nameText}>{userData?.name}</h2>
               <div>
-                <SubscriptionCont />
+                <SubscriptionCont userId={userId} />
               </div>
             </div>
             <div
               onClick={() => {
-                openModal(<SubscriptionListCont />, 'center');
+                openModal(
+                  <SubscriptionListCont
+                    followList={followList}
+                    followerList={followerList}
+                  />,
+                  'center',
+                );
               }}
               className={styles.followContainer}
             >
               <button className={styles.followText}>
-                팔로워<span className={styles.followNumberText}>17</span>
+                팔로워
+                <span className={styles.followNumberText}>
+                  {followerList.totalCount}
+                </span>
               </button>
               <button className={styles.followText}>
-                팔로잉<span className={styles.followNumberText}>15</span>
+                팔로잉
+                <span className={styles.followNumberText}>
+                  {followList.totalCount}
+                </span>
               </button>
             </div>
           </div>

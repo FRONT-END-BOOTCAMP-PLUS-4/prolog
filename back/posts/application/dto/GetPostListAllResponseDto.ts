@@ -10,6 +10,7 @@ export class GetPostListAllResponseDto {
       content?: string;
       page: number;
       pageSize: number;
+      sort?: 'latest' | 'popular';
     },
     public count: number,
     public data: GetPostListAllDto[],

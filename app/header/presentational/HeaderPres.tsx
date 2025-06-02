@@ -46,7 +46,6 @@ export default function HeaderPres({ username }: { username: string }) {
 
   const handleLogoClick = () => {
     setSearchKey((prev) => prev + 1); // key를 변경하면 컴포넌트가 remount되어 state가 초기화됨
-    // 이후 라우터 이동 등 추가 동작
   };
 
   // 드롭다운, 검색창 영역 ref
@@ -254,7 +253,6 @@ export default function HeaderPres({ username }: { username: string }) {
                   </button>
                 </div>
               )}
-
             </div>
           </>
         )}
