@@ -1,13 +1,82 @@
 @use "@styles/variables.scss" as *;
 
+.wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
 .bodyText {
-  font-size: $font-sm-size;
-  padding: 16px ;
+  font-size: $font-lg-size;
+  line-height: 1.8;
+
+  img {
+    max-width: 500px;
+    max-height: 500px;
+    height: auto;
+    display: block;
+    margin: 1.5rem auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+
+  h1, h2, h3 {
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  h1 { font-size: 1.8rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1.25rem; }
+
+  p {
+    margin: 1rem 0;
+  }
+
+  a {
+    color : black;
+  }
+
+  ul, ol {
+    list-style: initial;
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+
+  pre {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    font-family: monospace;
+    font-size: 0.95em;
+  }
+
+  blockquote {
+    border-left: 4px solid black;
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: #555;
+    background-color: #f9f9f9;
+  }
 }
 
 .tagList {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  padding: 0 16px ;
+  margin-top: 1.5rem;
 }
+
+

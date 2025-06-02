@@ -29,6 +29,9 @@
         "noForEach": "off",
         "useOptionalChain": "off"
       },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
       "recommended": true,
       "correctness": {
         "useExhaustiveDependencies": "off"
