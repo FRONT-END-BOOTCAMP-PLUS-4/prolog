@@ -41,4 +41,24 @@ export async function PATCH(
   }
 }
 
-export async function DELETE() {}
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } },
+) {
+  try {
+    const userData = await getToken({ req, secret: process.env.AUTH_SECRET });
+    if (!userData || !userData.sub) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
+
+    const usecase = new DeleteCommentUsecase(new PrCommentRepository());
+    await usecase.execute(Number(params.id), userData.sub);
+
+    return NextResponse.json(
+      { message: '댓글이 삭제되었습니다.' },
+      { status: 200 },
+    );
+  } catch (error) {
+    return NextResponse.json({ message: '댓글 삭제 실패' }, { status: 500 });
+  }
+}

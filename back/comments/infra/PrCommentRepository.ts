@@ -75,4 +75,10 @@ export class PrCommentRepository implements CommentRepository {
       select: { id: true, userId: true },
     });
   }
+
+  async deleteComment(commentId: number): Promise<void> {
+    await prisma.comment.delete({
+      where: { id: commentId },
+    });
+  }
 }

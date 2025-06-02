@@ -15,4 +15,5 @@ export interface CommentRepository {
     updatedAt: Date,
   ): Promise<void>;
   findById(commentId: number): Promise<{ id: number; userId: string } | null>;
+  deleteComment(commentId: number): Promise<void>;
 }
