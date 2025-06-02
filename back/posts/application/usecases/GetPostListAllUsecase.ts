@@ -52,6 +52,7 @@ export class GetPostListAllUsecase {
           tags: filters.tags,
           title: filters.title,
           content: filters.content,
+          sort: filters.sort,
           page,
           pageSize,
         },
