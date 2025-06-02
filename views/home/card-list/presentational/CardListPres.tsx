@@ -21,6 +21,7 @@ export default function CardListPres({
   items,
   sortOptions,
   isLoading = false,
+  userId,
 }: CardListPresProps) {
   const skeletonCount =
     items.length === 0 ? DEFAULT_SKELETON_COUNT : items.length;
@@ -97,9 +98,17 @@ export default function CardListPres({
         ) : (
           items.map((item) =>
             viewType === 'card' ? (
-              <SquareCardPres key={`item-${item.id}`} data={item} />
+              <SquareCardPres
+                key={`item-${item.id}`}
+                data={item}
+                userId={userId}
+              />
             ) : (
-              <LongCardPres key={`item-${item.id}`} data={item} />
+              <LongCardPres
+                key={`item-${item.id}`}
+                data={item}
+                userId={userId}
+              />
             ),
           )
         )}
