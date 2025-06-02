@@ -7,7 +7,7 @@ export class OpenAiRepository implements AiRepository {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.GPT_API_KEY}`,
+        Authorization: `Bearer ${process.env.MY_GPT_API_KEY}`,
       },
       body: JSON.stringify({
         model: 'gpt-4o-mini',
