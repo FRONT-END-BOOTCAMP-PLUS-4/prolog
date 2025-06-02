@@ -26,11 +26,14 @@ export default function MyBlogCardListCont() {
       'End',
     ],
     userNickName: `user ${i + 1}`,
+    userName: `username${i + 1}`,
+    userProfileImage: '/svgs/profile.svg',
     date: '2025-01-01',
     commentCount: i,
     loveCount: 50 + i,
     imageUrl: '/svgs/image.svg',
     isBookMarked: i % 2 === 0,
+    isLiked: false,
   }));
   const [sort, setSort] = useState<'latest' | 'popular' | 'bookMark'>('latest');
   const [items, setItems] = useState<MyBlogCardData[]>([]);

@@ -52,7 +52,6 @@ export default function SubscriptionListPres({
         </div>
         <div className={styles.list}>
           {isFollow
-
             ? followerList?.users?.map((item, index) => {
                 return (
                   <div className={styles.flexCenter} key={index}>
@@ -86,8 +85,6 @@ export default function SubscriptionListPres({
                           alt="프로필이미지"
                           width={40}
                           height={40}
-                          width={32}
-                          height={32}
                         />
                       </div>
                       <div className={styles.userName}>{item.name}</div>
