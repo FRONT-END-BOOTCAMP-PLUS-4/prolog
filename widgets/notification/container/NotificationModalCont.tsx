@@ -1,54 +1,39 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { NotificationListCont } from '@/features/notification-list';
 import NotificationModalPres from '../presentational/NotificationModalPres';
+import { NotificationReadCont } from '@/features/notification-read';
+import { NotificationDeleteCont } from '@/features/notification-delete'
 
 export default function NotificationModalCont() {
-  const [deleteMode, setDeleteMode] = useState<boolean>(false);
-  const [allNotificationIds, setAllNotificationIds] = useState<number[]>([]);
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
-  const [isOpen, setIsOpen] = useState(true);
 
-  useEffect(()=>{
-    fetch('/api/member/notifications')
-  },[])
-
-  const toggleSelect = (notificationItemId: number) => {
-    setSelectedIds((prev) =>
-      prev.includes(notificationItemId)
-        ? prev.filter((i) => i !== notificationItemId)
-        : [...prev, notificationItemId],
+  const { submitRead, isSuccess } = NotificationReadCont();
+  const { submitDelete, deleteStatus } = NotificationDeleteCont();
+  const { notificationList } = NotificationListCont(deleteStatus);
+  
+  const [selectList, setSelectList] = useState<number[]>([]);
+  const clickSelecterId = (idx: number) => {
+    setSelectList((prev) =>
+      prev.includes(idx) ? prev.filter((id) => id !== idx) : [...prev, idx],
     );
   };
 
-  const onSelectAll = () => {
-    if (selectedIds.length === allNotificationIds.length) {
-      setSelectedIds([]);
-    } else {
-      setSelectedIds(allNotificationIds);
-    }
+  const allCheck = () => {
+    const allIds = notificationList.map(item => item.id);
+    setSelectList(allIds);
   };
 
-  const cancelDeleteMode = () => {
-    setDeleteMode(false);
-    setSelectedIds([]);
-  };
-
-  const startDeleteMode = () => {
-    setDeleteMode(true);
-    setSelectedIds([]);
-  };
-
-  if (!isOpen) return null;
+  const allCancel = () => setSelectList([]);
 
   return (
     <NotificationModalPres
-      deleteMode={deleteMode}
-      selectedIds={selectedIds}
-      onToggleSelect={toggleSelect}
-      onCancel={cancelDeleteMode}
-      onToggleDeleteMode={startDeleteMode}
-      setAllNotificationIds={setAllNotificationIds}
-      onSelectAll={onSelectAll}
-      onClose={() => setIsOpen(false)}
+      allCheck={allCheck}
+      allCancel={allCancel}
+      notificationList={notificationList}
+      selectList={selectList}
+      clickSelecterId={clickSelecterId}
+      submitRead={submitRead}
+      isSuccess={isSuccess}
+      submitDelete={submitDelete}
     />
   );
 }

@@ -4,7 +4,7 @@ import { META } from '@/shared/consts/metadata';
 
 export type MetaDataType = {
   title: string;
-  description: string;
+  description?: string;
   ogImage?: string;
   asPath?: string;
 };

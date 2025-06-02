@@ -1,9 +1,17 @@
 import Image from 'next/image';
 import { auth } from '@/app/(auth)/auth';
+import { cookies } from 'next/headers';
 
 async function getData() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'}/api/test`);
+    const cookieStore = await cookies();
+    const sessionToken = cookieStore.get('authjs.session-token');
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'}/api/test`,{
+      headers: {
+        'Cookie': `authjs.session-token=${sessionToken?.value}`,
+      },
+    });
     return await res.json();
   } catch (error) {
     return null;

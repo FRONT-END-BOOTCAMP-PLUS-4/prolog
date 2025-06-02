@@ -27,27 +27,37 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   ],
   callbacks: {
     async signIn({ user, account }) {
-      // Oauth에서 제공자가 없다면 로그인 불가
       if (!account) return false;
 
-      // 새로운 사용자일경우 db에 값저장
       if (user.email && user.name) {
-        const existingUser = await prisma.user.findUnique({
-          where: { email: user.email, provider: account.provider },
+        
+        //기존사용자들 불러옴
+        const existingUser = await prisma.user.findMany({
+          where: { email: user.email },
         });
 
-        if (!existingUser) {
-          await prisma.user.create({
+
+        // 기존사용자들 탐색
+        const userCount = existingUser.length;
+        const userProvider = existingUser.filter( user => user.provider === account.provider);
+        
+        // 새로운 사용자일 경우
+          if(!userProvider.length) {
+            const userTags = user.email.split("@")[0];
+            await prisma.user.create({
             data: {
               id: user.id,
               email: user.email,
-              name: user.name,
+              name: userTags + `#${userCount + 1}`,
               profileImg: user.image,
               provider: account.provider,
-            },
-          });
-        }
-        user.id = existingUser ? existingUser.id : user.id;
+              },
+            })
+          }
+        
+        // 기존 사용자일 경우
+        const nowUser = existingUser.filter( prevUser => prevUser.provider === account.provider)[0];
+        user.id = nowUser ? nowUser.id : user.id;
       }
 
       return true;
