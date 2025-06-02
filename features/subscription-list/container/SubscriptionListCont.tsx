@@ -2,22 +2,29 @@
 import { useState } from 'react';
 //slice
 import SubscriptionListPres from '../presentational/SubscriptionListPres';
+import { SubscribeUser } from '@/views/story/profile-card/types';
 
-export default function SubscriptionListCont() {
-  const followerList = Array(8).fill({
-    nickName: 'userNickName',
-    profileImg: '/svgs/profile.svg',
-  });
+type SubscribeProps = {
+  followList: SubscribeUser;
+  followerList: SubscribeUser;
+};
+export default function SubscriptionListCont({
+  followList,
+  followerList,
+}: SubscribeProps) {
   const [isFollow, setIsFollow] = useState<boolean>(true);
 
   const handleFollowListDisplay = () => {
     setIsFollow((prev) => !prev);
   };
   return (
-    <SubscriptionListPres
-      followerList={followerList}
-      handleFollowListDisplay={handleFollowListDisplay}
-      isFollow={isFollow}
-    />
+    <>
+      <SubscriptionListPres
+        followList={followList}
+        followerList={followerList}
+        handleFollowListDisplay={handleFollowListDisplay}
+        isFollow={isFollow}
+      />
+    </>
   );
 }

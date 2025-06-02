@@ -4,13 +4,36 @@ import { JSX, useEffect, useState } from 'react';
 //slice
 import ProfileCardPres from '../presentational/ProfileCardPres';
 //type
-import { User } from '../types';
+import { SubscribeUser, User } from '../types';
 
 export default function ProfileCardCont({
   username,
-}: { username: string }): JSX.Element {
+  userId,
+}: { username: string; userId: string }): JSX.Element {
   const [userData, setUserData] = useState<User>();
-  console.log(username);
+  const [followList, setFollowList] = useState<SubscribeUser>();
+  const [followerList, setFollowerList] = useState<SubscribeUser>();
+
+  useEffect(() => {
+    try {
+      const getFollowingHandler = async () => {
+        const response = await fetch(
+          `/api/member/subscription/following?userId=${userId}`,
+        );
+        const data = await response.json();
+        setFollowList(data);
+      };
+      const getFollowerHandler = async () => {
+        const response = await fetch(
+          `/api/member/subscription/follower?userId=${userId}`,
+        );
+        const data = await response.json();
+        setFollowerList(data);
+      };
+      getFollowingHandler();
+      getFollowerHandler();
+    } catch (error) {}
+  }, [userId]);
   useEffect(() => {
     const getUserHandler = async () => {
       try {
@@ -22,5 +45,12 @@ export default function ProfileCardCont({
     getUserHandler();
   }, [username]);
 
-  return <ProfileCardPres userData={userData!} />;
+  return (
+    <ProfileCardPres
+      followList={followList ?? ({} as SubscribeUser)}
+      followerList={followerList ?? ({} as SubscribeUser)}
+      userId={userId}
+      userData={userData!}
+    />
+  );
 }
