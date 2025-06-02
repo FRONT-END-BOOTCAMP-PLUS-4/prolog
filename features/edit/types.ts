@@ -15,4 +15,7 @@ export type PostDetailType = {
   isBookmarked: boolean;
   following: boolean;
   likeCount: number;
+  categoryId?: number;
+  useAi: number;
+  isPublic: number;
 };
