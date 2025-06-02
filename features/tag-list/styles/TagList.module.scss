@@ -21,14 +21,6 @@
   animation-play-state: paused;
 }
 
-:global(.cardContainer):hover :global(.tagList.rolling) {
-  animation-play-state: running;
-}
-
-:global(.cardContainer):hover :global(.tagList.rolling):hover {
-  animation-play-state: paused;
-}
-
 @keyframes slide {
   from {
     transform: translateX(0);

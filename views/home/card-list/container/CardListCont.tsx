@@ -1,7 +1,7 @@
 'use client';
 
 // package
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 // slice
 import CardListPres from '../presentational/CardListPres';
@@ -15,8 +15,8 @@ import { useInfiniteScrollTrigger } from '../hooks/useInfiniteScrollTrigger';
 import { CardData } from '@/widgets/card/types';
 import { useSearch } from '@/shared/contexts/SearchContext';
 import { useInfiniteScroll } from '@/shared/hooks/useInfiniteScroll';
-import { useLocalStorage } from '@/shared/hooks/useLocalStorage';
 import { PostListFilter } from '@/shared/types';
+import { useLocalStorage } from '@/shared/hooks/useLocalStorage';
 
 const MIN_SKELETON_TIME = 1000;
 
@@ -27,13 +27,10 @@ const SORT_OPTIONS = [
 
 export default function CardListCont() {
   const [viewType, setViewType] = useLocalStorage<ViewType>(
-    'cardlist-viewtype',
+    'card-view-type',
     'card',
   );
-  const [sort, setSort] = useLocalStorage<'latest' | 'popular'>(
-    'cardlist-sort',
-    'latest',
-  );
+  const [sort, setSort] = useState<'latest' | 'popular'>('latest');
 
   const { searchParams } = useSearch();
 
@@ -66,6 +63,7 @@ export default function CardListCont() {
     commentCount: post.commentCount ?? 0,
     loveCount: post.loveCount ?? 0,
     imageUrl: post.thumbnailUrl ?? null,
+    isLiked: post.isLiked ?? false,
   }));
 
   const uniqueItems: CardData[] = mappedItems.filter(
