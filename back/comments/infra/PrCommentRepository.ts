@@ -3,6 +3,7 @@ import { CreateCommentDto } from '../application/dto/CreateCommentDto';
 import { CommentRepository } from '../domain/CommentRepository';
 import { Comment } from '@/app/generated/prisma';
 import { GetCommentDto } from '../application/dto/GetCommentDto';
+import { UpdateCommentDto } from '../application/dto/UpdateCommentDto';
 
 export class PrCommentRepository implements CommentRepository {
   async createComment(newComment: CreateCommentDto): Promise<Comment> {
@@ -54,5 +55,24 @@ export class PrCommentRepository implements CommentRepository {
       where: { postsId: postId },
     });
     return count;
+  }
+
+  async updateComment(commentId: number, content: string, updatedAt: Date) {
+    await prisma.comment.update({
+      where: { id: commentId },
+      data: {
+        content,
+        updatedAt,
+      },
+    });
+  }
+
+  async findById(
+    commentId: number,
+  ): Promise<{ id: number; userId: string } | null> {
+    return prisma.comment.findUnique({
+      where: { id: commentId },
+      select: { id: true, userId: true },
+    });
   }
 }

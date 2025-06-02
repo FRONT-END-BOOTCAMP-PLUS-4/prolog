@@ -9,4 +9,10 @@ export interface CommentRepository {
     currentUserId: string | null,
   ): Promise<GetCommentDto[]>;
   countByPostId(postId: number): Promise<number>;
+  updateComment(
+    commentId: number,
+    content: string,
+    updatedAt: Date,
+  ): Promise<void>;
+  findById(commentId: number): Promise<{ id: number; userId: string } | null>;
 }
