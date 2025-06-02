@@ -41,18 +41,25 @@ export default function CommentListCont({ postId }: { postId: number }) {
   }, [postId]);
 
   const handleEditComment = async (id: number, newText: string) => {
-    console.log(`PATCH /comments/${id}`, { text: newText });
-
-    // API 요청 (예시용)
-    // await fetch(`/api/comments/${id}`, {
-    //   method: 'PATCH',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({ text: newText }),
-    // });
-
-    setComments((prev) =>
-      prev.map((c) => (c.id === id ? { ...c, text: newText } : c)),
-    );
+    fetch(`/api/member/comments/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ content: newText }),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error();
+        return res.json();
+      })
+      .then(() => {
+        setComments((prev) =>
+          prev.map((c) => (c.id === id ? { ...c, text: newText } : c)),
+        );
+      })
+      .catch((error) => {
+        console.error(`Failed to update comment with id ${id}:`, error);
+      });
   };
 
   const handleDeleteComment = async (id: number) => {
