@@ -48,4 +48,11 @@ export class PrCommentRepository implements CommentRepository {
       isMine: currentUserId ? comment.userId === currentUserId : false,
     }));
   }
+
+  async countByPostId(postId: number): Promise<number> {
+    const count = await prisma.comment.count({
+      where: { postsId: postId },
+    });
+    return count;
+  }
 }

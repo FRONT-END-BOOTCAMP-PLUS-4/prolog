@@ -8,4 +8,5 @@ export interface CommentRepository {
     postId: number,
     currentUserId: string | null,
   ): Promise<GetCommentDto[]>;
+  countByPostId(postId: number): Promise<number>;
 }
