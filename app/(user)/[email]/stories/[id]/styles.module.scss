@@ -1,0 +1,62 @@
+@use "@styles/variables.scss" as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 30px;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titleText {
+  @include font-title;
+  color: $theme-text-1;
+  text-align: left;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 3px;
+  color: $theme-gray-3;
+}
+
+.editWrapper {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+  @media (max-width: 768px) {
+    .editWrapper {
+      display: none;
+    }
+  }
+
+
+.profileLayout {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profileBar {
+  display: flex;
+  gap: 16px;
+}
+
+.iconBar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.commentTitle {
+  @include font-xl;
+  font-size: $font-base-size;
+  color: $theme-text-2;
+}

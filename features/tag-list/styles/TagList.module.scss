@@ -1,0 +1,31 @@
+@use '@styles/variables.scss' as *;
+
+.tagListContainer { 
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  height: 32px;
+  display: flex;
+  align-items: center;
+}
+
+.tagList { 
+  display: flex;
+  gap: 8px;
+  white-space: nowrap; 
+  width: max-content;
+}
+
+.tagList.rolling {
+  animation: slide 15s linear infinite;
+  animation-play-state: paused;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

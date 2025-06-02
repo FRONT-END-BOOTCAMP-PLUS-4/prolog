@@ -1,0 +1,58 @@
+@use '@styles/variables.scss' as *;
+
+.filterBar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 1rem;
+}
+
+
+.viewTypeBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.viewTypeIcon {
+  cursor: pointer;
+  color: $theme-gray-1; 
+  filter: brightness(1);
+  transition:  filter 0.2s;
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.viewTypeIconActive {
+  color: $theme-soft-lavender;
+  filter: none;
+  width: 1.3rem;
+  height: 1.3rem;
+}
+
+.cardList {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: column;
+  }
+
+.cardLayout {
+  gap: 16px;
+}
+
+.cardLayout.square {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 300px);
+  gap: 50px;
+  justify-content: center;
+  justify-items: center;
+  max-width: calc(320px * 4 + 32px * 3);
+}
+
+.cardLayout.long {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

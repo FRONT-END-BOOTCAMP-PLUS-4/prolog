@@ -1,0 +1,76 @@
+@use '@styles/variables.scss' as *;
+.container{
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  left: 0;
+  top: 60px;
+  width: 120px;
+  
+}
+.categoryListColumn{
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.btnBorderNone{
+  @include font-base;
+  color: $theme-text-2;
+  border: none;
+  cursor: pointer;
+}
+.currentColor{
+  @include font-lg;
+  color: $theme-primary;
+  font-weight: 600;
+}
+.title{
+@include font-sm;
+color: $theme-text-2;
+}
+.currentText{
+  color: $theme-text-2;
+  line-height: 1.5;
+}
+@media (max-width: 754px) {
+  .container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+  .title{
+    display: none;
+  }
+  .categoryListColumn{
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+  padding-bottom: 8px;
+  height: 50px;
+  
+  &::-webkit-scrollbar {
+    height: 8px; 
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent; 
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $theme-shade-4;
+    border-radius: 4px;
+  }
+}
+.currentText{
+display: flex;
+  color: $theme-text-2;
+  line-height: 1.5;
+  width: 100%;
+  white-space: nowrap;
+}
+}

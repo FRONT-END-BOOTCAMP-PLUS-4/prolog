@@ -1,0 +1,31 @@
+@use "@styles/variables.scss" as *;
+
+.profileInfo {
+  display: flex;
+  gap: 8px;
+  cursor: pointer;
+  img{
+  border-radius: 50%;}
+}
+
+.profileName {
+  font-size: $font-sm-size;
+  color: $theme-text-1;
+  display: -webkit-box;     
+  -webkit-line-clamp: 1;
+  line-clamp: 1;     
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.profileDate {
+  font-size: $font-xs-size;
+  color: $theme-text-2;
+  display: -webkit-box;     
+  -webkit-line-clamp: 1;
+  line-clamp: 1;     
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}

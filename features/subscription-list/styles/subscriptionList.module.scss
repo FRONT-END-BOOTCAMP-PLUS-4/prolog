@@ -1,0 +1,111 @@
+@use '@styles/variables.scss' as *;
+@use '@styles/mixins.scss' as *;
+.container{
+  width: 550px;
+  height: 700px;
+  margin-top: 2rem;
+  box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 20px;
+  position: absolute;
+  top: 20%;
+  left: 38%;
+  background-color:$theme-shade-2;
+}
+.searchbar{
+  width: 300px;
+}
+.toggle {
+  width: 35px;
+  height: 17px;
+  border: 2px solid $theme-primary;
+  border-radius: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 1px;
+  background-color: $theme-shade-4;
+
+  .toggleCurrent {
+    position: absolute;
+    left: 0px;
+    top: -0.3px;
+    background-color: $theme-primary;
+    border-radius: 100%;
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s ease;
+    transform: translateX(0);
+  }
+
+  &.movieToggle {
+    .toggleCurrent {
+      transform: translateX(18px); 
+    }
+  }
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .flexColumn{
+    display: flex;
+    flex-direction: column;
+  }
+  .followGap{
+    display: flex;
+    gap: 10px;
+  }
+  .subscriptionBox{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  .toggleTextActive{
+    @include font-xl;
+    color:#5B53E8;
+    font-weight: 200
+  }
+  .toggleTextBasic{
+    @include font-xl;
+    color: $theme-gray-4;
+    font-weight: 200
+  }
+  .list{
+    display: flex;
+    flex-direction: column;
+    padding-left: 150px;
+    
+  }
+  .flexCenter{
+    display: flex;
+    justify-items: center;
+    margin-top: 5px;
+  }
+  .text{
+    font-size:20px ;
+    color: $theme-gray-1;
+  }
+  .userListContainer{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 20px;
+    gap: 100px;
+  }
+ 
+  .userName{
+    color: $theme-shade-8;
+    @include font-xl;
+    text-align: center;
+  }
+  .imgBox{
+    border-radius: 100%;
+    text-align: center;
+  }
+  

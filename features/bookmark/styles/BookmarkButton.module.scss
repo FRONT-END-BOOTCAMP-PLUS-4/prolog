@@ -1,0 +1,22 @@
+@use "@styles/variables.scss" as *;
+
+.bookmarkWrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  :hover {
+    color: $theme-green;
+  }
+}
+
+.bookmarkedIcon,
+.unBookmarkedIcon {
+  width: 20px;
+  height: 20px;
+  color: $theme-gray-5;
+}
+
+.bookmarkedIcon {
+  color: $theme-green;
+}

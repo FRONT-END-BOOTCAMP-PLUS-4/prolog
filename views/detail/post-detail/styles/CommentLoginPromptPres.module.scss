@@ -1,0 +1,17 @@
+@use "@styles/variables.scss" as *;
+
+.commentBox {
+  width: 100%;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  background-color: $theme-shade-3;
+}
+
+.commentGuide {
+  @include font-base;
+  color: $theme-gray-4;
+}

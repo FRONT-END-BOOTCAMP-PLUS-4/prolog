@@ -1,0 +1,131 @@
+@use '@styles/variables.scss' as *;
+
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - #{$header-height} - #{$posts-form-footer}); // (헤더 + 푸터) 높이만큼 빼줘야 함
+    padding: 30px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.titleInput {
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    font-size : $font-title-size;
+    font-weight: $font-title-weight;
+    outline: none;
+    background-color: transparent;
+    padding: 10px;
+    color : $theme-text-1;
+}
+
+
+.editorLayout {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; 
+
+    :global(.w-md-editor) {
+        /* 에디터 레이아웃 커스텀 */
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        border: none;
+        box-shadow: none;
+        overflow: hidden;
+      
+
+    }
+
+    :global(.w-md-editor-toolbar) {
+        /* 툴바 커스텀 */
+        position: sticky;
+        top: 0;
+        background-color: $theme-shade-2;
+        padding: 8px 12px;
+        gap: 12px;
+        border: none;
+        height: 45px;
+        margin-bottom: 5px;
+    
+    }
+
+    :global(.w-md-editor-content) {
+        /* 에디터 커스텀 */
+        flex: 1;
+        overflow-y: auto;     
+    }
+
+    :global(.w-md-editor-preview) {
+        /* 미리보기 커스텀 */
+       // box-shadow: none;    
+     
+    }
+}
+
+
+.footer {
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 12px 24px;
+    background-color: $theme-shade-2;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
+    height: $posts-form-footer;
+}
+
+
+
+.leftControls {
+    display: flex;
+    gap: 10px;
+}
+
+.rightControls {
+    display: flex;
+    gap: 10px;
+}
+
+
+.buttonWrapper {
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  width: fit-content;
+
+}
+
+.toggleButton {
+  padding: 0.5rem 0.8rem;
+  border: none;
+  background: $theme-secondary;
+  cursor: pointer;
+  font-weight: 500;
+  color: $theme-white;
+  opacity: 0.9;
+  font-size: $font-base-size;
+
+  &:not(:last-child) {
+    border-right: 1px solid $theme-shade-2;
+  }
+}
+
+.saveButton:hover {
+   opacity: 1
+}
+
+.countButton:hover {
+   opacity: 1
+
+}
+
+

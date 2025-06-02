@@ -1,0 +1,63 @@
+@use "@styles/variables.scss" as *;
+@use "sass:color";
+
+
+.card {
+  position: relative;
+  background-color: $theme-shade-2;
+  border-radius: 8px;
+  padding: 8px;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.25);
+}
+
+.cleanIcon {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.inner {
+  background-color: $theme-shade-1;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+}
+
+.welcome {
+  font-size: $font-title-size;
+  color: $theme-text-1;
+}
+
+.guide {
+  font-size: $font-base-size;
+  color: $theme-gray-4;
+  text-align: center;
+}
+
+.btns {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.btnInner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.terms {
+  font-size: $font-xs-size;
+  color: $theme-gray-5;
+}

@@ -1,0 +1,41 @@
+@use './variables.scss' as *;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,body {
+  background-color: $theme-shade-1;
+  color: $theme-text-1;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+.cardContainer:hover .tagList.rolling {
+  animation-play-state: running;
+}
+
+.cardContainer:hover .tagList.rolling:hover {
+  animation-play-state: paused;
+}
+
+@media  (max-width:768px) {
+    html,body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+}

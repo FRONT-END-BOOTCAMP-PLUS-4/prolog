@@ -1,0 +1,145 @@
+@use '@styles/variables.scss' as *;
+
+.bottomSheet {
+  width: 100%;
+  padding: 16px;
+  background-color: $theme-shade-2;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+
+  min-height: calc(53px * 10);
+}
+
+.layout {
+  padding: 24px 16px; 
+  max-width: 1000px;   
+  margin: 0 auto;  
+}
+
+.header {
+  font-size: $font-lg-size;
+  font-weight: bold;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid #ddd;
+}
+
+.headerTitle {
+  display: flex;
+  gap: 6px; 
+ 
+}
+
+.headerIcon {
+  color :$theme-gray-3;
+  cursor: pointer;
+  
+  &:hover {
+    color: #000;
+  }
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+
+  
+}
+
+.date {
+    width: 100px;
+    font-size: 13px;
+    color: $theme-gray-3;
+    flex-shrink: 0;
+}
+
+.titleWrapper {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0; // ✨ 중요! overflow 제어 위해 필요
+}
+
+.title {
+    flex: 1;
+    font-size: $font-sm-size;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: border-bottom 0.2s;
+
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
+.icon {
+    flex-shrink: 0;
+    cursor: pointer;
+    color: $theme-gray-2;
+    transition: color 0.2s;
+
+    &:hover {
+        color: $theme-black;
+    }
+}
+
+.btnBox {
+    text-align: center;
+}
+
+
+
+.tooltipWrapper {
+  position: relative;
+  display: inline-block;
+
+  &:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(6px);
+  }
+}
+
+.tooltip {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  background-color: #333;
+  color: $theme-white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 13px;
+  white-space: nowrap;
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) translateX(-100%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent #333 transparent transparent;
+  }
+}

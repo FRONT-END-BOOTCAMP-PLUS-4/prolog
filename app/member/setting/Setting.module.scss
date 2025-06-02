@@ -1,0 +1,129 @@
+@use '@styles/variables.scss' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.profileSection {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.profileImageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding-right: 12px;
+  border-right: 1px solid $theme-gray-1;
+}
+
+.profilePlaceholder {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50px;
+}
+
+.profileButtonGroup{
+    display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.userInfoContainer {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: $theme-shade-2;
+}
+
+.email {
+    @include font-sm;
+  color: $theme-text-2;
+}
+
+.nickname {
+    @include font-xl;
+  color: $theme-text-2;
+  outline: none;
+  border: none;
+  background-color: $theme-shade-2;
+}
+
+.bioTextarea {
+    padding: 8px;
+    border-radius: 8px;
+    background-color: $theme-shade-2;
+    color: $theme-text-2;
+  border: none;
+  resize: none;
+  flex-grow: 1;
+  outline: none;
+
+  &::placeholder{
+    color: $theme-gray-1;
+  }
+}
+
+.settingsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.settingItemContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    gap: 20px;
+    border-radius: 1px;
+  border-bottom: 1px solid $theme-gray-1;
+}
+
+.settingItem {
+  display: flex;
+  align-items: center;
+  padding: 8px 0px;
+}
+
+.settingLabel {
+    @include font-xl;
+  color: $theme-text-2;
+  min-width: 100px;
+}
+
+.settingControls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.settingButtonGroup {
+    display: flex;
+    gap: 12px;
+}
+.lightBtn{
+background-color: $theme-white;
+border-radius: 8px;
+}
+.darkBtn{
+ background-color: $theme-black;
+ border-radius: 8px;
+}
+
+.settingDescription {
+  color: $theme-gray-1;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
