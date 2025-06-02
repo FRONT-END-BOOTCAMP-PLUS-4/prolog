@@ -1,42 +1,48 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import CommentListPres from '../presentational/CommentListPres';
 import { Comment } from '../types';
 
-export default function CommentListCont() {
-  const [comments, setComments] = useState<Comment[]>([
-    {
-      id: 1,
-      userNickName: 'userNickName1',
-      date: '2025-01-01',
-      text: '좋은글 잘읽고 갑니다~',
-    },
-    {
-      id: 2,
-      userNickName: 'userNickName2',
-      date: '2025-01-02',
-      text: '정말 유익한 정보네요!',
-    },
-    {
-      id: 3,
-      userNickName: 'userNickName3',
-      date: '2025-01-03',
-      text: '감사합니다! 많은 도움이 되었습니다.',
-    },
-    {
-      id: 4,
-      userNickName: 'userNickName4',
-      date: '2025-01-04',
-      text: '좋은글 잘읽고 갑니다~',
-    },
-    {
-      id: 5,
-      userNickName: 'userNickName5',
-      date: '2025-01-05',
-      text: '정말 유익한 정보네요!',
-    },
-  ]);
+export default function CommentListCont({ postId }: { postId: number }) {
+  const [comments, setComments] = useState<Comment[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!postId) return;
+    setLoading(true);
+    fetch(`/api/member/comments?postId=${postId}`)
+      .then((res) => {
+        if (!res.ok) throw new Error();
+        return res.json();
+      })
+      .then((data) => {
+        interface ServerComment {
+          id: number;
+          nickname: string;
+          createdAt: string;
+          content: string;
+        }
+
+        setComments(
+          (data as ServerComment[]).map(
+            (c: ServerComment): Comment => ({
+              id: c.id,
+              userNickName: c.nickname, // ← 서버에서 오는 DTO 필드에 맞게 맵핑
+              date: c.createdAt,
+              text: c.content,
+              // ...필요시 추가 필드 맵핑
+            }),
+          ),
+        );
+      })
+      .catch(() => {
+        setComments([]);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [postId]);
 
   const handleEditComment = async (id: number, newText: string) => {
     console.log(`PATCH /comments/${id}`, { text: newText });

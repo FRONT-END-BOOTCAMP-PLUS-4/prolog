@@ -1,7 +1,7 @@
 @use "@styles/variables.scss" as *;
 
-.modal {
-  width: clamp(200px, 40vw, 360px);
+.container {
+  min-width: 250px;
   height: 400px;
   display: flex;
   flex-direction: column;
@@ -12,61 +12,29 @@
   padding: 8px;
 }
 
-.empty {
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: $theme-gray-5;
+.centerContainer{
+    flex-grow: 1;
+    overflow: auto; // 넘침 감추기
 }
 
-.close {
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: end;
-  padding: 3px 3px 0 0;
+
+.bottomContainer{
+
+    &__selectSection{
+        display: flex;
+        justify-content: flex-end;
+        gap: 4px;
+    }
+
+    &__deleteSection{
+        display: flex;
+        justify-content: space-between;
+    
+        &__right{
+            display: flex;
+            gap: 4px;
+        }
+    }
 }
 
-.list {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  overflow-y: auto;
-  height: 328px;
 
-  /* 크롬, 사파리 */
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* 파이어폭스 */
-  scrollbar-width: none;
-
-  /* IE/Edge (구버전) */
-  -ms-overflow-style: none;
-}
-
-.footer {
-  display: flex;
-}
-
-.deleteMode {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.deleteModeInner {
-  display: flex;
-  gap: 4px;
-}
-
-.normalMode {
-  width: 100%;
-  display: flex;
-  justify-content: end;
-  gap: 4px;
-}

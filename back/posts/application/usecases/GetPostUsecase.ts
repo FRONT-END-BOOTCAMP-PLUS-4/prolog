@@ -5,7 +5,7 @@ import { GetPostViewDto } from '../dto/GetPostViewDto';
 export class GetPostUsecase {
   constructor(private readonly postRepository: PostsRepository) {}
 
-  async execute(postId: number, currentUserId: string) {
+  async execute(postId: number, currentUserId: string | null) {
     const post = await this.postRepository.getPostById(postId, currentUserId);
 
     if (!post) {

@@ -6,6 +6,7 @@ import { Comment } from '../types';
 import Profile from '@/shared/ui/profile';
 import { EditButtonCont } from '@/features/edit';
 import { DeleteButtonCont } from '@/features/delete';
+import dayjs from 'dayjs';
 
 type Props = {
   comments: Comment[];
@@ -20,6 +21,10 @@ export default function CommentListPres({
 }: Props) {
   const [editId, setEditId] = useState<number | null>(null);
   const [editText, setEditText] = useState<string>('');
+
+  const formatDate = (isoString: string) => {
+    return dayjs(isoString).format('YYYY-MM-DD');
+  };
 
   const handleStartEdit = (id: number, text: string) => {
     setEditId(id);
@@ -39,11 +44,7 @@ export default function CommentListPres({
       {comments.map((c) => (
         <div className={styles.commentItem} key={c.id}>
           <div className={styles.commentHeader}>
-            <Profile
-              userNickName={c.userNickName}
-              date={c.date}
-              onClick={() => {}}
-            />
+            <Profile userName={c.userNickName} date={formatDate(c.date)} />
             {editId === c.id ? (
               <button className={styles.editDone} onClick={handleSubmitEdit}>
                 완료
