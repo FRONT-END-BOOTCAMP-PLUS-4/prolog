@@ -33,7 +33,7 @@ export default function ProfileCardCont({
       getFollowingHandler();
       getFollowerHandler();
     } catch (error) {}
-  }, [userId]);
+  }, [userId, followList]);
   useEffect(() => {
     const getUserHandler = async () => {
       try {

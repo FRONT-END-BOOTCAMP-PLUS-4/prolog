@@ -4,13 +4,24 @@ import { useEffect, useState, useRef } from 'react';
 //slice
 import SubscriptionPres from '../presentational/SubscriptionPres';
 import { useSession } from 'next-auth/react';
-
+import { toast } from 'react-toastify';
 export default function SubscriptionCont({ userId }: { userId: string }) {
   const { data: session, status } = useSession();
   const [isFollowing, setIsFollowing] = useState<boolean | null>(null);
   const isFirstRender = useRef(true);
 
   const followerHandler = () => {
+    if (session?.user.id === userId) {
+      return toast.error('자기자신을 팔로워 할 수 없습니다.', {
+        position: 'top-center',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: 'light',
+      });
+    }
     setIsFollowing((prev) => !prev);
   };
   useEffect(() => {

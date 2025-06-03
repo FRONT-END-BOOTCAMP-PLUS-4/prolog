@@ -86,13 +86,13 @@ export default function ProfileCardPres({
               <button className={styles.followText}>
                 팔로워
                 <span className={styles.followNumberText}>
-                  {followerList.totalCount}
+                  {followerList?.totalCount ?? 0}
                 </span>
               </button>
               <button className={styles.followText}>
                 팔로잉
                 <span className={styles.followNumberText}>
-                  {followList.totalCount}
+                  {followList?.totalCount ?? 0}
                 </span>
               </button>
             </div>
