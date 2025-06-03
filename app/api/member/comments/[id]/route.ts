@@ -8,9 +8,11 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
+    const { id } = await params;
+
     const userData = await getToken({ req, secret: process.env.AUTH_SECRET });
     if (!userData || !userData.sub) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
@@ -25,7 +27,7 @@ export async function PATCH(
     }
 
     const updatedComment = await prisma.comment.update({
-      where: { id: Number(params.id) },
+      where: { id: Number(id) },
       data: {
         content,
         updatedAt: new Date(),
@@ -33,7 +35,7 @@ export async function PATCH(
     });
 
     const usecase = new UpdateCommentUsecase(new PrCommentRepository());
-    await usecase.execute(Number(params.id), userData.sub, content);
+    await usecase.execute(Number(id), userData.sub, content);
 
     return NextResponse.json(updatedComment, { status: 200 });
   } catch (error) {
