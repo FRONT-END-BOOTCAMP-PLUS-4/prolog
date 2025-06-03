@@ -1,6 +1,6 @@
+import { auth } from '@/app/(auth)/auth';
 import { GetPostUsecase } from '@/back/posts/application/usecases/GetPostUsecase';
 import { PrPostRepository } from '@/back/posts/infra/PrPostsRepository';
-import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
@@ -8,14 +8,14 @@ export async function GET(
   { params }: { params: Promise<{ id: number }> },
 ) {
   try {
-    // 1. 로그인 시도 (토큰 없으면 undefined)
-    const userData = await getToken({
-      req,
-      secret: process.env.AUTH_SECRET,
-    });
+    const session = await auth();
+
+    if (!session) {
+      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
+    }
 
     // 2. 비로그인 시에도 허용, 로그인 시에는 userId 셋팅
-    const currentUserId = userData?.sub ?? null;
+    const currentUserId = session.user.id!;
     const { id } = await params;
     const postId = Number(id);
 

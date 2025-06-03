@@ -1,9 +1,9 @@
+import { auth } from '@/app/(auth)/auth';
 import { UpdateCommentDto } from '@/back/comments/application/dto/UpdateCommentDto';
 import { DeleteCommentUsecase } from '@/back/comments/application/usecases/DeleteCommentUsecase';
 import { UpdateCommentUsecase } from '@/back/comments/application/usecases/UpdateCommentUsecase';
 import { PrCommentRepository } from '@/back/comments/infra/PrCommentRepository';
 import prisma from '@/shared/lib/prisma';
-import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function PATCH(
@@ -13,10 +13,13 @@ export async function PATCH(
   try {
     const { id } = await params;
 
-    const userData = await getToken({ req, secret: process.env.AUTH_SECRET });
-    if (!userData || !userData.sub) {
+    const session = await auth();
+
+    if (!session) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
+
+    const userId = session.user.id!;
 
     const { content } = await req.json();
     if (!content) {
@@ -35,7 +38,7 @@ export async function PATCH(
     });
 
     const usecase = new UpdateCommentUsecase(new PrCommentRepository());
-    await usecase.execute(Number(id), userData.sub, content);
+    await usecase.execute(Number(id), userId, content);
 
     return NextResponse.json(updatedComment, { status: 200 });
   } catch (error) {
@@ -50,13 +53,16 @@ export async function DELETE(
   try {
     const { id } = await params;
 
-    const userData = await getToken({ req, secret: process.env.AUTH_SECRET });
-    if (!userData || !userData.sub) {
+    const session = await auth();
+
+    if (!session) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
+    const userId = session.user.id!;
+
     const usecase = new DeleteCommentUsecase(new PrCommentRepository());
-    await usecase.execute(Number(id), userData.sub);
+    await usecase.execute(Number(id), userId);
 
     return NextResponse.json(
       { message: '댓글이 삭제되었습니다.' },

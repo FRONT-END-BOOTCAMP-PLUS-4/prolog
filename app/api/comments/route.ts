@@ -1,14 +1,17 @@
+import { auth } from '@/app/(auth)/auth';
 import { PrCommentRepository } from '@/back/comments/infra/PrCommentRepository';
-import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
   try {
     let userId: string | null = null;
-    const userData = await getToken({ req, secret: process.env.AUTH_SECRET });
-    if (userData && userData.sub) {
-      userId = userData.sub;
+
+    const userData = await auth();
+
+    if (userData && userData.user) {
+      userId = userData.user.id!;
     }
+
     const { searchParams } = new URL(req.url);
     const postId = searchParams.get('postId');
 
