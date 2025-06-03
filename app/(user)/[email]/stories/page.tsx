@@ -9,7 +9,9 @@ import CategoryListCont from '@/features/category-list/container/CategoryListCon
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
+
 import { ToastContainer } from 'react-toastify';
+
 
 export default function Page() {
   const [userId, setUserId] = useState<string | null>(null);
@@ -34,7 +36,9 @@ export default function Page() {
     <>
       <div className={styles.container}>
         <div className={styles.cardFollowFlex}>
+
           <ToastContainer />
+
           <ProfileCardCont
             userId={userId as string}
             username={username as string}
