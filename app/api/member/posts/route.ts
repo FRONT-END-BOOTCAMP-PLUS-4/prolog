@@ -1,5 +1,5 @@
-import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
+import { auth } from '@/app/(auth)/auth';
 
 import { CreatePostDto } from '@/back/posts/application/dto/CreatePostDto';
 import { CreatePostUsecase } from '@/back/posts/application/usecases/CreatePostUsecase';
@@ -9,16 +9,13 @@ import { PrSubscribePostRepository } from '@/back/subscribe/infra/PrSubscribePos
 
 export async function POST(req: NextRequest) {
   try {
-    const userData = await getToken({
-      req,
-      secret: process.env.AUTH_SECRET,
-    });
+    const session = await auth();
 
-    if (!userData || !userData.sub) {
+    if (!session) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
-    const userId = userData.sub;
+    const userId = session.user.id;
 
     const body = await req.json();
 

@@ -23,6 +23,9 @@ export default function EditButtonCont(props: Props) {
         tags: props.post.tags,
         createdAt: props.post.createdAt,
         aiSummary: props.post.aiSummary,
+        categoryId: props.post.categoryId,
+        isPublic: props.post.isPublic,
+        useAi: props.post.useAi,
       });
       router.push(`/member/story/edit/${props.post.id}`);
     } else {

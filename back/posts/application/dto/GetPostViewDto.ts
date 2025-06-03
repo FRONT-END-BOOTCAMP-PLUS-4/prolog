@@ -10,6 +10,9 @@ export class GetPostViewDto {
     public updatedAt: string | null, // 수정일 (nullable, ISO string)
     public tags: string[], // 태그 배열 (nullable 아님)
     public aiSummary: AiSummaryType[] | null,
+    public isPublic: number,
+    public useAi: number,
+    public categoryId: number | null,
     // public aiSummary: string | null, // AI 요약 (nullable)
     public profileImage: string | null, // 작성자 프로필 이미지 (nullable)
     public nickname: string, // 작성자 닉네임

@@ -86,7 +86,7 @@ export default function PostFormCont() {
 
     const isNewDraft = !draftId;
 
-    if (isNewDraft && drafts.length >= MAX_DRAFT_COUNT) {
+    if (isNewDraft && drafts && drafts.length >= MAX_DRAFT_COUNT) {
       toast.error('임시 저장은 최대 10개까지 가능합니다.');
       return;
     }

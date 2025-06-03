@@ -42,6 +42,8 @@ export class PrPostRepository implements PostsRepository {
         tags: true, // 게시글 태그
         aiSummary: true, // ai 요약
         useAi: true, // ai 사용여부
+        categoryId: true,
+        isPublic: true,
 
         // 유저 정보
         user: {
