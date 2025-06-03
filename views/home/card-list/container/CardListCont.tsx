@@ -2,20 +2,21 @@
 
 // package
 import { useRef, useState } from 'react';
+import { useSession } from 'next-auth/react';
 
 // slice
 import CardListPres from '../presentational/CardListPres';
-import { ViewType } from '../types';
+import { ViewType, PostListFilter } from '../types';
 
 import { useMinSkeleton } from '../hooks/useMinSkeleton';
 import { useResetOnFilterChange } from '../hooks/useResetOnFilterChange';
 import { useInfiniteScrollTrigger } from '../hooks/useInfiniteScrollTrigger';
+import { useInfiniteScroll } from '../hooks/useInfiniteScroll';
 
 // layer
 import { CardData } from '@/widgets/card/types';
 import { useSearch } from '@/shared/contexts/SearchContext';
-import { useInfiniteScroll } from '@/shared/hooks/useInfiniteScroll';
-import { PostListFilter } from '@/shared/types';
+
 import { useLocalStorage } from '@/shared/hooks/useLocalStorage';
 
 const MIN_SKELETON_TIME = 1000;
@@ -26,6 +27,9 @@ const SORT_OPTIONS = [
 ];
 
 export default function CardListCont() {
+  const { data: session } = useSession();
+  const userId = session?.user?.id ?? '';
+
   const [viewType, setViewType] = useLocalStorage<ViewType>(
     'card-view-type',
     'card',
@@ -40,7 +44,7 @@ export default function CardListCont() {
     title: searchParams.title,
     content: searchParams.content,
     sort,
-    pageSize: 20,
+    pageSize: 24,
   };
 
   const { posts, loading, error, hasMore, fetchNext, reset } =
@@ -80,6 +84,7 @@ export default function CardListCont() {
         items={uniqueItems}
         sortOptions={SORT_OPTIONS}
         isLoading={isMinSkeleton}
+        userId={userId}
       />
       <div ref={loaderRef} style={{ height: 40 }} />
       {error && <div style={{ color: 'red' }}>{error}</div>}
