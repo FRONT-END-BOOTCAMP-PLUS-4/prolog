@@ -3,7 +3,6 @@ import { DeletePostUsecase } from '@/back/posts/application/usecases/DeletePostU
 import { UpdatePostUsecase } from '@/back/posts/application/usecases/UpdatePostUsecase';
 import { PrPostRepository } from '@/back/posts/infra/PrPostsRepository';
 import { PrPostUpdateRepository } from '@/back/posts/infra/PrPostUpdateRepository';
-import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function PUT(
