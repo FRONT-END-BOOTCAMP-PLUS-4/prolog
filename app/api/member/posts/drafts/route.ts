@@ -8,19 +8,17 @@ import { DeletePostDraftUsecase } from '@/back/posts/application/usecases/Delete
 import { GetPostDraftListtUsecase } from '@/back/posts/application/usecases/GetPostDraftListUsecase';
 import { UpdatePostDraftUsecase } from '@/back/posts/application/usecases/UpdatePostDraftUsecase';
 import { PrPostDraftRepository } from '@/back/posts/infra/PrPostsDraftRepository';
+import { auth } from '@/app/(auth)/auth';
 
 export async function GET(req: NextRequest) {
   try {
-    const userData = await getToken({
-      req,
-      secret: process.env.AUTH_SECRET,
-    });
+    const session = await auth();
 
-    if (!userData || !userData.sub) {
+    if (!session) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
-    const userId = userData.sub;
+    const userId = session.user.id!;
 
     const repository = new PrPostDraftRepository();
     const getPostDraftList = new GetPostDraftListtUsecase(repository);
