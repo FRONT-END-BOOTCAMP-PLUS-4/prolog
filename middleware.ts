@@ -3,14 +3,15 @@ import { getToken } from 'next-auth/jwt';
 import { auth } from '@/app/(auth)/auth';
 
 export async function middleware(request: NextRequest) {
-  const token = await getToken({
-    req: request,
-    secret: process.env.AUTH_SECRET,
-  });
+  // const token = await getToken({
+  //   req: request,
+  //   secret: process.env.AUTH_SECRET,
+  // });
   const session = await auth();
+  // console.log("session:",session);
   const pathname = request.nextUrl.pathname;
   if (pathname.startsWith('/api/member')) {
-    if (!token) {
+    if (!session) {
       return NextResponse.json({ status: 401, message: 'Unauthorized' });
     }
     return NextResponse.next();

@@ -36,14 +36,14 @@ export default function NotificationListPres(props: Props) {
     router.push(`/${userName}/stories/${postId}`);
   };
 
-  if (!notificationList.length) {
-    return <p className={styles.empty}>알람 내역이 없어요</p>;
-  }
+  // if (!notificationList.length) {
+  //   return <p className={styles.empty}>알람 내역이 없어요</p>;
+  // }
 
   return (
     <div className={styles.container}>
       <div className={styles.notificationList}>
-        {notificationList.map((notification) => {
+        {notificationList && notificationList.map((notification) => {
           return (
             <div key={notification.id} className={styles.notification}>
               {/* 유저 프로필이미지 */}
