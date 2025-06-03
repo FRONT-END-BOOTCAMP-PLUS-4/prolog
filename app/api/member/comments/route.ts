@@ -1,21 +1,20 @@
+import { auth } from '@/app/(auth)/auth';
 import { CreateCommentDto } from '@/back/comments/application/dto/CreateCommentDto';
 import { CreateCommentUsecase } from '@/back/comments/application/usecases/CreateCommentUsecase';
 import { PrCommentRepository } from '@/back/comments/infra/PrCommentRepository';
 import { PrNotificationRepository } from '@/back/notification/infra/PrNotificationRepository';
 import { PrPostRepository } from '@/back/posts/infra/PrPostsRepository';
-import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   try {
-    const userData = await getToken({
-      req,
-      secret: process.env.AUTH_SECRET,
-    });
+    const session = await auth();
 
-    if (!userData || !userData.sub) {
+    if (!session) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
+
+    const userId = session.user.id!;
 
     const { postId, content } = await req.json();
 
@@ -32,7 +31,7 @@ export async function POST(req: NextRequest) {
       notificationRepository,
     );
 
-    const dto = new CreateCommentDto(userData.sub, postId, content);
+    const dto = new CreateCommentDto(userId, postId, content);
     const comment = await usecase.execute(dto);
 
     return NextResponse.json(comment, { status: 201 });
