@@ -4,7 +4,7 @@ import Github from 'next-auth/providers/github';
 import prisma from '@/shared/lib/prisma';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  trustHost: true,
+  // trustHost: true,
 
   session: {
     strategy: 'jwt',
@@ -50,17 +50,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             data: {
               id: user.id,
               email: user.email,
-              name: userTags + `#${userCount + 1}`,
+              name: userTags + `-${userCount + 1}`,
               profileImg: user.image,
               provider: account.provider,
               },
             })
-            user.id = userTags + `#${userCount + 1}`;
+            user.name = userTags + `-${userCount + 1}`;
           }
         
         const nowUser = existingUser.filter( prevUser => prevUser.provider === account.provider)[0];
         user.id = nowUser.id;
-        user.id = nowUser.name;
+        user.name = nowUser.name;
       }
 
       return true;
