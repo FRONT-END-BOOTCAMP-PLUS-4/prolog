@@ -23,9 +23,9 @@ type Props = {
 
 export default function NotificationModalPres(props: Props) {
   const {
-    selectList,
+    selectList = [],
     clickSelecterId,
-    notificationList,
+    notificationList = [],
     allCheck,
     allCancel,
     submitRead,
@@ -37,7 +37,9 @@ export default function NotificationModalPres(props: Props) {
     setisCheck(!isCheck);
     allCancel();
   };
+
   const isSame: boolean = notificationList.length === selectList.length;
+
 
   const SelectSection = () => {
     return (
@@ -109,7 +111,7 @@ export default function NotificationModalPres(props: Props) {
       </div>
 
       {/* 하단 영역 */}
-      {notificationList.length ? (
+      {notificationList && notificationList.length ? (
         <div className={styles.bottomContainer}>
           {isCheck ? <DeleteSction /> : <SelectSection />}
         </div>

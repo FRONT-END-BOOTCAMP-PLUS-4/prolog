@@ -9,6 +9,8 @@ export default function NotificationModalCont() {
   const { submitRead, isSuccess } = NotificationReadCont();
   const { submitDelete, deleteStatus } = NotificationDeleteCont();
   const { notificationList } = NotificationListCont(deleteStatus);
+
+  console.log("notificationList:",notificationList);
   
   const [selectList, setSelectList] = useState<number[]>([]);
   const clickSelecterId = (idx: number) => {
