@@ -88,6 +88,8 @@ export class PrPostRepository implements PostsRepository {
       following = !!followRow;
     }
 
+    const isMine = currentUserId === postDetail.user.id;
+
     return {
       ...postDetail,
       createdAt: postDetail.createdAt.toISOString(),
@@ -101,6 +103,7 @@ export class PrPostRepository implements PostsRepository {
       following: Boolean(following),
       likeCount: postDetail._count.likes,
       aiSummary: postDetail.aiSummary as AiSummaryType[] | null,
+      isMine,
     };
   }
 

@@ -30,6 +30,7 @@ export class GetPostUsecase {
       post.isBookmarked,
       post.following,
       post.likeCount,
+      post.isMine,
     );
   }
 }

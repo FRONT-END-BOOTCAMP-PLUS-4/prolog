@@ -20,5 +20,6 @@ export class GetPostViewDto {
     public isBookmarked: boolean, // 내가 북마크 했는지
     public following: boolean, // 내가 이 유저를 팔로잉 중인지
     public likeCount: number, // 좋아요 개수
+    public isMine: boolean, // 내가 작성한 글인지 여부
   ) {}
 }
