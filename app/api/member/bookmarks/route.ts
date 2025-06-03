@@ -17,7 +17,7 @@ export async function POST(req: Request) {
 
   try {
     await usecase.execute({ postId, userId, bookmarked });
-    return Response.json({ bookmarked }); // 있어야 함!
+    return Response.json({ bookmarked });
   } catch (error) {
     return new Response('Failed to toggle bookmark', { status: 500 });
   }
