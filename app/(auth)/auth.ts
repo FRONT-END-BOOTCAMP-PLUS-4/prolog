@@ -4,6 +4,8 @@ import Github from 'next-auth/providers/github';
 import prisma from '@/shared/lib/prisma';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  trustHost: true,
+
   session: {
     strategy: 'jwt',
     maxAge: 60 * 60,
