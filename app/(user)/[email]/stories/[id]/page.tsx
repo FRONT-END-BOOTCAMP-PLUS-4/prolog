@@ -15,6 +15,7 @@ import {
 import { EditButtonCont } from '@/features/edit';
 import { DeleteButtonCont } from '@/features/delete';
 import { getMetadata } from '@/shared/utils/metadata';
+import { auth } from '@/app/(auth)/auth';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -65,7 +66,8 @@ export default async function Page({
   const post = await getPost(postId);
   const loggedIn = await isLoggedIn();
 
-  console.log('Post data:', post);
+  const session = await auth();
+  const userId = session?.user?.id ?? '';
 
   return (
     <div className={styles.container}>
@@ -106,7 +108,12 @@ export default async function Page({
         {/* 아이콘 바 */}
         <div className={styles.iconBar}>
           <BookmarkButton isBookmarked={post.isBookmarked} />
-          <LikeButton isLiked={post.isLiked} likeCount={post.likeCount} />
+          <LikeButton
+            isLiked={post.isLiked}
+            likeCount={post.likeCount}
+            userId={userId}
+            postId={id}
+          />
         </div>
       </div>
 

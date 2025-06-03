@@ -20,7 +20,10 @@ type Props = {
 export default function SquareCardPres({ data, userId }: Props) {
   return (
     <div className={`${styles.cardContainer} cardContainer`}>
-      <Link href={`/email/stories/${data.id}`} className={styles.flexGrowArea}>
+      <Link
+        href={`/${data.userName}/stories/${data.id}`}
+        className={styles.flexGrowArea}
+      >
         {data.imageUrl && (
           <div className={styles.iconWrap}>
             <Image
