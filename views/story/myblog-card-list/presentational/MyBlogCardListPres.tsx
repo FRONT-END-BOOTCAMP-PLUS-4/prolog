@@ -5,8 +5,11 @@ import styles from '../styles/myBlogCardList.module.scss';
 import PostsSearchCont from '@/features/search-input/container/PostsSearchCont';
 type dataProps = {
   data: MyBlogCardData[];
-  sort: 'latest' | 'popular' | 'bookMark';
-  setSort: (sort: 'latest' | 'popular' | 'bookMark') => void;
+  userId: string;
+  // | 'bookMark'
+  sort: 'latest' | 'popular';
+  // | 'bookMark'
+  setSort: (sort: 'latest' | 'popular') => void;
   items: MyBlogCardData[];
   sortOptions: { label: string; value: string }[];
 };
@@ -16,6 +19,7 @@ export default function MyBlogCardListPres({
   items,
   sortOptions,
   data,
+  userId,
 }: dataProps) {
   return (
     <>
@@ -26,14 +30,15 @@ export default function MyBlogCardListPres({
             options={sortOptions}
             value={sort}
             onChange={(val) =>
-              setSort(val as 'latest' | 'popular' | 'bookMark')
+              // | 'bookMark'
+              setSort(val as 'latest' | 'popular')
             }
             className={styles.selectWrap}
           />
         </div>
         {data.map((item) => (
           <div className={styles.cardContainer} key={item.id}>
-            <LongCardPres data={item} />
+            <LongCardPres userId={userId as string} data={item} />
           </div>
         ))}
       </div>
