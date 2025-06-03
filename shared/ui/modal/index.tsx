@@ -25,14 +25,16 @@ export default function Modal() {
   }, [isChildren]);
 
   if (!isChildren) return null;
-
+  const handleContentClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+  };
   return (
     <div className={styles.container}>
       <div
         className={`${styles.modalContainer} ${isAnimating ? styles.open : ''} ${positionClass}`}
         onClick={() => close()}
       >
-        <div>{isChildren}</div>
+        <div onClick={handleContentClick}>{isChildren}</div>
       </div>
     </div>
   );
