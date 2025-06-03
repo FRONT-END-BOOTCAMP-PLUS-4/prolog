@@ -13,6 +13,7 @@ type UserProps = {
   followerList: SubscribeUser;
   followList: SubscribeUser;
   userId: string;
+  onFollowStatusChange: (isFollowing: boolean) => void;
 };
 
 export default function ProfileCardPres({
@@ -20,6 +21,7 @@ export default function ProfileCardPres({
   userId,
   followList,
   followerList,
+  onFollowStatusChange,
 }: UserProps) {
   const defaultImg = '/svgs/my-card-background.jpg';
   const openModal = useModalStore((state) => state.action.open);
@@ -68,7 +70,10 @@ export default function ProfileCardPres({
             <div className={styles.userInfo}>
               <h2 className={styles.nameText}>{userData?.name}</h2>
               <div>
-                <SubscriptionCont userId={userId} />
+                <SubscriptionCont
+                  userId={userId}
+                  onFollowStatusChange={onFollowStatusChange}
+                />
               </div>
             </div>
             <div
