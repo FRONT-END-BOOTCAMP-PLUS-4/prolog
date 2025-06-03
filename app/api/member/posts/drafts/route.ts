@@ -1,4 +1,3 @@
-import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
 import { CreatePostDraftDto } from '@/back/posts/application/dto/CreatePostDraftDto';
@@ -73,16 +72,13 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    const userData = await getToken({
-      req,
-      secret: process.env.AUTH_SECRET,
-    });
+    const session = await auth();
 
-    if (!userData || !userData.sub) {
+    if (!session) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
-    const userId = userData.sub;
+    const userId = session.user.id!;
 
     const draftWithUserId = {
       ...body,

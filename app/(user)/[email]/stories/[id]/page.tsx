@@ -16,10 +16,12 @@ import { EditButtonCont } from '@/features/edit';
 import { DeleteButtonCont } from '@/features/delete';
 import { getMetadata } from '@/shared/utils/metadata';
 
+const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
+
 const getPost = async (postId: number) => {
   const cookieStore = await cookies();
 
-  const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
+  const response = await fetch(`${baseUrl}/api/posts/${postId}`, {
     headers: {
       cookie: cookieStore.toString(),
     },
