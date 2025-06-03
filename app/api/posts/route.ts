@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getToken } from 'next-auth/jwt';
+import { auth } from '@/app/(auth)/auth';
 import { PrPostListAllRepository } from '@/back/posts/infra/PrPostListAllRepository';
 import { GetPostListAllUsecase } from '@/back/posts/application/usecases/GetPostListAllUsecase';
 import {
@@ -7,14 +7,12 @@ import {
   validateSortParam,
 } from '@/shared/utils/validators';
 
-const secret = process.env.AUTH_SECRET;
-
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
 
-    const token = await getToken({ req, secret });
-    const currentUserId = token?.userId || '';
+    const session = await auth();
+    const currentUserId = session?.user?.id || '';
 
     const filters = {
       name: searchParams.get('name') || undefined,
