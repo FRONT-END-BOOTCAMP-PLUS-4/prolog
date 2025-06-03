@@ -9,4 +9,6 @@ export interface PostsRepository {
     currentUserId: string | null,
   ): Promise<GetPostViewDto>;
   findWriterByPostId(postId: number): Promise<{ userId: string }>;
+  findById(postId: number): Promise<{ id: number; userId: string } | null>;
+  deletePost(postId: number): Promise<void>;
 }

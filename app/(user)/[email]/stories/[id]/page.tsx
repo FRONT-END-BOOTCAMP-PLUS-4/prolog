@@ -66,6 +66,8 @@ export default async function Page({
   const post = await getPost(postId);
   const loggedIn = await isLoggedIn();
 
+  console.log('Post data:', post);
+
   return (
     <div className={styles.container}>
       {/* 제목 */}
@@ -73,11 +75,19 @@ export default async function Page({
         <h1 className={styles.titleText}>{post.title}</h1>
         <div className={styles.actionButtons}>
           {/* 수정 및 삭제 버튼 */}
-          <div className={styles.editWrapper}>
-            <EditButtonCont mode="post" post={post} />
-            <span>|</span>
-          </div>
-          <DeleteButtonCont mode="post" id={postId} />
+          {post.isMine && (
+            <>
+              <div className={styles.editWrapper}>
+                <EditButtonCont mode="post" post={post} />
+                <span>|</span>
+              </div>
+              <DeleteButtonCont
+                mode="post"
+                id={postId}
+                userName={post.nickname}
+              />
+            </>
+          )}
         </div>
       </div>
 
