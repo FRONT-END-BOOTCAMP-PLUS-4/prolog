@@ -55,35 +55,24 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
               provider: account.provider,
               },
             })
+            user.id = userTags + `#${userCount + 1}`;
           }
         
-        // 기존 사용자일 경우
         const nowUser = existingUser.filter( prevUser => prevUser.provider === account.provider)[0];
-        user.id = nowUser ? nowUser.id : user.id;
+        user.id = nowUser.id;
+        user.id = nowUser.name;
       }
 
       return true;
     },
 
-    async jwt({ token, account }) {
-       if (token.email) {
-        const existingUser = await prisma.user.findFirst({
-          where: {
-            email: token.email,
-            provider: account?.provider ?? token.provider,
-          },
-        });
+    async jwt({ token, account, user }) {
 
-        if (existingUser) {
-          token.name = existingUser.name;
-          token.userId = existingUser.id;
-          token.provider = existingUser.provider;
-        }
-
-        if (account) {
-          token.accessToken = account.access_token;
-          token.refreshToken = account.refresh_token;
-        }
+      if (account) {
+        token.accessToken = account.access_token;
+        token.refreshToken = account.refresh_token;
+        token.userId = user.id;
+        token.userName = user.name;
       }
 
       return token;
