@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import CommentInputPres from '../presentational/CommentInputPres';
 import { useParams } from 'next/navigation';
+import { useCommentStore } from '../stores/useCommentStore';
 
 export default function CommentInputCont() {
   const [text, setText] = useState<string>('');
@@ -10,6 +11,8 @@ export default function CommentInputCont() {
 
   const params = useParams();
   const postId = Number(params.id);
+
+  const refresh = useCommentStore((state) => state.triggerRefresh);
 
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -34,6 +37,7 @@ export default function CommentInputCont() {
 
       setIsSubmitting(true);
       setText('');
+      refresh();
     } catch (err) {
       console.error(err);
     } finally {
