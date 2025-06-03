@@ -1,3 +1,5 @@
+'use client';
+
 // package
 import { ViewGridIcon, ViewHorizontalIcon } from '@radix-ui/react-icons';
 
@@ -11,7 +13,7 @@ import { LongCardPres, SquareCardPres } from '@/widgets/card';
 import LongCardSkeleton from '@/shared/ui/skeleton/longcard';
 import SquareCardSkeleton from '@/shared/ui/skeleton/squarecard';
 
-const DEFAULT_SKELETON_COUNT = 12;
+const DEFAULT_SKELETON_COUNT = 24;
 
 export default function CardListPres({
   viewType,
@@ -21,6 +23,7 @@ export default function CardListPres({
   items,
   sortOptions,
   isLoading = false,
+  userId,
 }: CardListPresProps) {
   const skeletonCount =
     items.length === 0 ? DEFAULT_SKELETON_COUNT : items.length;
@@ -97,9 +100,17 @@ export default function CardListPres({
         ) : (
           items.map((item) =>
             viewType === 'card' ? (
-              <SquareCardPres key={`item-${item.id}`} data={item} />
+              <SquareCardPres
+                key={`item-${item.id}`}
+                data={item}
+                userId={userId}
+              />
             ) : (
-              <LongCardPres key={`item-${item.id}`} data={item} />
+              <LongCardPres
+                key={`item-${item.id}`}
+                data={item}
+                userId={userId}
+              />
             ),
           )
         )}

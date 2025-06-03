@@ -4,6 +4,8 @@ import Github from 'next-auth/providers/github';
 import prisma from '@/shared/lib/prisma';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
+  trustHost: true,
+
   session: {
     strategy: 'jwt',
     maxAge: 60 * 60,
@@ -48,31 +50,35 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             data: {
               id: user.id,
               email: user.email,
-              name: userTags + `#${userCount + 1}`,
+              name: userTags + `-${userCount + 1}`,
               profileImg: user.image,
               provider: account.provider,
               },
             })
+            user.name = userTags + `-${userCount + 1}`;
           }
         
-        // 기존 사용자일 경우
         const nowUser = existingUser.filter( prevUser => prevUser.provider === account.provider)[0];
-        user.id = nowUser ? nowUser.id : user.id;
+        user.id = nowUser.id;
+        user.name = nowUser.name;
       }
 
       return true;
     },
 
-    async jwt({ token, user, account }) {
+    async jwt({ token, account, user }) {
+
       if (account) {
         token.accessToken = account.access_token;
         token.refreshToken = account.refresh_token;
-        token.provider = account.provider;
         token.userId = user.id;
+        token.userName = user.name;
       }
+
       return token;
     },
     async session({ session, token }) {
+      session.user.name = token.name;
       session.user.provider = token.provider;
       session.user.id = token.userId as string;
       return session;

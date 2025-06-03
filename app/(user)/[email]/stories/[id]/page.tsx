@@ -17,16 +17,20 @@ import { DeleteButtonCont } from '@/features/delete';
 import { getMetadata } from '@/shared/utils/metadata';
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+import { auth } from '@/app/(auth)/auth';
 
 const getPost = async (postId: number) => {
   const cookieStore = await cookies();
 
-  const response = await fetch(`${baseUrl}/api/posts/${postId}`, {
-    headers: {
-      cookie: cookieStore.toString(),
+  const response = await fetch(
+    `${process.env.NEXTAUTH_URL}/api/posts/${postId}`,
+    {
+      headers: {
+        cookie: cookieStore.toString(),
+      },
+      cache: 'no-store',
     },
-    cache: 'no-store',
-  });
+  );
 
   if (!response.ok) {
     throw new Error('Failed to fetch post');
@@ -34,7 +38,6 @@ const getPost = async (postId: number) => {
   const data = await response.json();
   return data;
 };
-
 const isLoggedIn = async () => {
   const cookieStore = await cookies();
   const accessToken = cookieStore.get('authjs.session-token');
@@ -66,6 +69,9 @@ export default async function Page({
   const post = await getPost(postId);
   const loggedIn = await isLoggedIn();
 
+  const session = await auth();
+  const userId = session?.user?.id ?? '';
+
   return (
     <div className={styles.container}>
       {/* 제목 */}
@@ -73,11 +79,19 @@ export default async function Page({
         <h1 className={styles.titleText}>{post.title}</h1>
         <div className={styles.actionButtons}>
           {/* 수정 및 삭제 버튼 */}
-          <div className={styles.editWrapper}>
-            <EditButtonCont mode="post" post={post} />
-            <span>|</span>
-          </div>
-          <DeleteButtonCont mode="post" id={postId} />
+          {post.isMine && (
+            <>
+              <div className={styles.editWrapper}>
+                <EditButtonCont mode="post" post={post} />
+                <span>|</span>
+              </div>
+              <DeleteButtonCont
+                mode="post"
+                id={postId}
+                userName={post.nickname}
+              />
+            </>
+          )}
         </div>
       </div>
 
@@ -96,8 +110,17 @@ export default async function Page({
 
         {/* 아이콘 바 */}
         <div className={styles.iconBar}>
-          <BookmarkButton isBookmarked={post.isBookmarked} />
-          <LikeButton isLiked={post.isLiked} likeCount={post.likeCount} />
+          <BookmarkButton
+            isBookmarked={post.isBookmarked}
+            userId={userId}
+            postId={postId}
+          />
+          <LikeButton
+            isLiked={post.isLiked}
+            likeCount={post.likeCount}
+            userId={userId}
+            postId={id}
+          />
         </div>
       </div>
 

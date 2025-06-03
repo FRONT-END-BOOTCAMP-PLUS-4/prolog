@@ -14,12 +14,16 @@ import Profile from '@/shared/ui/profile';
 
 type Props = {
   data: CardData;
+  userId: string;
 };
 
-export default function SquareCardPres({ data }: Props) {
+export default function SquareCardPres({ data, userId }: Props) {
   return (
     <div className={`${styles.cardContainer} cardContainer`}>
-      <Link href={`/email/stories/${data.id}`} className={styles.flexGrowArea}>
+      <Link
+        href={`/${data.userName}/stories/${data.id}`}
+        className={styles.flexGrowArea}
+      >
         {data.imageUrl && (
           <div className={styles.iconWrap}>
             <Image
@@ -58,7 +62,12 @@ export default function SquareCardPres({ data }: Props) {
             <span className={styles.iconCount}>{data.commentCount}</span>
           </div>
           <div className={styles.iconTextGroup}>
-            <LikeButton isLiked={data.isLiked} likeCount={data.loveCount} />
+            <LikeButton
+              isLiked={data.isLiked}
+              likeCount={data.loveCount}
+              userId={userId}
+              postId={data.id}
+            />
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import { ChatBubbleIcon } from '@radix-ui/react-icons';
 
 // slice
 import styles from '../styles/LongCardPres.module.scss';
-import { CardData } from '../types';
+import { MyBlogCardData } from '@/views/story/myblog-card-list/types';
 
 // layer
 import { TagListCont } from '@/features/tag-list';
@@ -13,10 +13,11 @@ import { LikeButton } from '@/features/like';
 import Profile from '@/shared/ui/profile';
 
 type Props = {
-  data: CardData;
+  data: MyBlogCardData;
+  userId: string;
 };
 
-export default function LongCardPres({ data }: Props) {
+export default function LongCardPres({ data, userId }: Props) {
   return (
     <div className={`${styles.cardContainer} cardContainer`}>
       <div className={styles.cardRow}>
@@ -30,7 +31,7 @@ export default function LongCardPres({ data }: Props) {
               />
             </div>
           </Link>
-          <Link href={`/email/stories/${data.id}`}>
+          <Link href={`/${data.userName}/stories/${data.id}`}>
             <div className={styles.main}>
               <div className={styles.textWrap}>
                 <div className={styles.title}>{data.title}</div>
@@ -47,7 +48,12 @@ export default function LongCardPres({ data }: Props) {
               <span className={styles.iconCount}>{data.commentCount}</span>
             </div>
             <div className={styles.iconTextGroup}>
-              <LikeButton isLiked={data.isLiked} likeCount={data.loveCount} />
+              <LikeButton
+                isLiked={data.isLiked}
+                likeCount={data.loveCount}
+                userId={userId}
+                postId={data.id}
+              />
             </div>
           </div>
         </div>

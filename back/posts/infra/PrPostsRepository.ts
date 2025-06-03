@@ -88,6 +88,8 @@ export class PrPostRepository implements PostsRepository {
       following = !!followRow;
     }
 
+    const isMine = currentUserId === postDetail.user.id;
+
     return {
       ...postDetail,
       createdAt: postDetail.createdAt.toISOString(),
@@ -101,6 +103,7 @@ export class PrPostRepository implements PostsRepository {
       following: Boolean(following),
       likeCount: postDetail._count.likes,
       aiSummary: postDetail.aiSummary as AiSummaryType[] | null,
+      isMine,
     };
   }
 
@@ -111,5 +114,21 @@ export class PrPostRepository implements PostsRepository {
     });
     if (!post) throw new Error('Post not found');
     return post;
+  }
+
+  async findById(
+    postId: number,
+  ): Promise<{ id: number; userId: string } | null> {
+    const post = await prisma.blogPost.findUnique({
+      where: { id: postId },
+      select: { id: true, userId: true },
+    });
+    return post;
+  }
+
+  async deletePost(postId: number): Promise<void> {
+    await prisma.blogPost.delete({
+      where: { id: postId },
+    });
   }
 }
