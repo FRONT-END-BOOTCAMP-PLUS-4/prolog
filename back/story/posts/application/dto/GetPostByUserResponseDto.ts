@@ -10,7 +10,7 @@ export class GetPostByUserResponseDto {
       content?: string;
       page: number;
       pageSize: number;
-      sort?: 'latest' | 'popular';
+      sort?: 'latest' | 'popular' | 'bookMark';
       isMyPage: boolean;
     },
     public count: number,

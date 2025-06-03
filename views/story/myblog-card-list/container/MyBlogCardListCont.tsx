@@ -6,16 +6,18 @@ import { PostListFilter } from '@/views/home/card-list/types';
 import { useSearch } from '@/shared/contexts/SearchContext';
 import { useInfiniteScrollTrigger } from '@/views/home/card-list/hooks/useInfiniteScrollTrigger';
 import { useMyStoryInfiniteScroll } from '../hooks/useMyStoryInfiniteScroll';
+import { useResetOnFilterChange } from '@/views/home/card-list/hooks/useResetOnFilterChange';
+import { useMinSkeleton } from '@/views/home/card-list/hooks/useMinSkeleton';
 const SORT_OPTIONS = [
   { label: '최신순', value: 'latest' },
   { label: '인기순', value: 'popular' },
   { label: '북마크', value: 'bookMark' },
 ];
-
+const MIN_SKELETON_TIME = 1000;
 export default function MyBlogCardListCont({
   userId,
 }: { userId: string; id: string }) {
-  const [sort, setSort] = useState<'latest' | 'popular'>('latest');
+  const [sort, setSort] = useState<'latest' | 'popular' | 'bookMark'>('latest');
   const { searchParams } = useSearch();
   const filter: PostListFilter = {
     name: searchParams.name,
@@ -27,6 +29,8 @@ export default function MyBlogCardListCont({
   };
   const { posts, loading, error, hasMore, fetchNext, reset } =
     useMyStoryInfiniteScroll(filter, userId);
+  useResetOnFilterChange([sort, searchParams], () => reset({ ...filter }));
+  const isMinSkeleton = useMinSkeleton(loading, MIN_SKELETON_TIME);
   const loaderRef = useRef<HTMLDivElement>(null);
   useInfiniteScrollTrigger(loaderRef, fetchNext, hasMore, loading);
   const mappedItems: MyBlogCardData[] = posts.map((post) => ({
