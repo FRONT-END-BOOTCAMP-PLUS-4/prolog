@@ -107,7 +107,11 @@ export default async function Page({
 
         {/* 아이콘 바 */}
         <div className={styles.iconBar}>
-          <BookmarkButton isBookmarked={post.isBookmarked} />
+          <BookmarkButton
+            isBookmarked={post.isBookmarked}
+            userId={userId}
+            postId={postId}
+          />
           <LikeButton
             isLiked={post.isLiked}
             likeCount={post.likeCount}
