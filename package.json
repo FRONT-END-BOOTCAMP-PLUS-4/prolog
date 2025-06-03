@@ -7,11 +7,12 @@
     "unseed": "ts-node --esm -r tsconfig-paths/register prisma/unseed.js",
     "seed": "ts-node --esm -r tsconfig-paths/register prisma/seed.js",
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "format-lint": "eslint . --ext .ts,.tsx --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.816.0",

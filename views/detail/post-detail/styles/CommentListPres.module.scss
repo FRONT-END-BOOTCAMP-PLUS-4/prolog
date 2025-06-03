@@ -34,10 +34,29 @@
 
 .commentEditInput {
   width: 100%;
-  padding: 6px;
-  font-size: 14px;
-  border: 1px solid $theme-gray-5;
-  border-radius: 4px;
+  height: 5rem;
+  padding: 8px;
+  @include font-sm;
+  color: $theme-text-1;
+  border-radius: 8px;
+  border: 1px solid $theme-gray-3;
+  font-size: $font-xs-size;
+  resize: none;
+  background-color: $theme-shade-1;
+
+  &:focus {
+    outline: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  &::placeholder {
+    color: $theme-text-2;
+    font-size: $font-xs-size;
+  }
 }
 
 .commentText {

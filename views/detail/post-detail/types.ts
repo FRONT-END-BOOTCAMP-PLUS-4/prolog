@@ -3,4 +3,5 @@ export type Comment = {
   userNickName: string;
   date: string;
   text: string;
+  isMine: boolean;
 };

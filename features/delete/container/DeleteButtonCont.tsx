@@ -11,7 +11,7 @@ export default function DeleteButtonCont(props: Props) {
 
     if (!confirmed) return;
 
-     if (props.mode === 'post') {
+    if (props.mode === 'post') {
       // 게시글 삭제 API 호출
       fetch(`/api/member/posts/${props.id}`, {
         method: 'DELETE',

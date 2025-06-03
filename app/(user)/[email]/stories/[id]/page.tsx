@@ -7,6 +7,7 @@ import Profile from '@/shared/ui/profile';
 import {
   AiSummary,
   BodyText,
+  CommentCount,
   CommentInput,
   CommentList,
   CommentLoginPrompt,
@@ -17,6 +18,7 @@ import { getMetadata } from '@/shared/utils/metadata';
 
 const getPost = async (postId: number) => {
   const cookieStore = await cookies();
+
   const response = await fetch(`http://localhost:3000/api/posts/${postId}`, {
     headers: {
       cookie: cookieStore.toString(),
@@ -53,8 +55,11 @@ export const generateMetadata = async ({
   });
 };
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const postId = Number(params.id);
+export default async function Page({
+  params,
+}: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const postId = Number(id);
 
   const post = await getPost(postId);
   const loggedIn = await isLoggedIn();
@@ -101,7 +106,9 @@ export default async function Page({ params }: { params: { id: string } }) {
       <BodyText content={post.content} tags={post.tags} />
 
       {/* 댓글 타이틀 */}
-      <div className={styles.commentTitle}>댓글 목록 (19)</div>
+      <div className={styles.commentTitle}>
+        댓글 목록 <CommentCount postId={postId} />
+      </div>
 
       {/* 댓글 등록 박스 */}
       {loggedIn ? <CommentInput /> : <CommentLoginPrompt />}

@@ -1,13 +1,18 @@
-import dayjs from 'dayjs';
 import { CommentRepository } from '../../domain/CommentRepository';
 import { GetCommentDto } from '../dto/GetCommentDto';
 
 export class GetCommentListUsecase {
   constructor(private readonly commentRepository: CommentRepository) {}
 
-  async execute(postId: number): Promise<GetCommentDto[]> {
+  async execute(
+    postId: number,
+    currentUserId: string | null,
+  ): Promise<GetCommentDto[]> {
     try {
-      const comments = await this.commentRepository.findAllByPostId(postId);
+      const comments = await this.commentRepository.findAllByPostId(
+        postId,
+        currentUserId,
+      );
 
       return comments.map(
         (c) =>
@@ -19,6 +24,7 @@ export class GetCommentListUsecase {
             c.createdAt,
             c.updatedAt ? c.updatedAt : null,
             c.content,
+            c.isMine,
           ),
       );
     } catch (error) {
