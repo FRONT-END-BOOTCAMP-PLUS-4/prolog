@@ -43,16 +43,18 @@ export async function PATCH(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
+    const { id } = await params;
+
     const userData = await getToken({ req, secret: process.env.AUTH_SECRET });
     if (!userData || !userData.sub) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
 
     const usecase = new DeleteCommentUsecase(new PrCommentRepository());
-    await usecase.execute(Number(params.id), userData.sub);
+    await usecase.execute(Number(id), userData.sub);
 
     return NextResponse.json(
       { message: '댓글이 삭제되었습니다.' },
