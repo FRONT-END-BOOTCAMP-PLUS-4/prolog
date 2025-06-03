@@ -15,30 +15,24 @@ export default function SubscriptionCont({
 }: SubscriptionContProps) {
   const { data: session, status } = useSession();
   const [isFollowing, setIsFollowing] = useState<boolean | null>(null);
-  const [isInitialized, setIsInitialized] = useState(false);
-  const isFirstRender = useRef(true);
-  const isUpdating = useRef(false);
+  const [isReady, setIsReady] = useState(false);
+  const hasInitialized = useRef(false);
 
   const followerHandler = () => {
+    if (!isReady) return; // 준비되지 않으면 클릭 무시
+
     if (session?.user.id === userId) {
-      return toast.error('자기자신을 팔로워 할 수 없습니다.', {
-        position: 'top-center',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        theme: 'light',
-      });
+      return toast.error('자기자신을 팔로워 할 수 없습니다.');
     }
 
-    if (isUpdating.current) return; // 업데이트 중이면 중복 클릭 방지
     setIsFollowing((prev) => !prev);
   };
 
-  // 초기 팔로우 상태 확인
+  // 세션 상태 확인 및 팔로우 상태 초기화
   useEffect(() => {
-    const checkFollowStatus = async () => {
+    const initializeFollowStatus = async () => {
+      if (status === 'loading') return;
+
       if (status === 'authenticated' && session?.user?.id) {
         try {
           const response = await fetch(
@@ -46,73 +40,55 @@ export default function SubscriptionCont({
           );
           const data = await response.json();
           setIsFollowing(data === true);
-          setIsInitialized(true);
         } catch (error) {
           console.error('팔로우 상태 확인 실패:', error);
-          setIsInitialized(true);
+          setIsFollowing(false);
         }
-      } else if (status === 'unauthenticated') {
-        setIsInitialized(true);
+      } else {
+        setIsFollowing(false);
       }
+
+      setIsReady(true);
+      hasInitialized.current = true;
     };
 
-    checkFollowStatus();
+    initializeFollowStatus();
   }, [userId, status, session?.user?.id]);
 
   // 팔로우 상태 변경 처리
   useEffect(() => {
-    if (isFirstRender.current || !isInitialized) {
-      isFirstRender.current = false;
-      return;
-    }
+    if (!hasInitialized.current || !isReady || isFollowing === null) return;
 
-    const toggleSubscribeHandler = async () => {
-      if (isUpdating.current) return;
-      isUpdating.current = true;
+    const updateFollowStatus = async () => {
+      if (status !== 'authenticated' || !session?.user) return;
 
       try {
-        if (status === 'unauthenticated') {
-          throw new Error('로그인이 필요합니다');
-        }
+        const response = await fetch('/api/member/subscription', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            isFollowing,
+            userId,
+            id: session.user.id,
+          }),
+        });
 
-        if (status === 'authenticated') {
-          if (!session.user) {
-            throw new Error('User information is missing from session');
-          }
-
-          const { id } = session.user;
-          const response = await fetch('/api/member/subscription', {
-            method: 'POST',
-            headers: {
-              'content-type': 'application/json',
-            },
-            body: JSON.stringify({ isFollowing, userId, id }),
-          });
-
-          const data = await response.json();
-
-          if (onFollowStatusChange && isFollowing !== null) {
-            onFollowStatusChange(isFollowing);
-          }
+        if (response.ok) {
+          onFollowStatusChange?.(isFollowing);
         }
       } catch (error) {
-        console.error('구독 상태 변경 실패:', error);
-        setIsFollowing((prev) => !prev);
+        console.error('팔로우 상태 변경 실패:', error);
+        setIsFollowing((prev) => !prev); // 롤백
         toast.error('팔로우 상태 변경에 실패했습니다.');
-      } finally {
-        isUpdating.current = false;
       }
     };
 
-    toggleSubscribeHandler();
-  }, [
-    isFollowing,
-    status,
-    session,
-    userId,
-    onFollowStatusChange,
-    isInitialized,
-  ]);
+    updateFollowStatus();
+  }, [isFollowing, status, session, userId, onFollowStatusChange, isReady]);
+
+  if (!isReady) {
+    return <div className="h-8 bg-gray-200 rounded animate-pulse w-20"></div>;
+  }
 
   return (
     <SubscriptionPres
