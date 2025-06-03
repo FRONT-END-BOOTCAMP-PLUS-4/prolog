@@ -1,3 +1,4 @@
+import { auth } from '@/app/(auth)/auth';
 import { CancelFollowRequestDto } from '@/back/subscribe/application/dto/CancelFollowRequestDto';
 import { CreateFollowRequestDto } from '@/back/subscribe/application/dto/CreateFollowRequestDto';
 import { CancelFollowUsecase } from '@/back/subscribe/application/usecases/CancelFollowUsecase';
@@ -20,7 +21,9 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { isFollowing, userId, id } = body;
+    const { isFollowing, userId } = body;
+    const session = await auth();
+    const id = session?.user.id;
     if (!userId || !id) {
       return NextResponse.json(
         {

@@ -10,6 +10,9 @@ import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
 
+import { ToastContainer } from 'react-toastify';
+import MyBlogCardListCont from '@/views/story/myblog-card-list/container/MyBlogCardListCont';
+
 export default function Page() {
   const [userId, setUserId] = useState<string | null>(null);
   const { data: session, status } = useSession();
@@ -33,15 +36,21 @@ export default function Page() {
     <>
       <div className={styles.container}>
         <div className={styles.cardFollowFlex}>
+          <ToastContainer />
+
           <ProfileCardCont
             userId={userId as string}
             username={username as string}
           />
           <div className={styles.categoryCardList}>
             <CategoryListCont />
-            {/* 임시 적으로 주석처리 */}
             <div className={styles.cardList}>
-              {/* <MyBlogCardListCont userId={userId as string} id={id as string} /> */}
+              {userId !== null && (
+                <MyBlogCardListCont
+                  userId={userId as string}
+                  id={id as string}
+                />
+              )}
             </div>
           </div>
         </div>
