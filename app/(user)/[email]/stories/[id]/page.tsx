@@ -16,7 +16,7 @@ import { EditButtonCont } from '@/features/edit';
 import { DeleteButtonCont } from '@/features/delete';
 import { getMetadata } from '@/shared/utils/metadata';
 
-const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL;
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 const getPost = async (postId: number) => {
   const cookieStore = await cookies();
