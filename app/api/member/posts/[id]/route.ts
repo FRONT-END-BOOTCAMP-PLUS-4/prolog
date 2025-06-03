@@ -1,3 +1,4 @@
+import { auth } from '@/app/(auth)/auth';
 import { DeletePostUsecase } from '@/back/posts/application/usecases/DeletePostUsecase';
 import { UpdatePostUsecase } from '@/back/posts/application/usecases/UpdatePostUsecase';
 import { PrPostRepository } from '@/back/posts/infra/PrPostsRepository';
@@ -42,14 +43,15 @@ export async function DELETE(
   { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const userData = await getToken({ req, secret: process.env.AUTH_SECRET });
-    if (!userData || !userData.sub) {
+    const session = await auth();
+    if (!session) {
       return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
     }
+    const userId = session.user.id!;
 
     const { id } = await params;
     const usecase = new DeletePostUsecase(new PrPostRepository());
-    await usecase.execute(Number(id), userData.sub);
+    await usecase.execute(Number(id), userId);
 
     return NextResponse.json(
       { message: '게시글이 삭제되었습니다.' },
