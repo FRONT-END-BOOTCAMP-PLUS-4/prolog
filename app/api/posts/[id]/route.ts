@@ -10,12 +10,8 @@ export async function GET(
   try {
     const session = await auth();
 
-    if (!session) {
-      return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
-    }
-
     // 2. 비로그인 시에도 허용, 로그인 시에는 userId 셋팅
-    const currentUserId = session.user.id!;
+    const currentUserId = session?.user?.id ?? null;
     const { id } = await params;
     const postId = Number(id);
 
