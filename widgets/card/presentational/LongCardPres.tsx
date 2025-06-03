@@ -31,7 +31,7 @@ export default function LongCardPres({ data, userId }: Props) {
               />
             </div>
           </Link>
-          <Link href={`/email/stories/${data.id}`}>
+          <Link href={`/${data.userName}/stories/${data.id}`}>
             <div className={styles.main}>
               <div className={styles.textWrap}>
                 <div className={styles.title}>{data.title}</div>
