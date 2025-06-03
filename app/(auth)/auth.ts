@@ -63,16 +63,31 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return true;
     },
 
-    async jwt({ token, user, account }) {
-      if (account) {
-        token.accessToken = account.access_token;
-        token.refreshToken = account.refresh_token;
-        token.provider = account.provider;
-        token.userId = user.id;
+    async jwt({ token, account }) {
+       if (token.email) {
+        const existingUser = await prisma.user.findFirst({
+          where: {
+            email: token.email,
+            provider: account?.provider ?? token.provider,
+          },
+        });
+
+        if (existingUser) {
+          token.name = existingUser.name;
+          token.userId = existingUser.id;
+          token.provider = existingUser.provider;
+        }
+
+        if (account) {
+          token.accessToken = account.access_token;
+          token.refreshToken = account.refresh_token;
+        }
       }
+
       return token;
     },
     async session({ session, token }) {
+      session.user.name = token.name;
       session.user.provider = token.provider;
       session.user.id = token.userId as string;
       return session;
