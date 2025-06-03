@@ -14,7 +14,6 @@ const SORT_OPTIONS = [
 
 export default function MyBlogCardListCont({
   userId,
-  id,
 }: { userId: string; id: string }) {
   const [sort, setSort] = useState<'latest' | 'popular'>('latest');
   const { searchParams } = useSearch();
