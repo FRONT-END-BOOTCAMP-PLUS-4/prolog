@@ -96,6 +96,7 @@ export class PrPostRepository implements PostsRepository {
       updatedAt: postDetail.updatedAt
         ? postDetail.updatedAt.toISOString()
         : null,
+      authorId: postDetail.user.id,
       profileImage: postDetail.user.profileImg,
       nickname: postDetail.user.name,
       isLiked: Boolean(liked),
