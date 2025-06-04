@@ -24,7 +24,6 @@ export class GetPostByUserUsecase {
       const page = filters.page ?? 1;
       const pageSize = filters.pageSize ?? 20;
 
-      // DTO 매핑 (기존과 거의 동일, isPublic 추가)
       const data = postList.map((post) => {
         return new GetPostByUserDto(
           post.id,
@@ -40,7 +39,7 @@ export class GetPostByUserUsecase {
           post._count.likes,
           post._count.comments,
           likedPostIds.includes(post.id),
-          post.isPublic, // 공개/비공개 상태 포함
+          post.isPublic,
         );
       });
 
@@ -76,18 +75,11 @@ export class GetPostByUserUsecase {
         errorType: typeof error,
       });
 
-      // 원본 에러도 함께 출력
-      if (error instanceof Error) {
-        console.error('Original error object:', error);
-      }
-
       throw new Error(
         `Failed to fetch user posts: ${error instanceof Error ? error.message : 'Unknown error'}`,
       );
     }
   }
-
-  // 편의 메서드: 내 포스트 조회
   async getMyPosts(
     currentUserId: string,
     filters?: Omit<GetPostByUserFilter, 'targetUserId' | 'isMyPage'>,
@@ -102,7 +94,6 @@ export class GetPostByUserUsecase {
     );
   }
 
-  // 편의 메서드: 다른 유저 포스트 조회
   async getUserPosts(
     targetUserId: string,
     currentUserId: string,
@@ -113,6 +104,25 @@ export class GetPostByUserUsecase {
         ...filters,
         targetUserId: targetUserId,
         isMyPage: false,
+      },
+      currentUserId,
+    );
+  }
+  async getBookmarkedPosts(
+    targetUserId: string,
+    currentUserId: string,
+    filters?: Omit<GetPostByUserFilter, 'targetUserId' | 'isMyPage' | 'sort'>,
+  ): Promise<GetPostByUserResponseDto> {
+    if (!currentUserId) {
+      throw new Error('북마크 조회는 로그인이 필요합니다.');
+    }
+
+    return this.execute(
+      {
+        ...filters,
+        targetUserId: targetUserId,
+        isMyPage: true,
+        sort: 'bookMark',
       },
       currentUserId,
     );

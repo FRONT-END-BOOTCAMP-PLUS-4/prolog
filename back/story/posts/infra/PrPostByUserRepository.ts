@@ -16,67 +16,34 @@ export class PrPostByUserRepository implements PostByUserRepository {
     totalCount: number;
     likedPostIds: number[];
   }> {
-    try {
-      const orConditions: OrCondition[] = [];
+    const orConditions: OrCondition[] = [];
 
-      // 태그 필터
-      if (filters.tags && filters.tags.length > 0) {
-        orConditions.push({ tags: { hasSome: filters.tags } });
-      }
+    if (filters.sort === 'bookMark' && currentUserId) {
+      const bookmarkOwnerId =
+        filters.targetUserId === currentUserId
+          ? currentUserId
+          : filters.targetUserId;
 
-      // 타이틀 필터
-      if (filters.title) {
-        orConditions.push({
-          title: { contains: filters.title, mode: 'insensitive' },
-        });
-      }
-
-      // 게시글 내용 필터
-      if (filters.content) {
-        orConditions.push({
-          content: { contains: filters.content, mode: 'insensitive' },
-        });
-      }
-
-      // 특정 유저의 게시글만 조회
-      const where: BlogPostByUserWhereInput = {
-        userId: filters.targetUserId,
+      const whereBookmarkOnly: BlogPostByUserWhereInput = {
+        bookMark: {
+          some: { userId: bookmarkOwnerId },
+        },
       };
 
-      // 공개/비공개 로직 - 핵심 부분!
-      const isMyPage = filters.isMyPage ?? false;
-      if (isMyPage && filters.targetUserId === currentUserId) {
-        // 내 페이지: 공개/비공개 모두 조회
-      } else {
-        // 다른 유저 페이지: 공개만 조회
-        where.isPublic = 1;
-      }
-
       if (orConditions.length > 0) {
-        where.OR = orConditions;
+        whereBookmarkOnly.OR = orConditions;
       }
 
-      // 페이지네이션
       const page = filters.page ?? 1;
       const pageSize = filters.pageSize ?? 20;
       const skip = (page - 1) * pageSize;
       const take = pageSize;
 
-      // 정렬 조건
-      let orderBy: BlogPostOrderBy[];
-      switch (filters.sort) {
-        case 'popular':
-          orderBy = [{ likes: { _count: 'desc' } }, { createdAt: 'desc' }];
-          break;
-        default:
-          orderBy = [{ createdAt: 'desc' }];
-          break;
-      }
+      const orderBy: BlogPostOrderBy[] = [{ createdAt: 'desc' }];
 
-      // 게시글 목록과 전체 개수 동시 조회
       const [posts, totalCount] = await Promise.all([
         prisma.blogPost.findMany({
-          where,
+          where: whereBookmarkOnly,
           include: {
             user: { select: { id: true, name: true, profileImg: true } },
             _count: { select: { likes: true, comments: true } },
@@ -85,29 +52,69 @@ export class PrPostByUserRepository implements PostByUserRepository {
           skip,
           take,
         }),
-        prisma.blogPost.count({ where }),
+        prisma.blogPost.count({ where: whereBookmarkOnly }),
       ]);
 
-      // 게시글 id 배열
-      const postIds = posts.map((post) => post.id);
-
-      // 현재 유저가 좋아요 누른 게시글 id 목록
-      let likedPostIds: number[] = [];
-      if (currentUserId && postIds.length > 0) {
-        const likes = await prisma.postLike.findMany({
-          where: {
-            postsId: { in: postIds },
-            userId: currentUserId,
-          },
-          select: { postsId: true },
-        });
-        likedPostIds = likes.map((like) => like.postsId);
-      }
+      const likedPostIds: number[] = [];
 
       return { posts, totalCount, likedPostIds };
-    } catch (error) {
-      console.error('Repository Error:', error);
-      throw error;
     }
+
+    const where: BlogPostByUserWhereInput = {
+      userId: filters.targetUserId,
+    };
+
+    const isMyPage = filters.isMyPage ?? false;
+    if (!(isMyPage && filters.targetUserId === currentUserId)) {
+      where.isPublic = 1;
+    }
+
+    if (orConditions.length > 0) {
+      where.OR = orConditions;
+    }
+
+    const page = filters.page ?? 1;
+    const pageSize = filters.pageSize ?? 20;
+    const skip = (page - 1) * pageSize;
+    const take = pageSize;
+
+    let orderBy: BlogPostOrderBy[];
+    switch (filters.sort) {
+      case 'popular':
+        orderBy = [{ likes: { _count: 'desc' } }, { createdAt: 'desc' }];
+        break;
+      default:
+        orderBy = [{ createdAt: 'desc' }];
+        break;
+    }
+
+    const [posts, totalCount] = await Promise.all([
+      prisma.blogPost.findMany({
+        where,
+        include: {
+          user: { select: { id: true, name: true, profileImg: true } },
+          _count: { select: { likes: true, comments: true } },
+        },
+        orderBy,
+        skip,
+        take,
+      }),
+      prisma.blogPost.count({ where }),
+    ]);
+
+    let likedPostIds: number[] = [];
+    const postIds = posts.map((p) => p.id);
+    if (currentUserId && postIds.length > 0) {
+      const likes = await prisma.postLike.findMany({
+        where: {
+          postsId: { in: postIds },
+          userId: currentUserId,
+        },
+        select: { postsId: true },
+      });
+      likedPostIds = likes.map((l) => l.postsId);
+    }
+
+    return { posts, totalCount, likedPostIds };
   }
 }

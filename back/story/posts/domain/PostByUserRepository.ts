@@ -1,14 +1,14 @@
 import { BlogPost } from '@/app/generated/prisma';
 
 export type GetPostByUserFilter = {
-  targetUserId: string; // 필수 필드
+  targetUserId: string;
   tags?: string[];
   title?: string;
   content?: string;
   page?: number;
   pageSize?: number;
-  sort?: 'latest' | 'popular';
-  isMyPage?: boolean; // 내 페이지 여부
+  sort?: 'latest' | 'popular' | 'bookMark';
+  isMyPage?: boolean;
 };
 
 export type BlogPostOrderBy =
@@ -21,9 +21,14 @@ export type BlogPostWithCounts = BlogPost & {
 };
 
 export type BlogPostByUserWhereInput = {
-  userId: string; // 필수 필드
+  userId?: string;
   OR?: Array<OrCondition>;
   isPublic?: number;
+  bookMark?: {
+    some: {
+      userId: string;
+    };
+  };
 };
 
 export type OrCondition = {
