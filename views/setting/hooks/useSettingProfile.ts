@@ -81,9 +81,7 @@ export function useSettingProfile() {
     setBackgroundImg(null);
   };
 
-
   const handleSave = async (username: string) => {
-
     setLoading(true);
     setError(null);
 
@@ -113,12 +111,11 @@ export function useSettingProfile() {
       toast.success('저장되었습니다!');
       setTimeout(() => {
         router.push(`/${username}/stories`);
-
       }, 1200);
 
       setProfileImgFile(null);
       setBackgroundImgFile(null);
-      update({ name: username });
+      update({ name: username, image: profileImgUrl });
     } catch (e: unknown) {
       let message = '저장에 실패했습니다.';
       if (e instanceof Error) {

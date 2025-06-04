@@ -30,7 +30,7 @@ import { useOnClickOutside } from '@/shared/hooks/useOnClickOutside';
 
 type Props = {
   username: string;
-  profileImg: string | null;
+  profileImg: string;
 };
 
 export default function HeaderPres({ username, profileImg }: Props) {
@@ -225,7 +225,7 @@ export default function HeaderPres({ username, profileImg }: Props) {
                 type="button"
               >
                 <Image
-                  src={profileImg ? profileImg : '/svgs/profile.svg'}
+                  src={profileImg}
                   alt="프로필"
                   width={24}
                   height={24}
