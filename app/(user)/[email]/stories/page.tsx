@@ -5,7 +5,6 @@ import ProfileCardCont from '@/views/story/profile-card/container/ProfileCardCon
 //style
 import styles from './styles.module.scss';
 import CategoryListCont from '@/features/category-list/container/CategoryListCont';
-// import MyBlogCardListCont from '@/views/story/myblog-card-list/container/MyBlogCardListCont';
 import { useEffect, useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { usePathname } from 'next/navigation';
@@ -43,7 +42,7 @@ export default function Page() {
             username={username as string}
           />
           <div className={styles.categoryCardList}>
-            <CategoryListCont />
+            {/* <CategoryListCont /> */}
             <div className={styles.cardList}>
               {userId !== null && (
                 <MyBlogCardListCont
