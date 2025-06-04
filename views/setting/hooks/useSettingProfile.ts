@@ -80,7 +80,7 @@ export function useSettingProfile() {
     setBackgroundImg(null);
   };
 
-  const handleSave = async (name: string) => {
+  const handleSave = async (username: string) => {
     setLoading(true);
     setError(null);
 
@@ -109,7 +109,7 @@ export function useSettingProfile() {
 
       toast.success('저장되었습니다!');
       setTimeout(() => {
-        router.push(`/${name}/stories`);
+        router.push(`/${username}/stories`);
       }, 1200);
 
       setProfileImgFile(null);
