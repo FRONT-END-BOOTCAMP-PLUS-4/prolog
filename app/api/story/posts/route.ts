@@ -7,6 +7,7 @@ import {
 import { PrPostByUserRepository } from '@/back/story/posts/infra/PrPostByUserRepository';
 import { GetPostByUserUsecase } from '@/back/story/posts/application/usecase/GetPostByUserUsecase';
 import { GetPostByUserResponseDto } from '@/back/story/posts/application/dto/GetPostByUserResponseDto';
+import { auth } from '@/app/(auth)/auth';
 
 const secret = process.env.AUTH_SECRET;
 
@@ -15,7 +16,15 @@ export async function GET(req: NextRequest) {
     const { searchParams } = new URL(req.url);
     const userId = searchParams.get('userId');
     const token = await getToken({ req, secret });
-    const currentUserId = token?.userId || '';
+    // const currentUserId = token?.userId || '';
+    const session = await auth();
+    const currentUserId = session?.user.id;
+    if (!currentUserId) {
+      return NextResponse.json(
+        { message: '인증된 사용자가 아닙니다.' },
+        { status: 401 },
+      );
+    }
 
     const filters = {
       name: searchParams.get('name') || undefined,
@@ -77,7 +86,6 @@ export async function GET(req: NextRequest) {
             data: [],
             hasMore: false,
             totalCount: 0,
-            timestamp: new Date().toISOString(),
           },
           { status: 400 },
         );
