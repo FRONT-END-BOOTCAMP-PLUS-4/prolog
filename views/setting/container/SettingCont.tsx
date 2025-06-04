@@ -2,8 +2,16 @@
 
 import SettingPres from '../presentational/SettingPres';
 import { useSettingProfile } from '../hooks/useSettingProfile';
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 export default function SettingCont() {
+  const router = useRouter();
+  const { data: session, status } = useSession();
+  const username = session?.user.name;
+  const navigationBackHandler = () => {
+    router.back();
+  };
   const {
     profile,
     name,
@@ -39,6 +47,7 @@ export default function SettingCont() {
       error={error}
       profileInputRef={profileInputRef}
       backgroundInputRef={backgroundInputRef}
+      username={username as string}
       onNameChange={handleNameChange}
       onIntroductionChange={handleIntroductionChange}
       onProfileImgChange={handleProfileImgChange}
@@ -47,6 +56,7 @@ export default function SettingCont() {
       onRemoveBackgroundImg={handleRemoveBackgroundImg}
       onSave={handleSave}
       onDeleteAccount={handleDeleteAccount}
+      navigationBackHandler={navigationBackHandler}
     />
   );
 }

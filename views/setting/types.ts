@@ -20,12 +20,14 @@ export type SettingPresProps = {
   error: string | null;
   profileInputRef: RefObject<HTMLInputElement | null>;
   backgroundInputRef: RefObject<HTMLInputElement | null>;
+  username: string;
   onNameChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onIntroductionChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onProfileImgChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBackgroundImgChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onRemoveProfileImg: () => void;
   onRemoveBackgroundImg: () => void;
-  onSave: () => void;
+  onSave: (name: string) => void;
   onDeleteAccount: () => void;
+  navigationBackHandler: () => void;
 };
