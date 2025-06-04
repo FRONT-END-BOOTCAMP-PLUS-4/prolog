@@ -14,6 +14,7 @@ export class GetPostViewDto {
     public useAi: number,
     public categoryId: number | null,
     // public aiSummary: string | null, // AI 요약 (nullable)
+    public authorId: string, // **작성자 id (uuid)**
     public profileImage: string | null, // 작성자 프로필 이미지 (nullable)
     public nickname: string, // 작성자 닉네임
     public isLiked: boolean, // 내가 좋아요 눌렀는지

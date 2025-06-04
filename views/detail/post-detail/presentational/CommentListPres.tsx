@@ -44,7 +44,11 @@ export default function CommentListPres({
       {comments.map((c) => (
         <div className={styles.commentItem} key={c.id}>
           <div className={styles.commentHeader}>
-            <Profile userName={c.userNickName} date={formatDate(c.date)} />
+            <Profile
+              userProfileImage={c.userProfileImage}
+              userName={c.userNickName}
+              date={formatDate(c.date)}
+            />
             {editId === c.id ? (
               <button className={styles.editDone} onClick={handleSubmitEdit}>
                 완료
