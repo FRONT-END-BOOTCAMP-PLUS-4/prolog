@@ -11,6 +11,20 @@ export default function Modal() {
     styles[`modalContainer__${position}`] || styles.modalContainer__bottom;
 
   useEffect(() => {
+    if (isChildren) {
+      // 스크롤 방지
+      document.body.style.overflow = 'hidden';
+    } else {
+      // 스크롤 해제
+      document.body.style.overflow = '';
+    }
+    // 언마운트 시 스크롤 해제
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isChildren]);
+
+  useEffect(() => {
     if (!isChildren) return setIsAnimating(false);
 
     const timer = setTimeout(() => {
@@ -28,6 +42,7 @@ export default function Modal() {
   const handleContentClick = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
   };
+
   return (
     <div className={styles.container}>
       <div
