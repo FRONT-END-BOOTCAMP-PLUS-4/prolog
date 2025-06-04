@@ -174,7 +174,7 @@ export default function SettingPres(props: SettingPresProps) {
         <Button
           variants="active"
           size="large"
-          onClick={() => onSave(username)}
+          onClick={() => onSave(name)}
           disabled={loading}
         >
           저장
