@@ -2,6 +2,7 @@ import { BlogPost } from '@/app/generated/prisma';
 
 export type GetPostByUserFilter = {
   targetUserId: string;
+  name?: string;
   tags?: string[];
   title?: string;
   content?: string;
@@ -21,6 +22,9 @@ export type BlogPostWithCounts = BlogPost & {
 };
 
 export type BlogPostByUserWhereInput = {
+  user?: {
+    name?: { contains: string; mode: 'insensitive' };
+  };
   userId?: string;
   OR?: Array<OrCondition>;
   isPublic?: number;

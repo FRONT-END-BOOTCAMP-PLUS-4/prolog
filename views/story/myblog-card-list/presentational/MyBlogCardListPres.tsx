@@ -33,11 +33,15 @@ export default function MyBlogCardListPres({
             className={styles.selectWrap}
           />
         </div>
-        {data.map((item) => (
-          <div className={styles.cardContainer} key={item.id}>
-            <LongCardPres userId={userId as string} data={item} />
-          </div>
-        ))}
+        {items.length === 0 ? (
+          <div className={styles.emptyMessage}>검색 결과가 없습니다.</div>
+        ) : (
+          items.map((item) => (
+            <div className={styles.cardContainer} key={item.id}>
+              <LongCardPres userId={userId} data={item} />
+            </div>
+          ))
+        )}
       </div>
     </>
   );
