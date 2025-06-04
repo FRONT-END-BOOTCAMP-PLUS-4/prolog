@@ -13,6 +13,7 @@ export const validateSortParam = (
 ): 'latest' | 'popular' => {
   return value === 'popular' ? 'popular' : 'latest';
 };
+
 //my블로그
 export const myBlogValidateSortParam = (
   value: string | null,
