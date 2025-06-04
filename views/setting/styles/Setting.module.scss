@@ -1,0 +1,264 @@
+@use '@styles/variables.scss' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 20px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: $theme-shade-1;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+.errWrap {
+  background-color: black;
+}
+
+.errorMessage{
+  color: $theme-red;
+  backdrop-filter: blur(20px);
+  font-size: 13px;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-weight: 600;
+}
+
+.profileSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 32px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  overflow: hidden;
+
+  &.hasBackground {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+      background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      var(--bg-image);
+  
+
+  }
+}
+
+.profileImageContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.profilePlaceholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: $theme-shade-6;
+  }
+}
+
+.profileButtonGroup {
+  display: flex;
+  gap: 12px;
+  
+  button {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.userInfoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.email {
+  @include font-sm;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 4px;
+}
+
+.nickname {
+  @include font-xl;
+  color: white;
+  outline: none;
+  border: none;
+  background: transparent;
+  text-align: center;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  &:focus {
+    border-bottom-color: rgba(255, 255, 255, 0.8);
+  }
+}
+
+.bioTextarea {
+  padding: 16px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  resize: none;
+  width: 100%;
+  min-height: 80px;
+  outline: none;
+  backdrop-filter: blur(10px);
+  text-align: center;
+  
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  &:focus {
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.settingsSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.settingItemContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 12px;
+  border-radius: 12px;
+  background-color: $theme-shade-2;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.settingItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.settingLabel {
+  @include font-xl;
+  color: $theme-text-2;
+  font-weight: 600;
+}
+
+.settingControls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  
+  img {
+    border-radius: 8px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+  }
+}
+
+.settingButtonGroup {
+  display: flex;
+  gap: 8px;
+  
+  button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.settingDescription {
+  color: $theme-gray-1;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  
+  button {
+    padding: 12px 32px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .profileSection {
+    padding: 24px 16px;
+  }
+  
+  .profilePlaceholder {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .settingControls {
+    flex-direction: column;
+    gap: 12px;
+    
+    img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  
+  .actionButtons {
+    flex-direction: column;
+    
+    button {
+      width: 100%;
+    }
+  }
+}

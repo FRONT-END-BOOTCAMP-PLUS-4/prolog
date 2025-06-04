@@ -17,28 +17,24 @@ import { DeleteButtonCont } from '@/features/delete';
 import { getMetadata } from '@/shared/utils/metadata';
 import { auth } from '@/app/(auth)/auth';
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-
 const getPost = async (postId: number) => {
   const cookieStore = await cookies();
 
-  const response = await fetch(`${baseUrl}/api/posts/${postId}`, {
-    headers: {
-      cookie: cookieStore.toString(),
+  const response = await fetch(
+    `${process.env.NEXTAUTH_URL}/api/posts/${postId}`,
+    {
+      headers: {
+        cookie: cookieStore.toString(),
+      },
+      cache: 'no-store',
     },
-    cache: 'no-store',
-  });
+  );
 
   if (!response.ok) {
     throw new Error('Failed to fetch post');
   }
   const data = await response.json();
   return data;
-};
-const isLoggedIn = async () => {
-  const cookieStore = await cookies();
-  const accessToken = cookieStore.get('authjs.session-token');
-  return !!accessToken;
 };
 
 export const generateMetadata = async ({
@@ -64,7 +60,6 @@ export default async function Page({
   const postId = Number(id);
 
   const post = await getPost(postId);
-  const loggedIn = await isLoggedIn();
 
   const session = await auth();
   const userId = session?.user?.id ?? '';
@@ -133,7 +128,7 @@ export default async function Page({
       </div>
 
       {/* 댓글 등록 박스 */}
-      {loggedIn ? <CommentInput /> : <CommentLoginPrompt />}
+      {userId !== '' ? <CommentInput /> : <CommentLoginPrompt />}
 
       {/* 댓글 리스트 */}
       <CommentList postId={postId} />

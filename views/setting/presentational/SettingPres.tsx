@@ -1,0 +1,183 @@
+// package
+import Image from 'next/image';
+import { ToastContainer } from 'react-toastify';
+
+// slice
+import styles from '../styles/Setting.module.scss';
+import { SettingPresProps } from '../types';
+
+// layer
+import Button from '@/shared/ui/button';
+
+export default function SettingPres(props: SettingPresProps) {
+  const {
+    profile,
+    name,
+    nameError,
+    introduction,
+    profileImg,
+    backgroundImg,
+    loading,
+    error,
+    profileInputRef,
+    backgroundInputRef,
+    onNameChange,
+    onIntroductionChange,
+    onProfileImgChange,
+    onBackgroundImgChange,
+    onRemoveProfileImg,
+    onRemoveBackgroundImg,
+    onSave,
+    onDeleteAccount,
+  } = props;
+  return (
+    <div className={styles.container}>
+      <ToastContainer
+        position="top-center"
+        autoClose={1000}
+        hideProgressBar
+        closeOnClick
+        pauseOnHover={false}
+        draggable={false}
+      />
+      {/* {error && <div className={styles.errorMessage}>{error}</div>} */}
+      <div
+        className={`${styles.profileSection} ${backgroundImg ? styles.hasBackground : ''}`}
+        style={
+          backgroundImg
+            ? ({
+                '--bg-image': `url(${backgroundImg})`,
+              } as React.CSSProperties)
+            : {}
+        }
+      >
+        <div className={styles.profileImageContainer}>
+          <div className={styles.profilePlaceholder}>
+            <Image
+              src={profileImg || '/svgs/profile.svg'}
+              alt="user profile image"
+              width={80}
+              height={80}
+            />
+          </div>
+          <div className={styles.profileButtonGroup}>
+            <input
+              ref={profileInputRef}
+              type="file"
+              accept="image/*"
+              style={{ display: 'none' }}
+              onChange={onProfileImgChange}
+              disabled={loading}
+            />
+            <Button
+              variants="active"
+              onClick={() => profileInputRef.current?.click()}
+              disabled={loading}
+            >
+              프로필 업로드
+            </Button>
+            <Button onClick={onRemoveProfileImg} disabled={loading}>
+              프로필 제거
+            </Button>
+          </div>
+        </div>
+        <div className={styles.userInfoContainer}>
+          <p className={styles.email}>{profile.email}</p>
+          <input
+            value={name}
+            onChange={onNameChange}
+            className={styles.nickname}
+            maxLength={20}
+            disabled={loading}
+            placeholder="닉네임"
+          />
+          {nameError && <div className={styles.errorMessage}>{nameError}</div>}
+          <textarea
+            placeholder="자기소개 내용을 작성해주세요"
+            className={styles.bioTextarea}
+            value={introduction}
+            onChange={onIntroductionChange}
+            maxLength={200}
+            disabled={loading}
+          />
+        </div>
+      </div>
+      <div className={styles.settingsSection}>
+        <div className={styles.settingItemContainer}>
+          <div className={styles.settingItem}>
+            <span className={styles.settingLabel}>배경 이미지</span>
+            <div className={styles.settingControls}>
+              <Image
+                src={backgroundImg || '/svgs/image.svg'}
+                alt="user profile image"
+                width={80}
+                height={80}
+              />
+              <div className={styles.settingButtonGroup}>
+                <input
+                  ref={backgroundInputRef}
+                  type="file"
+                  accept="image/*"
+                  style={{ display: 'none' }}
+                  onChange={onBackgroundImgChange}
+                  disabled={loading}
+                />
+
+                <Button
+                  variants="active"
+                  onClick={() => backgroundInputRef.current?.click()}
+                  disabled={loading}
+                >
+                  업로드
+                </Button>
+                <Button onClick={onRemoveBackgroundImg} disabled={loading}>
+                  제거
+                </Button>
+              </div>
+            </div>
+          </div>
+          <p className={styles.settingDescription}>
+            My Story의 배경 이미지를 설정합니다.
+          </p>
+        </div>
+        <div className={styles.settingItemContainer}>
+          <div className={styles.settingItem}>
+            <span className={styles.settingLabel}>회원 탈퇴</span>
+            <div className={styles.settingControls}>
+              <div className={styles.settingButtonGroup}>
+                <Button
+                  variants="red"
+                  onClick={onDeleteAccount}
+                  disabled={loading}
+                >
+                  회원 탈퇴
+                </Button>
+              </div>
+            </div>
+          </div>
+          <p className={styles.settingDescription}>
+            탈퇴 시 작성하신 게시글 및 댓글은 모두 비공개 처리 됩니다.
+          </p>
+        </div>
+      </div>
+      <div className={styles.actionButtons}>
+        <Button
+          variants="active"
+          size="large"
+          onClick={() => {}}
+          disabled={loading}
+        >
+          취소
+        </Button>
+        <Button
+          variants="active"
+          size="large"
+          onClick={onSave}
+          disabled={loading}
+        >
+          저장
+        </Button>
+      </div>
+    </div>
+  );
+}

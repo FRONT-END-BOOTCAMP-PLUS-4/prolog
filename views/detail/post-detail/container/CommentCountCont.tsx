@@ -23,5 +23,5 @@ export default function CommentCountCont({ postId }: { postId: number }) {
       });
   }, [postId, trigger]);
 
-  return <CommentCountPres commentCount={commentCount} />; // Placeholder count, replace with actual count from state or props
+  return <CommentCountPres commentCount={commentCount} />;
 }
