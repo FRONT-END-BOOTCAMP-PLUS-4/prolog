@@ -118,7 +118,7 @@ export function useSettingProfile() {
 
       setProfileImgFile(null);
       setBackgroundImgFile(null);
-      update({ name: name });
+      update({ name: username });
     } catch (e: unknown) {
       let message = '저장에 실패했습니다.';
       if (e instanceof Error) {
