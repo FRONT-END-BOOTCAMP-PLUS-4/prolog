@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+
 import styles from './styles/NotFound.module.scss';
 import { useThemeStore } from '@/shared/stores/useThemeStore';
 

@@ -38,11 +38,6 @@ const getPost = async (postId: number) => {
   const data = await response.json();
   return data;
 };
-const isLoggedIn = async () => {
-  const cookieStore = await cookies();
-  const accessToken = cookieStore.get('authjs.session-token');
-  return !!accessToken;
-};
 
 export const generateMetadata = async ({
   params,
@@ -67,7 +62,6 @@ export default async function Page({
   const postId = Number(id);
 
   const post = await getPost(postId);
-  const loggedIn = await isLoggedIn();
 
   const session = await auth();
   const userId = session?.user?.id ?? '';
@@ -136,7 +130,7 @@ export default async function Page({
       </div>
 
       {/* 댓글 등록 박스 */}
-      {loggedIn ? <CommentInput /> : <CommentLoginPrompt />}
+      {userId !== '' ? <CommentInput /> : <CommentLoginPrompt />}
 
       {/* 댓글 리스트 */}
       <CommentList postId={postId} />
