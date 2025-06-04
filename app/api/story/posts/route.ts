@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 import {
   validateNumericParam,
-  validateSortParam,
+  myBlogValidateSortParam,
 } from '@/shared/utils/validators';
 import { PrPostByUserRepository } from '@/back/story/posts/infra/PrPostByUserRepository';
 import { GetPostByUserUsecase } from '@/back/story/posts/application/usecase/GetPostByUserUsecase';
@@ -29,14 +29,14 @@ export async function GET(req: NextRequest) {
       title: searchParams.get('title') || undefined,
       content: searchParams.get('content') || undefined,
       tags: searchParams.getAll('tag').filter(Boolean),
-      sort: validateSortParam(searchParams.get('sort')),
+      sort: myBlogValidateSortParam(searchParams.get('sort')),
     };
     const page = validateNumericParam(searchParams.get('page') || '1', 1);
     const pageSize = validateNumericParam(
       searchParams.get('pageSize') || '24',
       24,
     );
-
+    console.log('filters', filters);
     const repository = new PrPostByUserRepository();
     const usecase = new GetPostByUserUsecase(repository);
     let responseDto: GetPostByUserResponseDto;

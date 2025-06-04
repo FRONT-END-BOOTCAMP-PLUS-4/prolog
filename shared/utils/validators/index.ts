@@ -19,3 +19,15 @@ export const validateSortParam = (
   }
   return 'latest';
 };
+//my블로그
+export const myBlogValidateSortParam = (
+  value: string | null,
+): 'latest' | 'popular' | 'bookMark' => {
+  if (value === 'popular') {
+    return 'popular';
+  }
+  if (value === 'bookMark') {
+    return 'bookMark';
+  }
+  return 'latest';
+};
