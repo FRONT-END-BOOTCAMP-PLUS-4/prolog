@@ -21,6 +21,7 @@ export default function SettingPres(props: SettingPresProps) {
     error,
     profileInputRef,
     backgroundInputRef,
+    username,
     onNameChange,
     onIntroductionChange,
     onProfileImgChange,
@@ -29,6 +30,7 @@ export default function SettingPres(props: SettingPresProps) {
     onRemoveBackgroundImg,
     onSave,
     onDeleteAccount,
+    navigationBackHandler,
   } = props;
   return (
     <div className={styles.container}>
@@ -164,7 +166,7 @@ export default function SettingPres(props: SettingPresProps) {
         <Button
           variants="active"
           size="large"
-          onClick={() => {}}
+          onClick={navigationBackHandler}
           disabled={loading}
         >
           취소
@@ -172,7 +174,7 @@ export default function SettingPres(props: SettingPresProps) {
         <Button
           variants="active"
           size="large"
-          onClick={onSave}
+          onClick={() => onSave(username)}
           disabled={loading}
         >
           저장
