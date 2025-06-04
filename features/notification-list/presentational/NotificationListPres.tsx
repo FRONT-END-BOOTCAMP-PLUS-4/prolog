@@ -19,9 +19,15 @@ type Props = {
 };
 
 export default function NotificationListPres(props: Props) {
-  const { notificationList, selecterId, selectList, isCheck, submitRead, isSuccess } =
-    props;
-    
+  const {
+    notificationList,
+    selecterId,
+    selectList,
+    isCheck,
+    submitRead,
+    isSuccess,
+  } = props;
+
   // check
   const isSelectd = (idx: number) => selectList.includes(idx);
 
@@ -36,80 +42,111 @@ export default function NotificationListPres(props: Props) {
     router.push(`/${userName}/stories/${postId}`);
   };
 
-  // if (!notificationList.length) {
-  //   return <p className={styles.empty}>알람 내역이 없어요</p>;
-  // }
+  if (!notificationList.length) {
+    return <p className={styles.empty}>알람 내역이 없어요</p>;
+  }
 
   return (
     <div className={styles.container}>
       <div className={styles.notificationList}>
-        {notificationList && notificationList.map((notification) => {
-          return (
-            <div key={notification.id} className={styles.notification}>
-              {/* 유저 프로필이미지 */}
-              <div className={styles.userImage}>
-                <Image
-                  src={notification.senderProfileImg ?? '/svgs/profile.svg'}
-                  fill
-                  alt="유저이미지"
-                />
-              </div>
+        {notificationList &&
+          notificationList.map((notification) => {
+            return (
+              <div key={notification.id} className={styles.notification}>
+                {/* 유저 프로필이미지 */}
+                <div
+                  className={`${styles.userImage} ${notification.checkStatus !== 0 ? styles.userImage__read : ''}`}
+                >
+                  <Image
+                    src={notification.senderProfileImg ?? '/svgs/profile.svg'}
+                    fill
+                    alt="유저이미지"
+                  />
+                </div>
 
-              <div
-                className={styles.infoContainer}
-                onClick={() =>
-                  blogPageRouter(
-                    notification.senderName,
-                    notification.postsId,
-                    notification.id,
-                  )
-                }
-              >
-                {/* 유저이름 및 알람 유형 */}
-                <div className={styles.infoContainer__info}>
+                <div
+                  className={styles.infoContainer}
+                  onClick={() =>
+                    blogPageRouter(
+                      notification.senderName,
+                      notification.postsId,
+                      notification.id,
+                    )
+                  }
+                >
+                  {/* 유저이름 및 알람 유형 */}
+                  <div className={styles.infoContainer__info}>
+                    <span
+                      className={`
+                        ${styles.infoContainer__name} 
+                        ${notification.checkStatus !== 0 ? styles.infoContainer__old : ''} 
+                        ${notification.checkStatus === 0 ? styles.infoContainer__new : ''}
+                      `}
+                    >
+                      {notification.senderName}
+                    </span>
+                  </div>
+                  {/* 댓글내용 및 게시글 내용 */}
                   <span
                     className={`
-                      ${styles.infoContainer__name} 
-                      ${isSuccess ? styles.old : ""} 
-                      ${notification.checkStatus === 0 && !isSuccess ? styles.infoContainer__new : ""}
-                    `}
+                        ${styles.infoContainer__content} 
+                        ${notification.checkStatus !== 0 ? styles.infoContainer__old : ''} 
+                        ${notification.checkStatus === 0 ? styles.infoContainer__new : ''}
+                      `}
                   >
-                    {notification.senderName}
+                    {/* 시안 1 */}
+                    {/* {notification.content} */}
+                    {/* 시안 2 */}
+                    {notification.title}
                   </span>
-                </div>
-                {/* 댓글내용 및 게시글 내용 */}
-                <p className={styles.infoContainer__content}>
-                  {/* 시안 1 */}
-                  {/* {notification.content} */}
-                  {/* 시안 2 */}
-                  {notification.title}
-                </p>
-                {/* 게시글 제목 */}
-                <p className={styles.infoContainer__title}>
-                  {/* 시안 1 */}
-                  {/* {notification.title}  */}
-                  {/* 시안 2*/}
-                  {notification.type === 1
-                    ? '게시글을 작성하였습니다.'
-                    : '게시물에 댓글을 남겼습니다.'}
-                </p>
-              </div>
 
-              {/* 알람시간 */}
-              <div className={styles.time}>
-                <span>{notification.createAt}</span>
-                {isCheck && (
-                  <CheckCircledIcon
-                    className={`${styles.time__icon} ${isSelectd(notification.id) ? styles.time__icon__select : ''}`}
-                    onClick={() => selecterId(notification.id)}
-                  />
-                )}
-                {/* 시안 1 */}
-                {/* <span>{notification.type === 1 ? '게시글' : '댓글'}</span> */}
+                  {/* 게시글 제목 */}
+                  <p className={styles.infoContainer__title}>
+                    {notification.type === 1 ? (
+                      <>
+                        <span
+                          className={`
+                            ${styles.infoContainer__post}
+                            ${notification.checkStatus !== 0 ? styles.infoContainer__old : ''}
+                            ${notification.checkStatus === 0 ? styles.infoContainer__new : ''}
+                          `}
+                        >
+                          게시글
+                        </span>
+                        을 작성하였습니다.
+                      </>
+                    ) : (
+                      <>
+                        <span
+                          className={`
+                            ${styles.infoContainer__comment}
+                            ${notification.checkStatus !== 0 ? styles.infoContainer__old : ''}
+                            ${notification.checkStatus === 0 ? styles.infoContainer__new : ''}
+                          `}
+                        >
+                          댓글
+                        </span>
+                        을 남겼습니다.
+                      </>
+                    )}
+                  </p>
+                </div>
+
+                {/* 알람시간 */}
+                <div className={styles.time}>
+                  <span>{notification.createAt}</span>
+                  {isCheck && (
+                    <CheckCircledIcon
+                      className={`${styles.time__icon} ${isSelectd(notification.id) ? styles.time__icon__select : ''}`}
+                      onClick={() => selecterId(notification.id)}
+                    />
+                  )}
+                  {/* 시안 1 */}
+                  {/* <span>{notification.type === 1 ? '게시글' : '댓글'}</span> */}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
       </div>
     </div>
   );
