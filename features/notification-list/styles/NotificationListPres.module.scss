@@ -1,10 +1,12 @@
 @use "@styles/variables.scss" as *;
 
-
 .container{
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow: auto;
+  scrollbar-width: none; 
+  -ms-overflow-style: none;  
 }
 
 .notificationList{
@@ -18,26 +20,39 @@
   cursor: pointer;
   border-bottom: 1px solid $theme-shade-5;
   gap: 12px;
-  border-radius: 4px;
 
   &:hover{
-    background-color: $theme-shade-4;
+    background-color: $theme-shade-2;
   }
-
 }
-
 
 .userImage{
   position: relative;
   width: 30px;
   height: 30px;
   flex-shrink: 0;
+
+  img {
+    border-radius: 50%;
+    transition: filter 0.2s;
+  }
+    &__read {
+    img {
+      filter: grayscale(70%) brightness(0.9);
+    }
+  }
+  
   @media (max-width: 768px) {
     display: none;
   }
 }
-.old{
-  color: $theme-gray-3;  
+
+  .post {
+    color: $theme-primary;
+  }
+
+  .comment {
+  color: $theme-primary;
 }
 
 .infoContainer{
@@ -49,47 +64,43 @@
   height: 60px;
   color: $theme-gray-3; 
 
-  &:hover{
-    color: $theme-primary;
-  }
+    &__info{
+      max-width: 180px;
+      font-size: $font-sm-size;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
+    &__name{
+      font-size: $font-sm-size;
+      padding-right: 4px;
+    }
 
+    &__new{
+      color: $theme-primary;
+    }
 
-  &__new{
-    color: $theme-primary;
-  }
+    &__title{
+      color: $theme-gray-3;
+      font-size: $font-xs-size;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
-  &__info{
-    max-width: 180px;
-    font-size: $font-sm-size;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+    &__content {
+      font-size: $font-sm-size;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: $theme-text-1;
+    }
 
-  &__name{
-    font-size: $font-sm-size;
-    padding-right: 4px;
-  }
-
-  &__title{
-    color: $theme-gray-3;
-    font-size: $font-xs-size;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  &__content{
-    font-size: $font-sm-size;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    color: $theme-text-1;
-  }
-
+    &__old {
+      color: $theme-gray-3;  
+    }
 }
-
 
 .time{
   white-space: nowrap;
@@ -108,13 +119,10 @@
     width: 20px;
     height: 20px;
     cursor: pointer;
-
-    &:hover{
-      color: $theme-green;
-    }
+    display: flex;
 
     &__select{
-      color: $theme-green;
+      color: $theme-primary;
     }
   }
 }

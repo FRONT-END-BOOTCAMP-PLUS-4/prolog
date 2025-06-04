@@ -40,24 +40,18 @@ export default function NotificationModalPres(props: Props) {
 
   const isSame: boolean = notificationList.length === selectList.length;
 
-
   const SelectSection = () => {
     return (
       <div className={styles.bottomContainer__selectSection}>
-        <Button
-          size="small"
-          style={{ padding: '0.4rem' }}
-          onClick={() => submitRead()}
-        >
+        <Button size="small" style={{ border: 0 }} onClick={() => submitRead()}>
           전체읽기
         </Button>
         <Button
           size="small"
-          variants="active"
           onClick={changeBtnList}
-          style={{ padding: '0.4rem' }}
+          style={{ border: 0, color: 'red' }}
         >
-          삭제하기
+          삭제
         </Button>
       </div>
     );
@@ -68,28 +62,23 @@ export default function NotificationModalPres(props: Props) {
       <div className={styles.bottomContainer__deleteSection}>
         <Button
           size="small"
-          style={{ padding: '0.4rem' }}
+          style={{ border: 0 }}
           onClick={isSame ? allCancel : allCheck}
         >
           {isSame ? '전체해제' : '전체선택'}
         </Button>
         <div className={styles.bottomContainer__deleteSection__right}>
-          <Button
-            onClick={changeBtnList}
-            size="small"
-            style={{ padding: '0.4rem' }}
-          >
+          <Button onClick={changeBtnList} size="small" style={{ border: 0 }}>
             취소
           </Button>
           <Button
             size="small"
-            variants="red"
-            style={{ padding: '0.4rem' }}
+            style={{ border: 0, color: 'red' }}
             onClick={() => {
               submitDelete(selectList);
               allCancel();
             }}
-          >{`삭제하기 ${selectList.length}`}</Button>
+          >{`삭제 ${selectList.length}`}</Button>
         </div>
       </div>
     );
