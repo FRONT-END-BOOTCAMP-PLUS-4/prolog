@@ -147,7 +147,7 @@ export default function HeaderPres({ username, profileImg }: Props) {
           isSearchVisible ? styles.visible : ''
         }`}
       >
-        <PostsSearchCont key={searchKey} />
+        <PostsSearchCont key={searchKey} navigateToHomeOnSearch={true}/>
         {/* 검색창이 열려 있을 때 닫기 버튼 표시 */}
         {isSearchVisible && (
           <button

@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 // slice
 import SearchInputPres from '../presentational/SearchInputPres';
+import { useNavigateToHomeWithParams } from '../hooks/useNavigateToHomeWithParams';
 import type { Chip, DropdownItem, PostsSearchContProps, Post } from '../types';
 import { getMode } from '../types';
 
@@ -77,6 +78,7 @@ function isAllowedInput({ chips, value }: { chips: Chip[]; value: string }) {
 export default function PostsSearchCont({
   searchTypes = ['title', 'content', 'user', 'tag'],
   onSearch,
+  navigateToHomeOnSearch = false,
 }: PostsSearchContProps & {
   onSearch?: (params: {
     name?: string;
@@ -84,7 +86,9 @@ export default function PostsSearchCont({
     title?: string;
     content?: string;
   }) => void;
+  navigateToHomeOnSearch?: boolean;
 }) {
+  const navigateToHomeWithParams = useNavigateToHomeWithParams();
   const [chips, setChips] = useState<Chip[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [tagLabels, setTagLabels] = useState<string[]>([]);
@@ -260,18 +264,8 @@ export default function PostsSearchCont({
     setSearchParams(params);
     setShowDropdown(false);
 
-    // 검색 실행 시 홈으로 이동
-    const urlParams = new URLSearchParams();
-    if (params.name) urlParams.append('name', params.name);
-    if (params.tags) params.tags.forEach((tag) => urlParams.append('tag', tag));
-    if (params.title) urlParams.append('title', params.title);
-    if (params.content) urlParams.append('content', params.content);
-
-    // 현재 페이지가 홈이 아니면 홈으로 이동
-    if (pathname !== '/') {
-      router.push('/?' + urlParams.toString());
-    } else {
-      router.push('/?' + urlParams.toString());
+    if (navigateToHomeOnSearch) {
+      navigateToHomeWithParams(params);
     }
   };
 

@@ -2,6 +2,8 @@ export { default } from './container/PostsSearchCont';
 
 /**
  * @Desc
+ * 
+ * <PostsSearchCont useNavigateToHomeWithParams={true}/> : 검색 시 홈으로 이동
  *
  * <PostsSearchCont searchTypes={['title']} /> : 제목만 검색
  *
