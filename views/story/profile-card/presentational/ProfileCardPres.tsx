@@ -72,7 +72,7 @@ export default function ProfileCardPres({
             <div className={styles.userInfo}>
               <h2 className={styles.nameText}>{userData?.name}</h2>
               <div>
-                {userId === currentId ? (
+                {userId === currentId && currentId ? (
                   <div style={{ display: 'none' }}></div>
                 ) : (
                   <SubscriptionCont
