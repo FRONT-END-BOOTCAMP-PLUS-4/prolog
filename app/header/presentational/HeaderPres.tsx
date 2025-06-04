@@ -14,6 +14,7 @@ import {
   SunIcon,
   MoonIcon,
 } from '@radix-ui/react-icons';
+import { useRouter } from 'next/navigation';
 
 // slice
 import styles from '../styles/HeaderPres.module.scss';
@@ -28,6 +29,8 @@ import { NotificationModalCont } from '@/widgets/notification';
 import { useOnClickOutside } from '@/shared/hooks/useOnClickOutside';
 
 export default function HeaderPres({ username }: { username: string }) {
+  const router = useRouter();
+
   const { open } = useModalStore((state) => state.action);
   // 로그인 여부
   const { data } = useSession();
@@ -109,6 +112,14 @@ export default function HeaderPres({ username }: { username: string }) {
     setIsNotificationDropdownVisible((prev) => !prev);
   };
 
+  const handleWriteClick = () => {
+    if (data?.user) {
+      router.push('/member/story');
+    } else {
+      open(<LoginForm />, 'center');
+    }
+  };
+
   return (
     <header className={styles.header}>
       {/* 로고 */}
@@ -167,10 +178,8 @@ export default function HeaderPres({ username }: { username: string }) {
         </button>
 
         {/* 글 작성 버튼 */}
-        <button className={styles.writeBtn}>
-          <Link href="/member/story">
-            <Pencil1Icon className={styles.btnLogo} />
-          </Link>
+        <button className={styles.writeBtn} onClick={handleWriteClick}>
+          <Pencil1Icon className={styles.btnLogo} />
         </button>
 
         {/* 로그인/로그아웃 및 프로필 드롭다운 */}
@@ -211,10 +220,11 @@ export default function HeaderPres({ username }: { username: string }) {
                 type="button"
               >
                 <Image
-                  src="/svgs/profile.svg"
+                  src={data.user.image ? data.user.image : '/svgs/profile.svg'}
                   alt="프로필"
                   width={24}
                   height={24}
+                  className={styles.profileImg}
                 />
               </button>
               <button onClick={handleProfileBtnClick}>
