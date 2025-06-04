@@ -5,8 +5,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
 }
 
+button:focus, input:focus, div:focus {
+  outline: none;
+}
 html,body {
   background-color: $theme-shade-1;
   color: $theme-text-1;
@@ -37,5 +42,9 @@ button {
     html,body {
     width: 100%;
     overflow-x: hidden;
+  }
+  
+  .cardContainer .tagList.rolling {
+    animation-play-state: running ;
   }
 }
