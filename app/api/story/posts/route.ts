@@ -15,8 +15,6 @@ export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const userId = searchParams.get('userId');
-    const token = await getToken({ req, secret });
-    // const currentUserId = token?.userId || '';
     const session = await auth();
     const currentUserId = session?.user.id;
     if (!currentUserId) {
