@@ -27,6 +27,7 @@ import { LoginForm } from '@/widgets/login';
 import { useThemeStore } from '@/shared/stores/useThemeStore';
 import { NotificationModalCont } from '@/widgets/notification';
 import { useOnClickOutside } from '@/shared/hooks/useOnClickOutside';
+import { useLockBodyScroll } from '@/shared/hooks/useLockBodyScroll';
 import { usePostEditorStore } from '@/views/post/stores/usePostEditorStore';
 
 type Props = {
@@ -64,6 +65,8 @@ export default function HeaderPres({ username, profileImg }: Props) {
   const notificationDropdownRef = useRef<HTMLDivElement>(null);
 
   const searchRef = useRef<{ resetAll: () => void }>(null);
+
+  useLockBodyScroll(isNotificationDropdownVisible || isProfileDropdownVisible);
 
   const { clearSelectedPost } = usePostEditorStore();
 
@@ -148,7 +151,7 @@ export default function HeaderPres({ username, profileImg }: Props) {
           isSearchVisible ? styles.visible : ''
         }`}
       >
-        <PostsSearchCont key={searchKey} />
+        <PostsSearchCont key={searchKey} navigateToHomeOnSearch={true} />
         {/* 검색창이 열려 있을 때 닫기 버튼 표시 */}
         {isSearchVisible && (
           <button
@@ -212,6 +215,7 @@ export default function HeaderPres({ username, profileImg }: Props) {
                 type="button"
               >
                 <BellIcon className={styles.btnLogo} />
+                <span className={styles.alarmBadge} />
               </button>
               {isNotificationDropdownVisible && (
                 <div className={styles.notificationDropdownMenu}>
