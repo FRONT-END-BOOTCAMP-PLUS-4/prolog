@@ -10,14 +10,8 @@ export const validateNumericParam = (
 // 정렬 파라미터 유효성 검사
 export const validateSortParam = (
   value: string | null,
-): 'latest' | 'popular' | 'bookMark' => {
-  if (value === 'popular') {
-    return 'popular';
-  }
-  if (value === 'bookMark') {
-    return 'bookMark';
-  }
-  return 'latest';
+): 'latest' | 'popular' => {
+  return value === 'popular' ? 'popular' : 'latest';
 };
 
 //my블로그
