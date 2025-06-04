@@ -63,7 +63,25 @@
     :global(.w-md-editor-preview) {
         /* 미리보기 커스텀 */
        // box-shadow: none;    
-     
+       ul,
+  ol {
+    margin: 0 0 1em 1.5em;
+    padding-left: 1.5em;
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
+  }
+
+  li {
+    margin-bottom: 0.3em;
+    line-height: 1.6;
+    color: $theme-text-1;
+  }
     }
 }
 
@@ -127,5 +145,3 @@
    opacity: 1
 
 }
-
-

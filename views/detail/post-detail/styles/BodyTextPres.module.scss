@@ -22,16 +22,6 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   }
 
-  h1, h2, h3 {
-    font-weight: 600;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  h1 { font-size: 1.8rem; }
-  h2 { font-size: 1.5rem; }
-  h3 { font-size: 1.25rem; }
-
   p {
     margin: 1rem 0;
   }
@@ -51,6 +41,14 @@
   }
 
 
+  ul {
+    list-style-type: disc; // 기본 점
+  }
+
+  ol {
+    list-style-type: decimal; // 숫자 목록
+  }
+
   pre {
     background-color: #2d2d2d;
     color: #f8f8f2;
@@ -62,13 +60,7 @@
     font-size: 0.95em;
   }
 
-  blockquote {
-    border-left: 4px solid black;
-    padding-left: 1rem;
-    margin: 1rem 0;
-    color: #555;
-    background-color: #f9f9f9;
-  }
+ 
 }
 
 .tagList {

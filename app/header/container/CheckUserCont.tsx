@@ -13,15 +13,18 @@ export default function CheckUserCont(): JSX.Element {
 
   useEffect(() => {
     const getUserInfo = async () => {
-      const response = await fetch(`/api/${session?.user.name}/stories`);
+      try {
+        if (!session?.user?.name) return;
 
-      if (!response.ok) {
-        throw new Error('유저 정보 불러오기 실패');
+        const response = await fetch(`/api/${session.user.name}/stories`);
+
+        if (!response.ok) throw new Error('유저 정보를 가져오지 못했습니다');
+
+        const result = await response.json();
+        setProfileImg(result.profileImg);
+      } catch (error) {
+        console.error('유저 정보 가져오기 실패:', error);
       }
-
-      const result = await response.json();
-
-      setProfileImg(result.profileImg);
     };
 
     getUserInfo();
