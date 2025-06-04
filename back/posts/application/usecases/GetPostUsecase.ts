@@ -24,6 +24,7 @@ export class GetPostUsecase {
       post.isPublic,
       post.useAi,
       post.categoryId,
+      post.authorId,
       post.profileImage ?? null,
       post.nickname,
       post.isLiked,
