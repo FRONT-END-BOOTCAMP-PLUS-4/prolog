@@ -89,11 +89,11 @@ export default function SettingPres(props: SettingPresProps) {
             className={styles.nickname}
             maxLength={20}
             disabled={loading}
-            placeholder="닉네임"
+            placeholder="닉네임 (최대 20자)"
           />
           {nameError && <div className={styles.errorMessage}>{nameError}</div>}
           <textarea
-            placeholder="자기소개 내용을 작성해주세요"
+            placeholder="자기소개 내용을 작성해주세요. (최대 200자)"
             className={styles.bioTextarea}
             value={introduction}
             onChange={onIntroductionChange}
