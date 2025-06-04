@@ -5,7 +5,7 @@ import { MyBlogCardData } from '../types';
 import { PostListFilter } from '@/views/home/card-list/types';
 import { useSearch } from '@/shared/contexts/SearchContext';
 import { useInfiniteScrollTrigger } from '@/views/home/card-list/hooks/useInfiniteScrollTrigger';
-import { useMyStoryInfiniteScroll } from '../hooks/useMyStoryInfiniteScroll';
+import { useMyStoryInfiniteScroll } from '../hook/useMyStoryInfiniteScroll';
 import { useResetOnFilterChange } from '@/views/home/card-list/hooks/useResetOnFilterChange';
 import { useMinSkeleton } from '@/views/home/card-list/hooks/useMinSkeleton';
 const SORT_OPTIONS = [

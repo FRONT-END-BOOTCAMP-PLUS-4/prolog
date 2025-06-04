@@ -225,7 +225,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/jangjun-ig/Desktop/prolog/app/generated/prisma",
+      "value": "/Users/uisaj/Desktop/prolog/app/generated/prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -239,7 +239,7 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/jangjun-ig/Desktop/prolog/prisma/schema.prisma",
+    "sourceFilePath": "/Users/uisaj/Desktop/prolog/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
