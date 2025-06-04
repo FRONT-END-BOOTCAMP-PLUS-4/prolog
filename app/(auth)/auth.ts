@@ -31,46 +31,48 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async signIn({ user, account }) {
       if (!user?.email || !account?.provider) return false;
 
-
       if (user.email && user.name) {
         const existingUser = await prisma.user.findMany({
           where: { email: user.email },
         });
 
         const userCount = existingUser.length;
-        const userProvider = existingUser.filter( user => user.provider === account.provider);
-        
-          if(!userProvider.length) {
-            const userTags = user.email.split("@")[0];
-            await prisma.user.create({
+        const userProvider = existingUser.filter(
+          (user) => user.provider === account.provider,
+        );
+
+        if (!userProvider.length) {
+          const userTags = user.email.split('@')[0];
+          await prisma.user.create({
             data: {
               email: user.email,
               name: userTags + `-${userCount + 1}`,
               profileImg: user.image,
               provider: account.provider,
-              },
-            })
-          }
-
-          const nowUser = await prisma.user.findFirst({
-              where: {
-                email: user.email,
-                provider: account.provider,
-              },
+            },
           });
+        }
 
-          if (nowUser) {
-            user.id = nowUser.id;
-            user.name = nowUser.name;
-          }
+        const nowUser = await prisma.user.findFirst({
+          where: {
+            email: user.email,
+            provider: account.provider,
+          },
+        });
+
+        if (nowUser) {
+          user.id = nowUser.id;
+          user.name = nowUser.name;
+        }
       }
 
       return true;
     },
 
     async jwt({ token, account, user, trigger, session }) {
-      if (trigger === "update" && session?.name) {
-        token.name = session.name
+      if (trigger === 'update') {
+        if (session?.name) token.name = session.name;
+        if (session?.image) token.image = session.image;
       }
 
       if (account) {
@@ -86,6 +88,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       session.user.name = token.name;
       session.user.provider = token.provider;
       session.user.id = token.userId as string;
+      session.user.image = token.image as string;
       return session;
     },
   },
