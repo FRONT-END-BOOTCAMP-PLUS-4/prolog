@@ -50,8 +50,8 @@
   }
 
   pre {
-    background-color: #2d2d2d;
-    color: #f8f8f2;
+    background-color: $theme-shade-3;
+    color: $theme-text-1;
     padding: 1rem;
     border-radius: 8px;
     overflow-x: auto;
@@ -60,7 +60,22 @@
     font-size: 0.95em;
   }
 
- 
+   code {
+    background-color: $theme-shade-3;
+    color: $theme-red; 
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.95em;
+  }
+
+  pre code {
+    // pre 내부의 code에는 별도 스타일링 방해되지 않도록
+    background: none;
+    color: inherit;
+    padding: 0;
+  }
+
 }
 
 .tagList {
