@@ -27,6 +27,7 @@ import { LoginForm } from '@/widgets/login';
 import { useThemeStore } from '@/shared/stores/useThemeStore';
 import { NotificationModalCont } from '@/widgets/notification';
 import { useOnClickOutside } from '@/shared/hooks/useOnClickOutside';
+import { useLockBodyScroll } from '@/shared/hooks/useLockBodyScroll';
 
 export default function HeaderPres({ username }: { username: string }) {
   const router = useRouter();
@@ -58,6 +59,8 @@ export default function HeaderPres({ username }: { username: string }) {
   const notificationDropdownRef = useRef<HTMLDivElement>(null);
 
   const searchRef = useRef<{ resetAll: () => void }>(null);
+
+  useLockBodyScroll(isNotificationDropdownVisible || isProfileDropdownVisible);
 
   // 검색창 영역 밖 클릭 시 검색창 닫기
   useOnClickOutside(
@@ -203,6 +206,7 @@ export default function HeaderPres({ username }: { username: string }) {
                 type="button"
               >
                 <BellIcon className={styles.btnLogo} />
+                <span className={styles.alarmBadge} />
               </button>
               {isNotificationDropdownVisible && (
                 <div className={styles.notificationDropdownMenu}>
