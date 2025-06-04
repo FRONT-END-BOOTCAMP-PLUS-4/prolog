@@ -28,7 +28,6 @@ export default function SubscriptionCont({
     }
 
     if (session?.user.id === userId) {
-      console.log(userId);
       return toast.error('자기자신을 팔로워 할 수 없습니다.');
     }
 
