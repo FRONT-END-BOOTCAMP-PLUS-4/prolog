@@ -18,8 +18,10 @@ export default function CommentListCont({ postId }: { postId: number }) {
         return res.json();
       })
       .then((data) => {
+        console.log('Fetched comments:', data);
         interface ServerComment {
           id: number;
+          profileImage: string;
           nickname: string;
           createdAt: string;
           content: string;
@@ -30,6 +32,7 @@ export default function CommentListCont({ postId }: { postId: number }) {
           (data as ServerComment[]).map(
             (c: ServerComment): Comment => ({
               id: c.id,
+              userProfileImage: c.profileImage,
               userNickName: c.nickname,
               date: c.createdAt,
               text: c.content,

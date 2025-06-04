@@ -16,6 +16,7 @@ import { EditButtonCont } from '@/features/edit';
 import { DeleteButtonCont } from '@/features/delete';
 import { getMetadata } from '@/shared/utils/metadata';
 import { auth } from '@/app/(auth)/auth';
+import SubscriptionCont from '@/features/subscription/container/SubscriptionCont';
 
 const getPost = async (postId: number) => {
   const cookieStore = await cookies();
@@ -90,14 +91,12 @@ export default async function Page({
       <div className={styles.profileLayout}>
         {/* 프로필/팔로우 바 */}
         <div className={styles.profileBar}>
-          <Profile userName={post.nickname} date={post.createdAt} />
-          <Button
-            style={{ padding: '0.2rem 0.5rem', fontSize: '13px' }}
-            variants="active"
-            size="small"
-          >
-            팔로우
-          </Button>
+          <Profile
+            userProfileImage={post.profileImage}
+            userName={post.nickname}
+            date={post.createdAt}
+          />
+          {post.isMine ? <></> : <SubscriptionCont userId={post.authorId} />}
         </div>
 
         {/* 아이콘 바 */}
