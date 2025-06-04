@@ -31,7 +31,7 @@ export type PostListFilter = {
   tags?: string[];
   title?: string;
   content?: string;
-  sort?: 'latest' | 'popular';
+  sort?: 'latest' | 'popular' | 'bookMark';
   pageSize?: number;
 };
 

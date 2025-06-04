@@ -6,10 +6,8 @@ import PostsSearchCont from '@/features/search-input/container/PostsSearchCont';
 type dataProps = {
   data: MyBlogCardData[];
   userId: string;
-  // | 'bookMark'
-  sort: 'latest' | 'popular';
-  // | 'bookMark'
-  setSort: (sort: 'latest' | 'popular') => void;
+  sort: 'latest' | 'popular' | 'bookMark';
+  setSort: (sort: 'latest' | 'popular' | 'bookMark') => void;
   items: MyBlogCardData[];
   sortOptions: { label: string; value: string }[];
 };
@@ -30,8 +28,7 @@ export default function MyBlogCardListPres({
             options={sortOptions}
             value={sort}
             onChange={(val) =>
-              // | 'bookMark'
-              setSort(val as 'latest' | 'popular')
+              setSort(val as 'latest' | 'popular' | 'bookMark')
             }
             className={styles.selectWrap}
           />
