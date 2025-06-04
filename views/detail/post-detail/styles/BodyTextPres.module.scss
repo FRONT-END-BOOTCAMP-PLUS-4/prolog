@@ -13,15 +13,14 @@
   line-height: 1.8;
 
   img {
-    max-width: 500px;
-    max-height: 500px;
-    height: auto;
+    width: 100%;              
+    max-width: 700px;        
+    height: auto;            
     display: block;
     margin: 1.5rem auto;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   }
-
 
   h1, h2, h3 {
     font-weight: 600;
