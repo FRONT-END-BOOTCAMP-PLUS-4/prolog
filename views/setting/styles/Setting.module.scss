@@ -162,11 +162,10 @@
 .settingItemContainer {
   display: flex;
   flex-direction: column;
-  padding: 20px;
   gap: 12px;
-  border-radius: 12px;
-  background-color: $theme-shade-2;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  background-color: $theme-shade-1;
+  border-bottom: 1px solid $theme-gray-1;
+  padding: 10px 18px ;
   transition: all 0.3s ease;
 }
 
@@ -203,6 +202,7 @@
     font-size: 14px;
     font-weight: 500;
     transition: all 0.3s ease;
+    margin-top: 35px;
     
     &:hover {
       transform: translateY(-1px);
@@ -211,20 +211,18 @@
 }
 
 .settingDescription {
-  color: $theme-gray-5;
+  color: $theme-gray-4;
   font-size: 14px;
   line-height: 1.5;
-  background: $theme-shade-3;
   padding: 12px 16px;
   border-radius: 10px;
+  display: flex;
 }
 
 .actionButtons {
   display: flex;
   justify-content: center;
   gap: 16px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
   
   button {
     padding: 12px 32px;
@@ -239,6 +237,18 @@
   }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
 @media (max-width: 768px) {
   .profileSection {
     padding: 24px 16px;
@@ -248,7 +258,27 @@
     width: 100px;
     height: 100px;
   }
+
   
+.profileButtonGroup {
+  button {
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
+  .settingButtonGroup {
+    button {
+      margin-top: 0;
+
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+
+    
   .settingControls {
     flex-direction: column;
     gap: 12px;
