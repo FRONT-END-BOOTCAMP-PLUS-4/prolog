@@ -47,25 +47,28 @@ export default function CommentListCont({ postId }: { postId: number }) {
   }, [postId, trigger]);
 
   const handleEditComment = async (id: number, newText: string) => {
-    fetch(`/api/member/comments/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ content: newText }),
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error();
-        return res.json();
-      })
-      .then(() => {
-        setComments((prev) =>
-          prev.map((c) => (c.id === id ? { ...c, text: newText } : c)),
-        );
-      })
-      .catch((error) => {
-        console.error(`Failed to update comment with id ${id}:`, error);
+    const original = comments.find((c) => c.id === id);
+    if (!original || original.text === newText.trim()) {
+      return; // 변경 사항이 없으면 요청 보내지 않음
+    }
+
+    try {
+      const res = await fetch(`/api/member/comments/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ content: newText }),
       });
+
+      if (!res.ok) throw new Error();
+
+      setComments((prev) =>
+        prev.map((c) => (c.id === id ? { ...c, text: newText } : c)),
+      );
+    } catch (error) {
+      console.error(`Failed to update comment with id ${id}:`, error);
+    }
   };
 
   const handleDeleteComment = async (id: number) => {

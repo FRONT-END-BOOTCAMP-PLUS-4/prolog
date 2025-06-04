@@ -28,7 +28,7 @@ export default function SubscriptionPres({
   return (
     <>
       <div onClick={followerHandler}>
-        <Button variants={isFollowing ? 'secondary' : 'active'} size="small">
+        <Button variants={isFollowing ? 'purple' : 'active'} size="small">
           {isFollowing ? '팔로잉' : '팔로우'}
         </Button>
       </div>

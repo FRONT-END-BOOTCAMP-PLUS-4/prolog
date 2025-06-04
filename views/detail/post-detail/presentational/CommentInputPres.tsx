@@ -26,6 +26,7 @@ export default function CommentInputPres({
         size="small"
         onClick={onSubmit}
         disabled={isSubmitting || !value.trim()}
+        variants={value.trim() ? 'active' : 'disabled'}
       >
         댓글 작성
       </Button>
