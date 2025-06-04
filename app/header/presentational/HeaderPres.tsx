@@ -1,7 +1,7 @@
 'use client';
 
 // package
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -27,6 +27,7 @@ import { LoginForm } from '@/widgets/login';
 import { useThemeStore } from '@/shared/stores/useThemeStore';
 import { NotificationModalCont } from '@/widgets/notification';
 import { useOnClickOutside } from '@/shared/hooks/useOnClickOutside';
+import { usePostEditorStore } from '@/views/post/stores/usePostEditorStore';
 
 type Props = {
   username: string;
@@ -63,6 +64,8 @@ export default function HeaderPres({ username, profileImg }: Props) {
   const notificationDropdownRef = useRef<HTMLDivElement>(null);
 
   const searchRef = useRef<{ resetAll: () => void }>(null);
+
+  const { clearSelectedPost } = usePostEditorStore();
 
   // 검색창 영역 밖 클릭 시 검색창 닫기
   useOnClickOutside(
@@ -120,6 +123,7 @@ export default function HeaderPres({ username, profileImg }: Props) {
   const handleWriteClick = () => {
     if (data?.user) {
       router.push('/member/story');
+      clearSelectedPost();
     } else {
       open(<LoginForm />, 'center');
     }

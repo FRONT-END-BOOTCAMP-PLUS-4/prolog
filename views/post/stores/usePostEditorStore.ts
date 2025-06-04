@@ -16,6 +16,8 @@ type PostEditorStoreType = {
 
   // 선택된 포스트 설정
   setSelectedPost: (selectedPost: BlogPostType) => void;
+
+  clearSelectedPost: () => void;
 };
 
 export const usePostEditorStore = create<PostEditorStoreType>((set) => ({
@@ -29,4 +31,6 @@ export const usePostEditorStore = create<PostEditorStoreType>((set) => ({
     })),
 
   setSelectedPost: (selectedPost) => set({ selectedPost: selectedPost }),
+
+  clearSelectedPost: () => set({ selectedPost: null }),
 }));
