@@ -5,6 +5,7 @@ export class GetPostByUserResponseDto {
     public success: boolean,
     public filters: {
       targetUserId: string;
+      name?: string;
       tags?: string[];
       title?: string;
       content?: string;

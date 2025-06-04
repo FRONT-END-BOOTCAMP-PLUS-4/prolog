@@ -1,3 +1,4 @@
+import { BlogPostWhereInput } from '@/back/posts/domain/PostListAllRepository';
 import {
   BlogPostByUserWhereInput,
   BlogPostOrderBy,
@@ -63,14 +64,38 @@ export class PrPostByUserRepository implements PostByUserRepository {
     const where: BlogPostByUserWhereInput = {
       userId: filters.targetUserId,
     };
+    // 태그 필터
+    if (filters.tags && filters.tags.length > 0) {
+      orConditions.push({ tags: { hasSome: filters.tags } });
+    }
 
-    const isMyPage = filters.isMyPage ?? false;
-    if (!(isMyPage && filters.targetUserId === currentUserId)) {
-      where.isPublic = 1;
+    // 타이틀 필터
+    if (filters.title) {
+      orConditions.push({
+        title: { contains: filters.title, mode: 'insensitive' },
+      });
+    }
+
+    // 게시글 내용 필터
+    if (filters.content) {
+      orConditions.push({
+        content: { contains: filters.content, mode: 'insensitive' },
+      });
+    }
+
+    // 유저 이름 필터
+    if (filters.name) {
+      where.user = {
+        name: { contains: filters.name, mode: 'insensitive' },
+      };
     }
 
     if (orConditions.length > 0) {
       where.OR = orConditions;
+    }
+    const isMyPage = filters.isMyPage ?? false;
+    if (!(isMyPage && filters.targetUserId === currentUserId)) {
+      where.isPublic = 1;
     }
 
     const page = filters.page ?? 1;

@@ -50,6 +50,7 @@ export class GetPostByUserUsecase {
         true,
         {
           targetUserId: filters.targetUserId,
+          name: filters.name,
           tags: filters.tags,
           title: filters.title,
           content: filters.content,
