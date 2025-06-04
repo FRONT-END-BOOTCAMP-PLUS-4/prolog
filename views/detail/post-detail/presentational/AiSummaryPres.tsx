@@ -25,14 +25,6 @@ export default function AiSummaryPres({
         />
       </div>
       {isOpen && (
-        // <ol style={{ margin: 0, paddingLeft: 20 }}>
-        //   {summaryList.map((item, idx) => (
-        //     <li className={styles.summaryItem} key={idx}>
-        //       {item.title}
-        //     </li>
-        //   ))}
-        // </ol>
-        // <div>{aiSummary}</div>
         <ol className={styles.summaryList}>
           {aiSummary?.map((sum, idx) => (
             <li key={idx} className={styles.summaryItem}>

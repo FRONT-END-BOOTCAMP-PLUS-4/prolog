@@ -54,7 +54,7 @@ export default function CommentListPres({
                 완료
               </button>
             ) : (
-              c.isMine && ( // ← 내가 쓴 댓글일 때만 보이게!
+              c.isMine && (
                 <div className={styles.actionButtons}>
                   <EditButtonCont
                     mode="comment"
