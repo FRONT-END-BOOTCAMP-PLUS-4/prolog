@@ -13,6 +13,7 @@ type UserProps = {
   followerList: SubscribeUser;
   followList: SubscribeUser;
   userId: string;
+  currentId: string;
   onFollowStatusChange: (isFollowing: boolean) => void;
 };
 
@@ -21,6 +22,7 @@ export default function ProfileCardPres({
   userId,
   followList,
   followerList,
+  currentId,
   onFollowStatusChange,
 }: UserProps) {
   const defaultImg = '/svgs/my-card-background.jpg';
@@ -70,10 +72,14 @@ export default function ProfileCardPres({
             <div className={styles.userInfo}>
               <h2 className={styles.nameText}>{userData?.name}</h2>
               <div>
-                <SubscriptionCont
-                  userId={userId}
-                  onFollowStatusChange={onFollowStatusChange}
-                />
+                {userId === currentId && currentId ? (
+                  <div style={{ display: 'none' }}></div>
+                ) : (
+                  <SubscriptionCont
+                    userId={userId}
+                    onFollowStatusChange={onFollowStatusChange}
+                  />
+                )}
               </div>
             </div>
             <div

@@ -3,6 +3,8 @@ import { useEffect, useState, useRef } from 'react';
 import SubscriptionPres from '../presentational/SubscriptionPres';
 import { useSession } from 'next-auth/react';
 import { toast } from 'react-toastify';
+import { useModalStore } from '@/shared/stores/useModalStore';
+import { LoginForm } from '@/widgets/login';
 
 interface SubscriptionContProps {
   userId: string;
@@ -17,9 +19,13 @@ export default function SubscriptionCont({
   const [isFollowing, setIsFollowing] = useState<boolean | null>(null);
   const [isReady, setIsReady] = useState(false);
   const hasInitialized = useRef(false);
-
+  const { open } = useModalStore((state) => state.action);
   const followerHandler = () => {
     if (!isReady) return; // 준비되지 않으면 클릭 무시
+    if (status === 'loading') return;
+    if (!session?.user?.id) {
+      return open(<LoginForm />, 'center');
+    }
 
     if (session?.user.id === userId) {
       return toast.error('자기자신을 팔로워 할 수 없습니다.');
@@ -31,8 +37,6 @@ export default function SubscriptionCont({
   // 세션 상태 확인 및 팔로우 상태 초기화
   useEffect(() => {
     const initializeFollowStatus = async () => {
-      if (status === 'loading') return;
-
       if (status === 'authenticated' && session?.user?.id) {
         try {
           const response = await fetch(

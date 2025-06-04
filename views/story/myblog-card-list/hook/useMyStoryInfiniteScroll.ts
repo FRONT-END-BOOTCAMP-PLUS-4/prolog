@@ -76,6 +76,7 @@ export function useMyStoryInfiniteScroll(
 
         const data: { data: PostListItem[]; hasMore: boolean } =
           await res.json();
+
         setPosts((prev) => {
           const newPosts =
             pageToFetch === 1 ? data.data : [...prev, ...data.data];
@@ -97,6 +98,7 @@ export function useMyStoryInfiniteScroll(
     [hasMore],
   );
 
+  // 리스트 및 필터 초기화 및 첫 페이지 호출
   const reset = useCallback(
     (newFilter?: PostListFilter) => {
       const appliedFilter = newFilter ?? initialFilter;
@@ -109,6 +111,7 @@ export function useMyStoryInfiniteScroll(
     [initialFilter],
   );
 
+  // 페이지나 filter가 바뀔 때 fetch
   useEffect(() => {
     if (page === 1 && posts.length === 0) {
       fetchPosts(1, filter);
@@ -117,6 +120,7 @@ export function useMyStoryInfiniteScroll(
     }
   }, [page, filter]);
 
+  // 최초 마운트 시 첫 페이지 호출
   useEffect(() => {
     fetchPosts(1, filter);
   }, []);

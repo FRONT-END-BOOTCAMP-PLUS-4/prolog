@@ -226,6 +226,7 @@ const config = {
     },
     "output": {
       "value": "/Users/duu/Desktop/prolog/app/generated/prisma",
+
       "fromEnvVar": null
     },
     "config": {

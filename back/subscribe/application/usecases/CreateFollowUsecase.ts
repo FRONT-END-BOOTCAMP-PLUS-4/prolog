@@ -21,7 +21,10 @@ export class CreateFollowUsecase {
         );
 
       if (existingFollow) {
-        throw new Error('이미 팔로우 중입니다.');
+        return {
+          success: false,
+          message: '이미 팔로우 중입니다.',
+        };
       }
 
       const newFollow = await this.followRepository.create(
