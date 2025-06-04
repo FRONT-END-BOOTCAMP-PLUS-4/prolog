@@ -8,6 +8,7 @@ import { useCommentStore } from '../stores/useCommentStore';
 export default function CommentListCont({ postId }: { postId: number }) {
   const [comments, setComments] = useState<Comment[]>([]);
   const trigger = useCommentStore((state) => state.trigger);
+  const refresh = useCommentStore((state) => state.triggerRefresh);
 
   useEffect(() => {
     if (!postId) return;
@@ -69,10 +70,8 @@ export default function CommentListCont({ postId }: { postId: number }) {
       method: 'DELETE',
     })
       .then(() => {
-        console.log(`Comment with id ${id} deleted`);
-      })
-      .then(() => {
         setComments((prev) => prev.filter((c) => c.id !== id));
+        refresh();
       })
       .catch((error) => {
         console.error(`Failed to delete comment with id ${id}:`, error);

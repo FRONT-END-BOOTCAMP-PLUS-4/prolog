@@ -14,7 +14,6 @@ const secret = process.env.AUTH_SECRET;
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
-
     const userId = searchParams.get('userId');
     const session = await auth();
     const currentUserId = session?.user.id;
