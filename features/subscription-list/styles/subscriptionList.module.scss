@@ -7,9 +7,7 @@
   box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   padding: 20px;
-  position: absolute;
-  top: 20%;
-  left: 38%;
+  position: relative;
   background-color:$theme-shade-2;
 }
 .searchbar{
@@ -54,10 +52,11 @@
   .flexColumn{
     display: flex;
     flex-direction: column;
+    gap: 5px;
   }
   .followGap{
     display: flex;
-    gap: 10px;
+    gap: 25px;
   }
   .subscriptionBox{
     display: flex;
@@ -73,7 +72,7 @@
   }
   .toggleTextBasic{
     @include font-xl;
-    color: $theme-gray-4;
+    color: $theme-text-2;
     font-weight: 200
   }
   .list{
@@ -89,18 +88,18 @@
   }
   .text{
     font-size:20px ;
-    color: $theme-gray-1;
+    color: $theme-text-1;
   }
   .userListContainer{
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    margin-top: 20px;
-    gap: 55px;
+    margin-top: 25px;
+    gap: 65px;
   }
  
   .userName{
-    color: $theme-shade-8;
+    color: $theme-text-2;
     @include font-xl;
     text-align: center;
   }
