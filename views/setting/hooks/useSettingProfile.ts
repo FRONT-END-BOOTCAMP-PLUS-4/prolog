@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
-import { signOut } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 import {
   fetchUserProfile,
   updateUserProfile,
@@ -31,6 +31,7 @@ export function useSettingProfile() {
   const backgroundInputRef = useRef<HTMLInputElement>(null);
 
   const router = useRouter();
+  const { update } = useSession();
 
   useEffect(() => {
     fetchUserProfile().then((data) => {
@@ -114,6 +115,7 @@ export function useSettingProfile() {
 
       setProfileImgFile(null);
       setBackgroundImgFile(null);
+      update({ name: name });
     } catch (e: unknown) {
       let message = '저장에 실패했습니다.';
       if (e instanceof Error) {
