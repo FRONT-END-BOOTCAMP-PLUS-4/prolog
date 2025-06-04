@@ -18,7 +18,10 @@ export class CancelFollowUsecase {
         );
 
       if (!existingFollow) {
-        throw new Error('팔로우 관계가 존재하지 않습니다.');
+        return {
+          success: false,
+          message: '팔로우 관계가 존재하지 않습니다.',
+        };
       }
 
       await this.followRepository.deleteByRequestAndResponse(

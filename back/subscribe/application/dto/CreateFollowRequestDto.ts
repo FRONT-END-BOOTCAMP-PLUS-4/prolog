@@ -8,6 +8,6 @@ export class CreateFollowResponseDto {
   constructor(
     public success: boolean,
     public message: string,
-    public followId: number,
+    public followId?: number,
   ) {}
 }

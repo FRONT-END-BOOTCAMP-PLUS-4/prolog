@@ -2,6 +2,7 @@
 import { JSX, useEffect, useState, useCallback } from 'react';
 import ProfileCardPres from '../presentational/ProfileCardPres';
 import { SubscribeUser, User } from '../types';
+import { useSession } from 'next-auth/react';
 
 export default function ProfileCardCont({
   username,
@@ -11,7 +12,8 @@ export default function ProfileCardCont({
   const [followList, setFollowList] = useState<SubscribeUser>();
   const [followerList, setFollowerList] = useState<SubscribeUser>();
   const [isLoading, setIsLoading] = useState(true);
-
+  const { data: session, status } = useSession();
+  const currentId = session?.user.id;
   const refetchFollowerData = useCallback(async () => {
     try {
       const response = await fetch(
@@ -89,6 +91,7 @@ export default function ProfileCardCont({
       followList={followList!}
       followerList={followerList!}
       userId={userId}
+      currentId={currentId as string}
       userData={userData!}
       onFollowStatusChange={onFollowStatusChange}
     />
