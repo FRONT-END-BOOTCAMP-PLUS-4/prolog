@@ -28,7 +28,12 @@ import { useThemeStore } from '@/shared/stores/useThemeStore';
 import { NotificationModalCont } from '@/widgets/notification';
 import { useOnClickOutside } from '@/shared/hooks/useOnClickOutside';
 
-export default function HeaderPres({ username }: { username: string }) {
+type Props = {
+  username: string;
+  profileImg: string | null;
+};
+
+export default function HeaderPres({ username, profileImg }: Props) {
   const router = useRouter();
 
   const { open } = useModalStore((state) => state.action);
@@ -220,7 +225,7 @@ export default function HeaderPres({ username }: { username: string }) {
                 type="button"
               >
                 <Image
-                  src={data.user.image ? data.user.image : '/svgs/profile.svg'}
+                  src={profileImg ? profileImg : '/svgs/profile.svg'}
                   alt="프로필"
                   width={24}
                   height={24}
