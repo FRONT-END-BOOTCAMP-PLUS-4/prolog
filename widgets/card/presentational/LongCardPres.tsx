@@ -16,7 +16,7 @@ import React from 'react';
 type Props = {
   data: MyBlogCardData;
   userId: string;
-  className: string;
+  className?: string;
 };
 
 export default function LongCardPres({ data, userId, className }: Props) {
