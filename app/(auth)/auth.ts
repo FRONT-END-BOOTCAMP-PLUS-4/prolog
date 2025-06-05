@@ -63,6 +63,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (nowUser) {
           user.id = nowUser.id;
           user.name = nowUser.name;
+          user.image = nowUser.profileImg;
         }
       }
 
@@ -80,6 +81,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.refreshToken = account.refresh_token;
         token.userId = user.id;
         token.userName = user.name;
+        token.image = user.image;
       }
 
       return token;

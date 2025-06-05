@@ -38,7 +38,7 @@ export default function PostAiSummaryPres({
     setIsAiUsed(0); // 사용안함
   };
 
-  console.log('summary', summaryToDisplay);
+  // console.log('summary', summaryToDisplay);
 
   return (
     <div className={styles.bottomSheet} onClick={(e) => e.stopPropagation()}>

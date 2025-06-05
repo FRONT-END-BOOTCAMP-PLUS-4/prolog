@@ -2,16 +2,15 @@ import { useEffect, useState } from 'react';
 import { NotificationListCont } from '@/features/notification-list';
 import NotificationModalPres from '../presentational/NotificationModalPres';
 import { NotificationReadCont } from '@/features/notification-read';
-import { NotificationDeleteCont } from '@/features/notification-delete'
+import { NotificationDeleteCont } from '@/features/notification-delete';
 
 export default function NotificationModalCont() {
-
   const { submitRead, isSuccess } = NotificationReadCont();
   const { submitDelete, deleteStatus } = NotificationDeleteCont();
   const { notificationList } = NotificationListCont(deleteStatus);
 
-  console.log("notificationList:",notificationList);
-  
+  // console.log("notificationList:",notificationList);
+
   const [selectList, setSelectList] = useState<number[]>([]);
   const clickSelecterId = (idx: number) => {
     setSelectList((prev) =>
@@ -20,7 +19,7 @@ export default function NotificationModalCont() {
   };
 
   const allCheck = () => {
-    const allIds = notificationList.map(item => item.id);
+    const allIds = notificationList.map((item) => item.id);
     setSelectList(allIds);
   };
 
