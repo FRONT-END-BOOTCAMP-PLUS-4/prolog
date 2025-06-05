@@ -38,7 +38,11 @@ export default function MyBlogCardListPres({
         ) : (
           items.map((item) => (
             <div className={styles.cardContainer} key={item.id}>
-              <LongCardPres userId={userId} data={item} />
+              <LongCardPres
+                className={styles.myCardContainer}
+                userId={userId}
+                data={item}
+              />
             </div>
           ))
         )}

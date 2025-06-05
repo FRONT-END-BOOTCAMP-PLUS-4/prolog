@@ -11,15 +11,17 @@ import { MyBlogCardData } from '@/views/story/myblog-card-list/types';
 import { TagListCont } from '@/features/tag-list';
 import { LikeButton } from '@/features/like';
 import Profile from '@/shared/ui/profile';
+import React from 'react';
 
 type Props = {
   data: MyBlogCardData;
   userId: string;
+  className: string;
 };
 
-export default function LongCardPres({ data, userId }: Props) {
+export default function LongCardPres({ data, userId, className }: Props) {
   return (
-    <div className={`${styles.cardContainer} cardContainer`}>
+    <div className={`${styles.cardContainer} ${className ?? ''} cardContainer`}>
       <div className={styles.cardRow}>
         <div className={styles.cardLeft}>
           <Link href={`/${data.userName}/stories`}>
