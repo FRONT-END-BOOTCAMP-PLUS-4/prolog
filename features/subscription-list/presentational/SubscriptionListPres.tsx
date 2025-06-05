@@ -4,7 +4,7 @@ import PostsSearchCont from '@/features/search-input';
 import styles from '../styles/subscriptionList.module.scss';
 import { SubscribeUser } from '@/views/story/profile-card/types';
 type UserListProps = {
-  handleFollowListDisplay: () => void;
+  handleFollowListDisplay: (value: boolean) => void;
   isFollow: boolean;
   followerList: SubscribeUser;
   followList: SubscribeUser;
@@ -29,6 +29,7 @@ export default function SubscriptionListPres({
                         ? styles.toggleTextActive
                         : styles.toggleTextBasic
                     }
+                    onClick={() => handleFollowListDisplay(true)} // 팔로워 클릭
                   >
                     팔로워
                   </span>
@@ -39,17 +40,18 @@ export default function SubscriptionListPres({
                         ? styles.toggleTextBasic
                         : styles.toggleTextActive
                     }
+                    onClick={() => handleFollowListDisplay(false)} // 팔로잉 클릭
                   >
                     팔로잉
                   </span>
                 </div>
               </div>
-              <div
+              {/* <div
                 onClick={handleFollowListDisplay}
                 className={`${styles.toggle} ${isFollow ? '' : styles.movieToggle}`}
               >
                 <span className={styles.toggleCurrent}></span>
-              </div>
+              </div> */}
             </div>
             <div className={styles.searchbar}>
               <PostsSearchCont />
@@ -57,7 +59,24 @@ export default function SubscriptionListPres({
           </div>
         </div>
         <div className={styles.list}>
-          {isFollow
+          {(isFollow ? followerList?.users : followList?.users)?.map(
+            (item, index) => (
+              <div className={styles.flexCenter} key={index}>
+                <div className={styles.userListContainer}>
+                  <div className={styles.imgBox}>
+                    <Image
+                      src={item.profileImg ?? '/svgs/profile.svg'}
+                      alt="프로필이미지"
+                      width={40}
+                      height={40}
+                    />
+                  </div>
+                  <div className={styles.userName}>{item.name}</div>
+                </div>
+              </div>
+            ),
+          )}
+          {/* {isFollow
             ? followerList?.users?.map((item, index) => {
                 return (
                   <div className={styles.flexCenter} key={index}>
@@ -97,7 +116,7 @@ export default function SubscriptionListPres({
                     </div>
                   </div>
                 );
-              })}
+              })} */}
         </div>
       </div>
     </>

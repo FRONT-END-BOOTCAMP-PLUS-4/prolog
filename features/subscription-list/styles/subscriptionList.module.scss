@@ -9,86 +9,56 @@
   padding: 20px;
   position: relative;
   background-color: $theme-shade-2;
-}
-
-.searchbar {
-  max-width: 300px;
-}
-
-.subscriptionBox {
-  position: relative;
-  margin-bottom: 20px;
-  height: 40px;
-  white-space: nowrap; 
-}
-
-.followGap {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   display: flex;
-  gap: 12px;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap; 
-}
-
-.toggle {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 35px;
-  height: 17px;
-  border: 2px solid $theme-primary;
-  border-radius: 30px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding: 1px;
-  background-color: $theme-shade-4;
-  flex-shrink: 0;
-
-  .toggleCurrent {
-    position: absolute;
-    left: 0px;
-    top: -0.3px;
-    background-color: $theme-primary;
-    border-radius: 100%;
-    width: 14px;
-    height: 14px;
-    transition: transform 0.3s ease;
-    transform: translateX(0);
-  }
-
-  &.movieToggle .toggleCurrent {
-    transform: translateX(18px);
-  }
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .flex {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .flexColumn {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
+  width: 100%;
+}
+
+.subscriptionBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.followGapWrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.followGap {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  white-space: nowrap;
+  cursor: pointer;
 }
 
 .toggleTextActive {
   @include font-xl;
   color: $theme-primary;
-  font-weight: 200;
+  font-weight: bold;
 }
 
 .toggleTextBasic {
   @include font-xl;
   color: $theme-text-2;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 .text {
@@ -96,33 +66,40 @@
   color: $theme-text-1;
 }
 
+.searchbar {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
 .list {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  max-height: 300px;
+  padding: 0 8px;
 }
 
 .flexCenter {
   display: flex;
-  justify-items: center;
-  margin-top: 5px;
+  justify-content: center;
 }
 
 .userListContainer {
   display: flex;
-  width: 100%;
   align-items: center;
-  justify-content: space-around;
-  margin-top: 25px;
-  gap: 65px;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+.imgBox {
+  border-radius: 100%;
+  overflow: hidden;
 }
 
 .userName {
   color: $theme-text-2;
   @include font-xl;
-  text-align: center;
-}
-
-.imgBox {
-  border-radius: 100%;
-  text-align: center;
+  word-break: break-word;
 }

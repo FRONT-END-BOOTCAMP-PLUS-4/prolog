@@ -16,8 +16,8 @@ export default function SubscriptionListCont({
 }: SubscribeProps) {
   const [followState, setFollowState] = useState(isFollow);
 
-  const handleFollowListDisplay = () => {
-    setFollowState((prev) => !prev);
+  const handleFollowListDisplay = (value: boolean) => {
+    setFollowState(value);
   };
   return (
     <>
