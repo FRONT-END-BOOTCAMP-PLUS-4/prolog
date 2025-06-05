@@ -9,6 +9,26 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+::-webkit-scrollbar {
+  width: 10px;           
+  height: 10px;          
+}
+
+::-webkit-scrollbar-track {
+  background: $theme-shade-1;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $theme-soft-lavender;
+  border-radius: 6px;
+  border: 2px solid $theme-shade-1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $theme-primary;
+}
+
 button:focus, input:focus, div:focus {
   outline: none;
 }
@@ -48,3 +68,4 @@ button {
     animation-play-state: running ;
   }
 }
+

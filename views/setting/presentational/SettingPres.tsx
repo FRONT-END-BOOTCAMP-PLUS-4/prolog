@@ -109,12 +109,6 @@ export default function SettingPres(props: SettingPresProps) {
           <div className={styles.settingItem}>
             <span className={styles.settingLabel}>배경 이미지</span>
             <div className={styles.settingControls}>
-              <Image
-                src={backgroundImg || '/svgs/image.svg'}
-                alt="user profile image"
-                width={80}
-                height={80}
-              />
               <div className={styles.settingButtonGroup}>
                 <input
                   ref={backgroundInputRef}
@@ -126,21 +120,25 @@ export default function SettingPres(props: SettingPresProps) {
                 />
 
                 <Button
-                  variants="active"
                   onClick={() => backgroundInputRef.current?.click()}
                   disabled={loading}
+                  style={{ border: 'none' }}
                 >
                   업로드
                 </Button>
-                <Button onClick={onRemoveBackgroundImg} disabled={loading}>
+                <Button
+                  onClick={onRemoveBackgroundImg}
+                  disabled={loading}
+                  style={{ border: 'none', color: 'red' }}
+                >
                   제거
                 </Button>
               </div>
             </div>
           </div>
-          <p className={styles.settingDescription}>
+          <Button className={styles.settingDescription}>
             My Story의 배경 이미지를 설정합니다.
-          </p>
+          </Button>
         </div>
         <div className={styles.settingItemContainer}>
           <div className={styles.settingItem}>
@@ -148,9 +146,9 @@ export default function SettingPres(props: SettingPresProps) {
             <div className={styles.settingControls}>
               <div className={styles.settingButtonGroup}>
                 <Button
-                  variants="red"
                   onClick={onDeleteAccount}
                   disabled={loading}
+                  style={{ border: 'none', color: 'red' }}
                 >
                   회원 탈퇴
                 </Button>
@@ -164,8 +162,8 @@ export default function SettingPres(props: SettingPresProps) {
       </div>
       <div className={styles.actionButtons}>
         <Button
-          variants="active"
-          size="large"
+          variants="purple"
+          size="small"
           onClick={navigationBackHandler}
           disabled={loading}
         >
@@ -173,7 +171,7 @@ export default function SettingPres(props: SettingPresProps) {
         </Button>
         <Button
           variants="active"
-          size="large"
+          size="small"
           onClick={() => onSave(name)}
           disabled={loading}
         >

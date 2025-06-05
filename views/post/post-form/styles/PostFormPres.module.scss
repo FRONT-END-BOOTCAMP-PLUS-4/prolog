@@ -119,7 +119,6 @@
   border-radius: 8px;
   overflow: hidden;
   width: fit-content;
-
 }
 
 .toggleButton {
@@ -131,7 +130,9 @@
   color: $theme-white;
   opacity: 0.9;
   font-size: $font-base-size;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:not(:last-child) {
     border-right: 1px solid $theme-shade-2;
   }

@@ -125,6 +125,11 @@ export default function PostFormPres(props: Props) {
             <MagicWand />
           </Button>
           <Button
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
             onClick={togglePublic}
             variants={isPublic ? 'active' : undefined}
           >
@@ -147,7 +152,15 @@ export default function PostFormPres(props: Props) {
               {drafts?.length}
             </button>
           </div>
-          <Button variants="active" onClick={onCreatePost}>
+          <Button
+            variants="active"
+            onClick={onCreatePost}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
             발행하기
           </Button>
         </div>
