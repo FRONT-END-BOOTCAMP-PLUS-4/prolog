@@ -82,31 +82,45 @@ export default function ProfileCardPres({
                 )}
               </div>
             </div>
-            <div
-              onClick={() => {
-                openModal(
-                  <SubscriptionListCont
-                    followList={followList}
-                    followerList={followerList}
-                  />,
-                  'center',
-                );
-              }}
-              className={styles.followContainer}
-            >
-              <button className={styles.followText}>
+            <div className={styles.followContainer}>
+              <button
+                className={styles.followText}
+                onClick={() => {
+                  openModal(
+                    <SubscriptionListCont
+                      followList={followList}
+                      followerList={followerList}
+                      isFollow={true}
+                    />,
+                    'center',
+                  );
+                }}
+              >
                 팔로워
                 <span className={styles.followNumberText}>
                   {followerList?.totalCount ?? 0}
                 </span>
               </button>
-              <button className={styles.followText}>
+
+              <button
+                className={styles.followText}
+                onClick={() => {
+                  openModal(
+                    <SubscriptionListCont
+                      followList={followList}
+                      followerList={followerList}
+                      isFollow={false}
+                    />,
+                    'center',
+                  );
+                }}
+              >
                 팔로잉
                 <span className={styles.followNumberText}>
                   {followList?.totalCount ?? 0}
                 </span>
               </button>
-            </div>
+            </div>{' '}
           </div>
 
           {/* 소개글 */}
