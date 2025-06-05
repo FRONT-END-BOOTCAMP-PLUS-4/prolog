@@ -1,15 +1,24 @@
+@use '@styles/variables.scss' as *;
 .myBlogContainer{
 display: flex;
 flex-direction: column;
 gap: 20px;
 }
 .selectContainer {
-  width: 80%;
+  width: 94%;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap; // 요소가 넘칠 때 줄바꿈 허용
 }
-
+.notFound{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10%;
+  @include font-xl;
+}
 @media (max-width: 600px) {
   .selectContainer {
     width: 100%;
