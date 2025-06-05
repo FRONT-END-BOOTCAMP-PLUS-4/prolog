@@ -18,7 +18,6 @@ export default function CommentListCont({ postId }: { postId: number }) {
         return res.json();
       })
       .then((data) => {
-        console.log('Fetched comments:', data);
         interface ServerComment {
           id: number;
           profileImage: string;

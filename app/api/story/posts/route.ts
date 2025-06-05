@@ -36,7 +36,7 @@ export async function GET(req: NextRequest) {
       searchParams.get('pageSize') || '24',
       24,
     );
-    console.log('filters', filters);
+
     const repository = new PrPostByUserRepository();
     const usecase = new GetPostByUserUsecase(repository);
     let responseDto: GetPostByUserResponseDto;

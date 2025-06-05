@@ -58,9 +58,7 @@ export default function PostFormPres(props: Props) {
   const { theme } = useThemeStore();
   const { action } = useModalStore();
   const { action: actionToAi } = useModalStore();
-  const { drafts, selectedPost } = usePostEditorStore();
-
-  console.log('selected', selectedPost);
+  const { drafts } = usePostEditorStore();
 
   const togglePublic = () => {
     setIsPublic((prev) => (prev === 0 ? 1 : 0));
