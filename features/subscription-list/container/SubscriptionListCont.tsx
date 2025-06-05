@@ -7,15 +7,17 @@ import { SubscribeUser } from '@/views/story/profile-card/types';
 type SubscribeProps = {
   followList: SubscribeUser;
   followerList: SubscribeUser;
+  isFollow: boolean;
 };
 export default function SubscriptionListCont({
   followList,
   followerList,
+  isFollow,
 }: SubscribeProps) {
-  const [isFollow, setIsFollow] = useState<boolean>(true);
+  const [followState, setFollowState] = useState(isFollow);
 
   const handleFollowListDisplay = () => {
-    setIsFollow((prev) => !prev);
+    setFollowState((prev) => !prev);
   };
   return (
     <>
@@ -23,7 +25,7 @@ export default function SubscriptionListCont({
         followList={followList}
         followerList={followerList}
         handleFollowListDisplay={handleFollowListDisplay}
-        isFollow={isFollow}
+        isFollow={followState}
       />
     </>
   );
