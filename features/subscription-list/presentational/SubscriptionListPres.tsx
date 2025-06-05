@@ -21,22 +21,28 @@ export default function SubscriptionListPres({
         <div className={styles.flex}>
           <div className={styles.flexColumn}>
             <div className={styles.subscriptionBox}>
-              <div className={styles.followGap}>
-                <span
-                  className={
-                    isFollow ? styles.toggleTextActive : styles.toggleTextBasic
-                  }
-                >
-                  팔로워
-                </span>
-                <span className={styles.text}>/</span>
-                <span
-                  className={
-                    isFollow ? styles.toggleTextBasic : styles.toggleTextActive
-                  }
-                >
-                  팔로잉
-                </span>
+              <div className={styles.followGapWrapper}>
+                <div className={styles.followGap}>
+                  <span
+                    className={
+                      isFollow
+                        ? styles.toggleTextActive
+                        : styles.toggleTextBasic
+                    }
+                  >
+                    팔로워
+                  </span>
+                  <span className={styles.text}>|</span>
+                  <span
+                    className={
+                      isFollow
+                        ? styles.toggleTextBasic
+                        : styles.toggleTextActive
+                    }
+                  >
+                    팔로잉
+                  </span>
+                </div>
               </div>
               <div
                 onClick={handleFollowListDisplay}

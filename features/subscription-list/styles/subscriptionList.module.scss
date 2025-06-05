@@ -1,18 +1,44 @@
 @use '@styles/variables.scss' as *;
 @use '@styles/mixins.scss' as *;
-.container{
+
+.container {
   height: 500px;
   margin-top: 2rem;
   box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
   padding: 20px;
   position: relative;
-  background-color:$theme-shade-2;
+  background-color: $theme-shade-2;
 }
-.searchbar{
+
+.searchbar {
   max-width: 300px;
 }
+
+.subscriptionBox {
+  position: relative;
+  margin-bottom: 20px;
+  height: 40px;
+  white-space: nowrap; 
+}
+
+.followGap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap; 
+}
+
 .toggle {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
   width: 35px;
   height: 17px;
   border: 2px solid $theme-primary;
@@ -20,9 +46,9 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  position: relative;
   padding: 1px;
   background-color: $theme-shade-4;
+  flex-shrink: 0;
 
   .toggleCurrent {
     position: absolute;
@@ -36,74 +62,67 @@
     transform: translateX(0);
   }
 
-  &.movieToggle {
-    .toggleCurrent {
-      transform: translateX(18px); 
-    }
+  &.movieToggle .toggleCurrent {
+    transform: translateX(18px);
   }
 }
 
-  .flex {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-  }
-  .flexColumn{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-  .followGap{
-    display: flex;
-    gap: 12px;
-  }
-  .subscriptionBox{
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  .toggleTextActive{
-    @include font-xl;
-    color:$theme-primary;
-    font-weight: 200
-  }
-  .toggleTextBasic{
-    @include font-xl;
-    color: $theme-text-2;
-    font-weight: 200
-  }
-  .list{
-    display: flex;
-    flex-direction: column;
-    
-  }
-  .flexCenter{
-    display: flex;
-    justify-items: center;
-    margin-top: 5px;
-  }
-  .text{
-    font-size:20px ;
-    color: $theme-text-1;
-  }
-  .userListContainer{
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-around;
-    margin-top: 25px;
-    gap: 65px;
-  }
- 
-  .userName{
-    color: $theme-text-2;
-    @include font-xl;
-    text-align: center;
-  }
-  .imgBox{
-    border-radius: 100%;
-    text-align: center;
-  }
-  
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.toggleTextActive {
+  @include font-xl;
+  color: $theme-primary;
+  font-weight: 200;
+}
+
+.toggleTextBasic {
+  @include font-xl;
+  color: $theme-text-2;
+  font-weight: 200;
+}
+
+.text {
+  font-size: 20px;
+  color: $theme-text-1;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexCenter {
+  display: flex;
+  justify-items: center;
+  margin-top: 5px;
+}
+
+.userListContainer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 25px;
+  gap: 65px;
+}
+
+.userName {
+  color: $theme-text-2;
+  @include font-xl;
+  text-align: center;
+}
+
+.imgBox {
+  border-radius: 100%;
+  text-align: center;
+}
