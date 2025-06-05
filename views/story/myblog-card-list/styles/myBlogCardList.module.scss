@@ -19,6 +19,15 @@ gap: 20px;
   padding-top: 10%;
   @include font-xl;
 }
+.myCardContainer {
+  // width: clamp(22rem, 97%, 100%);
+  width: 95%;
+  background: $theme-shade-2;
+  border-radius: 8px;
+  box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.08);
+  padding: clamp(0.5rem, 2vw, 1rem);
+  overflow: hidden;
+}
 @media (max-width: 600px) {
   .selectContainer {
     width: 100%;
